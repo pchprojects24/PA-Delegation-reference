@@ -1,1 +1,455 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Medication Reference Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.expanded {
+            max-height: 2000px; /* Arbitrary large height to accommodate content */
+            opacity: 1;
+        }
+        .med-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .med-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-blue-600 p-2 rounded-lg text-white">
+                        <i data-lucide="cross"></i>
+                    </div>
+                    <h1 class="text-xl md:text-2xl font-bold text-gray-900">Medication Reference Guide</h1>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-96">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="text-gray-400 w-5 h-5"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors" 
+                        placeholder="Search medications, categories, or indications..."
+                    >
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Controls -->
+        <div class="flex justify-between items-center mb-6">
+            <p class="text-sm text-gray-500" id="resultsCount">Showing all medications</p>
+            <button id="expandAllBtn" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+                Expand All Categories
+            </button>
+        </div>
+
+        <div id="medicationContainer" class="space-y-6">
+            <!-- Categories will be injected here via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <i data-lucide="search-x" class="mx-auto h-12 w-12 text-gray-400 mb-4"></i>
+            <h3 class="text-lg font-medium text-gray-900">No medications found</h3>
+            <p class="mt-1 text-gray-500">Try adjusting your search terms.</p>
+        </div>
+    </main>
+
+    <script>
+        // Medication Database
+        const medData = [
+            {
+                category: "Cardiovascular",
+                medications: [
+                    { name: "Amiodarone", forms: "Vial/Ampule (150 mg/3 mL)", ind: "VF/pVT, Stable VT, Atrial Fibrillation", dose: "Cardiac Arrest: 300 mg IV/IO push, 2nd dose 150 mg. Live patient: 150 mg over 10 min.", contra: "Cardiogenic shock, severe sinus node dysfunction, 2nd/3rd-degree AV block.", protip: "Do not push rapidly in a patient with a pulse. Watch for profound hypotension and bradycardia." },
+                    { name: "Adenosine", forms: "Vial (6 mg/2 mL, 12 mg/4 mL)", ind: "Regular narrow-complex SVT", dose: "6 mg rapid IV push. If no conversion, 12 mg rapid IV push.", contra: "2nd/3rd-degree AV block, sick sinus syndrome, asthma (relative).", protip: "Must be pushed extremely fast, immediately followed by a 20mL saline flush and arm elevation. Warn the patient they will feel a brief, intense chest pressure or 'impending doom'." },
+                    { name: "Epinephrine", forms: "Ampule 1:1,000 (1 mg/1 mL), Prefilled Syringe 1:10,000 (1 mg/10 mL)", ind: "Cardiac Arrest, Anaphylaxis, Severe Asthma, Severe Bradycardia", dose: "Arrest: 1 mg (1:10,000) IV q3-5 min. Anaphylaxis: 0.3-0.5 mg (1:1,000) IM.", contra: "None in cardiac arrest. Caution in cardiovascular disease for non-arrest.", protip: "Always triple-check your concentration. 1:1,000 is for IM only. Giving 1:1,000 IV push can cause lethal arrhythmias and hypertensive crisis." },
+                    { name: "Nitroglycerin spray", forms: "Sublingual spray (0.4 mg/dose)", ind: "ACS (Angina), Pulmonary Edema (CHF)", dose: "0.4 mg SL every 5 minutes (max 3 doses) if BP > 90/100 mmHg.", contra: "Hypotension, right ventricular infarction, recent PDE-5 inhibitor use (e.g., Viagra within 24h, Cialis within 48h).", protip: "Always check BP before AND after administration. Explicitly ask both male and female patients about erectile dysfunction/pulmonary hypertension meds." },
+                    { name: "ASA (Aspirin)", forms: "Chewable tablets (81 mg)", ind: "Acute Coronary Syndrome (ACS)", dose: "162 - 324 mg chewed (usually 2-4 x 81mg tabs).", contra: "Active GI bleeding, true aspirin allergy.", protip: "Instruct the patient to thoroughly chew the tablets, not swallow them whole, to ensure rapid buccal/gastric absorption." },
+                    { name: "Clopidogrel", forms: "Tablets (75 mg, 300 mg)", ind: "ACS, post-stent placement", dose: "Loading dose 300-600 mg PO, then 75 mg daily.", contra: "Active pathological bleeding (e.g., peptic ulcer, intracranial hemorrhage).", protip: "Often given in combination with ASA for dual antiplatelet therapy. Note whether the patient might need emergent CABG surgery, as this may delay it." },
+                    { name: "Tenecteplase", forms: "Powder for reconstitution (50 mg vial)", ind: "Acute STEMI", dose: "Weight-based single IV bolus (e.g., 30-50 mg over 5 seconds).", contra: "Active internal bleeding, recent surgery/trauma, severe uncontrolled HTN, history of hemorrhagic stroke.", protip: "Strict adherence to inclusion/exclusion checklists is mandatory. Obtain multiple IV lines before administration, as it prevents clotting everywhere." },
+                    { name: "Enoxaparin", forms: "Prefilled syringes (30, 40, 60, 80, 100 mg)", ind: "DVT/PE treatment, ACS, VTE prophylaxis", dose: "Treatment: 1 mg/kg SQ q12h. ACS: 30 mg IV bolus followed by 1 mg/kg SQ.", contra: "Active major bleeding, heparin-induced thrombocytopenia (HIT).", protip: "Do not expel the air bubble from the prefilled syringe before injection; it ensures the full dose is delivered and seals the medication in the tissue." },
+                    { name: "Tranexamic Acid", forms: "Vial (1000 mg/10 mL)", ind: "Massive hemorrhage, severe trauma, postpartum hemorrhage", dose: "1g IV over 10 minutes, followed by 1g IV infusion over 8 hours.", contra: "Active intravascular clotting, subarachnoid hemorrhage.", protip: "Must be administered within 3 hours of the injury to be effective and improve mortality. Pushing too fast can cause severe hypotension." },
+                    { name: "Metoprolol", forms: "Vial (5 mg/5 mL), Tablets", ind: "Rate control in Afib/Aflutter, ACS, Hypertension", dose: "2.5 - 5 mg slow IV push over 2 minutes. May repeat q5min to max 15 mg.", contra: "Severe bradycardia, heart block > 1st degree, cardiogenic shock, active bronchospasm/asthma.", protip: "Use with caution in asthmatics and COPD patients; although cardio-selective, high doses can block beta-2 receptors and worsen bronchospasm." },
+                    { name: "Norepinephrine", forms: "Ampule (4 mg/4 mL) for infusion", ind: "Distributive shock (e.g., Sepsis), cardiogenic shock", dose: "0.01 - 3 mcg/kg/min IV infusion, titrated to MAP > 65.", contra: "Hypovolemia (relative—must give fluids first).", protip: "Should ideally be administered via a central line. Extravasation in a peripheral IV causes severe tissue necrosis (treatable with phentolamine)." },
+                    { name: "Phenylephrine", forms: "Vial, Pre-mixed syringes", ind: "Hypotension (anesthesia-induced, shock)", dose: "Push dose: 50 - 200 mcg IV. Infusion titrated to effect.", contra: "Severe hypertension, VTach.", protip: "It is a pure alpha-agonist. Watch out for reflex bradycardia when blood pressure suddenly rises." },
+                    { name: "Vasopressin", forms: "Vial (20 units/mL)", ind: "Vasodilatory shock, DI", dose: "0.03 - 0.04 units/min IV infusion.", contra: "None in critical shock.", protip: "Often used as a second-line pressor adjunct to Norepinephrine to reduce the total catecholamine dose and spare the heart." }
+                ]
+            },
+            {
+                category: "Dermatological",
+                medications: [
+                    { name: "Polymyxin B", forms: "Topical ointment", ind: "Minor skin infections, laceration prophylaxis", dose: "Apply small amount to affected area 1-3 times daily.", contra: "Hypersensitivity.", protip: "Not for deep or puncture wounds, animal bites, or serious burns." },
+                    { name: "Mupirocin", forms: "Topical ointment (2%)", ind: "Impetigo, MRSA decolonization", dose: "Apply to affected area 3 times daily for 5-14 days.", contra: "Hypersensitivity.", protip: "Excellent choice for honey-crusted lesions of impetigo. Advise patient not to use near eyes." },
+                    { name: "Clotrimazole", forms: "Cream (1%)", ind: "Tinea pedis (athlete's foot), tinea corporis, cutaneous candidiasis", dose: "Apply twice daily for 2-4 weeks.", contra: "Hypersensitivity.", protip: "Advise patients to continue applying for 1 week after symptoms resolve to prevent recurrence." },
+                    { name: "Betamethasone Valerate", forms: "Cream/Ointment (0.1%)", ind: "Corticosteroid-responsive dermatoses, eczema, psoriasis", dose: "Apply thin film 1-2 times daily.", contra: "Untreated skin infections, rosacea.", protip: "Use the lowest potency needed for the shortest time. Avoid prolonged use on the face or intertriginous areas to prevent skin thinning." },
+                    { name: "Hydrocortisone ointment", forms: "Ointment (0.5% - 1%)", ind: "Mild dermatitis, insect bites", dose: "Apply thin film 2-4 times daily.", contra: "Active skin infections without concurrent antimicrobial.", protip: "Safe low-potency steroid for use on the face or in skin folds, unlike stronger steroids like Betamethasone." },
+                    { name: "Hemorrhoidal ointment/suppository", forms: "Ointment/Suppository (with hydrocortisone)", ind: "Internal/External hemorrhoids", dose: "Apply/Insert bid-tid and after bowel movements.", contra: "Perianal infections.", protip: "Advise patient to increase dietary fiber and water intake to prevent the constipation exacerbating the condition." },
+                    { name: "Lidocaine injection", forms: "Vial (1%, 2%)", ind: "Local anesthesia for laceration repair", dose: "Max dose ~4.5 mg/kg.", contra: "Severe heart block (if systemic absorption occurs), true amide allergy.", protip: "Wait 2-5 minutes after injection before cutting/suturing to allow the medication to block the nerve channels fully." },
+                    { name: "Lidocaine injection with epinephrine", forms: "Vial (1% or 2% with 1:100,000 epi)", ind: "Local anesthesia needing bleeding control/prolonged effect", dose: "Max dose ~7 mg/kg.", contra: "Use in areas with end-artery supply (traditional teaching: fingers, toes, nose, hose—though recently debated, caution remains).", protip: "The epinephrine vasoconstricts, providing a bloodless field and keeping the lidocaine localized longer." },
+                    { name: "Tetracaine", forms: "Topical liquid/drops", ind: "Topical anesthesia for intact skin or eyes (ophthalmic form)", dose: "Varies by preparation.", contra: "Allergy to ester local anesthetics.", protip: "Do not dispense ophthalmic tetracaine for home use. Repeated use causes severe corneal toxicity and melting." }
+                ]
+            },
+            {
+                category: "Ear-Nose-Throat (ENT)",
+                medications: [
+                    { name: "Ciprodex", forms: "Otic suspension (Ciprofloxacin 0.3% / Dexamethasone 0.1%)", ind: "Acute otitis externa, otitis media with tympanostomy tubes", dose: "4 drops in affected ear(s) twice daily for 7 days.", contra: "Viral infections of the external canal.", protip: "Warm the bottle in hands before instilling; cold drops can cause severe vertigo." },
+                    { name: "Beclomethasone nasal spray", forms: "Nasal spray", ind: "Allergic rhinitis", dose: "1-2 sprays per nostril bid.", contra: "Untreated localized infection involving nasal mucosa.", protip: "Aim spray away from the nasal septum to avoid epistaxis and septal perforation over time." },
+                    { name: "Nasonex (Mometasone)", forms: "Nasal spray", ind: "Allergic rhinitis, nasal polyps", dose: "2 sprays per nostril daily.", contra: "Recent nasal surgery or trauma until healed.", protip: "Takes 1-2 weeks of daily use to reach peak effectiveness; it is not a PRN immediate-relief drug." },
+                    { name: "Dristan / Otrivin (Xylometazoline)", forms: "Nasal spray", ind: "Nasal congestion", dose: "1-2 sprays per nostril q8-10h PRN.", contra: "MAOI use, narrow-angle glaucoma.", protip: "Do not use for more than 3-5 days to avoid severe rebound congestion (rhinitis medicamentosa)." },
+                    { name: "Oracort (Triamcinolone paste)", forms: "Dental paste", ind: "Aphthous ulcers (canker sores)", dose: "Press small dab onto lesion at bedtime.", contra: "Oral fungal/viral infections.", protip: "Do not rub it in; dab it on to form a protective film over the ulcer." },
+                    { name: "Zilactin-B", forms: "Oral gel (Benzocaine 10%)", ind: "Oral pain, canker sores, cold sores", dose: "Apply up to qid.", contra: "History of methemoglobinemia.", protip: "Forms a film that protects the sore from irritation while eating." },
+                    { name: "Saline", forms: "Drops, spray", ind: "Nasal dryness, mucus clearance", dose: "Use as needed.", contra: "None.", protip: "Excellent and safe first-line choice for infants with congested noses before feeding." },
+                    { name: "Pseudoephedrine HCl", forms: "Tablets (30mg, 60mg)", ind: "Nasal and sinus congestion", dose: "60 mg PO q4-6h.", contra: "Severe hypertension, CAD, MAOI use.", protip: "Can cause insomnia and tachycardia. Avoid giving close to bedtime." }
+                ]
+            },
+            {
+                category: "Endocrine & Metabolic",
+                medications: [
+                    { name: "Dexamethasone", forms: "PO tablets, IV/IM/PO liquid (often 4mg/mL)", ind: "Croup, severe allergic reactions, asthma/COPD exacerbation", dose: "Croup: 0.6 mg/kg PO/IM (max 16mg). Asthma/Allergy: 4-10 mg IV/PO.", contra: "Systemic fungal infections.", protip: "Long-acting steroid (half-life ~36-72 hours). Often a single dose in the ED is sufficient for croup or mild asthma flares." },
+                    { name: "Prednisone", forms: "Tablets (5mg, 50mg)", ind: "Asthma/COPD exacerbation, inflammatory conditions", dose: "Adults: 40-50 mg PO daily for 5 days.", contra: "Active untreated systemic infections.", protip: "Take with food to prevent GI upset. Short bursts (e.g., 5 days) do not require tapering." },
+                    { name: "Insulin Human Regular", forms: "Vial (100 units/mL)", ind: "Hyperglycemia, DKA, Hyperkalemia", dose: "DKA: 0.1 units/kg IV bolus, then infusion. Hyperkalemia: 10 units IV (with D50W).", contra: "Hypoglycemia.", protip: "When treating hyperkalemia, you must administer Dextrose (D50) alongside Insulin to prevent severe, life-threatening hypoglycemia." },
+                    { name: "Glucagon", forms: "Vial powder/diluent (1 mg)", ind: "Severe hypoglycemia (no IV access), Beta-blocker/Calcium channel blocker overdose", dose: "Hypoglycemia: 1 mg IM/SQ. Overdose: 3-10 mg IV bolus.", contra: "Pheochromocytoma.", protip: "Relies on hepatic glycogen stores. Will not work well in malnourished, alcoholic, or pediatric patients with depleted stores." },
+                    { name: "Metformin", forms: "Tablets (500mg, 850mg)", ind: "Type 2 Diabetes Mellitus", dose: "500 mg PO bid.", contra: "Severe renal impairment (eGFR < 30), metabolic acidosis.", protip: "Should be withheld around the time of IV contrast administration to prevent lactic acidosis in cases of contrast-induced nephropathy." }
+                ]
+            },
+            {
+                category: "Gastrointestinal",
+                medications: [
+                    { name: "Diovol / Gaviscon / TUMS", forms: "Liquid, Chewables", ind: "Dyspepsia, GERD", dose: "1-2 tabs or 10-20 mL PO PRN.", contra: "Severe renal impairment (for magnesium/aluminum types).", protip: "Antacids bind to and prevent the absorption of many other drugs (e.g., fluoroquinolones, doxycycline). Separate doses by 2 hours." },
+                    { name: "Pepto (Bismuth subsalicylate)", forms: "Liquid, chewable", ind: "Diarrhea, dyspepsia, H. pylori adjunct", dose: "524 mg PO q30-60min PRN.", contra: "Aspirin allergy, active bleeding.", protip: "Warn the patient: it will turn their tongue and stool black. This is harmless but can mimic melena (GI bleed)." },
+                    { name: "Loperamide (Imodium)", forms: "Tablets (2 mg)", ind: "Acute non-infectious diarrhea", dose: "4 mg initially, then 2 mg after each loose stool (max 16mg/day).", contra: "Dysentery (bloody diarrhea with high fever), C. diff.", protip: "Do not use if the patient has a high fever or bloody stool—trapping infectious organisms in the gut can lead to toxic megacolon." },
+                    { name: "PEG (Polyethylene Glycol)", forms: "Powder", ind: "Constipation, bowel prep", dose: "17g dissolved in 8 oz water daily.", contra: "Bowel obstruction.", protip: "It is an osmotic laxative. The patient MUST drink plenty of water with it, or it will not be effective." },
+                    { name: "Dimenhydrinate (Gravol)", forms: "Tablets (50mg), IV/IM (50mg/mL)", ind: "Nausea, vomiting, motion sickness", dose: "25-50 mg IV/IM/PO q4-6h.", contra: "Narrow-angle glaucoma (caution).", protip: "Highly sedating. If giving IV, dilute with saline and push slowly to avoid venous irritation and intense immediate sedation/dizziness." },
+                    { name: "Pantoloc (Pantoprazole)", forms: "IV Vial (40mg), Tablets (40mg)", ind: "GERD, Peptic Ulcer Disease, GI Bleed", dose: "GERD: 40mg PO/IV daily. GI Bleed: 80mg IV bolus, then 8mg/hr infusion.", contra: "Hypersensitivity.", protip: "For active upper GI bleeds, the 80mg IV bolus helps stabilize the clot in the stomach by raising the gastric pH." },
+                    { name: "Pepcid AC (Famotidine)", forms: "Tablets (10-20mg), IV (20mg)", ind: "GERD, allergic reactions (H2 blockade)", dose: "20 mg PO/IV bid.", contra: "Hypersensitivity.", protip: "Often given alongside H1 blockers (like Benadryl) in anaphylaxis to block histamine receptors in the gut and vasculature completely." },
+                    { name: "Metoclopramide (Maxeran)", forms: "Vial (10mg/2mL), Tablets", ind: "Nausea/Vomiting, Gastroparesis, Migraine", dose: "10 mg IV/PO q6h.", contra: "Bowel obstruction, GI hemorrhage, history of tardive dyskinesia.", protip: "Can cause acute dystonic reactions (muscle spasms, torticollis). If this happens, treat with Benadryl or Benztropine." },
+                    { name: "Fleet enema", forms: "Pre-packaged enema", ind: "Severe constipation", dose: "1 enema rectally PRN.", contra: "Bowel obstruction, severe renal failure (hyperphosphatemia risk).", protip: "Ensure patient is near a commode. Do not use routinely in elderly or renal patients due to risk of dangerous electrolyte shifts." }
+                ]
+            },
+            {
+                category: "Infectious Disease",
+                medications: [
+                    { name: "Cefazolin", forms: "Vial for IV", ind: "Cellulitis, surgical prophylaxis", dose: "1-2 g IV q8h.", contra: "Severe IgE-mediated Penicillin allergy.", protip: "Excellent first-line IV antibiotic for non-purulent skin infections." },
+                    { name: "Cephalexin (Keflex)", forms: "Capsules (500mg)", ind: "Skin infections, simple UTI", dose: "500 mg PO qid for 5-7 days.", contra: "Severe Penicillin allergy.", protip: "Standard oral step-down therapy from IV Cefazolin." },
+                    { name: "Ceftriaxone", forms: "Vial for IV/IM", ind: "Meningitis, Gonorrhea, Pyelonephritis, Pneumonia", dose: "1-2 g IV daily. Gonorrhea: 500 mg IM x 1.", contra: "Neonates <28 days with jaundice.", protip: "If giving IM for gonorrhea, dilute with 1% Lidocaine instead of saline to significantly reduce injection pain." },
+                    { name: "Azithromycin", forms: "Tablets (250mg, 500mg)", ind: "Atypical pneumonia, Chlamydia", dose: "Chlamydia: 1 g PO x 1. Pneumonia: 500 mg day 1, then 250 mg days 2-5.", contra: "History of cholestatic jaundice with prior use, prolonged QTc.", protip: "Watch out for QTc prolongation, especially if the patient is on other QTc-prolonging drugs like Ondansetron or Amiodarone." },
+                    { name: "Amoxicillin / Clavulanate (Clavulin)", forms: "Tablets (875/125mg)", ind: "Animal bites, severe sinusitis, otitis media", dose: "875/125 mg PO bid.", contra: "Penicillin allergy, hepatic dysfunction with prior use.", protip: "The classic drug of choice for animal (dog/cat) and human bites to cover Pasteurella and oral anaerobes. Causes diarrhea frequently." },
+                    { name: "Ciprofloxacin", forms: "Tablets (500mg), IV", ind: "Complicated UTI, Pyelonephritis, intra-abdominal infections", dose: "500 mg PO bid.", contra: "Myasthenia gravis, concurrent Tizanidine.", protip: "Black box warning for Achilles tendon rupture and aortic dissection. Warn patients to stop if they feel tendon pain." },
+                    { name: "Septra (TMP-SMX)", forms: "Tablets (DS 800/160mg)", ind: "MRSA skin infections, simple UTI", dose: "1-2 DS tabs PO bid.", contra: "Sulfa allergy, pregnancy (term), folate deficiency.", protip: "Excellent for purulent cellulitis (spider bite-like) suspect for MRSA. Can cause hyperkalemia and increase INR in patients on Warfarin." },
+                    { name: "Doxycycline", forms: "Capsules (100mg)", ind: "Atypical pneumonia, Lyme disease, Chlamydia, MRSA", dose: "100 mg PO bid.", contra: "Pregnancy, children < 8 (causes permanent tooth discoloration).", protip: "Causes severe pill esophagitis and photosensitivity. Tell patient to take with a full glass of water, remain upright for 30 mins, and wear sunscreen." },
+                    { name: "Clindamycin", forms: "Capsules (300mg), IV", ind: "Skin infections, dental infections", dose: "300-450 mg PO tid-qid.", contra: "History of C. diff colitis.", protip: "Notorious for causing C. diff diarrhea. Tell patients to stop and call if they develop severe, watery diarrhea." },
+                    { name: "Nitrofurantoin (Macrobid)", forms: "Capsules (100mg)", ind: "Uncomplicated UTI (Cystitis)", dose: "100 mg PO bid for 5 days.", contra: "Pyelonephritis, eGFR < 30.", protip: "Only concentrates in the bladder. Never use for kidney infections (pyelonephritis) or systemic infections." },
+                    { name: "Valacyclovir", forms: "Tablets (500mg, 1g)", ind: "Herpes simplex, Herpes zoster (Shingles)", dose: "Shingles: 1 g PO tid for 7 days.", contra: "Hypersensitivity.", protip: "Must be started within 72 hours of rash onset for maximum efficacy in shingles. Ensure patient stays well hydrated." },
+                    { name: "Truvada", forms: "Tablets (Emtricitabine/Tenofovir)", ind: "HIV PrEP, HIV PEP (with a 3rd drug)", dose: "1 tab PO daily.", contra: "Unknown HIV status, eGFR < 60.", protip: "If given in the ED for post-exposure prophylaxis (PEP), it must be initiated within 72 hours of exposure." }
+                ]
+            },
+            {
+                category: "Immunological & Vaccines",
+                medications: [
+                    { name: "Tetanus (Td or Tdap)", forms: "IM Injection (0.5 mL)", ind: "Wound prophylaxis, routine booster", dose: "0.5 mL IM.", contra: "History of encephalopathy within 7 days of previous dose.", protip: "Give if a dirty wound and >5 years since last dose, or clean wound and >10 years. Always inject in the deltoid, not the glute." },
+                    { name: "Benadryl (Diphenhydramine)", forms: "PO/IV/IM (25-50mg)", ind: "Allergic reactions, dystonic reactions", dose: "25-50 mg IV/PO/IM.", contra: "Neonates, acute asthma attack (causes thickened secretions).", protip: "Highly sedating. Often combined with Epinephrine and steroids for anaphylaxis, but NEVER a substitute for Epinephrine." },
+                    { name: "Cetirizine (Reactine) / Loratadine (Claritin)", forms: "Tablets (10mg)", ind: "Mild allergic rhinitis, chronic urticaria", dose: "10 mg PO daily.", contra: "Hypersensitivity.", protip: "Non-sedating second-generation H1 blockers. Good for discharge after an allergic reaction treated in the ED." }
+                ]
+            },
+            {
+                category: "Musculoskeletal & Connective Tissue",
+                medications: [
+                    { name: "Ibuprofen (Advil/Motrin)", forms: "Tablets (200-600mg), Liquid", ind: "Mild-moderate pain, fever, inflammation", dose: "400-600 mg PO q6h.", contra: "Active GI bleed, CKD, 3rd-trimester pregnancy.", protip: "Take with food to minimize GI upset. Max dose is generally 2400mg/day." },
+                    { name: "Tylenol (Acetaminophen)", forms: "Tablets (325, 500mg), Liquid", ind: "Pain, fever", dose: "500-1000 mg PO q6h.", contra: "Severe liver failure.", protip: "Max daily dose is 4000mg. Be careful of combination cold meds/opioids (like Tylenol #3) which contain hidden acetaminophen." },
+                    { name: "Naproxen (Aleve)", forms: "Tablets (250, 500mg)", ind: "MSK pain, gout, dysmenorrhea", dose: "500 mg PO bid.", contra: "Active GI bleed, CKD, true NSAID allergy.", protip: "Has a longer half-life than Ibuprofen, allowing for convenient twice-daily dosing." },
+                    { name: "Indomethacin", forms: "Capsules (25, 50mg)", ind: "Acute Gout attacks", dose: "50 mg PO tid.", contra: "PUD, renal impairment.", protip: "Very tough on the stomach. Excellent for gout, but usually switched to a milder NSAID once the acute flare subsides." },
+                    { name: "Ketorolac (Toradol)", forms: "Vial (30mg/mL IV/IM), Tablets (10mg)", ind: "Moderate-severe acute MSK pain, renal colic", dose: "15-30 mg IV/IM q6h.", contra: "Renal impairment, active bleeding, upcoming surgery.", protip: "Highly effective for kidney stones. Do not use for more than 5 days total (IV + PO combined) due to high risk of GI bleed and renal toxicity." },
+                    { name: "Voltaren gel (Diclofenac)", forms: "Topical Gel (1%, 2%)", ind: "Localized osteoarthritis, sprains", dose: "Apply to affected joint qid.", contra: "Broken skin.", protip: "Great alternative for elderly patients with kidney issues or GI bleed history, as systemic absorption is very low." }
+                ]
+            },
+            {
+                category: "Neurological",
+                medications: [
+                    { name: "Atropine Sulfate", forms: "Pre-filled syringe (1mg/10mL)", ind: "Symptomatic Bradycardia, Organophosphate poisoning", dose: "Bradycardia: 1 mg IV push q3-5 min (max 3mg).", contra: "None in emergency setting.", protip: "Will not work for heart blocks below the AV node (e.g., Mobitz II or 3rd-degree block) or in heart transplant patients (denervated heart)." },
+                    { name: "Cyclobenzaprine (Flexeril)", forms: "Tablets (10mg)", ind: "Muscle spasms", dose: "5-10 mg PO tid.", contra: "Recent MI, MAOI use, hyperthyroidism.", protip: "Structurally related to tricyclic antidepressants. Highly sedating; warn patients not to drive." },
+                    { name: "Phenytoin (Dilantin)", forms: "Vial (50mg/mL)", ind: "Status epilepticus, seizure prophylaxis", dose: "Loading: 15-20 mg/kg IV.", contra: "Sinus bradycardia, heart block.", protip: "Must be pushed very slowly (max 50 mg/min) and only mixed in Normal Saline to avoid precipitation and severe hypotension/arrhythmias." },
+                    { name: "Haloperidol (Haldol)", forms: "Vial (5mg/mL)", ind: "Acute agitation, severe delirium, psychosis", dose: "2.5-5 mg IV/IM.", contra: "Parkinson's disease, prolonged QTc.", protip: "Can cause severe extrapyramidal symptoms (EPS) and prolong the QTc interval leading to Torsades de Pointes. Have an ECG handy." },
+                    { name: "Zopiclone", forms: "Tablets (5, 7.5mg)", ind: "Short-term insomnia", dose: "3.75 - 7.5 mg PO at bedtime.", contra: "Severe respiratory impairment.", protip: "Causes a characteristic bitter/metallic taste in the mouth the next morning. Warn patients to ensure they have 7-8 hours to sleep." }
+                ]
+            },
+            {
+                category: "Obstetrical & Gynecological",
+                medications: [
+                    { name: "Canesten + Fluconazole", forms: "Vaginal cream/suppository + Oral Tab (150mg)", ind: "Vulvovaginal Candidiasis (Yeast infection)", dose: "Fluconazole 150mg PO x 1. Canesten applied locally.", contra: "Pregnancy (for oral Fluconazole—use topical only).", protip: "Oral Fluconazole is contraindicated in pregnancy. If pregnant, the patient must use 7 days of topical clotrimazole/miconazole." }
+                ]
+            },
+            {
+                category: "Ophthalmic",
+                medications: [
+                    { name: "Erythromycin ointment", forms: "Ophthalmic ointment (0.5%)", ind: "Bacterial conjunctivitis, corneal abrasion prophylaxis", dose: "1 cm ribbon to lower lid qid.", contra: "Hypersensitivity.", protip: "Ointments blur vision. Advise patients not to drive immediately after application. Apply to the inner lower lid, without touching the tube to the eye." },
+                    { name: "Gramicidin-Polymyxin B (Polysporin eye drops)", forms: "Eye drops", ind: "Bacterial conjunctivitis", dose: "1-2 drops q3-4h.", contra: "Viral/fungal eye infections.", protip: "Good first-line agent. If the patient wears contacts, they must stop wearing them and switch to Ciprofloxacin/Ofloxacin drops to cover Pseudomonas." },
+                    { name: "Fluorescein", forms: "Strips/Drops", ind: "Detection of corneal abrasions/ulcers", dose: "1 drop/strip applied to conjunctiva.", contra: "None.", protip: "Use with a Wood's lamp or Cobalt blue light. Abrasions will glow bright green. Remove contact lenses before use, as it permanently stains soft lenses." },
+                    { name: "Lubricating ointment", forms: "Ointment/Drops", ind: "Dry eyes, Bell's Palsy eye protection", dose: "Apply as needed.", contra: "None.", protip: "Crucial for patients with Bell's Palsy to prevent corneal drying and ulceration since they cannot blink or close the eye fully." }
+                ]
+            },
+            {
+                category: "Respiratory",
+                medications: [
+                    { name: "Salbutamol (Albuterol/Ventolin)", forms: "MDI, Nebulizer solution (2.5-5mg)", ind: "Asthma, COPD, bronchospasm, hyperkalemia", dose: "2.5-5 mg nebulized q20min. MDI: 4-8 puffs.", contra: "Severe tachycardia (relative).", protip: "It is a beta-2 agonist but has some beta-1 crossover. It will cause tachycardia and tremors; reassure the patient this is a normal side effect." },
+                    { name: "Beclomethasone dip", forms: "MDI (QVAR)", ind: "Maintenance asthma therapy", dose: "1-2 puffs bid.", contra: "Acute asthma attack.", protip: "This is a preventer, not a reliever. Patient MUST rinse their mouth after use to prevent oral thrush (candidiasis)." },
+                    { name: "Lidocaine endotracheal spray", forms: "LMA spray (10mg/dose)", ind: "Topical anesthesia for intubation/bronchoscopy", dose: "1-2 sprays to vocal cords.", contra: "Amide anesthetic allergy.", protip: "Suppresses the gag/cough reflex. Patient must be strictly NPO until numbness wears off to prevent aspiration." }
+                ]
+            },
+            {
+                category: "IV Fluids, Blood Products, Electrolytes",
+                medications: [
+                    { name: "Naloxone (Narcan)", forms: "Vial (0.4mg/mL, 2mg/2mL), Nasal Spray", ind: "Opioid overdose", dose: "0.4 - 2 mg IV/IM/IN q2-3min.", contra: "None in overdose.", protip: "The half-life of Naloxone (~30-60 mins) is shorter than most opioids. Monitor closely for re-sedation after the patient wakes up." },
+                    { name: "Flumazenil", forms: "Vial (0.1mg/mL)", ind: "Benzodiazepine reversal (iatrogenic)", dose: "0.2 mg IV over 15 sec.", contra: "Chronic benzo users, TCA overdose, seizure history.", protip: "Rarely used in the ED for unknown overdoses because if the patient is a chronic benzo user, reversing it can cause intractable, fatal seizures." },
+                    { name: "Dextrose (D50W)", forms: "Pre-filled syringe (25g/50mL)", ind: "Severe hypoglycemia", dose: "1 ampule (25g) IV push.", contra: "No IV access.", protip: "Highly hypertonic. Extravasation causes severe tissue necrosis. Ensure a perfectly patent IV line before pushing." },
+                    { name: "Lactated Ringer’s", forms: "IV Bag", ind: "Resuscitation, trauma, burns", dose: "Bolus or continuous.", contra: "Severe hyperkalemia, liver failure (can't process lactate).", protip: "More physiologic than Normal Saline. Preferred in trauma and large volume resuscitation to prevent hyperchloremic metabolic acidosis." },
+                    { name: "NaCl 0.9% (Normal Saline)", forms: "IV Bag", ind: "Resuscitation, hydration", dose: "Bolus or continuous.", contra: "Fluid overload, CHF.", protip: "Despite the name, it is not 'normal' (pH is ~5.5, chloride is 154). Large volumes can cause hyperchloremic non-anion gap metabolic acidosis." },
+                    { name: "Thiamine (B1)", forms: "Vial (100mg/mL)", ind: "Wernicke's encephalopathy, chronic alcoholism", dose: "100 mg IV/IM.", contra: "None.", protip: "In alcoholic or malnourished patients, ALWAYS give Thiamine before or alongside IV Dextrose to prevent precipitating Wernicke's encephalopathy." },
+                    { name: "Calcium gluconate", forms: "Vial (10%)", ind: "Severe Hyperkalemia, Calcium channel blocker overdose", dose: "1-2 g IV over 5-10 mins.", contra: "Digoxin toxicity (relative), hypercalcemia.", protip: "Does NOT lower potassium levels. It solely stabilizes the cardiac membrane to prevent fatal arrhythmias while other drugs work." },
+                    { name: "Magnesium Sulphate", forms: "Vial (50%)", ind: "Torsades de Pointes, Severe asthma, Eclampsia", dose: "Asthma/Torsades: 2 g IV over 10-20 min. Eclampsia: 4 g IV.", contra: "Heart block, renal failure.", protip: "Watch for loss of deep tendon reflexes and respiratory depression. The antidote is Calcium Gluconate." },
+                    { name: "Sodium Bicarbonate", forms: "Pre-filled syringe (50mEq/50mL)", ind: "TCA Overdose, Severe Metabolic Acidosis, Hyperkalemia", dose: "1-2 ampules (50-100 mEq) IV push.", contra: "Alkalosis.", protip: "In TCA overdose with widened QRS, push bicarb until the QRS narrows. It works via sodium channel loading and alkalinization." },
+                    { name: "Cyanokit (Hydroxocobalamin)", forms: "Vial (5g)", ind: "Cyanide toxicity (smoke inhalation in house fires)", dose: "5 g IV infusion over 15 mins.", contra: "None in suspected CN toxicity.", protip: "Will instantly turn the patient's skin, mucous membranes, and urine bright cherry red for days. This is normal." }
+                ]
+            },
+            {
+                category: "Controlled Substances — Narcotics",
+                medications: [
+                    { name: "Morphine Sulphate", forms: "Vial (10mg/mL)", ind: "Severe pain", dose: "2-5 mg IV q5-15min PRN.", contra: "Hypotension, respiratory depression.", protip: "Causes histamine release, leading to flushing, itching, and transient drops in blood pressure (not a true allergy)." },
+                    { name: "Ketamine", forms: "Vial (50mg/mL)", ind: "Severe pain, Procedural Sedation, Excited Delirium", dose: "Analgesia: 0.1-0.3 mg/kg IV. Sedation: 1-2 mg/kg IV.", contra: "Schizophrenia (relative).", protip: "Preserves airway reflexes and blood pressure, making it incredibly safe hemodynamically. Can cause vivid emergence nightmares." },
+                    { name: "Fentanyl", forms: "Vial (50mcg/mL)", ind: "Severe pain, RSI premedication", dose: "1-2 mcg/kg IV.", contra: "Respiratory depression.", protip: "100x more potent than morphine but much faster acting with a shorter duration. Pushing rapidly can cause rare but fatal chest wall rigidity." }
+                ]
+            },
+            {
+                category: "Controlled Substances — Benzodiazepines",
+                medications: [
+                    { name: "Diazepam (Valium)", forms: "Vial (5mg/mL), Tablets", ind: "Status epilepticus, muscle spasm, alcohol withdrawal", dose: "5-10 mg IV/PO.", contra: "Respiratory depression, narrow-angle glaucoma.", protip: "Has active metabolites with a very long half-life (up to 100 hours). May accumulate in the elderly." },
+                    { name: "Midazolam (Versed)", forms: "Vial (1mg/mL, 5mg/mL)", ind: "Procedural sedation, status epilepticus, extreme agitation", dose: "Sedation: 1-2 mg IV slow push. Seizure: 5-10 mg IM.", contra: "Shock, respiratory depression.", protip: "Excellent amnesic properties. It is short-acting but causes significant respiratory depression; always have airway equipment ready." },
+                    { name: "Lorazepam (Ativan)", forms: "Vial (2mg/mL, 4mg/mL), Tablets/SL", ind: "Status epilepticus, severe anxiety, alcohol withdrawal", dose: "Seizure: 2-4 mg IV.", contra: "Respiratory depression.", protip: "The drug of choice for status epilepticus due to its fast onset and longer duration of action in the brain compared to diazepam." }
+                ]
+            }
+        ];
+
+        const container = document.getElementById('medicationContainer');
+        const searchInput = document.getElementById('searchInput');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
+        const expandAllBtn = document.getElementById('expandAllBtn');
+        let allExpanded = false;
+
+        // Render function
+        function renderMedications(data) {
+            container.innerHTML = '';
+            let totalMeds = 0;
+
+            if (data.length === 0) {
+                emptyState.classList.remove('hidden');
+                resultsCount.textContent = "0 medications found";
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            data.forEach(category => {
+                if (category.medications.length === 0) return;
+
+                const catDiv = document.createElement('div');
+                catDiv.className = 'bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6';
+                
+                const catHeader = document.createElement('div');
+                catHeader.className = 'bg-gray-50 border-b border-gray-200 px-6 py-4 flex justify-between items-center';
+                catHeader.innerHTML = `
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="folder-tree" class="w-5 h-5 text-blue-600"></i>
+                        ${category.category}
+                    </h2>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">${category.medications.length} Meds</span>
+                `;
+                catDiv.appendChild(catHeader);
+
+                const medList = document.createElement('div');
+                medList.className = 'divide-y divide-gray-100';
+
+                category.medications.forEach(med => {
+                    totalMeds++;
+                    const medItem = document.createElement('div');
+                    medItem.className = 'med-card group';
+                    
+                    medItem.innerHTML = `
+                        <button class="w-full text-left px-6 py-4 focus:outline-none hover:bg-gray-50 flex justify-between items-center" onclick="toggleAccordion(this)">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${med.name}</h3>
+                                <p class="text-sm text-gray-500 mt-1 line-clamp-1">${med.ind}</p>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform duration-300"></i>
+                        </button>
+                        
+                        <div class="accordion-content bg-white px-6 border-t border-gray-50">
+                            <div class="py-4 space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Available Dosages/Forms</h4>
+                                        <p class="text-sm text-gray-800">${med.forms}</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Indications</h4>
+                                        <p class="text-sm text-gray-800">${med.ind}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                                    <h4 class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1 flex items-center gap-1">
+                                        <i data-lucide="syringe" class="w-3 h-3"></i> Dosing
+                                    </h4>
+                                    <p class="text-sm text-gray-800 font-medium">${med.dose}</p>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1 flex items-center gap-1">
+                                        <i data-lucide="ban" class="w-3 h-3"></i> Contraindications
+                                    </h4>
+                                    <p class="text-sm text-gray-700">${med.contra}</p>
+                                </div>
+
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg mt-4">
+                                    <div class="flex items-start gap-2">
+                                        <i data-lucide="lightbulb" class="w-5 h-5 text-amber-500 mt-0.5"></i>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-amber-800">Pro Tip</h4>
+                                            <p class="text-sm text-amber-900 mt-1">${med.protip}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    medList.appendChild(medItem);
+                });
+
+                catDiv.appendChild(medList);
+                container.appendChild(catDiv);
+            });
+
+            resultsCount.textContent = `Showing ${totalMeds} medications`;
+            lucide.createIcons();
+        }
+
+        // Accordion Logic
+        window.toggleAccordion = function(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('[data-lucide="chevron-down"]');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.style.transform = 'rotate(0deg)';
+                content.style.paddingTop = '0';
+                content.style.paddingBottom = '0';
+            } else {
+                content.classList.add('expanded');
+                icon.style.transform = 'rotate(180deg)';
+                content.style.paddingTop = '1rem';
+                content.style.paddingBottom = '1rem';
+            }
+        };
+
+        // Expand/Collapse All
+        expandAllBtn.addEventListener('click', () => {
+            const contents = document.querySelectorAll('.accordion-content');
+            const icons = document.querySelectorAll('[data-lucide="chevron-down"]');
+            
+            allExpanded = !allExpanded;
+            
+            contents.forEach((content, index) => {
+                if (allExpanded) {
+                    content.classList.add('expanded');
+                    content.style.paddingTop = '1rem';
+                    content.style.paddingBottom = '1rem';
+                    icons[index].style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.remove('expanded');
+                    content.style.paddingTop = '0';
+                    content.style.paddingBottom = '0';
+                    icons[index].style.transform = 'rotate(0deg)';
+                }
+            });
+
+            expandAllBtn.textContent = allExpanded ? "Collapse All Categories" : "Expand All Categories";
+        });
+
+        // Search Filter Logic
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (!searchTerm) {
+                renderMedications(medData);
+                return;
+            }
+
+            const filteredData = medData.map(category => {
+                // Check if category name matches
+                const catMatch = category.category.toLowerCase().includes(searchTerm);
+                
+                // Filter medications
+                const matchedMeds = category.medications.filter(med => 
+                    catMatch ||
+                    med.name.toLowerCase().includes(searchTerm) ||
+                    med.ind.toLowerCase().includes(searchTerm) ||
+                    med.dose.toLowerCase().includes(searchTerm) ||
+                    med.contra.toLowerCase().includes(searchTerm)
+                );
+
+                return {
+                    ...category,
+                    medications: matchedMeds
+                };
+            }).filter(category => category.medications.length > 0);
+
+            renderMedications(filteredData);
+            
+            // Automatically expand results during search for better UX
+            if (searchTerm.length > 1 && filteredData.length > 0) {
+                 setTimeout(() => {
+                    const contents = document.querySelectorAll('.accordion-content');
+                    const icons = document.querySelectorAll('[data-lucide="chevron-down"]');
+                    contents.forEach((content, index) => {
+                        content.classList.add('expanded');
+                        content.style.paddingTop = '1rem';
+                        content.style.paddingBottom = '1rem';
+                        icons[index].style.transform = 'rotate(180deg)';
+                    });
+                    allExpanded = true;
+                    expandAllBtn.textContent = "Collapse All Categories";
+                 }, 50);
+            }
+        });
+
+        // Initial Render
+        renderMedications(medData);
+    </script>
+</body>
+</html>
+
+```
 
