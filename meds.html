@@ -78,24 +78,1047 @@
     </main>
 
     <script>
+        const ul = (items) =>
+            `<ul class="list-disc pl-5 space-y-1">${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+
         // Medication Database
         const medData = [
             {
                 category: "Cardiovascular",
                 medications: [
-                    { name: "Amiodarone", forms: "Vial/Ampule (150 mg/3 mL)", ind: "VF/pVT, Stable VT, Atrial Fibrillation", dose: "Cardiac Arrest: 300 mg IV/IO push, 2nd dose 150 mg. Live patient: 150 mg over 10 min.", contra: "Cardiogenic shock, severe sinus node dysfunction, 2nd/3rd-degree AV block.", protip: "Do not push rapidly in a patient with a pulse. Watch for profound hypotension and bradycardia." },
-                    { name: "Adenosine", forms: "Vial (6 mg/2 mL, 12 mg/4 mL)", ind: "Regular narrow-complex SVT", dose: "6 mg rapid IV push. If no conversion, 12 mg rapid IV push.", contra: "2nd/3rd-degree AV block, sick sinus syndrome, asthma (relative).", protip: "Must be pushed extremely fast, immediately followed by a 20mL saline flush and arm elevation. Warn the patient they will feel a brief, intense chest pressure or 'impending doom'." },
-                    { name: "Epinephrine", forms: "Ampule 1:1,000 (1 mg/1 mL), Prefilled Syringe 1:10,000 (1 mg/10 mL)", ind: "Cardiac Arrest, Anaphylaxis, Severe Asthma, Severe Bradycardia", dose: "Arrest: 1 mg (1:10,000) IV q3-5 min. Anaphylaxis: 0.3-0.5 mg (1:1,000) IM.", contra: "None in cardiac arrest. Caution in cardiovascular disease for non-arrest.", protip: "Always triple-check your concentration. 1:1,000 is for IM only. Giving 1:1,000 IV push can cause lethal arrhythmias and hypertensive crisis." },
-                    { name: "Nitroglycerin spray", forms: "Sublingual spray (0.4 mg/dose)", ind: "ACS (Angina), Pulmonary Edema (CHF)", dose: "0.4 mg SL every 5 minutes (max 3 doses) if BP > 90/100 mmHg.", contra: "Hypotension, right ventricular infarction, recent PDE-5 inhibitor use (e.g., Viagra within 24h, Cialis within 48h).", protip: "Always check BP before AND after administration. Explicitly ask both male and female patients about erectile dysfunction/pulmonary hypertension meds." },
-                    { name: "ASA (Aspirin)", forms: "Chewable tablets (81 mg)", ind: "Acute Coronary Syndrome (ACS)", dose: "162 - 324 mg chewed (usually 2-4 x 81mg tabs).", contra: "Active GI bleeding, true aspirin allergy.", protip: "Instruct the patient to thoroughly chew the tablets, not swallow them whole, to ensure rapid buccal/gastric absorption." },
-                    { name: "Clopidogrel", forms: "Tablets (75 mg, 300 mg)", ind: "ACS, post-stent placement", dose: "Loading dose 300-600 mg PO, then 75 mg daily.", contra: "Active pathological bleeding (e.g., peptic ulcer, intracranial hemorrhage).", protip: "Often given in combination with ASA for dual antiplatelet therapy. Note whether the patient might need emergent CABG surgery, as this may delay it." },
-                    { name: "Tenecteplase", forms: "Powder for reconstitution (50 mg vial)", ind: "Acute STEMI", dose: "Weight-based single IV bolus (e.g., 30-50 mg over 5 seconds).", contra: "Active internal bleeding, recent surgery/trauma, severe uncontrolled HTN, history of hemorrhagic stroke.", protip: "Strict adherence to inclusion/exclusion checklists is mandatory. Obtain multiple IV lines before administration, as it prevents clotting everywhere." },
-                    { name: "Enoxaparin", forms: "Prefilled syringes (30, 40, 60, 80, 100 mg)", ind: "DVT/PE treatment, ACS, VTE prophylaxis", dose: "Treatment: 1 mg/kg SQ q12h. ACS: 30 mg IV bolus followed by 1 mg/kg SQ.", contra: "Active major bleeding, heparin-induced thrombocytopenia (HIT).", protip: "Do not expel the air bubble from the prefilled syringe before injection; it ensures the full dose is delivered and seals the medication in the tissue." },
-                    { name: "Tranexamic Acid", forms: "Vial (1000 mg/10 mL)", ind: "Massive hemorrhage, severe trauma, postpartum hemorrhage", dose: "1g IV over 10 minutes, followed by 1g IV infusion over 8 hours.", contra: "Active intravascular clotting, subarachnoid hemorrhage.", protip: "Must be administered within 3 hours of the injury to be effective and improve mortality. Pushing too fast can cause severe hypotension." },
-                    { name: "Metoprolol", forms: "Vial (5 mg/5 mL), Tablets", ind: "Rate control in Afib/Aflutter, ACS, Hypertension", dose: "2.5 - 5 mg slow IV push over 2 minutes. May repeat q5min to max 15 mg.", contra: "Severe bradycardia, heart block > 1st degree, cardiogenic shock, active bronchospasm/asthma.", protip: "Use with caution in asthmatics and COPD patients; although cardio-selective, high doses can block beta-2 receptors and worsen bronchospasm." },
-                    { name: "Norepinephrine", forms: "Ampule (4 mg/4 mL) for infusion", ind: "Distributive shock (e.g., Sepsis), cardiogenic shock", dose: "0.01 - 3 mcg/kg/min IV infusion, titrated to MAP > 65.", contra: "Hypovolemia (relative—must give fluids first).", protip: "Should ideally be administered via a central line. Extravasation in a peripheral IV causes severe tissue necrosis (treatable with phentolamine)." },
-                    { name: "Phenylephrine", forms: "Vial, Pre-mixed syringes", ind: "Hypotension (anesthesia-induced, shock)", dose: "Push dose: 50 - 200 mcg IV. Infusion titrated to effect.", contra: "Severe hypertension, VTach.", protip: "It is a pure alpha-agonist. Watch out for reflex bradycardia when blood pressure suddenly rises." },
-                    { name: "Vasopressin", forms: "Vial (20 units/mL)", ind: "Vasodilatory shock, DI", dose: "0.03 - 0.04 units/min IV infusion.", contra: "None in critical shock.", protip: "Often used as a second-line pressor adjunct to Norepinephrine to reduce the total catecholamine dose and spare the heart." }
+                    {
+                        name: "Amiodarone",
+                        forms: "Vial/Ampule (150 mg/3 mL)",
+                        ind: "VF/pVT, stable VT, wide-complex tachycardia, AF/Aflutter (selected)",
+                        dose: ul([
+                            "Cardiac arrest (VF/pVT): 300 mg IV/IO push; may repeat 150 mg once.",
+                            "Perfusing VT/wide-complex tachy: 150 mg IV over 10 min; may repeat; then 1 mg/min x 6 h, then 0.5 mg/min (max ~2.2 g/24 h).",
+                            "Adjustments: no renal adjustment; use caution in severe hepatic disease/older adults; pregnancy—use only if life-threatening.",
+                            "Titration: step-down infusion once rhythm controlled; long-term plan requires physician/specialist."
+                        ]),
+                        contra: ul([
+                            "2nd/3rd-degree AV block or sick sinus syndrome without pacer; severe bradycardia.",
+                            "Cardiogenic shock or severe hypotension (relative in cardiac arrest).",
+                            "Marked QT prolongation or history of torsades (relative—risk/benefit).",
+                            "Severe hypersensitivity to amiodarone/iodine.",
+                            "Physician approval: non-arrest use, prolonged infusion, complex arrhythmias."
+                        ]),
+                        protip: ul([
+                            "Avoid rapid IV push in a patient with a pulse; hypotension is common with fast infusion.",
+                            "Correct K+/Mg2+ and monitor QTc to reduce torsades risk.",
+                            "If hypotension/bradycardia develops: slow/stop infusion, treat supportively, and escalate."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Blocks cardiac K+ channels (Class III) with additional Na+/Ca2+ and β-blocking effects → slows conduction and prolongs refractoriness.",
+                                    "Expected response: VF/pVT refractory burden decreases; perfusing arrhythmias may convert or rate slows within minutes (IV).",
+                                    "Treatment failure: persistent/recurrent VT/VF despite defib/epi/antiarrhythmic; ongoing unstable tachyarrhythmia."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: hypotension, bradycardia, QT prolongation, phlebitis.",
+                                    "Serious: torsades (rare), acute liver injury; long-term: thyroid dysfunction, pulmonary toxicity."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Raises warfarin INR and digoxin levels; additive bradycardia with β-blockers, diltiazem/verapamil, digoxin.",
+                                    "Additive QT risk with macrolides, fluoroquinolones, ondansetron, antipsychotics."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous ECG and BP; reassess rhythm/mental status after each dose change.",
+                                    "Baseline/ongoing electrolytes (K/Mg) and LFTs if infusion continues; watch QTc and bradycardia."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "If ongoing/outpatient therapy: photosensitivity, thyroid/lung symptoms, and strict follow-up; do not stop without prescriber.",
+                                    "If given IV in ED: explain expected BP/HR monitoring and possible transient flushing/dizziness."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "VF/pVT: lidocaine (protocol dependent).",
+                                    "Stable monomorphic VT: procainamide (if available) or synchronized cardioversion.",
+                                    "AF rate control: β-blocker or diltiazem/verapamil (if appropriate), digoxin in selected HF/hypotension."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Stop/slow infusion for severe hypotension or bradycardia; treat with fluids/pressors/atropine/pacing per protocol.",
+                                    "Suspected torsades: magnesium and immediate defib if unstable.",
+                                    "Escalate to supervising physician for non-arrest initiation, prolonged infusion, or refractory/unstable rhythms."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Adenosine",
+                        forms: "Vial (6 mg/2 mL, 12 mg/4 mL)",
+                        ind: "Stable regular narrow-complex SVT (AVNRT/AVRT); diagnostic in selected regular WCT",
+                        dose: ul([
+                            "Adults: 6 mg rapid IV push + immediate 20 mL flush; if no conversion, 12 mg; may repeat 12 mg once.",
+                            "Pediatrics: 0.1 mg/kg (max 6 mg), then 0.2 mg/kg (max 12 mg).",
+                            "Give via large-bore proximal IV and push as fast as possible (half-life <10 sec).",
+                            "Special: heart transplant or dipyridamole → start lower; caffeine/theophylline may require higher dose."
+                        ]),
+                        contra: ul([
+                            "Irregular or polymorphic wide-complex tachycardia; AF/Aflutter with WPW (can precipitate VF).",
+                            "2nd/3rd-degree AV block or sick sinus syndrome without pacer.",
+                            "Active bronchospasm/severe asthma (avoid if wheezing; relative in stable mild asthma).",
+                            "Physician approval: uncertain rhythm diagnosis, transplant patients, severe reactive airway disease."
+                        ]),
+                        protip: ul([
+                            "Try vagal maneuvers first (modified Valsalva).",
+                            "Warn patient about brief chest pressure/flushing and a sense of \"impending doom\"—it resolves in seconds.",
+                            "Have pads/monitor on and capture a rhythm strip before/after (diagnostic value)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "A1 receptor activation → transient AV nodal block.",
+                                    "Expected response: conversion to sinus rhythm within seconds if AV-node dependent; may unmask flutter waves.",
+                                    "Treatment failure: rhythm continues (e.g., atrial flutter/atrial tachycardia) or rapidly recurs."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common (brief): flushing, chest tightness, dyspnea, headache, nausea.",
+                                    "Serious: bronchospasm, prolonged brady/asystole (rare), can trigger AF."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Dipyridamole/carbamazepine ↑ effect; theophylline/caffeine ↓ effect (antagonize).",
+                                    "Avoid mixing with other AV nodal blockers without clear plan (brady risk)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous ECG and BP; defib/airway readiness.",
+                                    "If conversion fails or patient becomes unstable → immediate synchronized cardioversion."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Symptoms are intense but very short-lived; breathing slowly helps.",
+                                    "If SVT recurs after discharge, follow return precautions and outpatient plan."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Vagal maneuvers; diltiazem/verapamil or β-blocker for stable SVT (per protocol).",
+                                    "Synchronized cardioversion for unstable SVT."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "If AF with WPW suspected (irregular wide complex): do NOT give adenosine; cardiovert if unstable and escalate.",
+                                    "Treat bronchospasm with bronchodilator/oxygen and escalate if severe."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Epinephrine",
+                        forms: "Ampule 1:1,000 (1 mg/1 mL), Prefilled Syringe 1:10,000 (1 mg/10 mL)",
+                        ind: "Cardiac arrest; anaphylaxis; severe asthma; severe symptomatic bradycardia/shock",
+                        dose: ul([
+                            "Cardiac arrest: 1 mg IV/IO (1:10,000) q3–5 min.",
+                            "Anaphylaxis: 0.3–0.5 mg IM (1:1,000) q5–15 min PRN.",
+                            "Bradycardia/shock: infusion 2–10 mcg/min IV, titrate to perfusion/BP (physician).",
+                            "Pediatrics: arrest 0.01 mg/kg IV/IO (1:10,000) max 1 mg; anaphylaxis 0.01 mg/kg IM (1:1,000) max 0.5 mg."
+                        ]),
+                        contra: ul([
+                            "No absolute contraindications in cardiac arrest or anaphylaxis.",
+                            "Use caution (non-arrest) with severe hypertension, tachyarrhythmias, or ischemic heart disease—physician decision."
+                        ]),
+                        protip: ul([
+                            "Triple-check concentration: 1:1,000 is IM only; 1:10,000 is for IV/IO bolus.",
+                            "IM injection goes in the lateral thigh; do not delay epinephrine in anaphylaxis.",
+                            "If patient is on a β-blocker and anaphylaxis is refractory, escalate early (consider glucagon per protocol)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "α1 vasoconstriction (↑BP), β1 inotropy/chronotropy (↑CO), β2 bronchodilation.",
+                                    "Onset: IV seconds; IM ~5–10 min.",
+                                    "Treatment failure: persistent hypotension/airway compromise; arrest without ROSC despite high-quality CPR and defib."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: tremor, anxiety, palpitations, headache.",
+                                    "Serious: tachyarrhythmias, severe hypertension, myocardial ischemia, pulmonary edema (rare), extravasation necrosis."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "β-blockers may blunt effect and can cause \"unopposed α\" hypertension; MAOI/TCA may potentiate pressor effects.",
+                                    "Stimulants (cocaine/amphetamines) increase arrhythmia/ischemia risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous ECG and BP; reassess work of breathing, perfusion, mental status.",
+                                    "If infusion: consider arterial line and monitor glucose/lactate in prolonged use."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "If prescribed auto-injector: carry two, use early, call EMS, and lie flat unless vomiting/dyspneic.",
+                                    "Transient shaking/anxiety are expected after treatment."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Shock: norepinephrine is first-line for septic shock; vasopressin is common adjunct.",
+                                    "Anaphylaxis: no substitute for IM epinephrine; add antihistamines/steroids/bronchodilators as adjuncts."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Extravasation: stop infusion, aspirate if possible, treat with phentolamine per protocol and escalate.",
+                                    "Overdose/severe hypertension/ischemia: stop drug and escalate immediately for targeted management."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Nitroglycerin spray",
+                        forms: "Sublingual spray (0.4 mg/dose)",
+                        ind: "ACS (angina); hypertensive acute pulmonary edema/CHF",
+                        dose: ul([
+                            "0.4 mg SL q5 min up to 3 doses if SBP ≥90–100 mmHg and no contraindications.",
+                            "If ongoing ischemia/pulmonary edema and BP allows: IV infusion 5–10 mcg/min, titrate q3–5 min (physician/protocol).",
+                            "Adjustments: start lower in elderly/frail; avoid in volume depletion.",
+                            "No routine pediatric dosing—consult."
+                        ]),
+                        contra: ul([
+                            "Hypotension/shock or >30 mmHg SBP drop from baseline.",
+                            "Suspected RV infarct or preload-dependent state (e.g., severe aortic stenosis).",
+                            "PDE-5 inhibitors (sildenafil/vardenafil <24 h; tadalafil <48 h) or riociguat.",
+                            "Severe bradycardia (<50) or marked tachycardia (>100) without HF (relative)."
+                        ]),
+                        protip: ul([
+                            "Check BP before AND after every dose; sit/lie patient down.",
+                            "Ask specifically about erectile dysfunction/pulmonary HTN meds (all genders).",
+                            "If RV infarct suspected or PDE-5 exposure is possible, hold and escalate."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "NO donor → venodilation (↓preload) and coronary vasodilation → ↓ischemia and ↓pulmonary congestion.",
+                                    "Onset: 1–3 min SL; expected symptom improvement within minutes.",
+                                    "Treatment failure: persistent chest pain/ST changes or worsening pulmonary edema despite BP tolerance."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: headache, flushing, lightheadedness.",
+                                    "Serious: hypotension/syncope, reflex tachycardia; rare methemoglobinemia (high doses/infusions)."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "PDE-5 inhibitors and riociguat (severe hypotension).",
+                                    "Alcohol and other antihypertensives increase hypotension risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "BP/HR and symptom reassessment after each dose; continuous ECG if ACS suspected.",
+                                    "Escalate promptly if hypotension, syncope, or ongoing ischemia."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take while seated; headache is common; avoid alcohol until stable.",
+                                    "If prescribed for angina: seek urgent care if pain persists after 1 dose/5 min (local guidance)."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "ACS management is multimodal: ASA, reperfusion strategy, anticoag/antiplatelet per pathway, and careful analgesia.",
+                                    "Pulmonary edema: CPAP/oxygen if hypoxic, diuretics when appropriate; IV nitrates often key if hypertensive."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe hypotension: lay flat, consider cautious fluids, and escalate (pressor support may be needed).",
+                                    "If suspect RV infarct or recent PDE-5 use: stop/avoid nitrates and notify supervising physician."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "ASA (Aspirin)",
+                        forms: "Chewable tablets (81 mg)",
+                        ind: "Suspected acute coronary syndrome (ACS)",
+                        dose: ul([
+                            "ACS: 160–325 mg PO, chewed ASAP (unless contraindicated).",
+                            "Maintenance (post-ACS): typically 81 mg PO daily (physician-directed).",
+                            "Pediatrics: generally avoid unless specialist indication (Reye risk)."
+                        ]),
+                        contra: ul([
+                            "True aspirin/NSAID anaphylaxis or aspirin-exacerbated respiratory disease.",
+                            "Active major bleeding or suspected hemorrhagic stroke.",
+                            "Severe thrombocytopenia/bleeding disorder (relative—physician decision)."
+                        ]),
+                        protip: ul([
+                            "Use non–enteric-coated and chew for fastest antiplatelet effect.",
+                            "Clarify what \"ASA allergy\" means (GI upset ≠ true allergy) and document the reaction type."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Irreversible COX-1 inhibition → ↓TXA2 → reduced platelet aggregation.",
+                                    "Onset within minutes when chewed; reduces mortality in ACS.",
+                                    "Treatment failure: ongoing ischemia—requires reperfusion/adjuncts, not more ASA."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dyspepsia/nausea.",
+                                    "Serious: GI bleeding; bronchospasm/anaphylaxis (rare)."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Increased bleeding with anticoagulants/other antiplatelets and NSAIDs.",
+                                    "Ibuprofen taken before ASA can blunt antiplatelet effect."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Screen for bleeding risk; if ongoing therapy or bleeding concern, consider CBC and follow clinical signs.",
+                                    "Escalate if GI bleed symptoms, severe allergic reaction, or new neuro deficits."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take with food if continued; report black stools, vomiting blood, or severe wheeze/face swelling.",
+                                    "Avoid adding other NSAIDs unless advised."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "If true ASA allergy: P2Y12 inhibitor and cardiology/physician plan; consider desensitization where appropriate."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Major bleed: stop antiplatelets, supportive care, and urgent physician/ED escalation.",
+                                    "Anaphylaxis/bronchospasm: treat immediately and document contraindication clearly."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Clopidogrel",
+                        forms: "Tablets (75 mg, 300 mg)",
+                        ind: "ACS; post-stent (DAPT); stroke/TIA (selected pathways)",
+                        dose: ul([
+                            "ACS/PCI: load 300 mg (up to 600 mg per pathway), then 75 mg PO daily.",
+                            "Stroke/TIA protocols vary; typical load 300 mg then 75 mg daily (physician-directed).",
+                            "Renal: no adjustment; hepatic: avoid/caution in severe hepatic disease.",
+                            "Peri-op planning (often hold ~5 days) requires physician direction."
+                        ]),
+                        contra: ul([
+                            "Active bleeding (GI bleeding, intracranial hemorrhage).",
+                            "High bleeding risk or anticipated urgent surgery/CABG (relative—physician decision).",
+                            "Physician approval: starting/stopping DAPT and post-stent management."
+                        ]),
+                        protip: ul([
+                            "Do NOT stop clopidogrel without cardiology/physician guidance—especially soon after a stent.",
+                            "If there is a possibility of emergent CABG, escalate before loading."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Irreversible P2Y12 inhibition → reduced platelet aggregation.",
+                                    "Onset: hours after a loading dose; full effect accumulates over days.",
+                                    "Treatment failure: recurrent ischemia or stent thrombosis—consider nonadherence, drug interactions, or incorrect indication."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: bruising/bleeding, dyspepsia, rash.",
+                                    "Serious: TTP (rare—thrombocytopenia with neuro/renal symptoms), life-threatening bleeding."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Avoid omeprazole/esomeprazole (can reduce activation); pantoprazole is often preferred if PPI needed.",
+                                    "Additive bleeding with anticoagulants/NSAIDs and other antiplatelets."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline CBC if starting; reassess for melena, hematuria, easy bruising.",
+                                    "Escalate for severe headache/neurologic symptoms (ICH concern) or suspected TTP."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take daily without interruption; inform dentists/surgeons; avoid contact sports/high bleeding risk activities.",
+                                    "Seek urgent care for black stools, vomiting blood, severe headache, or sudden weakness."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Other P2Y12 options (ticagrelor/prasugrel) require physician/specialist selection.",
+                                    "If cannot tolerate: physician-directed single antiplatelet strategy."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Major bleeding: stop drug, supportive care; platelet transfusion may be considered—urgent physician consult.",
+                                    "Suspected TTP: stop drug and urgent hematology/ED escalation."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Tenecteplase",
+                        forms: "Powder for reconstitution (50 mg vial)",
+                        ind: "Acute STEMI (when PCI is not immediately available) ± massive PE (specialist)",
+                        dose: ul([
+                            "STEMI: weight-based single IV bolus over ~5 sec (physician-only with checklist).",
+                            "<60 kg: 30 mg; 60–69 kg: 35 mg; 70–79 kg: 40 mg; 80–89 kg: 45 mg; ≥90 kg: 50 mg.",
+                            "Adjunct antiplatelet/anticoagulation and transfer plan per STEMI pathway; avoid IM injections and unnecessary invasive procedures.",
+                            "Relative contraindications (e.g., pregnancy/recent surgery/DOAC use) require physician risk/benefit decision."
+                        ]),
+                        contra: ul([
+                            "Any prior intracranial hemorrhage; known intracranial neoplasm/AVM; ischemic stroke <3 months.",
+                            "Suspected aortic dissection; active internal bleeding.",
+                            "Significant closed head/facial trauma or intracranial/spinal surgery <3 months.",
+                            "Severe uncontrolled hypertension (e.g., >180/110 despite treatment).",
+                            "Physician approval mandatory: use formal inclusion/exclusion checklist."
+                        ]),
+                        protip: ul([
+                            "Get baseline neuro exam and BP control before bolus; obtain 2 IV lines and type & screen.",
+                            "Expect reperfusion arrhythmias—have defib/pacing ready and continuous monitoring.",
+                            "Document indication/time of onset, contraindication screen, counselling, and escalation/transfer plan."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Fibrin-specific plasminogen activator → clot lysis at the culprit thrombus.",
+                                    "Expected response: pain relief and ≥50% ST resolution within 60–90 min.",
+                                    "Treatment failure: persistent symptoms/ST elevation → urgent rescue PCI/transfer."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Major bleeding including intracranial hemorrhage (time-critical).",
+                                    "Reperfusion arrhythmias; hypotension; allergic reactions (rare)."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Anticoagulants/antiplatelets increase bleeding risk; recent DOAC use is often a relative contraindication.",
+                                    "Avoid additional IM injections/arterial punctures when possible."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: vitals, neuro exam; CBC, PT/INR, aPTT, creatinine; type & screen (as available).",
+                                    "Post-bolus: frequent vitals/neuro checks and bleeding assessments; ECG reassessment for reperfusion."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Explain that the goal is to open the artery quickly when PCI is delayed and that bleeding risk is the main harm.",
+                                    "Reinforce need for continuous monitoring and transfer/cardiology follow-up."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Primary PCI is preferred when available in time.",
+                                    "If thrombolysis contraindicated: guideline-directed medical therapy + urgent transfer."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected intracranial hemorrhage (new neuro deficit/severe headache): stop antithrombotics, urgent CT, and immediate physician escalation.",
+                                    "Major bleed: pressure/supportive care and reversal strategy per protocol (e.g., cryoprecipitate/antifibrinolytic)."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Enoxaparin",
+                        forms: "Prefilled syringes (30, 40, 60, 80, 100 mg)",
+                        ind: "DVT/PE treatment; ACS; VTE prophylaxis",
+                        dose: ul([
+                            "DVT/PE treatment: 1 mg/kg SQ q12h (or 1.5 mg/kg SQ daily).",
+                            "VTE prophylaxis: 40 mg SQ daily (common) — follow local protocol.",
+                            "STEMI with lysis (example): <75 y: 30 mg IV then 1 mg/kg SQ q12h (max 100 mg first 2 doses); ≥75 y: 0.75 mg/kg q12h (max 75 mg first 2 doses), no IV bolus.",
+                            "Renal (CrCl <30): reduce dosing (e.g., 1 mg/kg daily for treatment; 30 mg daily prophylaxis) per protocol.",
+                            "Pregnancy/extremes of body weight: physician plan; anti-Xa monitoring may be needed."
+                        ]),
+                        contra: ul([
+                            "Active major bleeding.",
+                            "History of heparin-induced thrombocytopenia (HIT) or severe thrombocytopenia.",
+                            "Recent/anticipated neuraxial anesthesia or spinal procedure (spinal hematoma risk).",
+                            "Severe renal impairment without dose adjustment.",
+                            "Physician approval: ACS protocols, pregnancy, extreme weight, renal failure, high bleed risk."
+                        ]),
+                        protip: ul([
+                            "Do not expel the air bubble in prefilled syringes; rotate sites and avoid rubbing the injection site.",
+                            "Avoid IM injections and unnecessary arterial sticks while anticoagulated.",
+                            "If urgent procedure/bleeding risk changes, escalate early (reversal/holding decisions are time-sensitive)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Low-molecular-weight heparin → factor Xa (and some IIa) inhibition → anticoagulation.",
+                                    "Onset: ~3–5 h after SQ dose; immediate with IV bolus when used per protocol.",
+                                    "Treatment failure: new/worsening thrombosis; monitor for bleeding as the limiting toxicity."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Bleeding and injection-site hematoma.",
+                                    "HIT (less common than UFH), hyperkalemia, osteoporosis with prolonged use."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive bleeding with antiplatelets, NSAIDs, other anticoagulants, and thrombolytics."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline CBC/platelets and creatinine; reassess platelets if therapy continues beyond several days.",
+                                    "Anti-Xa levels in selected patients (pregnancy, obesity, renal impairment) per physician/protocol.",
+                                    "Escalate for suspected bleeding (melena, hematuria, severe headache, hypotension)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Teach injection technique and bruising expectations; avoid high-risk activities.",
+                                    "Return urgently for black stools, severe headache, coughing/vomiting blood, or sudden weakness."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Unfractionated heparin (rapid titration/reversal), DOACs (outpatient VTE), fondaparinux (selected)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Major bleed: stop enoxaparin; protamine provides partial reversal—urgent physician involvement.",
+                                    "Suspected HIT: stop all heparins, send HIT testing, and start non-heparin anticoagulant per physician."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Tranexamic Acid",
+                        forms: "Vial (1000 mg/10 mL)",
+                        ind: "Massive hemorrhage/severe trauma; postpartum hemorrhage (protocolized)",
+                        dose: ul([
+                            "Trauma/major hemorrhage: 1 g IV over 10 min, then 1 g IV over 8 h (start within 3 h of injury).",
+                            "Pediatrics: commonly 15 mg/kg IV (max 1 g), then infusion per protocol.",
+                            "Renal impairment: dose reduction is required (drug is renally cleared).",
+                            "Avoid rapid IV push (hypotension risk)."
+                        ]),
+                        contra: ul([
+                            "Active intravascular thrombosis (relative/avoid unless physician decides).",
+                            "Subarachnoid hemorrhage (avoid).",
+                            "Severe renal impairment without dose adjustment; history of seizures (relative—dose related).",
+                            "Physician approval: known thrombotic disorders or high VTE risk situations."
+                        ]),
+                        protip: ul([
+                            "Time matters: benefit is greatest when given early (≤3 h after injury).",
+                            "Push too fast can cause hypotension—infuse over 10 minutes.",
+                            "Ensure a parallel plan for source control and blood products; TXA is adjunctive."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Antifibrinolytic: blocks plasminogen binding → stabilizes formed clots.",
+                                    "Expected response: reduced bleeding/transfusion needs (does not replace surgical control).",
+                                    "Treatment failure: ongoing hemorrhage → escalate to massive transfusion/source control."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Nausea/diarrhea; hypotension if infused too quickly.",
+                                    "Seizures (high doses) and thromboembolism risk (context dependent)."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Combined hormonal contraception may increase thrombosis risk (outpatient relevance).",
+                                    "Caution when used alongside procoagulant concentrates (physician/protocol)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Track bleeding, hemodynamics, and transfusion requirements; monitor renal function.",
+                                    "Watch for signs of thrombosis (chest pain/SOB/leg swelling) and seizures."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Explain this is a clot-stabilizing medication; urgent symptoms of clot (SOB/chest pain/leg swelling) require immediate care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Source control, balanced transfusion strategy, fibrinogen replacement (cryoprecipitate) when indicated."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Seizure: stop TXA and treat per protocol; escalate.",
+                                    "Suspected thromboembolism: stop and urgent physician review/diagnostics."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Metoprolol",
+                        forms: "Vial (5 mg/5 mL), Tablets",
+                        ind: "Rate control in AF/Aflutter; ACS (selected); hypertension/tachyadrenergic states",
+                        dose: ul([
+                            "IV: 2.5–5 mg slow IV push over 2 min; repeat q5 min to max 15 mg if BP/HR tolerate.",
+                            "PO (IR): 25–50 mg q6–12 h, then convert to daily ER per plan (physician).",
+                            "Pediatrics: consult/peds protocol (commonly ~0.1 mg/kg IV max 5 mg).",
+                            "Adjustments: hepatic impairment/older adults—start lower; taper if stopping chronic therapy."
+                        ]),
+                        contra: ul([
+                            "Severe bradycardia, hypotension, cardiogenic shock, acute decompensated HF.",
+                            "2nd/3rd-degree AV block or sick sinus syndrome (without pacer).",
+                            "Active bronchospasm/severe asthma (relative/avoid).",
+                            "Stimulant-associated chest pain (cocaine/amphetamines): avoid pure β-blockade without physician guidance."
+                        ]),
+                        protip: ul([
+                            "Reassess BP/HR and lung exam after each dose; stop if wheeze, hypotension, or worsening perfusion.",
+                            "Treat contributing triggers (pain, fever, hypovolemia) in parallel.",
+                            "If rate control fails or patient becomes unstable, escalate early (cardioversion decision)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "β1 blockade → slows AV nodal conduction and lowers HR/contractility.",
+                                    "Onset: minutes IV; expected HR reduction and improved symptoms.",
+                                    "Treatment failure: persistent RVR, hypotension/bradycardia, or worsening HF."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Hypotension, bradycardia, heart block; bronchospasm (dose-related).",
+                                    "Masks hypoglycemia symptoms in diabetics; can worsen acute HF."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive brady/hypotension with diltiazem/verapamil, digoxin, amiodarone.",
+                                    "Clonidine withdrawal: rebound hypertension risk—physician plan."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous ECG and frequent BP/HR checks after each dose; watch for heart block.",
+                                    "Monitor for wheeze and signs of HF (crackles, rising JVP, worsening edema)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Dizziness/fatigue are common; avoid abrupt discontinuation if chronic.",
+                                    "Seek urgent care for syncope, severe shortness of breath, or wheezing."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Diltiazem/verapamil (if BP/HF allow), digoxin (selected HF/hypotension), amiodarone (selected).",
+                                    "Synchronized cardioversion for unstable AF/Aflutter with RVR."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe brady/hypotension: stop drug, treat per protocol (atropine, fluids, pacing) and escalate.",
+                                    "Overdose: glucagon and high-dose insulin euglycemia therapy are key—physician/ICU."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Norepinephrine",
+                        forms: "Ampule (4 mg/4 mL) for infusion",
+                        ind: "Distributive shock (e.g., sepsis); post-intubation hypotension; cardiogenic shock (selected)",
+                        dose: ul([
+                            "Start 0.05–0.1 mcg/kg/min (or ~2–10 mcg/min) IV infusion; titrate to MAP ≥65 and perfusion.",
+                            "Common range: 0.01–3 mcg/kg/min; no fixed maximum—ICU/physician management.",
+                            "Peripheral start is acceptable temporarily in a large vein; switch to central line ASAP.",
+                            "No renal/hepatic dose adjustments."
+                        ]),
+                        contra: ul([
+                            "No absolute contraindication in life-threatening shock.",
+                            "Relative: uncorrected hypovolemia (give fluids first) and severe peripheral/mesenteric ischemia risk—physician balance.",
+                            "Physician approval: initiation/titration and multi-pressor escalation."
+                        ]),
+                        protip: ul([
+                            "Check IV site frequently; treat extravasation immediately (tissue necrosis risk).",
+                            "Target MAP + end-organ perfusion (mental status, urine output, lactate), not MAP alone.",
+                            "If escalating doses, reassess volume status and consider adjunct vasopressin per physician."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "α1 > β1 agonist → ↑SVR and ↑MAP with modest inotropy.",
+                                    "Onset is immediate; expected response is improved BP and perfusion.",
+                                    "Treatment failure: persistent hypotension or worsening perfusion markers despite titration."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Arrhythmias, peripheral/digital/mesenteric ischemia, extravasation necrosis."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "MAOI/TCA can potentiate pressor effect; other vasopressors add ischemia/arrhythmia risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous BP (arterial line preferred), ECG, and IV site checks; monitor perfusion, lactate, urine output.",
+                                    "Escalate for new limb ischemia, chest pain, or rapidly rising dose requirements."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Not typically applicable (critical care medication); communicate need for close monitoring and central access if possible."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Vasopressin (adjunct), epinephrine (second-line), dopamine (selected bradycardic shock), phenylephrine (selected tachyarrhythmia)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Extravasation: stop infusion, aspirate, phentolamine per protocol, and urgent physician review.",
+                                    "If ischemia or arrhythmia develops, reduce/stop and escalate for alternative strategy."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Phenylephrine",
+                        forms: "Vial, pre-mixed syringes",
+                        ind: "Hypotension (peri-intubation/anesthesia); selected shock with tachyarrhythmia",
+                        dose: ul([
+                            "IV push-dose: 50–200 mcg IV q1–2 min PRN (use approved dilution protocol).",
+                            "Infusion: commonly 20–200 mcg/min (or 0.2–3 mcg/kg/min) titrated to effect (physician).",
+                            "Best when hypotension is due to vasodilation and HR is already high.",
+                            "No routine pediatric dosing—consult."
+                        ]),
+                        contra: ul([
+                            "Severe hypertension.",
+                            "VTach or severe cardiogenic shock/low-output states where SVR increase may worsen perfusion (relative).",
+                            "Physician approval: infusion use or ongoing shock."
+                        ]),
+                        protip: ul([
+                            "Pure α-agonist: watch for reflex bradycardia and reduced cardiac output.",
+                            "If HR drops or perfusion worsens, switch strategy (often norepinephrine).",
+                            "Monitor IV site closely; extravasation can injure tissue."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Pure α1 agonist → ↑SVR and ↑BP; can cause reflex bradycardia.",
+                                    "Onset seconds (push-dose).",
+                                    "Treatment failure: hypotension from low cardiac output rather than vasodilation."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Hypertension, reflex bradycardia, ischemia; extravasation injury."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "MAOI/TCA may potentiate pressor response; additive effects with other vasopressors."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous BP/HR and perfusion reassessment; watch for bradycardia and ischemic signs.",
+                                    "If repeated push doses are needed, escalate to infusion/ICU plan."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Not typically applicable (acute resuscitation medication)."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Norepinephrine is preferred for most shock states; ephedrine may be used peri-anesthesia per protocol."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe hypertension/bradycardia: stop drug and escalate for targeted management.",
+                                    "Extravasation: treat per protocol (phentolamine) and urgent review."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Vasopressin",
+                        forms: "Vial (20 units/mL)",
+                        ind: "Vasodilatory shock adjunct (e.g., septic shock); diabetes insipidus (specialist)",
+                        dose: ul([
+                            "Shock adjunct: 0.03 units/min IV infusion (fixed-dose; physician/ICU).",
+                            "Some pathways use 0.04–0.06 units/min in refractory shock—physician decision.",
+                            "Not a substitute for fluids; add to reduce catecholamine dose when appropriate.",
+                            "DI dosing is case-specific and specialist-driven."
+                        ]),
+                        contra: ul([
+                            "No absolute contraindications in life-threatening shock.",
+                            "Relative: high risk of ischemia (severe PAD/mesenteric ischemia), chronic hyponatremia—physician balance.",
+                            "Physician approval required for initiation."
+                        ]),
+                        protip: ul([
+                            "Expect norepinephrine-sparing effect rather than dramatic solo response.",
+                            "Monitor extremities/abdomen for ischemia and check sodium if prolonged use.",
+                            "If ischemia develops, stop and escalate immediately."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "V1-mediated vasoconstriction (↑SVR) and V2-mediated water retention.",
+                                    "Onset minutes; expected response is improved MAP and reduced norepinephrine requirement.",
+                                    "Treatment failure: persistent hypotension despite adequate volume/pressors → escalate (additional agents/inotrope)."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Digital/mesenteric ischemia, skin necrosis; hyponatremia; reduced cardiac output in some patients."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive ischemia with other vasoconstrictors; DI therapies require specialist coordination."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous BP and perfusion monitoring; urine output; check sodium with ongoing infusions.",
+                                    "Escalate for abdominal pain, limb ischemia, or rapidly worsening shock markers."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Not typically applicable (critical care medication)."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Norepinephrine first-line; epinephrine second-line; other agents (e.g., inotropes) per physician/ICU."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "If ischemia or severe hyponatremia develops, stop/adjust and escalate urgently.",
+                                    "Document indication, target MAP/perfusion goals, and escalation plan under delegated authority."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             },
             {
@@ -310,11 +1333,11 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Available Dosages/Forms</h4>
-                                        <p class="text-sm text-gray-800">${med.forms}</p>
+                                        <div class="text-sm text-gray-800">${med.forms}</div>
                                     </div>
                                     <div>
                                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Indications</h4>
-                                        <p class="text-sm text-gray-800">${med.ind}</p>
+                                        <div class="text-sm text-gray-800">${med.ind}</div>
                                     </div>
                                 </div>
                                 
@@ -322,14 +1345,14 @@
                                     <h4 class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1 flex items-center gap-1">
                                         <i data-lucide="syringe" class="w-3 h-3"></i> Dosing
                                     </h4>
-                                    <p class="text-sm text-gray-800 font-medium">${med.dose}</p>
+                                    <div class="text-sm text-gray-800 font-medium">${med.dose}</div>
                                 </div>
 
                                 <div>
                                     <h4 class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1 flex items-center gap-1">
                                         <i data-lucide="ban" class="w-3 h-3"></i> Contraindications
                                     </h4>
-                                    <p class="text-sm text-gray-700">${med.contra}</p>
+                                    <div class="text-sm text-gray-700">${med.contra}</div>
                                 </div>
 
                                 <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg mt-4">
@@ -337,10 +1360,36 @@
                                         <i data-lucide="lightbulb" class="w-5 h-5 text-amber-500 mt-0.5"></i>
                                         <div>
                                             <h4 class="text-sm font-bold text-amber-800">Pro Tip</h4>
-                                            <p class="text-sm text-amber-900 mt-1">${med.protip}</p>
+                                            <div class="text-sm text-amber-900 mt-1">${med.protip}</div>
                                         </div>
                                     </div>
                                 </div>
+
+                                ${
+                                    med.details && med.details.length
+                                        ? `
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+                                        ${med.details
+                                            .map(
+                                                (detail) => `
+                                            <div class="rounded-lg border border-gray-100 bg-white p-3">
+                                                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1">
+                                                    ${
+                                                        detail.icon
+                                                            ? `<i data-lucide="${detail.icon}" class="w-3 h-3"></i>`
+                                                            : ""
+                                                    }
+                                                    ${detail.title}
+                                                </h4>
+                                                <div class="text-sm text-gray-700">${detail.content}</div>
+                                            </div>
+                                        `
+                                            )
+                                            .join("")}
+                                    </div>
+                                `
+                                        : ""
+                                }
                             </div>
                         </div>
                     `;
@@ -352,7 +1401,9 @@
             });
 
             resultsCount.textContent = `Showing ${totalMeds} medications`;
-            lucide.createIcons();
+            if (window.lucide && typeof window.lucide.createIcons === "function") {
+                window.lucide.createIcons();
+            }
         }
 
         // Accordion Logic
@@ -418,13 +1469,27 @@
                 const catMatch = category.category.toLowerCase().includes(searchTerm);
                 
                 // Filter medications
-                const matchedMeds = category.medications.filter(med => 
-                    catMatch ||
-                    med.name.toLowerCase().includes(searchTerm) ||
-                    med.ind.toLowerCase().includes(searchTerm) ||
-                    med.dose.toLowerCase().includes(searchTerm) ||
-                    med.contra.toLowerCase().includes(searchTerm)
-                );
+                const matchedMeds = category.medications.filter((med) => {
+                    if (catMatch) return true;
+
+                    const detailsText = (med.details || [])
+                        .map((detail) => `${detail.title} ${detail.content}`)
+                        .join(" ");
+                    const haystack = [
+                        med.name,
+                        med.forms,
+                        med.ind,
+                        med.dose,
+                        med.contra,
+                        med.protip,
+                        detailsText
+                    ]
+                        .filter(Boolean)
+                        .join(" ")
+                        .toLowerCase();
+
+                    return haystack.includes(searchTerm);
+                });
 
                 return {
                     ...category,
