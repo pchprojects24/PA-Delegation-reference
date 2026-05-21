@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,7 +302,7 @@
                                 <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${med.name}</h3>
                                 <p class="text-sm text-gray-500 mt-1 line-clamp-1">${med.ind}</p>
                             </div>
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform duration-300"></i>
+                            <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-gray-400 transform transition-transform duration-300"></i>
                         </button>
                         
                         <div class="accordion-content bg-white px-6 border-t border-gray-50">
@@ -359,16 +358,19 @@
         // Accordion Logic
         window.toggleAccordion = function(button) {
             const content = button.nextElementSibling;
-            const icon = button.querySelector('[data-lucide="chevron-down"]');
+            const icon =
+                button.querySelector('.chevron-icon') ||
+                button.querySelector('[data-lucide="chevron-down"]') ||
+                button.querySelector('svg');
             
             if (content.classList.contains('expanded')) {
                 content.classList.remove('expanded');
-                icon.style.transform = 'rotate(0deg)';
+                if (icon) icon.style.transform = 'rotate(0deg)';
                 content.style.paddingTop = '0';
                 content.style.paddingBottom = '0';
             } else {
                 content.classList.add('expanded');
-                icon.style.transform = 'rotate(180deg)';
+                if (icon) icon.style.transform = 'rotate(180deg)';
                 content.style.paddingTop = '1rem';
                 content.style.paddingBottom = '1rem';
             }
@@ -377,21 +379,25 @@
         // Expand/Collapse All
         expandAllBtn.addEventListener('click', () => {
             const contents = document.querySelectorAll('.accordion-content');
-            const icons = document.querySelectorAll('[data-lucide="chevron-down"]');
             
             allExpanded = !allExpanded;
             
-            contents.forEach((content, index) => {
+            contents.forEach((content) => {
+                const button = content.previousElementSibling;
+                const icon =
+                    (button && button.querySelector('.chevron-icon')) ||
+                    (button && button.querySelector('[data-lucide="chevron-down"]')) ||
+                    (button && button.querySelector('svg'));
                 if (allExpanded) {
                     content.classList.add('expanded');
                     content.style.paddingTop = '1rem';
                     content.style.paddingBottom = '1rem';
-                    icons[index].style.transform = 'rotate(180deg)';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
                 } else {
                     content.classList.remove('expanded');
                     content.style.paddingTop = '0';
                     content.style.paddingBottom = '0';
-                    icons[index].style.transform = 'rotate(0deg)';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
                 }
             });
 
@@ -432,12 +438,16 @@
             if (searchTerm.length > 1 && filteredData.length > 0) {
                  setTimeout(() => {
                     const contents = document.querySelectorAll('.accordion-content');
-                    const icons = document.querySelectorAll('[data-lucide="chevron-down"]');
-                    contents.forEach((content, index) => {
+                    contents.forEach((content) => {
+                        const button = content.previousElementSibling;
+                        const icon =
+                            (button && button.querySelector('.chevron-icon')) ||
+                            (button && button.querySelector('[data-lucide="chevron-down"]')) ||
+                            (button && button.querySelector('svg'));
                         content.classList.add('expanded');
                         content.style.paddingTop = '1rem';
                         content.style.paddingBottom = '1rem';
-                        icons[index].style.transform = 'rotate(180deg)';
+                        if (icon) icon.style.transform = 'rotate(180deg)';
                     });
                     allExpanded = true;
                     expandAllBtn.textContent = "Collapse All Categories";
@@ -450,6 +460,3 @@
     </script>
 </body>
 </html>
-
-```
-
