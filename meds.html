@@ -1124,15 +1124,886 @@
             {
                 category: "Dermatological",
                 medications: [
-                    { name: "Polymyxin B", forms: "Topical ointment", ind: "Minor skin infections, laceration prophylaxis", dose: "Apply small amount to affected area 1-3 times daily.", contra: "Hypersensitivity.", protip: "Not for deep or puncture wounds, animal bites, or serious burns." },
-                    { name: "Mupirocin", forms: "Topical ointment (2%)", ind: "Impetigo, MRSA decolonization", dose: "Apply to affected area 3 times daily for 5-14 days.", contra: "Hypersensitivity.", protip: "Excellent choice for honey-crusted lesions of impetigo. Advise patient not to use near eyes." },
-                    { name: "Clotrimazole", forms: "Cream (1%)", ind: "Tinea pedis (athlete's foot), tinea corporis, cutaneous candidiasis", dose: "Apply twice daily for 2-4 weeks.", contra: "Hypersensitivity.", protip: "Advise patients to continue applying for 1 week after symptoms resolve to prevent recurrence." },
-                    { name: "Betamethasone Valerate", forms: "Cream/Ointment (0.1%)", ind: "Corticosteroid-responsive dermatoses, eczema, psoriasis", dose: "Apply thin film 1-2 times daily.", contra: "Untreated skin infections, rosacea.", protip: "Use the lowest potency needed for the shortest time. Avoid prolonged use on the face or intertriginous areas to prevent skin thinning." },
-                    { name: "Hydrocortisone ointment", forms: "Ointment (0.5% - 1%)", ind: "Mild dermatitis, insect bites", dose: "Apply thin film 2-4 times daily.", contra: "Active skin infections without concurrent antimicrobial.", protip: "Safe low-potency steroid for use on the face or in skin folds, unlike stronger steroids like Betamethasone." },
-                    { name: "Hemorrhoidal ointment/suppository", forms: "Ointment/Suppository (with hydrocortisone)", ind: "Internal/External hemorrhoids", dose: "Apply/Insert bid-tid and after bowel movements.", contra: "Perianal infections.", protip: "Advise patient to increase dietary fiber and water intake to prevent the constipation exacerbating the condition." },
-                    { name: "Lidocaine injection", forms: "Vial (1%, 2%)", ind: "Local anesthesia for laceration repair", dose: "Max dose ~4.5 mg/kg.", contra: "Severe heart block (if systemic absorption occurs), true amide allergy.", protip: "Wait 2-5 minutes after injection before cutting/suturing to allow the medication to block the nerve channels fully." },
-                    { name: "Lidocaine injection with epinephrine", forms: "Vial (1% or 2% with 1:100,000 epi)", ind: "Local anesthesia needing bleeding control/prolonged effect", dose: "Max dose ~7 mg/kg.", contra: "Use in areas with end-artery supply (traditional teaching: fingers, toes, nose, hose—though recently debated, caution remains).", protip: "The epinephrine vasoconstricts, providing a bloodless field and keeping the lidocaine localized longer." },
-                    { name: "Tetracaine", forms: "Topical liquid/drops", ind: "Topical anesthesia for intact skin or eyes (ophthalmic form)", dose: "Varies by preparation.", contra: "Allergy to ester local anesthetics.", protip: "Do not dispense ophthalmic tetracaine for home use. Repeated use causes severe corneal toxicity and melting." }
+                    {
+                        name: "Polymyxin B (Topical)",
+                        forms: "Topical ointment (often combined with bacitracin/neomycin)",
+                        ind: "Minor skin infections, laceration prophylaxis, superficial abrasions",
+                        dose: ul([
+                            "Adults/Pediatrics: Apply small amount to affected area 1-3 times daily for 7-10 days.",
+                            "Cover with sterile dressing if indicated.",
+                            "No renal/hepatic adjustment needed for topical use; minimal systemic absorption.",
+                            "Pregnancy: Category B—generally safe topically; use if benefit justifies potential risk."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to polymyxin B or other components.",
+                            "Deep or puncture wounds, animal bites, serious burns—systemic antibiotics required.",
+                            "Not for use in eyes or large denuded areas without physician guidance.",
+                            "Physician approval: extensive burns, infected deep wounds, immunocompromised with systemic signs."
+                        ]),
+                        protip: ul([
+                            "Clean wound thoroughly before application.",
+                            "Combination products (e.g., Polysporin, Neosporin) contain multiple antibiotics—check allergy history.",
+                            "If no improvement in 3-5 days or signs of spreading infection, escalate for systemic treatment."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Polymyxin B disrupts bacterial cell membranes, particularly Gram-negative organisms; often combined with bacitracin (Gram-positive coverage).",
+                                    "Expected response: reduced local erythema, pain, and exudate within 3-5 days.",
+                                    "Treatment failure: worsening cellulitis, purulent drainage, fever, lymphangitic spread—requires systemic antibiotics."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: local irritation, mild burning, contact dermatitis (especially with neomycin-containing products).",
+                                    "Serious: allergic contact dermatitis; rare anaphylaxis if systemically absorbed through broken skin.",
+                                    "Red flags: increasing pain, redness, swelling, fever, purulent discharge."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Minimal systemic interactions with topical use.",
+                                    "Avoid concurrent use with other topical agents that may cause irritation without consulting provider.",
+                                    "Neomycin component (if present) may cause cross-sensitivity with other aminoglycosides."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess wound for depth, contamination, foreign bodies; clean and debride as needed.",
+                                    "Follow-up: reassess in 3-5 days for healing progress, signs of infection.",
+                                    "No routine labs required for topical use.",
+                                    "Escalate if cellulitis spreads, fever develops, or no improvement after 5 days."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Clean wound with soap and water before each application.",
+                                    "Apply thin layer 1-3 times daily; may cover with clean bandage.",
+                                    "Expected benefit: prevention of infection, faster healing.",
+                                    "Common side effects: mild stinging or redness at application site.",
+                                    "Red flags: increasing pain/swelling/warmth, red streaks, pus, fever—seek care immediately.",
+                                    "Missed dose: apply as soon as remembered unless almost time for next dose.",
+                                    "Storage: room temperature; do not freeze."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: thorough wound cleansing, irrigation, sterile dressing; watchful waiting for clean minor wounds.",
+                                    "First-line alternatives: bacitracin alone (less allergenic than neomycin combinations), mupirocin for MRSA concern.",
+                                    "Systemic antibiotics: cephalexin, clindamycin for cellulitis or deeper infections.",
+                                    "Honey-based wound dressings or silver sulfadiazine for burns (physician-directed)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction: discontinue immediately; treat with antihistamines; anaphylaxis rare but requires epinephrine/ED.",
+                                    "Worsening infection: stop topical therapy, start systemic antibiotics, culture wound if indicated.",
+                                    "Escalate to physician: deep wounds, bites, extensive burns, immunocompromised patients, signs of systemic infection.",
+                                    "Document: wound description, indication for topical antibiotic, patient counselling, follow-up plan."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Mupirocin",
+                        forms: "Topical ointment (2%)",
+                        ind: "Impetigo, secondary infected eczema, MRSA nasal decolonization, minor infected wounds",
+                        dose: ul([
+                            "Adults/Pediatrics ≥2 months: Apply to affected area 3 times daily for 5-14 days (impetigo typically 5-7 days).",
+                            "MRSA decolonization: apply to anterior nares BID for 5 days.",
+                            "No renal/hepatic dose adjustment for topical use.",
+                            "Pregnancy: Category B—safe for topical use if clinically indicated."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to mupirocin or polyethylene glycol base.",
+                            "Not for ophthalmic use; avoid contact with eyes.",
+                            "Moderate to severe renal impairment (if using polyethylene glycol base extensively—risk of toxicity from absorption).",
+                            "Physician approval: widespread skin infection requiring systemic therapy, recurrent impetigo, immunocompromised patients."
+                        ]),
+                        protip: ul([
+                            "Excellent for honey-crusted lesions of impetigo; superior to older topicals.",
+                            "Advise patients to remove crusts gently with warm compresses before applying.",
+                            "Do not use for more than 14 days to reduce resistance risk.",
+                            "If no improvement in 3-5 days, consider systemic antibiotics or alternative diagnosis."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Inhibits bacterial protein synthesis by binding to isoleucyl-tRNA synthetase; bacteriostatic at low concentrations, bactericidal at higher.",
+                                    "Excellent activity against S. aureus (including MRSA) and S. pyogenes.",
+                                    "Expected response: crusting/weeping resolves, lesions heal within 5-7 days.",
+                                    "Treatment failure: spreading lesions, new satellite lesions, systemic symptoms—may need oral antibiotics."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: burning, stinging, itching at application site; dry skin.",
+                                    "Serious: allergic contact dermatitis (rare); systemic absorption minimal but polyethylene glycol may accumulate with extensive use in renal failure.",
+                                    "Red flags: worsening infection, cellulitis, fever, extensive skin involvement."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "No significant drug-drug interactions with topical use.",
+                                    "Avoid mixing with other topical preparations in the same area without guidance.",
+                                    "Do not use concurrently with chloramphenicol (theoretical antagonism)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess extent of infection, rule out cellulitis or systemic involvement.",
+                                    "Follow-up: reassess in 3-5 days; impetigo should show clear improvement.",
+                                    "No routine labs for topical use; culture if recurrent or resistant.",
+                                    "Escalate if spreading, no improvement, or systemic signs (fever, lymphadenopathy)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Wash hands before and after application; impetigo is contagious.",
+                                    "Gently remove crusts with warm water compress, then apply thin layer to lesions 3 times daily.",
+                                    "Expected benefit: healing within 5-7 days; reduced contagiousness after 24-48 hours of treatment.",
+                                    "Common side effects: mild burning or itching.",
+                                    "Red flags: spreading redness, new lesions, fever, swelling—contact provider.",
+                                    "Missed dose: apply as soon as remembered; do not double up.",
+                                    "Keep affected areas clean; avoid sharing towels/linens; wash bedding/clothing in hot water.",
+                                    "Do not use near eyes; if accidental contact, rinse thoroughly with water.",
+                                    "Storage: room temperature; discard after treatment course."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: good hygiene, warm compresses; watchful waiting for very mild cases.",
+                                    "Topical alternatives: retapamulin, fusidic acid (where available).",
+                                    "Systemic antibiotics: cephalexin, dicloxacillin, clindamycin for extensive impetigo or treatment failure.",
+                                    "MRSA decolonization alternatives: chlorhexidine body washes, bleach baths (per protocol)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction: discontinue, treat contact dermatitis with mild topical steroid if needed.",
+                                    "Treatment failure or spreading infection: start oral antibiotics (e.g., cephalexin, clindamycin), culture lesions.",
+                                    "Escalate to physician: extensive involvement (>5 lesions or large area), systemic signs, recurrent impetigo, immunocompromised.",
+                                    "Document: clinical appearance, location, treatment plan, patient counselling, follow-up."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Clotrimazole",
+                        forms: "Topical cream (1%)",
+                        ind: "Tinea pedis (athlete's foot), tinea corporis (ringworm), tinea cruris (jock itch), cutaneous candidiasis",
+                        dose: ul([
+                            "Adults/Pediatrics: Apply to affected area and ~1 cm surrounding skin twice daily for 2-4 weeks.",
+                            "Tinea pedis: 4 weeks; tinea corporis/cruris: 2 weeks; cutaneous candidiasis: 2 weeks.",
+                            "Continue for 1 week after clinical resolution to prevent recurrence.",
+                            "No dose adjustment for renal/hepatic impairment (minimal systemic absorption).",
+                            "Pregnancy: Category B—safe for topical use."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to clotrimazole or other azole antifungals.",
+                            "Not for ophthalmic, oral, or intravaginal use (different formulations).",
+                            "Physician approval: extensive involvement, immunocompromised patients, treatment failures requiring systemic therapy."
+                        ]),
+                        protip: ul([
+                            "Advise patients to complete full course even after symptoms resolve to eradicate fungus and prevent recurrence.",
+                            "Keep area clean and dry; moisture promotes fungal growth.",
+                            "If athlete's foot, treat both feet even if only one is symptomatic.",
+                            "If no improvement after 2 weeks, consider alternative diagnosis (e.g., eczema, psoriasis) or need for systemic antifungals."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Inhibits fungal cytochrome P450 enzymes, disrupting ergosterol synthesis → fungal cell membrane damage.",
+                                    "Broad-spectrum activity against dermatophytes (Trichophyton, Epidermophyton, Microsporum) and Candida species.",
+                                    "Expected response: itching/burning improve within days; visible clearing in 1-2 weeks; complete resolution in 2-4 weeks.",
+                                    "Treatment failure: persistent/worsening lesions, spreading—consider systemic antifungals or alternative diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: local irritation, erythema, stinging, pruritus at application site.",
+                                    "Serious: allergic contact dermatitis (rare); blistering, peeling, severe burning (discontinue if occurs).",
+                                    "Red flags: worsening rash, oozing, increased pain, signs of bacterial superinfection."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "No significant systemic drug interactions with topical use (minimal absorption).",
+                                    "Avoid concurrent use with topical corticosteroids in the same area unless specifically directed (may mask worsening infection).",
+                                    "Do not apply with occlusive dressings unless instructed."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: confirm fungal infection clinically (KOH prep or culture if diagnosis uncertain).",
+                                    "Follow-up: reassess at 2 weeks; expect significant improvement.",
+                                    "No routine labs required for topical use.",
+                                    "Escalate if no improvement after 2 weeks, worsening, or extensive involvement requiring oral therapy."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Wash and dry affected area before applying cream; extend application ~1 cm beyond visible rash.",
+                                    "Apply twice daily for full course (2-4 weeks depending on location); do not stop early even if symptoms improve.",
+                                    "Expected benefit: itching relief within few days; complete healing in 2-4 weeks.",
+                                    "Common side effects: mild burning or irritation initially.",
+                                    "Red flags: worsening rash, blistering, oozing, spreading despite treatment—contact provider.",
+                                    "Missed dose: apply as soon as remembered unless near next dose time.",
+                                    "Prevention: keep area dry; change socks daily; avoid tight clothing; use antifungal powder in shoes if athlete's foot.",
+                                    "Storage: room temperature; avoid excessive heat."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: keep area clean and dry; breathable footwear/clothing; antifungal powders for prevention.",
+                                    "Topical alternatives: terbinafine cream (shorter duration—1-2 weeks), miconazole, ketoconazole.",
+                                    "Systemic therapy: terbinafine or fluconazole PO for extensive disease, tinea capitis, nail involvement, or treatment failures.",
+                                    "Combination therapy: topical antifungal + topical steroid (e.g., clotrimazole-betamethasone) for severe inflammation—physician-directed."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction: discontinue immediately; treat with oral antihistamine or topical steroid if needed.",
+                                    "Severe irritation or contact dermatitis: stop medication, consider alternative antifungal.",
+                                    "Treatment failure: consider KOH/culture to confirm fungus, switch to oral antifungals if extensive or resistant.",
+                                    "Escalate to physician: widespread involvement, failed topical therapy, tinea capitis (requires oral treatment), immunocompromised patients.",
+                                    "Document: clinical appearance, location, duration of treatment, patient counselling, follow-up plan."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Betamethasone Valerate",
+                        forms: "Cream/Ointment (0.1%)",
+                        ind: "Corticosteroid-responsive dermatoses (eczema, psoriasis, contact dermatitis, seborrheic dermatitis), inflammatory skin conditions",
+                        dose: ul([
+                            "Adults: Apply thin film to affected area 1-2 times daily until controlled, then reduce frequency or switch to lower potency.",
+                            "Pediatrics ≥1 year: use lowest effective dose for shortest duration; avoid face and diapered areas.",
+                            "Duration: limit continuous use to 2 weeks on face/intertriginous areas; up to 4 weeks on body; reassess need.",
+                            "Ointment for dry/thick lesions; cream for moist areas.",
+                            "Pregnancy: Category C—use only if benefit outweighs risk; avoid extensive use or occlusion."
+                        ]),
+                        contra: ul([
+                            "Untreated bacterial, viral, or fungal skin infections (e.g., impetigo, herpes, tinea)—may worsen infection.",
+                            "Rosacea, perioral dermatitis, acne vulgaris—may exacerbate.",
+                            "Hypersensitivity to corticosteroids.",
+                            "Physician approval: prolonged use (>2-4 weeks), large body surface area, facial/intertriginous use, children <1 year, systemic absorption concerns."
+                        ]),
+                        protip: ul([
+                            "Use lowest potency needed for shortest time to minimize side effects.",
+                            "Avoid prolonged use on face, groin, axillae, or under breasts—increased absorption and skin thinning risk.",
+                            "Taper by reducing frequency (e.g., daily → alternate days → twice weekly) or switching to lower potency to prevent rebound flare.",
+                            "If concurrent infection suspected, add topical antibiotic or antifungal or use combination product."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Potent corticosteroid (Class II/III)—suppresses inflammation by inhibiting phospholipase A2, reducing prostaglandins/leukotrienes, stabilizing cell membranes.",
+                                    "Expected response: reduced erythema, pruritus, swelling within 2-7 days; improvement continues with ongoing use.",
+                                    "Treatment failure: no improvement after 2 weeks, worsening despite treatment—consider incorrect diagnosis, infection, or need for systemic therapy."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: skin thinning (atrophy), telangiectasia, striae, hypopigmentation, acne/folliculitis, burning/stinging.",
+                                    "Serious: HPA axis suppression (with extensive/prolonged use), Cushing's syndrome (rare), delayed wound healing, increased infection risk.",
+                                    "Perioral dermatitis, rosacea-like reactions if used on face.",
+                                    "Red flags: skin breakdown, poor healing, signs of infection, systemic absorption symptoms (moon facies, weight gain, hyperglycemia)."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Minimal systemic interactions with topical use unless extensive application.",
+                                    "Systemic corticosteroids: additive effect if using both topical and systemic steroids.",
+                                    "Avoid concurrent use with other potent topical steroids on large areas (increased HPA suppression risk)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess for infection (do not use if active infection present without antimicrobial coverage).",
+                                    "Follow-up: reassess in 1-2 weeks for response; evaluate for atrophy, telangiectasia, or other steroid side effects.",
+                                    "Prolonged use: monitor for HPA axis suppression (rare with topical use but possible with extensive application).",
+                                    "Escalate if no improvement, worsening, skin breakdown, or signs of infection."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply thin film to affected area 1-2 times daily; do not overapply (more is not better).",
+                                    "Expected benefit: reduced itching/redness within days; continued improvement over 1-2 weeks.",
+                                    "Common side effects: mild burning initially; skin thinning with prolonged use.",
+                                    "Red flags: worsening rash, pustules, blisters, no improvement after 2 weeks—contact provider.",
+                                    "Do not use on face for >1-2 weeks without guidance; avoid eyes.",
+                                    "Missed dose: apply as soon as remembered; do not double up.",
+                                    "Do not stop abruptly if using for extended period—may cause rebound flare; taper as directed.",
+                                    "Do not share; do not apply to open wounds or infected areas without provider instruction.",
+                                    "Storage: room temperature; avoid freezing."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: emollients, oatmeal baths, cool compresses, avoid triggers (irritants, allergens).",
+                                    "Lower-potency steroids: hydrocortisone 1% for mild cases, face, or pediatrics.",
+                                    "Topical calcineurin inhibitors: tacrolimus, pimecrolimus for face/sensitive areas, steroid-sparing (physician-initiated).",
+                                    "Systemic therapy: oral prednisone, methotrexate, biologics for severe/refractory cases (specialist-managed).",
+                                    "Phototherapy for psoriasis/eczema (dermatology referral)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction or severe irritation: discontinue immediately; consider patch testing if recurrent.",
+                                    "Skin infection: stop steroid, start antimicrobial therapy (topical or systemic), reassess.",
+                                    "Severe atrophy, striae, or HPA suppression: discontinue, taper if needed, refer to dermatology.",
+                                    "Escalate to physician: no response after 2 weeks, extensive involvement, facial/intertriginous use >2 weeks, children, severe disease requiring systemic therapy.",
+                                    "Document: indication, location, potency used, duration, response, side effects, patient counselling."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Hydrocortisone Ointment",
+                        forms: "Ointment (0.5%, 1%, 2.5%)",
+                        ind: "Mild inflammatory dermatoses (eczema, contact dermatitis, insect bites, mild psoriasis), pruritus",
+                        dose: ul([
+                            "Adults/Pediatrics: Apply thin film to affected area 2-4 times daily for up to 2 weeks; reassess if longer duration needed.",
+                            "Lower concentrations (0.5%-1%) for face, children, intertriginous areas; 2.5% for body use.",
+                            "No renal/hepatic adjustment for topical use.",
+                            "Pregnancy: Category C—generally safe for limited topical use; avoid extensive application."
+                        ]),
+                        contra: ul([
+                            "Untreated bacterial, fungal, or viral skin infections.",
+                            "Hypersensitivity to hydrocortisone.",
+                            "Avoid use on open wounds, rosacea, perioral dermatitis, or acne without specific indication.",
+                            "Physician approval: use >2 weeks, infants <2 years, large body surface area."
+                        ]),
+                        protip: ul([
+                            "Safest low-potency steroid for face, skin folds, and pediatric use.",
+                            "Good first-line option for mild eczema, insect bites, contact dermatitis.",
+                            "If no improvement in 1 week or worsening, reassess diagnosis or escalate to higher-potency steroid.",
+                            "Ointment base is more occlusive and moisturizing than cream—better for dry, scaly lesions."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Low-potency corticosteroid (Class VI-VII)—anti-inflammatory, antipruritic, vasoconstrictive effects; suppresses local immune response.",
+                                    "Expected response: reduced itching/redness within 1-3 days; continued improvement over 1 week.",
+                                    "Treatment failure: no improvement after 1 week, worsening—consider alternative diagnosis, infection, or need for higher-potency steroid."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: mild burning/stinging on application, dry skin, folliculitis.",
+                                    "Serious (rare with short-term low-potency use): skin atrophy, telangiectasia, perioral dermatitis, HPA suppression (only with extensive/prolonged use).",
+                                    "Red flags: worsening rash, pustules, spreading, no improvement after 1 week."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "No significant drug interactions with topical low-potency use.",
+                                    "Avoid layering multiple topical steroids or using with other potent immunosuppressants in same area without guidance."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: confirm inflammatory condition; rule out infection.",
+                                    "Follow-up: reassess in 1 week; should see improvement.",
+                                    "No routine labs required.",
+                                    "Escalate if no response, worsening, or signs of infection."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply thin layer to affected area 2-4 times daily.",
+                                    "Expected benefit: itch relief within days; rash improvement within 1 week.",
+                                    "Common side effects: mild burning initially.",
+                                    "Red flags: worsening, spreading, oozing, no improvement after 1 week—contact provider.",
+                                    "Missed dose: apply when remembered; do not double up.",
+                                    "Safe for short-term use on face and in children; avoid eyes.",
+                                    "Moisturize regularly to support skin barrier.",
+                                    "Storage: room temperature."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: emollients, cool compresses, oatmeal baths, avoid irritants/allergens.",
+                                    "Higher-potency steroids: betamethasone, triamcinolone for more severe inflammation (short-term, body areas).",
+                                    "Topical calcineurin inhibitors: tacrolimus, pimecrolimus for facial eczema or steroid-sparing (physician-initiated).",
+                                    "Systemic antihistamines for pruritus relief."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction: discontinue, treat with oral antihistamine if needed.",
+                                    "Infection: stop steroid, start antimicrobial, reassess.",
+                                    "No response after 1 week: consider higher-potency steroid, alternative diagnosis, or referral.",
+                                    "Escalate to physician: extensive involvement, unclear diagnosis, treatment failure, need for systemic therapy.",
+                                    "Document: indication, location, response, duration, patient counselling."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Hemorrhoidal Ointment/Suppository",
+                        forms: "Ointment/Suppository (hydrocortisone 1% + local anesthetic/protectants)",
+                        ind: "Symptomatic relief of internal and external hemorrhoids, anorectal discomfort, pruritus ani",
+                        dose: ul([
+                            "Adults: Apply ointment externally or insert applicator/suppository rectally 2-4 times daily and after bowel movements.",
+                            "Duration: up to 7 days for hydrocortisone formulations; longer use requires physician reassessment.",
+                            "Pediatrics <12 years: physician guidance required.",
+                            "No renal/hepatic adjustment needed.",
+                            "Pregnancy: Category C—use with caution; generally acceptable for short-term symptomatic relief."
+                        ]),
+                        contra: ul([
+                            "Perianal/rectal infections (bacterial, fungal, viral)—may worsen.",
+                            "Hypersensitivity to corticosteroids or local anesthetics.",
+                            "Rectal bleeding of unknown cause—requires evaluation first.",
+                            "Physician approval: severe hemorrhoids requiring procedural intervention, recurrent symptoms, pediatric use, pregnancy."
+                        ]),
+                        protip: ul([
+                            "Advise increased dietary fiber (25-30g/day) and fluid intake to prevent constipation—cornerstone of hemorrhoid management.",
+                            "Sitz baths (warm water 10-15 min 2-3 times daily) provide additional relief.",
+                            "If no improvement in 7 days or worsening bleeding/pain, escalate—may need procedural treatment or alternative diagnosis (fissure, abscess, malignancy)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Hydrocortisone reduces inflammation and pruritus; local anesthetics (pramoxine, lidocaine) provide pain relief; protectants (petrolatum, zinc oxide) form barrier.",
+                                    "Expected response: reduced pain, itching, swelling within 24-48 hours.",
+                                    "Treatment failure: persistent severe pain, increasing bleeding, thrombosed hemorrhoid, prolapse—may require procedural management."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: local burning/stinging, rectal discomfort, dryness.",
+                                    "Serious: rectal perforation (with prolonged/improper applicator use), systemic absorption of steroid (rare with short-term use), allergic reaction to anesthetic.",
+                                    "Red flags: increasing pain, heavy bleeding, fever, inability to pass stool, prolapsed tissue that won't reduce."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Minimal systemic interactions with topical/rectal use.",
+                                    "Avoid concurrent use of other rectal corticosteroid products.",
+                                    "Anesthetic component: rare but possible methemoglobinemia with excessive use of benzocaine-containing products."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess for external hemorrhoids, fissure, thrombosis, prolapse; rule out rectal bleeding from other causes.",
+                                    "Follow-up: reassess in 7 days if symptoms persist; earlier if worsening.",
+                                    "No labs required for uncomplicated hemorrhoids.",
+                                    "Escalate if severe pain, significant bleeding, thrombosis, prolapse, or no improvement after 7 days."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply ointment externally to perianal area or use applicator for internal application 2-4 times daily and after bowel movements.",
+                                    "For suppository: insert rectally; lie on side for few minutes to allow absorption.",
+                                    "Expected benefit: pain/itch relief within 1-2 days.",
+                                    "Common side effects: mild burning/stinging initially.",
+                                    "Red flags: severe pain, heavy bleeding, fever, inability to have bowel movement—seek immediate care.",
+                                    "Missed dose: use as soon as remembered.",
+                                    "Lifestyle: increase fiber (fruits, vegetables, whole grains), drink plenty of water, avoid straining during bowel movements.",
+                                    "Sitz baths 2-3 times daily for additional relief.",
+                                    "Do not use for >7 days without reassessment.",
+                                    "Storage: room temperature; suppositories may soften in heat—refrigerate if needed."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: dietary fiber, stool softeners (docusate), sitz baths, ice packs, avoid prolonged sitting/straining.",
+                                    "Topical alternatives: witch hazel pads, zinc oxide ointment, petroleum jelly.",
+                                    "Systemic: oral pain relief (acetaminophen, NSAIDs if not contraindicated).",
+                                    "Procedural: rubber band ligation, sclerotherapy, infrared coagulation, hemorrhoidectomy for severe/refractory cases (surgical referral)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe bleeding: apply direct pressure, place patient in left lateral position, escalate to ED if hemodynamically unstable.",
+                                    "Thrombosed hemorrhoid with severe pain: consider incision and evacuation (within 48-72 hours of symptom onset) or referral.",
+                                    "Strangulated prolapsed hemorrhoid: emergent surgical consultation.",
+                                    "Escalate to physician: severe symptoms, thrombosis, prolapse, recurrent hemorrhoids, suspected alternative diagnosis (fissure, abscess, malignancy), failure of conservative management.",
+                                    "Document: symptoms, examination findings, treatment, counselling, follow-up plan."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Lidocaine Injection (Plain)",
+                        forms: "Vial (1%, 2%)",
+                        ind: "Local anesthesia for laceration repair, minor procedures, dental work",
+                        dose: ul([
+                            "Adults: Max dose 4.5 mg/kg (plain lidocaine) or ~300 mg total for average adult.",
+                            "1% solution = 10 mg/mL; 2% solution = 20 mg/mL.",
+                            "Example: 70 kg adult → max 315 mg → 31.5 mL of 1% or 15.75 mL of 2%.",
+                            "Pediatrics: 4.5 mg/kg max dose; calculate carefully to avoid toxicity.",
+                            "Onset: 2-5 minutes; duration: 30-60 minutes (plain).",
+                            "Pregnancy: Category B—safe for local use."
+                        ]),
+                        contra: ul([
+                            "True amide local anesthetic allergy (rare; often confused with vasovagal reaction or epinephrine effect).",
+                            "Severe heart block, severe bradycardia (if systemic absorption occurs).",
+                            "Do not inject into infected tissue (less effective, risk of spreading infection).",
+                            "Physician approval: large volume required, anatomic areas with high absorption risk, cardiac history."
+                        ]),
+                        protip: ul([
+                            "Warm the solution to body temperature and inject slowly to reduce pain.",
+                            "Use smallest needle (27-30G) for infiltration to minimize discomfort.",
+                            "Aspirate before injecting to avoid intravascular injection (though evidence for aspiration is debated).",
+                            "Wait 2-5 minutes after injection before starting procedure for full anesthetic effect."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Blocks sodium channels in nerve membranes → prevents depolarization → loss of sensation.",
+                                    "Expected effect: complete local anesthesia within 2-5 minutes, lasting 30-60 minutes.",
+                                    "Treatment failure: inadequate anesthesia—may need additional infiltration, nerve block, or procedural sedation."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: transient burning on injection, local swelling, bruising.",
+                                    "Serious: local anesthetic systemic toxicity (LAST)—CNS symptoms (perioral numbness, tinnitus, confusion, seizures) then cardiovascular (hypotension, arrhythmias, cardiac arrest).",
+                                    "Allergic reaction: rare true allergy; more often vasovagal or anxiety response.",
+                                    "Red flags: perioral tingling, metallic taste, tinnitus, confusion, seizures—stop injection, manage LAST."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Amiodarone, β-blockers: may potentiate cardiac effects if systemic absorption occurs.",
+                                    "Other local anesthetics: additive toxicity—consider cumulative dose.",
+                                    "CYP3A4 inhibitors (e.g., macrolides, azole antifungals) may increase lidocaine levels with systemic use."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess for allergy history, cardiac conditions.",
+                                    "During injection: monitor for CNS symptoms (confusion, perioral numbness, tinnitus).",
+                                    "Post-procedure: ensure sensation returns before discharge; counsel on wound care while numb.",
+                                    "No routine labs required."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Expect stinging/burning during injection, then numbness within minutes.",
+                                    "Numbness lasts 30-60 minutes; avoid biting or burning numb area (especially oral procedures).",
+                                    "Report immediately: metallic taste, ringing in ears, dizziness, confusion.",
+                                    "Wound care: keep clean and dry; follow suture care instructions.",
+                                    "Pain after anesthesia wears off: use acetaminophen or ibuprofen as directed."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Topical anesthetics: LET (lidocaine-epinephrine-tetracaine) or EMLA (lidocaine-prilocaine) for intact skin/minor lacerations.",
+                                    "Regional nerve blocks: digital blocks for finger/toe procedures, facial nerve blocks.",
+                                    "Lidocaine with epinephrine: for procedures requiring longer anesthesia or hemostasis.",
+                                    "Procedural sedation: for extensive injuries, anxious patients, or inadequate local anesthesia."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Local Anesthetic Systemic Toxicity (LAST): stop injection immediately.",
+                                    "Seizures: protect airway, benzodiazepines, supportive care.",
+                                    "Cardiac arrest from LAST: initiate ACLS + lipid emulsion 20% IV (1.5 mL/kg bolus, then infusion)—per LAST protocol.",
+                                    "True allergic reaction: stop injection, epinephrine IM if anaphylaxis, antihistamines, steroids.",
+                                    "Escalate to physician: need for large volume injection, complex anatomic areas, history of adverse reactions, cardiac comorbidities.",
+                                    "Document: dose (mg and mg/kg), concentration, site, lot number, patient response, complications."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Lidocaine with Epinephrine",
+                        forms: "Vial (1% or 2% lidocaine with 1:100,000 or 1:200,000 epinephrine)",
+                        ind: "Local anesthesia requiring prolonged effect or hemostasis (scalp, face, extremity lacerations)",
+                        dose: ul([
+                            "Adults: Max dose 7 mg/kg (with epinephrine) or ~500 mg for average adult.",
+                            "1% with epi = 10 mg/mL lido; 2% with epi = 20 mg/mL lido.",
+                            "Example: 70 kg adult → max 490 mg → 49 mL of 1% or 24.5 mL of 2%.",
+                            "Pediatrics: 7 mg/kg max; calculate carefully.",
+                            "Onset: 2-5 minutes; duration: 2-6 hours (epinephrine prolongs effect).",
+                            "Pregnancy: Category B—safe for local use."
+                        ]),
+                        contra: ul([
+                            "Traditional teaching: avoid in areas with end-artery supply (fingers, toes, nose, penis, ears)—risk of ischemic necrosis. Recent evidence suggests safe in digits with caution, but institutional protocols vary.",
+                            "Severe hypertension, uncontrolled hyperthyroidism, pheochromocytoma (epinephrine contraindicated).",
+                            "True amide local anesthetic allergy.",
+                            "Physician approval: use in traditionally restricted anatomic areas, cardiac history, large volumes."
+                        ]),
+                        protip: ul([
+                            "Epinephrine causes vasoconstriction → bloodless field, prolonged anesthesia, reduced systemic absorption of lidocaine.",
+                            "Monitor injection site for adequate perfusion; blanching is expected but should resolve.",
+                            "Avoid in infected tissue (vasoconstriction may impair antimicrobial penetration).",
+                            "Warm solution and inject slowly to reduce discomfort; wait 5-10 minutes for full hemostatic effect."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Lidocaine blocks sodium channels → anesthesia; epinephrine causes local vasoconstriction → prolongs anesthesia, reduces bleeding, decreases systemic lidocaine absorption.",
+                                    "Expected effect: anesthesia within 2-5 minutes, lasting 2-6 hours; minimal bleeding during procedure.",
+                                    "Treatment failure: inadequate anesthesia or hemostasis—may need additional infiltration, direct pressure, or alternative hemostatic methods."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: burning on injection, transient blanching, tachycardia, palpitations, anxiety (from epinephrine).",
+                                    "Serious: Local Anesthetic Systemic Toxicity (LAST)—CNS then cardiac effects; ischemic injury if injected in end-artery areas; severe hypertension, arrhythmias (from epinephrine).",
+                                    "Red flags: prolonged blanching without reperfusion, cyanosis, perioral tingling, seizures, chest pain."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "MAOIs, tricyclic antidepressants: potentiate epinephrine's cardiovascular effects (hypertension, arrhythmias).",
+                                    "β-blockers: unopposed α-stimulation → severe hypertension.",
+                                    "Cocaine: additive sympathomimetic effects—never use together.",
+                                    "Amiodarone, CYP3A4 inhibitors: may increase lidocaine levels."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess for cardiac disease, hypertension, medication history (especially MAOIs, β-blockers).",
+                                    "During injection: monitor for CNS symptoms, cardiovascular response (HR, BP if available).",
+                                    "Post-injection: assess perfusion of injected area (color, warmth, capillary refill).",
+                                    "No routine labs required."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Expect burning during injection, then numbness lasting 2-6 hours (longer than plain lidocaine).",
+                                    "May feel jittery or fast heartbeat from epinephrine—normal and temporary.",
+                                    "Avoid injuring numb area; sensation returns gradually.",
+                                    "Report immediately: severe blanching, blue color, prolonged coldness, chest pain, severe palpitations.",
+                                    "Pain management after anesthesia wears off: acetaminophen or ibuprofen as directed.",
+                                    "Wound care: keep clean and dry; follow discharge instructions."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Plain lidocaine: if hemostasis not critical or epinephrine contraindicated.",
+                                    "Topical anesthetics: LET, EMLA for minor superficial wounds.",
+                                    "Regional nerve blocks: for larger anatomic areas.",
+                                    "Alternative vasoconstrictors: phenylephrine (in dental anesthetics)—used when epinephrine contraindicated.",
+                                    "Procedural sedation: for extensive repairs or patient anxiety."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Ischemic injury: if tissue becomes pale, cold, or cyanotic and doesn't reperfuse—warm compresses, massage area, consider phentolamine injection (α-blocker) to reverse vasoconstriction—escalate immediately.",
+                                    "LAST: stop injection, manage seizures (benzodiazepines), support cardiovascular function, lipid emulsion 20% per protocol.",
+                                    "Severe hypertension/arrhythmia from epinephrine: supportive care, β-blockers if appropriate, monitor ECG.",
+                                    "Allergic reaction: discontinue, manage with epinephrine IM if anaphylaxis (different from injected epinephrine), antihistamines, steroids.",
+                                    "Escalate to physician: need for injection in end-artery areas, large volumes, cardiac history, adverse reactions.",
+                                    "Document: total dose lidocaine (mg, mg/kg), epinephrine concentration, injection site, perfusion assessment, patient response."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Tetracaine (Topical/Ophthalmic)",
+                        forms: "Topical liquid/gel, ophthalmic drops (0.5%)",
+                        ind: "Topical anesthesia for intact skin (in combination products like LET); ophthalmic anesthesia for eye exams, foreign body removal",
+                        dose: ul([
+                            "Topical (LET gel): apply to wound, cover, wait 20-30 minutes for anesthesia.",
+                            "Ophthalmic: 1-2 drops in affected eye(s) for procedures; onset <1 minute, duration ~15 minutes.",
+                            "Do NOT dispense ophthalmic tetracaine for home use—severe corneal toxicity with repeated use.",
+                            "Pregnancy: Category C—use with caution; minimize exposure."
+                        ]),
+                        contra: ul([
+                            "Allergy to ester local anesthetics (cross-reactivity with other esters: benzocaine, procaine).",
+                            "Ophthalmic: do not use if corneal abrasion/ulcer present without ophthalmology guidance—delays healing.",
+                            "Do not apply to large denuded areas (systemic absorption risk).",
+                            "Physician approval: pediatric use (especially ophthalmic), extensive application, repeated dosing."
+                        ]),
+                        protip: ul([
+                            "LET (Lidocaine-Epinephrine-Tetracaine) gel is excellent for pediatric facial/scalp lacerations—painless application, no needles.",
+                            "Never give ophthalmic tetracaine to patients for home use—repeated use causes corneal toxicity, ulceration, permanent vision loss.",
+                            "If patient has persistent eye pain after foreign body removal, do NOT re-dose tetracaine—pain indicates corneal injury requiring follow-up."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Ester local anesthetic—blocks sodium channels → prevents nerve depolarization → loss of sensation.",
+                                    "Ophthalmic: rapid onset (<1 minute), short duration (~15 minutes); topical skin: slower onset (20-30 min with occlusive dressing).",
+                                    "Expected effect: complete local anesthesia for brief procedures.",
+                                    "Treatment failure: inadequate anesthesia—may need infiltrative lidocaine or systemic analgesia."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: transient stinging (especially ophthalmic), corneal epithelial toxicity with repeated use.",
+                                    "Serious: methemoglobinemia (rare, dose-related), allergic reaction (more common with esters than amides), corneal ulceration/perforation with chronic ophthalmic use.",
+                                    "Ophthalmic: masks corneal pain → delayed healing, increased risk of further injury.",
+                                    "Red flags: cyanosis unresponsive to O2 (methemoglobinemia), severe allergic reaction, persistent eye pain after anesthetic wears off."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Sulfonamides (e.g., sulfamethoxazole): tetracaine may inhibit sulfonamide activity.",
+                                    "Other local anesthetics: additive toxicity—consider cumulative dose.",
+                                    "Medications causing methemoglobinemia: benzocaine, dapsone, nitrates—additive risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess for ester allergy, extent of injury.",
+                                    "During/after use: monitor for anesthetic effect, signs of toxicity (cyanosis, altered mental status).",
+                                    "Ophthalmic: document corneal exam before/after procedure; ensure patient has ophthalmology follow-up for corneal injuries.",
+                                    "No routine labs unless methemoglobinemia suspected (co-oximetry)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Topical: gel will numb area in 20-30 minutes; may feel tingling initially.",
+                                    "Ophthalmic: drops sting briefly, then eye becomes numb; do NOT rub eye while numb (risk of further injury).",
+                                    "Do NOT take ophthalmic drops home—repeated use causes severe eye damage.",
+                                    "If eye pain returns after anesthetic wears off, this is normal—use prescribed lubricating drops and pain relievers; follow up as directed.",
+                                    "Red flags: worsening eye pain, vision changes, severe headache, blue lips/fingers—seek immediate care.",
+                                    "Protect eye from injury while numb; wear sunglasses if light-sensitive after exam."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Topical skin anesthesia: EMLA cream (lidocaine-prilocaine), 4% lidocaine cream, ethyl chloride spray.",
+                                    "Infiltrative anesthesia: lidocaine injection (with or without epinephrine) for deeper anesthesia.",
+                                    "Ophthalmic: proparacaine (similar ester anesthetic), lidocaine gel.",
+                                    "Systemic analgesia: oral or IV analgesics, procedural sedation for extensive procedures."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Methemoglobinemia: cyanosis unresponsive to O2, chocolate-colored blood, altered mental status → give methylene blue 1-2 mg/kg IV over 5 minutes, supportive care, escalate to ED.",
+                                    "Allergic reaction: discontinue immediately; manage with antihistamines, steroids; epinephrine if anaphylaxis.",
+                                    "Corneal injury: do NOT re-dose tetracaine; prescribe lubricating drops, oral analgesia, ophthalmology follow-up within 24 hours.",
+                                    "Escalate to physician: need for repeated dosing, extensive application, pediatric use, methemoglobinemia, severe corneal injury.",
+                                    "Document: indication, formulation used, dose, patient response, counselling (especially no home use of ophthalmic drops), follow-up plan."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             },
             {
