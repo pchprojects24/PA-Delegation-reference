@@ -2661,30 +2661,1181 @@
                     }
                 ]
             },
-            {
-                category: "Endocrine & Metabolic",
-                medications: [
-                    { name: "Dexamethasone", forms: "PO tablets, IV/IM/PO liquid (often 4mg/mL)", ind: "Croup, severe allergic reactions, asthma/COPD exacerbation", dose: "Croup: 0.6 mg/kg PO/IM (max 16mg). Asthma/Allergy: 4-10 mg IV/PO.", contra: "Systemic fungal infections.", protip: "Long-acting steroid (half-life ~36-72 hours). Often a single dose in the ED is sufficient for croup or mild asthma flares." },
-                    { name: "Prednisone", forms: "Tablets (5mg, 50mg)", ind: "Asthma/COPD exacerbation, inflammatory conditions", dose: "Adults: 40-50 mg PO daily for 5 days.", contra: "Active untreated systemic infections.", protip: "Take with food to prevent GI upset. Short bursts (e.g., 5 days) do not require tapering." },
-                    { name: "Insulin Human Regular", forms: "Vial (100 units/mL)", ind: "Hyperglycemia, DKA, Hyperkalemia", dose: "DKA: 0.1 units/kg IV bolus, then infusion. Hyperkalemia: 10 units IV (with D50W).", contra: "Hypoglycemia.", protip: "When treating hyperkalemia, you must administer Dextrose (D50) alongside Insulin to prevent severe, life-threatening hypoglycemia." },
-                    { name: "Glucagon", forms: "Vial powder/diluent (1 mg)", ind: "Severe hypoglycemia (no IV access), Beta-blocker/Calcium channel blocker overdose", dose: "Hypoglycemia: 1 mg IM/SQ. Overdose: 3-10 mg IV bolus.", contra: "Pheochromocytoma.", protip: "Relies on hepatic glycogen stores. Will not work well in malnourished, alcoholic, or pediatric patients with depleted stores." },
-                    { name: "Metformin", forms: "Tablets (500mg, 850mg)", ind: "Type 2 Diabetes Mellitus", dose: "500 mg PO bid.", contra: "Severe renal impairment (eGFR < 30), metabolic acidosis.", protip: "Should be withheld around the time of IV contrast administration to prevent lactic acidosis in cases of contrast-induced nephropathy." }
-                ]
-            },
-            {
-                category: "Gastrointestinal",
-                medications: [
-                    { name: "Diovol / Gaviscon / TUMS", forms: "Liquid, Chewables", ind: "Dyspepsia, GERD", dose: "1-2 tabs or 10-20 mL PO PRN.", contra: "Severe renal impairment (for magnesium/aluminum types).", protip: "Antacids bind to and prevent the absorption of many other drugs (e.g., fluoroquinolones, doxycycline). Separate doses by 2 hours." },
-                    { name: "Pepto (Bismuth subsalicylate)", forms: "Liquid, chewable", ind: "Diarrhea, dyspepsia, H. pylori adjunct", dose: "524 mg PO q30-60min PRN.", contra: "Aspirin allergy, active bleeding.", protip: "Warn the patient: it will turn their tongue and stool black. This is harmless but can mimic melena (GI bleed)." },
-                    { name: "Loperamide (Imodium)", forms: "Tablets (2 mg)", ind: "Acute non-infectious diarrhea", dose: "4 mg initially, then 2 mg after each loose stool (max 16mg/day).", contra: "Dysentery (bloody diarrhea with high fever), C. diff.", protip: "Do not use if the patient has a high fever or bloody stool—trapping infectious organisms in the gut can lead to toxic megacolon." },
-                    { name: "PEG (Polyethylene Glycol)", forms: "Powder", ind: "Constipation, bowel prep", dose: "17g dissolved in 8 oz water daily.", contra: "Bowel obstruction.", protip: "It is an osmotic laxative. The patient MUST drink plenty of water with it, or it will not be effective." },
-                    { name: "Dimenhydrinate (Gravol)", forms: "Tablets (50mg), IV/IM (50mg/mL)", ind: "Nausea, vomiting, motion sickness", dose: "25-50 mg IV/IM/PO q4-6h.", contra: "Narrow-angle glaucoma (caution).", protip: "Highly sedating. If giving IV, dilute with saline and push slowly to avoid venous irritation and intense immediate sedation/dizziness." },
-                    { name: "Pantoloc (Pantoprazole)", forms: "IV Vial (40mg), Tablets (40mg)", ind: "GERD, Peptic Ulcer Disease, GI Bleed", dose: "GERD: 40mg PO/IV daily. GI Bleed: 80mg IV bolus, then 8mg/hr infusion.", contra: "Hypersensitivity.", protip: "For active upper GI bleeds, the 80mg IV bolus helps stabilize the clot in the stomach by raising the gastric pH." },
-                    { name: "Pepcid AC (Famotidine)", forms: "Tablets (10-20mg), IV (20mg)", ind: "GERD, allergic reactions (H2 blockade)", dose: "20 mg PO/IV bid.", contra: "Hypersensitivity.", protip: "Often given alongside H1 blockers (like Benadryl) in anaphylaxis to block histamine receptors in the gut and vasculature completely." },
-                    { name: "Metoclopramide (Maxeran)", forms: "Vial (10mg/2mL), Tablets", ind: "Nausea/Vomiting, Gastroparesis, Migraine", dose: "10 mg IV/PO q6h.", contra: "Bowel obstruction, GI hemorrhage, history of tardive dyskinesia.", protip: "Can cause acute dystonic reactions (muscle spasms, torticollis). If this happens, treat with Benadryl or Benztropine." },
-                    { name: "Fleet enema", forms: "Pre-packaged enema", ind: "Severe constipation", dose: "1 enema rectally PRN.", contra: "Bowel obstruction, severe renal failure (hyperphosphatemia risk).", protip: "Ensure patient is near a commode. Do not use routinely in elderly or renal patients due to risk of dangerous electrolyte shifts." }
-                ]
-            },
+	            {
+	                category: "Endocrine & Metabolic",
+	                medications: [
+	                    {
+	                        name: "Dexamethasone",
+	                        forms: "PO tablets, IV/IM/PO liquid (often 4 mg/mL)",
+	                        ind: "Croup (first-line steroid), asthma/COPD exacerbation (adjunct), allergic reactions (adjunct)",
+	                        dose: ul([
+	                            "Adults (asthma/COPD): commonly 6-10 mg PO/IV once daily for 1-2 days (local protocols vary).",
+	                            "Pediatrics (croup): 0.6 mg/kg PO/IM once (max 16 mg).",
+	                            "Dose adjustments: no renal adjustment; use caution/physician approval in severe hepatic disease, uncontrolled diabetes, or high infection risk.",
+	                            "Taper: not needed for short bursts; taper only if prolonged/high-dose therapy (physician plan)."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity; systemic fungal infection (non-emergent use).",
+	                            "Relative/precautions: uncontrolled infection, active TB/varicella exposure, GI bleed risk (with NSAIDs), uncontrolled diabetes, severe hypertension/psychosis.",
+	                            "Physician approval: immunocompromised, pregnancy (especially repeated dosing), prolonged course, unclear diagnosis."
+	                        ]),
+	                        protip: ul([
+	                            "Not a rescue medication for anaphylaxis—epinephrine is first-line; steroid is adjunct to reduce biphasic symptoms.",
+	                            "Expect hyperglycemia, especially in diabetics; plan monitoring and follow-up.",
+	                            "Document: indication, dose, expected benefit/timeline, and return precautions."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Glucocorticoid → decreases airway/inflammatory edema and cytokine-mediated inflammation.",
+	                                    "Expected response: croup work of breathing improves within hours (often 2-6 h); asthma symptoms typically improve over 4-24 h (not immediate bronchodilation).",
+	                                    "Treatment failure: worsening respiratory distress, persistent hypoxia, inability to tolerate PO, or no clinical improvement within expected window."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: transient hyperglycemia, insomnia, mood changes/irritability, GI upset.",
+	                                    "Serious (uncommon with short courses): severe agitation/psychosis, GI bleeding (esp. with NSAIDs), infection worsening.",
+	                                    "Stop/urgent review: severe mood/behavior change, melena/hematemesis, fever with clinical deterioration."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Increased GI bleed risk with NSAIDs/ASA; consider gastroprotection when appropriate.",
+	                                    "May alter INR with warfarin (monitor if on chronic anticoagulation).",
+	                                    "CYP3A4 inducers/inhibitors can change steroid exposure (consider physician/pharmacy consult if complex)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: screen for diabetes, infection risk, GI bleed history, psychiatric history.",
+	                                    "Follow-up: glucose checks for diabetics/high-risk; reassess respiratory status after dosing; ensure appropriate follow-up plan."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Purpose: reduce airway/inflammation; benefits are not instantaneous like inhalers.",
+	                                    "Take with food if PO; avoid late-day dosing if insomnia occurs.",
+	                                    "Red flags: worsening breathing, blue lips, severe vomiting, black/bloody stools → urgent care/ED."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Croup: nebulized epinephrine for significant distress + dexamethasone.",
+	                                    "Asthma/COPD: prednisone/prednisolone courses; optimize bronchodilators/inhaled steroids per plan.",
+	                                    "Allergic reactions: epinephrine for anaphylaxis; antihistamines for symptom relief."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Escalate for respiratory distress, stridor at rest, hypoxia, or suspected anaphylaxis (epinephrine first).",
+	                                    "Contact supervising physician for uncertain diagnosis, repeated dosing, or immunocompromised/pregnancy considerations.",
+	                                    "Document: indication/criteria, dose/route, counselling, monitoring plan, and delegated authority."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Prednisone",
+	                        forms: "Tablets (5 mg, 50 mg)",
+	                        ind: "Asthma/COPD exacerbation (adjunct; short course), inflammatory conditions",
+	                        dose: ul([
+	                            "Adults (asthma/COPD): 40-50 mg PO daily for 5 days (typical).",
+	                            "Pediatrics (asthma): 1-2 mg/kg/day PO (max 60 mg/day) for 3-5 days (local protocols vary).",
+	                            "Max/Duration: keep shortest effective course; physician plan required if >10-14 days.",
+	                            "Taper: not needed for short bursts; taper if prolonged course to avoid adrenal suppression."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity; systemic fungal infection (non-emergent use).",
+	                            "Relative/precautions: uncontrolled infection, GI ulcer/bleed risk, uncontrolled diabetes, severe psychiatric history.",
+	                            "Physician approval: pregnancy, immunocompromised, repeated courses, unclear diagnosis."
+	                        ]),
+	                        protip: ul([
+	                            "Take with food; morning dosing reduces insomnia.",
+	                            "Short bursts usually do not need tapering; avoid unnecessary prolonged therapy.",
+	                            "In diabetics, plan glucose monitoring and sick-day advice."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Systemic glucocorticoid → reduces airway edema/inflammation and improves response to bronchodilators over time.",
+	                                    "Expected response: fewer symptoms/exacerbation relapse over 24-72 h; not an immediate rescue.",
+	                                    "Treatment failure: worsening dyspnea, persistent hypoxia, increasing bronchodilator need, or no improvement by 48-72 h."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: hyperglycemia, mood changes, insomnia, increased appetite, dyspepsia.",
+	                                    "Serious: infection worsening, GI bleed (esp. with NSAIDs), severe mood/psychosis (rare).",
+	                                    "Stop/urgent review: black stools, severe abdominal pain, fever with deterioration, severe agitation/confusion."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "NSAIDs/ASA increase GI bleed risk; avoid unnecessary combination.",
+	                                    "May affect INR with warfarin; monitor if applicable.",
+	                                    "Live vaccines: avoid high-dose/prolonged steroids; confirm plan with supervising physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: infection screening, diabetes history, GI bleed risk, BP.",
+	                                    "Follow-up: symptom reassessment within 48-72 h; glucose monitoring for diabetics/high-risk."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Purpose: reduce inflammation to shorten/lessen exacerbation; keep using inhalers as prescribed.",
+	                                    "Take in the morning with food; do not exceed duration without physician review.",
+	                                    "Red flags: worsening breathing, chest pain, black stools, fever with worsening symptoms → urgent care."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Dexamethasone (short-course alternative in some ED protocols).",
+	                                    "Optimize inhaled therapy and bronchodilators; consider antibiotics only if indicated (COPD with features).",
+	                                    "Non-medication: trigger avoidance, smoking cessation, asthma action plan."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Escalate if respiratory distress, hypoxia, or poor response to bronchodilators.",
+	                                    "Physician contact for repeated steroid bursts, severe comorbidities, or uncertain diagnosis.",
+	                                    "Document: indication/criteria, dose/duration, counselling, monitoring and follow-up plan."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Insulin Human Regular",
+	                        forms: "Vial (100 units/mL); IV infusion per protocol",
+	                        ind: "DKA/HHS (restricted protocol use), severe hyperglycemia, hyperkalemia (temporizing shift)",
+	                        dose: ul([
+	                            "DKA: use facility protocol (commonly infusion 0.1 units/kg/hour after fluids; bolus may be omitted per protocol).",
+	                            "Hyperkalemia (shift): commonly 10 units regular insulin IV + dextrose (e.g., D50W or weight-based dextrose); consider lower insulin dose in renal failure/low body weight per protocol.",
+	                            "Max: protocol-driven; high-alert medication—double-check dose, concentration, and route.",
+	                            "Adjustments: reduced requirements in renal impairment, low intake, or improving illness; frequent titration based on glucose/anion gap."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypoglycemia; known hypersensitivity (rare).",
+	                            "Relative/precautions: hypokalemia, inability to monitor glucose closely, unclear insulin concentration/route.",
+	                            "Physician approval: initiating/adjusting IV insulin outside a written protocol; complex DKA/HHS or pregnancy."
+	                        ]),
+	                        protip: ul([
+	                            "Hyperkalemia treatment: always pair with dextrose unless glucose is markedly elevated per protocol; monitor for delayed hypoglycemia.",
+	                            "DKA: do not start insulin until K+ is known and corrected if low; close gap monitoring prevents premature stop.",
+	                            "Independent double-check is mandatory (drug, dose, route, pump settings)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Promotes glucose uptake and suppresses hepatic glucose output; shifts potassium intracellularly via Na+/K+ ATPase.",
+	                                    "Expected response: glucose declines steadily with infusion; potassium typically decreases within ~30-60 minutes after IV dosing.",
+	                                    "Treatment failure: inadequate glucose fall, persistent acidosis/anion gap, or refractory hyperkalemia—consider protocol deviation, missed insulin, ongoing source, or need for dialysis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: hypoglycemia if mismatch with dextrose intake/infusion.",
+	                                    "Serious: severe hypoglycemia (seizure/LOC), hypokalemia (arrhythmia), medication errors (wrong insulin, wrong units).",
+	                                    "Stop/urgent review: neuro changes, diaphoresis/confusion, arrhythmia symptoms, K+ < protocol threshold."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "β-blockers can mask hypoglycemia symptoms (tachycardia/tremor).",
+	                                    "Steroids and sympathomimetics raise glucose and can increase insulin requirements.",
+	                                    "ACEi/ARB/spironolactone raise K+; coordinate hyperkalemia plan with physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "DKA: bedside glucose q1h; electrolytes/anion gap and venous pH/bicarb per protocol; strict I&O.",
+	                                    "Hyperkalemia: repeat K+ and glucose within ~30-60 min (and again per protocol); continuous ECG if severe.",
+	                                    "Escalate for recurrent hypoglycemia, falling K+, or worsening acidosis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Explain goal: correct high glucose/ketones or temporarily lower potassium; frequent fingersticks are expected.",
+	                                    "Teach hypoglycemia symptoms: sweating, shakiness, confusion, headache; report immediately.",
+	                                    "If transitioning to home insulin: review injection technique, storage, and sick-day rules (physician-led)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Hyperkalemia shift adjuncts: inhaled β-agonist, sodium bicarbonate in selected acidemic patients (protocol/physician).",
+	                                    "Potassium removal: diuretics, binders (slower), dialysis for severe/refractory cases.",
+	                                    "Hyperglycemia without DKA: subcutaneous insulin regimens per protocol/physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Treat hypoglycemia immediately with oral glucose (if safe) or IV dextrose; recheck glucose and notify physician per protocol.",
+	                                    "For severe hyperkalemia with ECG changes or refractory K+: activate escalation pathway (calcium, shift, removal).",
+	                                    "Document: protocol used, checks performed (glucose/K+/ECG), titrations, and physician notifications."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Glucagon",
+	                        forms: "Vial powder/diluent (1 mg); IM/SQ/IV per indication",
+	                        ind: "Severe hypoglycemia without IV access (first-line rescue), beta-blocker/CCB overdose (restricted/high-dose)",
+	                        dose: ul([
+	                            "Severe hypoglycemia: adults/children ≥25 kg: 1 mg IM/SQ once; <25 kg: 0.5 mg IM/SQ once.",
+	                            "If no response within ~10-15 min: establish IV access and give IV dextrose; repeat per protocol/physician.",
+	                            "Overdose: high-dose IV bolus/infusion per toxicology/physician (not routine)."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity (rare).",
+	                            "Relative: pheochromocytoma, insulinoma/glucagonoma (risk of rebound hypoglycemia).",
+	                            "Precautions: malnutrition/alcohol use or prolonged fasting (limited glycogen stores → poor response)."
+	                        ]),
+	                        protip: ul([
+	                            "Most common complication is vomiting—place patient in lateral recovery position and protect airway.",
+	                            "After recovery, give oral carbs/protein to prevent recurrent hypoglycemia.",
+	                            "Document: glucose values, response time, and follow-up plan."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Stimulates hepatic glycogenolysis/gluconeogenesis → raises blood glucose (requires glycogen stores).",
+	                                    "Expected response: glucose rise and improved mentation in ~10-15 minutes (IM/SQ).",
+	                                    "Treatment failure: depleted glycogen (malnutrition, alcohol use, pediatric), ongoing long-acting insulin/sulfonylurea effect, or incorrect administration."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea/vomiting, headache.",
+	                                    "Serious: aspiration (if vomiting while obtunded), transient tachycardia/hypertension.",
+	                                    "Stop/urgent review: persistent decreased LOC, recurrent hypoglycemia, or inability to protect airway."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "May increase INR effect of warfarin (monitor if relevant).",
+	                                    "β-blockers may increase BP response and mask hypoglycemia symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Check glucose before and ~10-15 min after administration; repeat until stable.",
+	                                    "Observe for recurrent hypoglycemia (especially with long-acting agents) and for vomiting/aspiration risk.",
+	                                    "Escalate if no response or recurrent episodes—consider IV dextrose/ED evaluation."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Explain purpose: emergency rescue when sugar is dangerously low and patient cannot safely swallow.",
+	                                    "After waking: eat/drink carbohydrates and follow diabetes plan; do not drive until fully recovered.",
+	                                    "Red flags: recurrent symptoms, persistent confusion, or seizure → call EMS."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "If able to swallow: oral fast sugar (glucose tabs/juice) + longer-acting snack.",
+	                                    "If IV access: IV dextrose is fastest and most reliable.",
+	                                    "For sulfonylurea hypoglycemia: octreotide (physician/toxicology-guided)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "No response in 10-15 min → call EMS/ED pathway and give IV dextrose as soon as possible.",
+	                                    "Airway risk/vomiting while obtunded → recovery position, suction/airway support, urgent escalation.",
+	                                    "Document: indication, glucose values, timing/response, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Metformin",
+	                        forms: "Tablets (500 mg, 850 mg); extended-release varies",
+	                        ind: "Type 2 diabetes mellitus (often first-line) ± insulin resistance (selected)",
+	                        dose: ul([
+	                            "Adults: start 500 mg PO once daily with food; increase by 500 mg weekly as tolerated to 1000 mg PO bid (usual target).",
+	                            "Max: commonly 2000 mg/day (some IR regimens up to 2550 mg/day—use local formulary).",
+	                            "Renal: do not start if eGFR <45; contraindicated if eGFR <30. Reassess dose if eGFR 30-45.",
+	                            "Hold during acute illness with dehydration/hypoxia/sepsis and around iodinated contrast per protocol; restart when renal function stable."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: eGFR <30; metabolic acidosis (including DKA); severe hypoxia/shock; hypersensitivity.",
+	                            "Relative/precautions: significant hepatic impairment, heavy alcohol use, dehydration, heart failure with hypoperfusion, pregnancy (physician decision).",
+	                            "Physician approval: starting/titrating with borderline renal function or complex comorbidities."
+	                        ]),
+	                        protip: ul([
+	                            "GI upset is dose-limiting—titrate slowly and take with meals; consider XR if persistent intolerance.",
+	                            "Check B12 if long-term therapy or neuropathy/anemia symptoms.",
+	                            "Sick-day rule: stop temporarily when not eating/drinking well to reduce lactic acidosis risk."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Decreases hepatic glucose production and improves insulin sensitivity; does not usually cause hypoglycemia alone.",
+	                                    "Expected response: fasting glucose improves in days; A1c improvement over 8-12 weeks.",
+	                                    "Treatment failure: A1c/fasting glucose remains above target despite adherence and max tolerated dose—consider adding agents."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea/diarrhea, abdominal discomfort, metallic taste (early).",
+	                                    "Serious (rare): lactic acidosis—risk increases with renal failure, hypoxia, sepsis, dehydration, heavy alcohol use.",
+	                                    "Stop/urgent review: severe vomiting/diarrhea, fast/deep breathing, severe weakness, confusion, chest pain."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Iodinated contrast + kidney injury risk: hold and recheck renal function per protocol.",
+	                                    "Excess alcohol increases lactic acidosis risk—avoid binge drinking.",
+	                                    "Some drugs can worsen renal function or raise metformin levels; consult if polypharmacy/CKD."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: eGFR, A1c; consider B12 if risk factors.",
+	                                    "Follow-up: A1c every ~3 months until controlled, then q6 months; eGFR at least annually (more often if CKD/elderly).",
+	                                    "Escalate if symptoms of acidosis, recurrent dehydration, or declining renal function."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with meals; if missed dose, take when remembered unless close to next—do not double.",
+	                                    "Expect mild GI effects early; call if severe/persistent or signs of dehydration.",
+	                                    "Sick days/contrast: temporarily hold when very unwell, not eating/drinking, or per imaging instructions."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Lifestyle: nutrition, weight loss, exercise (foundational).",
+	                                    "If ASCVD/CKD/HF: consider GLP-1 RA or SGLT2 inhibitor per guidelines (physician plan).",
+	                                    "If not controlled: add second agent or basal insulin per physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected lactic acidosis or severe dehydration/hypoxia → stop metformin and send to ED.",
+	                                    "Contact physician for renal decline, recurrent GI intolerance, pregnancy planning, or need to intensify therapy.",
+	                                    "Document: indication, renal function checks, titration plan, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
+	            {
+	                category: "Gastrointestinal",
+	                medications: [
+	                    {
+	                        name: "Diovol / Gaviscon / TUMS (Antacids)",
+	                        forms: "Liquid, chewables/tablets (formulations vary: calcium carbonate; aluminum/magnesium; alginate)",
+	                        ind: "Dyspepsia/heartburn, mild GERD (symptomatic relief; adjunct)",
+	                        dose: ul([
+	                            "Adults: follow product label; commonly 1-2 tabs or 10-20 mL PO PRN after meals/at bedtime.",
+	                            "Onset: minutes; duration: a few hours (varies by product).",
+	                            "Max: do not exceed label maximum; avoid chronic daily use without evaluation.",
+	                            "Renal: avoid magnesium/aluminum antacids in severe CKD; use caution with calcium carbonate (hypercalcemia, stones)."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity to ingredients.",
+	                            "Relative/precautions: severe renal impairment (Mg/Al), hypercalcemia/nephrolithiasis (CaCO3), sodium-restricted states (some alginate products).",
+	                            "Physician approval: persistent symptoms, alarm features (GI bleed, dysphagia, weight loss), chronic NSAID use."
+	                        ]),
+	                        protip: ul([
+	                            "Major interaction risk is chelation/binding—separate other meds by at least 2-4 hours (e.g., levothyroxine, iron, doxycycline, fluoroquinolones).",
+	                            "If symptoms are frequent (>2x/week) consider H2 blocker/PPI evaluation rather than escalating antacid use.",
+	                            "Document alarm-feature screen and follow-up plan."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Neutralizes gastric acid (and some products form a barrier/raft) → rapid symptom relief.",
+	                                    "Expected response: heartburn/dyspepsia improves within minutes.",
+	                                    "Treatment failure: persistent/frequent symptoms, nocturnal reflux, or alarm features—needs reassessment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: constipation (Ca/Al), diarrhea (Mg), bloating/belching.",
+	                                    "Serious (with overuse): hypercalcemia/milk-alkali syndrome (CaCO3), electrolyte issues in CKD.",
+	                                    "Stop/urgent review: black/bloody stools, vomiting blood, severe abdominal pain, chest pain."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Decreases absorption of many drugs (tetracyclines, fluoroquinolones, bisphosphonates, iron, levothyroxine).",
+	                                    "Separate dosing by 2-4 hours; ask about OTC combination products."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: screen for alarm features and frequency/duration of symptoms.",
+	                                    "Follow-up: if symptoms persist beyond 2-4 weeks, are frequent, or worsen → evaluate/step-up therapy."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Use PRN; avoid exceeding label maximum and avoid long-term daily use without assessment.",
+	                                    "Lifestyle: smaller meals, avoid late meals, elevate head of bed, avoid triggers (alcohol, caffeine, spicy/fatty foods if symptomatic).",
+	                                    "Missed dose: not applicable (PRN use)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "H2 blocker (famotidine) for frequent symptoms; PPI for persistent GERD/erosive disease (physician plan).",
+	                                    "Non-medication: diet/weight loss, smoking cessation, trigger management."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "ED/urgent review for GI bleed signs, dysphagia/food impaction, severe chest pain, or unintentional weight loss.",
+	                                    "Physician contact if symptoms are frequent, refractory, or patient has high-risk comorbidities.",
+	                                    "Document: indication, alarm-feature screen, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Pepto (Bismuth subsalicylate)",
+	                        forms: "Liquid, chewable tablets",
+	                        ind: "Acute non-bloody diarrhea, dyspepsia; H. pylori regimen adjunct (physician-directed)",
+	                        dose: ul([
+	                            "Adults: 524 mg PO every 30-60 min PRN (or 2 tabs q30-60 min) up to label maximum.",
+	                            "Avoid in children/teens with viral illness (Reye syndrome risk) and in salicylate allergy.",
+	                            "Duration: if diarrhea >48 hours or worsening → reassess for infection/dehydration."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: salicylate/ASA allergy, active GI bleeding, hypersensitivity.",
+	                            "Relative/precautions: anticoagulation/bleeding disorders, pregnancy (especially 3rd trimester), severe renal impairment.",
+	                            "Physician approval: suspected infectious diarrhea, significant comorbidities, or prolonged use."
+	                        ]),
+	                        protip: ul([
+	                            "Warn: black tongue and black stools are common/benign—but can mimic melena, so screen for true GI bleed symptoms.",
+	                            "Avoid combining with other salicylates/NSAIDs when possible (bleeding risk)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Bismuth has local protective/antimicrobial effects; salicylate has antisecretory/anti-inflammatory effects.",
+	                                    "Expected response: decreased stool frequency and improved dyspepsia over hours.",
+	                                    "Treatment failure: persistent diarrhea (>48 h), fever/blood, severe pain—evaluate etiology."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: black stools/tongue, constipation, nausea.",
+	                                    "Serious: salicylate toxicity (tinnitus, rapid breathing, confusion), bleeding.",
+	                                    "Stop/urgent review: bloody/black tarry stools with symptoms, vomiting blood, ringing ears, severe dizziness/confusion."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Increased bleeding risk with anticoagulants/antiplatelets/NSAIDs.",
+	                                    "Can reduce absorption of some antibiotics/meds—separate dosing when possible."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Assess hydration status and red flags (fever, blood, severe pain, recent antibiotics, travel).",
+	                                    "Follow-up if symptoms persist >48 h or signs of dehydration occur."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Hydration is primary: oral rehydration solution if frequent stools.",
+	                                    "Avoid if fever/bloody stools or suspected C. diff; seek assessment.",
+	                                    "If taking for dyspepsia, reassess if frequent symptoms (may need GERD workup)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Diarrhea: oral rehydration + diet; loperamide only if non-bloody and afebrile.",
+	                                    "Dyspepsia/GERD: antacids, famotidine, or PPI depending on severity."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "ED/urgent review for dehydration, severe abdominal pain, bloody stools, or persistent vomiting.",
+	                                    "Suspected salicylate overdose → poison control/ED.",
+	                                    "Document: red-flag screen, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Loperamide (Imodium)",
+	                        forms: "Tablets/capsules (2 mg)",
+	                        ind: "Acute non-infectious, non-bloody diarrhea (symptomatic relief); IBS-D (selected)",
+	                        dose: ul([
+	                            "Adults: 4 mg PO once, then 2 mg after each loose stool.",
+	                            "Max: 16 mg/day (prescription max); avoid exceeding recommended OTC max.",
+	                            "Avoid in children <2 years; pediatrics require physician guidance.",
+	                            "Stop if no improvement within 48 hours or if constipation/abdominal distension occurs."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: dysentery (bloody diarrhea), high fever/systemic toxicity, suspected C. diff, acute ulcerative colitis flare, bowel obstruction/ileus.",
+	                            "Relative/precautions: significant hepatic impairment, elderly/frail (ileus risk).",
+	                            "Physician approval: chronic diarrhea, immunocompromised, recent antibiotics/hospitalization."
+	                        ]),
+	                        protip: ul([
+	                            "Do not use if fever or blood/mucus in stool—risk of toxic megacolon or worsening invasive infection.",
+	                            "High doses can cause dangerous arrhythmias—verify total daily dose and OTC combinations."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Peripheral µ-opioid agonist in gut → slows motility and increases water absorption.",
+	                                    "Expected response: fewer stools within 1-3 hours.",
+	                                    "Treatment failure: ongoing infectious/inflammatory diarrhea, dehydration, or incorrect diagnosis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: constipation, abdominal cramps, nausea.",
+	                                    "Serious: ileus/toxic megacolon (if used in invasive colitis), QT prolongation/arrhythmias with overdose.",
+	                                    "Stop/urgent review: abdominal distension, severe pain, no stool/flatus, syncope/palpitations."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Avoid combining with other constipating agents/opioids when possible.",
+	                                    "CYP/P-gp inhibitors can raise levels; be cautious with polypharmacy and QT-prolonging drugs."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: assess red flags (blood/fever, severe pain, dehydration, recent antibiotics).",
+	                                    "Follow-up: reassess within 24-48 h; escalate if symptoms persist or worsen."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Hydration first; use for short-term symptom control only.",
+	                                    "Stop and seek care if fever, blood in stool, severe pain, or worsening dehydration.",
+	                                    "Missed dose: not applicable (PRN use)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Oral rehydration solution; dietary modification (avoid lactose/alcohol).",
+	                                    "Treat cause: stool testing/antibiotics only if indicated; consider probiotics per local practice."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "ED/urgent review for dehydration, altered mental status, severe pain, or bloody stools.",
+	                                    "Suspected overdose/arrhythmia symptoms → poison control/ED and ECG monitoring.",
+	                                    "Document: red-flag screen, dosing counsel, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "PEG (Polyethylene Glycol 3350)",
+	                        forms: "Powder (mix with liquid); bowel prep regimens vary",
+	                        ind: "Constipation (often first-line osmotic laxative); bowel prep (protocol)",
+	                        dose: ul([
+	                            "Adults constipation: 17 g powder in 8 oz water/juice PO daily; may adjust to effect.",
+	                            "Pediatrics constipation: commonly 0.4-0.8 g/kg/day PO (physician-directed).",
+	                            "Onset: usually 24-72 hours; not a rapid rescue for acute obstruction.",
+	                            "Duration: can be used short-term; chronic use should be reassessed for underlying cause."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: bowel obstruction/ileus, suspected perforation.",
+	                            "Relative/precautions: severe abdominal pain of unknown cause, significant dehydration.",
+	                            "Physician approval: recurrent constipation, red flags (weight loss, anemia, blood), significant comorbidities."
+	                        ]),
+	                        protip: ul([
+	                            "Efficacy depends on adequate fluid intake; ensure hydration plan.",
+	                            "If no bowel movement after 3 days, or worsening pain/vomiting, stop and reassess."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Osmotic agent draws water into stool → softens stool and increases frequency.",
+	                                    "Expected response: softer stools and improved frequency within 1-3 days.",
+	                                    "Treatment failure: inadequate hydration, severe constipation/impaction, or secondary cause (opioids, endocrine, obstruction)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: bloating, cramping, flatulence, loose stools if overused.",
+	                                    "Serious (rare): dehydration/electrolyte imbalance (more common with bowel prep regimens).",
+	                                    "Stop/urgent review: severe abdominal pain, vomiting, no gas/stool, rectal bleeding."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Few major interactions; separate from other oral meds by ~1-2 hours if significant diarrhea occurs.",
+	                                    "Constipation-causing drugs (opioids, anticholinergics) may require addressing the cause."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: assess constipation duration, stool pattern, and red flags.",
+	                                    "Follow-up: bowel movement frequency and hydration; escalate if persistent constipation or alarm symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Mix powder fully; take daily until regular, then adjust to lowest effective dose.",
+	                                    "It may take 1-3 days to work; do not add multiple laxatives without advice.",
+	                                    "Lifestyle: fiber, fluids, activity, toileting routine."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Bulk-forming fiber (psyllium) if adequate hydration; stimulant laxatives (senna/bisacodyl) for short rescue.",
+	                                    "Rectal options for impaction: glycerin suppository/enema (physician-directed)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Severe pain/vomiting, no flatus, or suspected obstruction → ED/urgent assessment.",
+	                                    "Physician contact for chronic constipation, weight loss, anemia, or rectal bleeding.",
+	                                    "Document: red-flag screen, dosing plan, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Dimenhydrinate (Gravol)",
+	                        forms: "Tablets (50 mg), IV/IM (50 mg/mL), suppository (varies)",
+	                        ind: "Nausea/vomiting, motion sickness, vertigo (symptomatic relief)",
+	                        dose: ul([
+	                            "Adults: 50-100 mg PO/IV/IM q4-6h PRN (max 400 mg/day).",
+	                            "Pediatrics: commonly 1.25 mg/kg/dose PO q6h PRN (max 5 mg/kg/day; check age limits).",
+	                            "Older adults/frail: start lower due to delirium/fall risk.",
+	                            "If IV: dilute and give slowly to reduce venous irritation and abrupt sedation."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity.",
+	                            "Relative/precautions: narrow-angle glaucoma, urinary retention/BPH, severe constipation/ileus risk, delirium risk.",
+	                            "Physician approval: severe dehydration, persistent vomiting, pregnancy, pediatrics (young children)."
+	                        ]),
+	                        protip: ul([
+	                            "Highly sedating—avoid combining with alcohol, opioids, benzodiazepines, or other sedatives.",
+	                            "If vomiting persists, evaluate for dehydration, pregnancy, bowel obstruction, or intracranial causes."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "H1 antihistamine with anticholinergic effects → reduces vestibular stimulation and nausea.",
+	                                    "Expected response: motion sickness/nausea improves within ~30-60 min PO or minutes IV/IM.",
+	                                    "Treatment failure: ongoing emetogenic cause (gastroenteritis with dehydration, obstruction, migraine) needing targeted care."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: drowsiness, dry mouth, blurred vision, constipation, urinary retention.",
+	                                    "Serious: delirium (elderly), anticholinergic toxicity/overdose.",
+	                                    "Stop/urgent review: severe confusion, hallucinations, inability to urinate, syncope."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive sedation with alcohol, opioids, benzodiazepines, cannabis, and other antihistamines.",
+	                                    "Additive anticholinergic burden with TCAs, antipsychotics, and bladder antimuscarinics."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Assess hydration status and ability to keep fluids down.",
+	                                    "Monitor for sedation, falls risk, urinary retention, and delirium in older adults."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Avoid driving/operating machinery until effects are known.",
+	                                    "Sip fluids; seek care if unable to keep fluids down, severe abdominal pain, or blood in vomit/stool.",
+	                                    "Missed dose: not applicable (PRN use)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Ondansetron or metoclopramide depending on cause (physician plan).",
+	                                    "Non-medication: ginger, small frequent sips, vestibular maneuvers for benign positional vertigo (selected)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Escalate for dehydration, severe abdominal pain, hematemesis, neurologic symptoms, or pregnancy-related vomiting concerns.",
+	                                    "Overdose/anticholinergic toxicity → poison control/ED.",
+	                                    "Document: indication, dose given, sedation counselling, and return precautions."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Pantoloc (Pantoprazole)",
+	                        forms: "IV vial (40 mg), tablets (40 mg)",
+	                        ind: "GERD/erosive esophagitis, peptic ulcer disease; upper GI bleed (protocol/high-dose)",
+	                        dose: ul([
+	                            "GERD/esophagitis: 40 mg PO daily (typical 4-8 weeks).",
+	                            "IV: 40 mg IV daily when PO not possible.",
+	                            "Upper GI bleed: high-dose IV regimen per protocol (e.g., 80 mg IV bolus then 8 mg/hr infusion or intermittent high-dose).",
+	                            "Adjustments: no renal adjustment; severe hepatic impairment—use caution/physician plan."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity to PPIs.",
+	                            "Relative/precautions: long-term use risks (C. diff, hypomagnesemia, fractures, B12/iron issues), severe liver disease.",
+	                            "Physician approval: suspected GI bleed, alarm features, prolonged therapy without clear indication."
+	                        ]),
+	                        protip: ul([
+	                            "For heartburn, PPIs are not immediate: symptom benefit often takes 1-3 days; antacids can bridge.",
+	                            "If suspected upper GI bleed, treat per protocol and escalate early—PPI is supportive, not definitive hemostasis."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Irreversibly inhibits gastric proton pump (H+/K+ ATPase) → strong acid suppression.",
+	                                    "Expected response: GERD symptoms improve over days; mucosal healing over weeks.",
+	                                    "Treatment failure: persistent symptoms despite adherence—consider incorrect diagnosis, ongoing NSAID use, H. pylori, or complications."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: headache, diarrhea, abdominal pain.",
+	                                    "Serious (usually with longer-term use): C. diff infection, hypomagnesemia, interstitial nephritis, fractures.",
+	                                    "Stop/urgent review: severe watery diarrhea, rash/swelling (allergy), new oliguria/flank pain."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Reduced absorption of drugs needing acidic pH (e.g., ketoconazole, some iron).",
+	                                    "Fewer CYP interactions than omeprazole; still review polypharmacy and anticoagulants as needed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: identify alarm features and NSAID/anticoagulant use; consider H. pylori testing when indicated.",
+	                                    "Follow-up: reassess symptom control and need for ongoing therapy; monitor Mg/B12 if long-term."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take 30-60 minutes before meals (usually breakfast).",
+	                                    "Use the lowest effective dose and shortest necessary duration; discuss step-down if stable.",
+	                                    "Red flags: vomiting blood, black stools, trouble swallowing, weight loss → urgent assessment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Lifestyle modifications; H2 blocker (famotidine) for mild/intermittent symptoms.",
+	                                    "If refractory: evaluate for complications or alternate diagnosis; consider GI referral per physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected upper GI bleed or hemodynamic instability → activate GI bleed pathway/ED resuscitation and notify physician.",
+	                                    "Severe adverse reaction (anaphylaxis, severe diarrhea) → stop and escalate.",
+	                                    "Document: indication, red-flag screen, dosing plan, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Pepcid AC (Famotidine)",
+	                        forms: "Tablets (10-20 mg), IV (20 mg)",
+	                        ind: "GERD/dyspepsia; allergic reactions as adjunct H2 blockade (not first-line for anaphylaxis)",
+	                        dose: ul([
+	                            "Adults: 20 mg PO/IV bid (common).",
+	                            "Max: commonly 40 mg PO bid (selected indications; physician plan).",
+	                            "Renal: reduce dose or extend interval when CrCl <50 (check local guidance).",
+	                            "Duration: PRN or short course; reassess if symptoms are frequent or persistent."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: hypersensitivity.",
+	                            "Relative/precautions: severe renal impairment (accumulation), older adults (CNS effects).",
+	                            "Physician approval: persistent GERD symptoms, alarm features, long-term daily use."
+	                        ]),
+	                        protip: ul([
+	                            "Onset is faster than PPIs (often within ~1 hour); useful for intermittent symptoms or as a bridge.",
+	                            "In anaphylaxis, H2 blockers are adjunct—do not delay epinephrine."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "H2 receptor antagonist → decreases gastric acid secretion.",
+	                                    "Expected response: symptom relief within ~30-60 min; less effective for severe/erosive disease than PPIs.",
+	                                    "Treatment failure: frequent nocturnal symptoms, alarm features, or persistent symptoms—consider PPI/evaluation."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: headache, dizziness, diarrhea/constipation.",
+	                                    "Serious (rare): confusion (elderly/renal), QT prolongation in renal impairment.",
+	                                    "Stop/urgent review: severe confusion, palpitations/syncope."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Fewer interactions than cimetidine; still review polypharmacy in frail/renal patients.",
+	                                    "Antacids may be used for breakthrough symptoms; separate if needed for comfort."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: renal function risk; screen for alarm features if GERD symptoms are persistent.",
+	                                    "Follow-up: reassess symptom frequency; step-up or investigate if ongoing."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Can be taken as needed or scheduled; avoid exceeding label maximum without advice.",
+	                                    "Lifestyle reflux measures still matter.",
+	                                    "Red flags: black stools, vomiting blood, dysphagia, weight loss → urgent assessment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Antacids for rapid relief; PPIs for persistent/frequent symptoms or esophagitis (physician plan).",
+	                                    "Non-medication: diet/weight loss, avoid late meals."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Escalate for alarm features or suspected GI bleed.",
+	                                    "In allergic reactions: use as adjunct only—epinephrine for anaphylaxis and physician notification as appropriate.",
+	                                    "Document: indication, renal dosing considerations, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Metoclopramide (Maxeran)",
+	                        forms: "Vial (10 mg/2 mL), tablets",
+	                        ind: "Nausea/vomiting, gastroparesis, migraine-associated nausea (adjunct)",
+	                        dose: ul([
+	                            "Adults: 10 mg IV/IM/PO q6h PRN (max 40 mg/day).",
+	                            "Renal: reduce dose by ~50% if CrCl <40 (or extend interval) to reduce EPS risk.",
+	                            "Duration: avoid >12 weeks except in rare physician-directed cases (tardive dyskinesia risk).",
+	                            "If IV: give slowly (e.g., over 1-2 min or per protocol) to reduce akathisia."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: bowel obstruction/perforation/bleed; history of tardive dyskinesia; pheochromocytoma; epilepsy.",
+	                            "Relative/precautions: Parkinson disease, QT prolongation risk, concurrent dopamine antagonists (EPS).",
+	                            "Physician approval: pediatrics, pregnancy (hyperemesis), prolonged use, significant psychiatric history."
+	                        ]),
+	                        protip: ul([
+	                            "Acute dystonia/akathisia can occur—treat with diphenhydramine or benztropine and stop the med.",
+	                            "Avoid stacking multiple dopamine blockers (e.g., haloperidol + metoclopramide) without a clear plan."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "D2 receptor antagonist (antiemetic) and prokinetic (↑ gastric emptying).",
+	                                    "Expected response: nausea improves within minutes IV and within ~30-60 min PO.",
+	                                    "Treatment failure: ongoing obstruction, severe vestibular cause, or intracranial pathology—reassess."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: drowsiness, diarrhea, restlessness/akathisia.",
+	                                    "Serious: acute dystonia, tardive dyskinesia (with prolonged use), neuroleptic malignant syndrome (rare).",
+	                                    "Stop/urgent review: muscle spasms/torticollis, rigidity/fever, new involuntary movements."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive EPS risk with antipsychotics; serotonin syndrome risk with serotonergic meds (rare).",
+	                                    "Opposes effects of dopamine agonists (Parkinson therapy).",
+	                                    "Sedation additive with alcohol/CNS depressants."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Observe for EPS/akathisia after dosing; reassess nausea and hydration status.",
+	                                    "If repeated doses: monitor for developing involuntary movements and review renal function."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Avoid driving until you know how it affects you.",
+	                                    "Stop and seek care if involuntary movements, severe restlessness, or muscle spasms occur.",
+	                                    "For migraines: treat pain + nausea; return if new neuro deficits or severe persistent symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Ondansetron for nausea/vomiting; dimenhydrinate for motion-related symptoms.",
+	                                    "Gastroparesis: dietary measures and physician-directed regimens."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Acute dystonia: stop medication, treat with diphenhydramine/benztropine, and notify physician.",
+	                                    "Severe dehydration, GI obstruction signs, or neuro symptoms → ED/urgent review.",
+	                                    "Document: indication, dose/renal adjustment, counselling, and adverse event plan."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Fleet enema (Sodium phosphate)",
+	                        forms: "Pre-packaged rectal enema (adult/pediatric sizes)",
+	                        ind: "Severe constipation/acute rectal evacuation (short-term rescue; not routine)",
+	                        dose: ul([
+	                            "Adults: 1 enema PR once; avoid repeating without physician direction.",
+	                            "Pediatrics: only age/weight-appropriate product with physician guidance.",
+	                            "Onset: typically 5-15 minutes.",
+	                            "Avoid in frail/elderly or CKD unless physician-directed due to electrolyte risk."
+	                        ]),
+	                        contra: ul([
+	                            "Absolute: bowel obstruction/ileus, suspected perforation, severe renal failure, dehydration.",
+	                            "Relative/precautions: heart failure, older adults, electrolyte disorders, active colitis.",
+	                            "Physician approval: recurrent use, significant comorbidities, abdominal pain of unclear cause."
+	                        ]),
+	                        protip: ul([
+	                            "Electrolyte shifts can be dangerous (hyperphosphatemia, hypocalcemia)—avoid repeat dosing and avoid in CKD/elderly.",
+	                            "Ensure patient is near a commode; warn about cramping and urgency."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Hyperosmotic phosphate solution draws water into colon → stimulates evacuation.",
+	                                    "Expected response: bowel movement within minutes.",
+	                                    "Treatment failure: fecal impaction, obstruction, or inadequate administration—reassess rather than repeating blindly."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: cramping, rectal irritation.",
+	                                    "Serious: dehydration, hyperphosphatemia, hypocalcemia, arrhythmias, acute kidney injury (high-risk patients).",
+	                                    "Stop/urgent review: severe pain, dizziness/syncope, no BM with worsening symptoms, rectal bleeding."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Nephrotoxic drugs and diuretics increase kidney/electrolyte risk; review medication list.",
+	                                    "If multiple laxatives are used, dehydration risk increases—coordinate plan."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Assess for obstruction red flags (severe pain, vomiting, no flatus) before use.",
+	                                    "High-risk patients (CKD/elderly): consider electrolytes and physician oversight."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Use only as directed; do not repeat without advice.",
+	                                    "Hydrate after; expect urgency and cramping.",
+	                                    "Seek care if severe pain, bleeding, or no relief with worsening symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Oral PEG, fiber/hydration, stimulant laxatives (short-term) depending on severity.",
+	                                    "Glycerin suppository for milder rectal constipation; manual disimpaction/ED care if impaction."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected obstruction or severe symptoms → ED/urgent assessment (do not use enemas).",
+	                                    "Electrolyte symptoms (weakness, cramps, palpitations) after use → urgent evaluation.",
+	                                    "Document: indication, red-flag screen, product used, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
             {
                 category: "Infectious Disease",
                 medications: [
