@@ -4032,18 +4032,885 @@
                             }
                         ]
                     },
-                    { name: "Ceftriaxone", forms: "Vial for IV/IM", ind: "Meningitis, Gonorrhea, Pyelonephritis, Pneumonia", dose: "1-2 g IV daily. Gonorrhea: 500 mg IM x 1.", contra: "Neonates <28 days with jaundice.", protip: "If giving IM for gonorrhea, dilute with 1% Lidocaine instead of saline to significantly reduce injection pain." },
-                    { name: "Azithromycin", forms: "Tablets (250mg, 500mg)", ind: "Atypical pneumonia, Chlamydia", dose: "Chlamydia: 1 g PO x 1. Pneumonia: 500 mg day 1, then 250 mg days 2-5.", contra: "History of cholestatic jaundice with prior use, prolonged QTc.", protip: "Watch out for QTc prolongation, especially if the patient is on other QTc-prolonging drugs like Ondansetron or Amiodarone." },
-                    { name: "Amoxicillin / Clavulanate (Clavulin)", forms: "Tablets (875/125mg)", ind: "Animal bites, severe sinusitis, otitis media", dose: "875/125 mg PO bid.", contra: "Penicillin allergy, hepatic dysfunction with prior use.", protip: "The classic drug of choice for animal (dog/cat) and human bites to cover Pasteurella and oral anaerobes. Causes diarrhea frequently." },
-                    { name: "Ciprofloxacin", forms: "Tablets (500mg), IV", ind: "Complicated UTI, Pyelonephritis, intra-abdominal infections", dose: "500 mg PO bid.", contra: "Myasthenia gravis, concurrent Tizanidine.", protip: "Black box warning for Achilles tendon rupture and aortic dissection. Warn patients to stop if they feel tendon pain." },
-                    { name: "Septra (TMP-SMX)", forms: "Tablets (DS 800/160mg)", ind: "MRSA skin infections, simple UTI", dose: "1-2 DS tabs PO bid.", contra: "Sulfa allergy, pregnancy (term), folate deficiency.", protip: "Excellent for purulent cellulitis (spider bite-like) suspect for MRSA. Can cause hyperkalemia and increase INR in patients on Warfarin." },
-                    { name: "Doxycycline", forms: "Capsules (100mg)", ind: "Atypical pneumonia, Lyme disease, Chlamydia, MRSA", dose: "100 mg PO bid.", contra: "Pregnancy, children < 8 (causes permanent tooth discoloration).", protip: "Causes severe pill esophagitis and photosensitivity. Tell patient to take with a full glass of water, remain upright for 30 mins, and wear sunscreen." },
-                    { name: "Clindamycin", forms: "Capsules (300mg), IV", ind: "Skin infections, dental infections", dose: "300-450 mg PO tid-qid.", contra: "History of C. diff colitis.", protip: "Notorious for causing C. diff diarrhea. Tell patients to stop and call if they develop severe, watery diarrhea." },
-                    { name: "Nitrofurantoin (Macrobid)", forms: "Capsules (100mg)", ind: "Uncomplicated UTI (Cystitis)", dose: "100 mg PO bid for 5 days.", contra: "Pyelonephritis, eGFR < 30.", protip: "Only concentrates in the bladder. Never use for kidney infections (pyelonephritis) or systemic infections." },
-                    { name: "Valacyclovir", forms: "Tablets (500mg, 1g)", ind: "Herpes simplex, Herpes zoster (Shingles)", dose: "Shingles: 1 g PO tid for 7 days.", contra: "Hypersensitivity.", protip: "Must be started within 72 hours of rash onset for maximum efficacy in shingles. Ensure patient stays well hydrated." },
-                    { name: "Truvada", forms: "Tablets (Emtricitabine/Tenofovir)", ind: "HIV PrEP, HIV PEP (with a 3rd drug)", dose: "1 tab PO daily.", contra: "Unknown HIV status, eGFR < 60.", protip: "If given in the ED for post-exposure prophylaxis (PEP), it must be initiated within 72 hours of exposure." }
-                ]
-            },
+	                    {
+	                        name: "Ceftriaxone",
+	                        forms: "Vial for IV/IM (1 g, 2 g)",
+	                        ind: "Gonorrhea (first-line), severe CAP, pyelonephritis, meningitis (third-generation cephalosporin)",
+	                        dose: ul([
+	                            "Adults (most infections): 1 g IV/IM q24h; severe: 2 g IV q24h.",
+	                            "Meningitis: 2 g IV q12h (max 4 g/day).",
+	                            "Gonorrhea: 500 mg IM x 1 (1 g if ≥150 kg); add doxycycline if chlamydia not excluded.",
+	                            "Pediatrics: 50 mg/kg/dose IV/IM q24h (max 2 g/dose); meningitis: 100 mg/kg/day divided q12h (max 4 g/day).",
+	                            "Renal/hepatic: usually no adjustment; if severe renal + severe hepatic impairment → physician-directed dosing.",
+	                            "Typical duration: 1 dose (gonorrhea) to 5-14 days depending on source and clinical response."
+	                        ]),
+	                        contra: ul([
+	                            "Severe cephalosporin allergy; caution with immediate-type severe penicillin allergy.",
+	                            "Neonates: hyperbilirubinemia/jaundice (bilirubin displacement) or need for IV calcium-containing solutions (precipitation risk).",
+	                            "History of severe cholestasis/biliary sludging with ceftriaxone (relative).",
+	                            "Physician approval: suspected meningitis/sepsis, complicated infection, pregnancy/neonate exposure considerations."
+	                        ]),
+	                        protip: ul([
+	                            "If giving IM, dilute with 1% lidocaine (if allowed by protocol) to reduce pain.",
+	                            "Think source control: abscess, empyema, obstructed pyelo, necrotizing infection → antibiotics alone may fail.",
+	                            "Reassess at 48-72 hours—narrow therapy when cultures/susceptibilities available."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Beta-lactam cephalosporin → binds penicillin-binding proteins → inhibits cell wall synthesis (bactericidal).",
+	                                    "Expected response: fever and pain begin improving within 24-72 hours (meningitis often faster with appropriate therapy).",
+	                                    "Treatment failure: persistent/worsening fever or focal signs at 48-72 hours, new instability, or positive cultures not covered—consider resistance, missed source, abscess/obstruction, or noninfectious diagnosis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: diarrhea, nausea, rash; IM injection pain.",
+	                                    "Serious: anaphylaxis (rare), C. difficile colitis, biliary sludging/cholecystitis-like pain, hemolysis (rare).",
+	                                    "Stop/urgent review: hives/facial swelling/wheeze, severe abdominal/RUQ pain, severe watery/bloody diarrhea."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Neonates: avoid co-administration with IV calcium-containing solutions (precipitation risk).",
+	                                    "Warfarin: may increase INR—monitor if prolonged course or high bleeding risk.",
+	                                    "Other nephrotoxins (e.g., aminoglycosides): additive kidney risk—monitor renal function."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: allergy history; CBC/renal function for moderate-severe infection or prolonged therapy; cultures before first dose when feasible.",
+	                                    "Follow-up: clinical response at 48-72 hours; monitor diarrhea/rash; repeat labs if course >5-7 days or patient is high risk.",
+	                                    "Escalate: suspected meningitis, sepsis, persistent fever >72 hours, or worsening localized pain/swelling."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Purpose: treat a bacterial infection; you should feel better in 1-3 days.",
+	                                    "Common effects: mild stomach upset or diarrhea; IM injections can be sore.",
+	                                    "Red flags: rash/hives, trouble breathing, severe diarrhea, severe belly pain—seek urgent care."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Gonorrhea with severe cephalosporin allergy: physician-directed alternative regimen.",
+	                                    "Meningitis: physician-directed regimen (often ceftriaxone/cefotaxime + vancomycin ± ampicillin depending on age/risk).",
+	                                    "Severe CAP: add macrolide/doxycycline per protocol; consider broader coverage if risk for resistant organisms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Anaphylaxis: stop drug, Epinephrine IM, airway/oxygen, IV fluids; activate emergency response.",
+	                                    "Severe diarrhea/possible C. diff: stop antibiotic and urgently assess.",
+	                                    "Document: indication, cultures obtained, dose/route, allergy assessment, monitoring plan, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Azithromycin",
+	                        forms: "Tablets (250 mg, 500 mg), Suspension",
+	                        ind: "Atypical pneumonia (adjunct), chlamydia (alternative in pregnancy), pertussis (macrolide)",
+	                        dose: ul([
+	                            "Adults CAP: 500 mg PO day 1, then 250 mg PO daily days 2-5 (or 500 mg PO daily x 3 days).",
+	                            "Chlamydia: 1 g PO x 1 (commonly used in pregnancy or when adherence is a concern).",
+	                            "Pediatrics: 10 mg/kg day 1 (max 500 mg), then 5 mg/kg/day days 2-5 (max 250 mg).",
+	                            "Hepatic: use caution in significant liver disease; stop if jaundice/pruritus/dark urine.",
+	                            "Typical response: symptomatic improvement within 48-72 hours; reassess if no improvement."
+	                        ]),
+	                        contra: ul([
+	                            "Macrolide hypersensitivity.",
+	                            "History of cholestatic jaundice/hepatic dysfunction with prior azithromycin use.",
+	                            "Known prolonged QTc, history of torsades, or significant electrolyte abnormalities (relative—risk/benefit).",
+	                            "Physician approval: high arrhythmia risk, complex pneumonia, significant liver disease."
+	                        ]),
+	                        protip: ul([
+	                            "Avoid stacking QT-prolonging meds when possible; correct K+/Mg2+ if treating sicker patients.",
+	                            "Separate from aluminum/magnesium antacids by ~2 hours.",
+	                            "If pneumonia symptoms worsen or no improvement by 72 hours, reassess diagnosis and coverage."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Macrolide → binds 50S ribosomal subunit → inhibits bacterial protein synthesis (mainly bacteriostatic).",
+	                                    "Expected response: improved fever/cough/breathing within 2-3 days in susceptible infections.",
+	                                    "Treatment failure: persistent fever/dyspnea, worsening cough, or new hypoxia—consider resistant organism, wrong diagnosis, or complication."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, diarrhea, abdominal pain.",
+	                                    "Serious: QT prolongation/arrhythmia, hepatotoxicity (rare), severe allergic reaction.",
+	                                    "Stop/urgent review: palpitations/syncope, jaundice/dark urine, rash with facial swelling or breathing trouble."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "QT-prolonging drugs (e.g., amiodarone, sotalol, ondansetron, antipsychotics) → higher torsades risk.",
+	                                    "Warfarin: may increase INR—monitor when starting/stopping if prolonged therapy.",
+	                                    "Digoxin: may increase levels—monitor for toxicity in at-risk patients."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: ECG if high QT risk; electrolytes (K+/Mg2+) if clinically indicated; assess liver disease history.",
+	                                    "Follow-up: clinical reassessment in 48-72 hours; monitor for GI intolerance and rash.",
+	                                    "Escalate: worsening respiratory status, persistent fever >72 hours, or arrhythmia symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take as directed and finish the course even if improving.",
+	                                    "Can take with food if it upsets your stomach.",
+	                                    "Seek urgent care for fainting, fast/irregular heartbeat, yellow eyes/skin, or severe allergic symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "CAP atypical coverage: doxycycline (common alternative).",
+	                                    "Chlamydia (nonpregnant): doxycycline is commonly first-line; use physician/local guideline preference.",
+	                                    "If QT risk is high: choose a non-QT-prolonging alternative when appropriate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Anaphylaxis: stop drug, Epinephrine IM, airway/oxygen, IV fluids; activate emergency response.",
+	                                    "Arrhythmia symptoms (syncope/palpitations): stop drug and urgent evaluation/ECG.",
+	                                    "Document: indication, QT risk screen, dose/duration, counselling, and follow-up plan."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Amoxicillin / Clavulanate (Clavulin)",
+	                        forms: "Tablets (500/125 mg, 875/125 mg), Suspension; XR tablets (selected)",
+	                        ind: "Animal/human bites (first-line), sinusitis/otitis media (selected), polymicrobial infections with anaerobes",
+	                        dose: ul([
+	                            "Adults (typical): 875/125 mg PO q12h; severe infection may use q8h or XR per protocol.",
+	                            "Bite prophylaxis: usually 3-5 days; bite infection: usually 5-7+ days depending on severity/source control.",
+	                            "Pediatrics: 45 mg/kg/day (amoxicillin component) divided q12h; high-dose 80-90 mg/kg/day for selected otitis/sinusitis (max ~4 g/day).",
+	                            "Renal: CrCl <30 → avoid 875 mg and XR; use lower-strength formulations with extended interval (physician/pharmacy guidance).",
+	                            "Take with food to reduce GI upset."
+	                        ]),
+	                        contra: ul([
+	                            "Severe immediate penicillin allergy (anaphylaxis, angioedema, urticaria).",
+	                            "History of cholestatic jaundice/hepatic dysfunction due to amoxicillin-clavulanate.",
+	                            "Severe hepatic disease (relative—use physician-directed alternative).",
+	                            "Physician approval: complicated bite (hand/face/deep puncture), immunocompromised, severe infection, pregnancy with complicated infection."
+	                        ]),
+	                        protip: ul([
+	                            "Best empiric choice for dog/cat/human bites because it covers Pasteurella and oral anaerobes.",
+	                            "If penicillin allergy is severe, choose an alternative regimen (often needs combination therapy)—call physician.",
+	                            "Worsening pain, swelling, or loss of function after a bite → think abscess/tenosynovitis and escalate early."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Amoxicillin inhibits bacterial cell wall synthesis; clavulanate inhibits beta-lactamases → restores activity against some resistant organisms.",
+	                                    "Expected response: reduced pain/swelling/fever within 48-72 hours when the source is controlled.",
+	                                    "Treatment failure: worsening erythema, fever, pus, or severe pain—consider abscess, osteomyelitis, or resistant organism."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: diarrhea, nausea, rash, yeast infection.",
+	                                    "Serious: anaphylaxis, C. difficile colitis, cholestatic hepatitis (rare but classic with this drug).",
+	                                    "Stop/urgent review: hives/facial swelling/wheeze, severe watery/bloody diarrhea, jaundice/dark urine."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Warfarin: may increase INR—monitor with prolonged therapy or high bleeding risk.",
+	                                    "Allopurinol: higher risk of rash when combined with amoxicillin.",
+	                                    "Methotrexate: may increase toxicity—physician/pharmacy guidance."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: allergy and bite risk screen; renal function if older adult/CKD; consider tetanus status and rabies risk assessment for bites.",
+	                                    "Follow-up: reassess bite wounds within 24-48 hours if hand/face/deep puncture or worsening symptoms.",
+	                                    "Escalate: spreading cellulitis, fever, deep space pain, reduced ROM, or no improvement by 72 hours."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with food; mild diarrhea is common.",
+	                                    "Finish the course; do not share leftovers.",
+	                                    "Return urgently for worsening redness, fever, pus, severe pain, numbness, or trouble moving the area."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Severe penicillin allergy (bites): physician-directed alternative (often combination to cover anaerobes + Pasteurella).",
+	                                    "Watchful waiting: selected mild sinusitis may not need antibiotics—use local guideline criteria."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Anaphylaxis: stop drug, Epinephrine IM, airway/oxygen, IV fluids; activate emergency response.",
+	                                    "Bite red flags: rapidly spreading infection, severe pain out of proportion, or systemic toxicity → ED/urgent escalation.",
+	                                    "Document: bite type/location, tetanus status, indication, dose, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Ciprofloxacin",
+	                        forms: "Tablets (250 mg, 500 mg, 750 mg), IV",
+	                        ind: "Complicated UTI/pyelonephritis (selected), prostatitis; restricted-use fluoroquinolone",
+	                        dose: ul([
+	                            "Adults (pyelonephritis/complicated UTI): 500 mg PO q12h (or 750 mg q12h in selected severe cases) for ~5-7 days if susceptible; IV: 400 mg q12h.",
+	                            "Prostatitis: longer courses are common—physician-directed duration.",
+	                            "Pediatrics: generally avoid unless benefits outweigh risks; physician approval required (weight-based dosing).",
+	                            "Renal: CrCl 30-50 → extend interval/adjust dose; CrCl <30 → further adjustment (pharmacy guidance).",
+	                            "Administration: separate from iron/calcium/magnesium/zinc/antacids (chelation reduces absorption)."
+	                        ]),
+	                        contra: ul([
+	                            "Concomitant tizanidine (contraindicated—severe hypotension/sedation).",
+	                            "Myasthenia gravis (can worsen weakness).",
+	                            "History of fluoroquinolone-associated tendon rupture or severe adverse reaction.",
+	                            "Relative: pregnancy, children/adolescents, known aortic aneurysm/dissection risk, uncontrolled QTc risk.",
+	                            "Physician approval: any use when alternatives exist, complicated infection, pregnancy/pediatrics, aneurysm risk."
+	                        ]),
+	                        protip: ul([
+	                            "Reserve for when narrower/safer agents are not appropriate and susceptibility supports use.",
+	                            "Stop immediately for tendon pain/swelling or new neuropathy symptoms—these can be permanent.",
+	                            "If no improvement within 48-72 hours of UTI therapy, reassess for obstruction, abscess, or resistant organism."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Fluoroquinolone → inhibits DNA gyrase/topoisomerase IV → blocks DNA replication (bactericidal).",
+	                                    "Expected response: dysuria/flank pain and fever improve in 24-72 hours if susceptible and source controlled.",
+	                                    "Treatment failure: persistent fever/flank pain, vomiting, or worsening—consider resistant pathogen, obstruction, or alternate diagnosis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, diarrhea, dizziness, photosensitivity.",
+	                                    "Serious (black box): tendon rupture/tendinitis, peripheral neuropathy, CNS effects, dysglycemia; rare aortic aneurysm/dissection risk.",
+	                                    "Stop/urgent review: tendon pain/swelling, new numbness/tingling/weakness, confusion/seizure, severe hypoglycemia symptoms, severe diarrhea."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Chelation: iron, calcium, magnesium, zinc, sucralfate, and many antacids reduce absorption—separate dosing.",
+	                                    "Warfarin: may increase INR—monitor closely.",
+	                                    "Systemic corticosteroids: increased tendon rupture risk.",
+	                                    "QT-prolonging drugs: additive arrhythmia risk in susceptible patients."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: renal function; assess tendon/aneurysm risk and interacting meds; urine culture when feasible for complicated infection.",
+	                                    "Follow-up: clinical reassessment at 48-72 hours; monitor glucose in diabetics; monitor for tendon/neuropathy symptoms.",
+	                                    "Escalate: persistent fever >72 hours, inability to tolerate PO, or signs of sepsis/obstruction."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with plenty of water; avoid taking with minerals/antacids around the same time.",
+	                                    "Avoid strenuous exercise if tendon pain occurs; stop the medication and seek care.",
+	                                    "Seek urgent care for severe dizziness, confusion, numbness/tingling, severe diarrhea, or palpitations."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Uncomplicated cystitis: nitrofurantoin, TMP-SMX, or fosfomycin (per local susceptibility).",
+	                                    "Pyelonephritis: ceftriaxone lead-in then oral step-down per culture; physician/local guideline preference."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Severe reaction (tendon rupture, neurotoxicity, anaphylaxis): stop drug and urgent ED evaluation.",
+	                                    "Overdose or medication error: contact poison control and supervising physician; supportive care.",
+	                                    "Document: indication, rationale (why fluoroquinolone), renal dosing, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Septra (TMP-SMX)",
+	                        forms: "Tablets (SS 400/80 mg, DS 800/160 mg), Suspension; IV (selected)",
+	                        ind: "Purulent SSTI/MRSA (first-line option), uncomplicated UTI (selected), PCP prophylaxis/treatment (specialist/physician)",
+	                        dose: ul([
+	                            "Adults (MRSA SSTI): 1 DS tab PO q12h (sometimes 2 DS q12h for severe infection—physician-directed).",
+	                            "Adults (UTI): 1 DS tab PO q12h for ~3 days (uncomplicated) or longer if complicated (physician-directed).",
+	                            "Pediatrics: 4-6 mg/kg/dose (trimethoprim component) PO q12h (max 160 mg TMP/dose).",
+	                            "Renal: CrCl 15-30 → reduce dose/extend interval; CrCl <15 → avoid unless physician-directed.",
+	                            "Pregnancy: avoid near term; avoid first trimester when possible (folate-related risk)—physician approval required."
+	                        ]),
+	                        contra: ul([
+	                            "Sulfonamide (sulfa) allergy or prior severe reaction (SJS/TEN).",
+	                            "Infants <2 months (kernicterus risk).",
+	                            "Severe liver disease or severe cytopenias/megaloblastic anemia due to folate deficiency (relative).",
+	                            "High hyperkalemia risk (ACEi/ARB/spironolactone/CKD) requires caution and monitoring.",
+	                            "Physician approval: pregnancy, significant renal impairment, immunocompromised/PCP indications."
+	                        ]),
+	                        protip: ul([
+	                            "Check potassium and kidney function in older adults, CKD, or when combined with ACEi/ARB/spironolactone.",
+	                            "If rash develops, stop and seek care—early SJS/TEN can look like a flu-like illness with painful rash.",
+	                            "Does not cover Group A Strep well alone—if nonpurulent cellulitis, choose a beta-lactam or combine per protocol."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Trimethoprim + sulfamethoxazole inhibit sequential steps in folate synthesis → impaired DNA synthesis (bactericidal together).",
+	                                    "Expected response: skin pain/erythema and fever improve within 48-72 hours if appropriate coverage and drainage when needed.",
+	                                    "Treatment failure: worsening redness, persistent fever, or abscess not drained—consider I&D, culture, alternate coverage."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, rash, photosensitivity.",
+	                                    "Serious: SJS/TEN, hyperkalemia, acute kidney injury, cytopenias, hemolysis in G6PD deficiency.",
+	                                    "Stop/urgent review: mucosal sores, painful spreading rash, severe weakness/palpitations (hyperK), reduced urine output."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Warfarin: significant INR increase—avoid or monitor closely.",
+	                                    "ACEi/ARB/spironolactone: increased hyperkalemia risk (especially older adults/CKD).",
+	                                    "Methotrexate: increased toxicity and cytopenia risk.",
+	                                    "Phenytoin: can increase phenytoin levels."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: renal function and potassium if CKD/older adult or interacting meds; consider CBC if prolonged therapy.",
+	                                    "Follow-up: reassess in 48-72 hours; recheck K+/Cr within a few days in high-risk patients.",
+	                                    "Escalate: systemic toxicity, rapidly progressive infection, or signs of severe drug reaction."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with a full glass of water; stay hydrated.",
+	                                    "Use sun protection (photosensitivity).",
+	                                    "Seek urgent care for rash with blisters, mouth sores, trouble breathing, severe weakness, or severe diarrhea."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "MRSA SSTI: doxycycline or clindamycin (if susceptibility and C. diff risk acceptable).",
+	                                    "UTI: nitrofurantoin or fosfomycin (uncomplicated cystitis); culture-directed therapy for complicated infection."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected SJS/TEN: stop drug immediately and send to ED.",
+	                                    "Severe hyperkalemia symptoms (weakness, palpitations): urgent ECG/labs and escalate.",
+	                                    "Document: indication, allergy history, renal dosing, counselling, and monitoring plan."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Doxycycline",
+	                        forms: "Capsules/Tablets (100 mg)",
+	                        ind: "Chlamydia (common first-line), tick-borne infections, atypical pneumonia, acne, MRSA (selected)",
+	                        dose: ul([
+	                            "Adults (typical): 100 mg PO q12h.",
+	                            "Chlamydia: 100 mg PO q12h x 7 days.",
+	                            "Lyme (early): commonly 100 mg PO q12h x 10-21 days (physician/local guideline).",
+	                            "Pediatrics ≥8 years: 2.2 mg/kg/dose PO q12h (max 100 mg/dose).",
+	                            "Renal: no adjustment generally required.",
+	                            "Administration: take with water and stay upright for 30 minutes (esophagitis prevention)."
+	                        ]),
+	                        contra: ul([
+	                            "Pregnancy (avoid when possible; physician approval required if benefits outweigh risks).",
+	                            "Children <8 years (except selected severe tick-borne infections—physician-directed).",
+	                            "Tetracycline hypersensitivity.",
+	                            "Physician approval: suspected rickettsial disease in young children/pregnancy, severe infection, inability to tolerate PO."
+	                        ]),
+	                        protip: ul([
+	                            "Pill esophagitis is common—avoid taking right before bed and use a full glass of water.",
+	                            "Separate from iron/calcium/magnesium/zinc supplements and antacids by a few hours.",
+	                            "Photosensitivity: counsel on sun protection for the full course."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Tetracycline → binds 30S ribosomal subunit → inhibits protein synthesis (bacteriostatic).",
+	                                    "Expected response: symptom improvement in 48-72 hours for many infections; tick-borne fever often improves within 24-48 hours when appropriate.",
+	                                    "Treatment failure: persistent/worsening fever, rash progression, or new respiratory compromise—reassess diagnosis and adherence."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, heartburn, diarrhea, photosensitivity.",
+	                                    "Serious: esophagitis/ulceration, hepatotoxicity (rare), intracranial hypertension (rare).",
+	                                    "Stop/urgent review: severe headache/vision changes, severe rash, trouble swallowing or chest pain after pills."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Chelation: iron/calcium/magnesium/zinc/sucralfate reduce absorption—separate dosing.",
+	                                    "Isotretinoin: increased intracranial hypertension risk—avoid combination.",
+	                                    "Warfarin: may increase anticoagulant effect—monitor if high risk."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: pregnancy status when relevant; assess ability to swallow pills safely.",
+	                                    "Follow-up: symptom reassessment in 48-72 hours; monitor for esophageal symptoms and sun reaction.",
+	                                    "Escalate: worsening symptoms, inability to tolerate PO, or severe headache/vision changes."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with water; remain upright 30 minutes; avoid taking at bedtime.",
+	                                    "Use sunscreen and protective clothing.",
+	                                    "Missed dose: take when remembered unless close to next dose—do not double."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Chlamydia in pregnancy: azithromycin is a common alternative.",
+	                                    "Atypical CAP: azithromycin alternative; overall CAP regimen depends on severity and comorbidities."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Severe allergic reaction: stop drug and treat as anaphylaxis if indicated.",
+	                                    "Severe headache/vision change: stop drug and urgent evaluation (intracranial hypertension).",
+	                                    "Document: indication, dose/duration, counselling (esophagitis + sun), and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Clindamycin",
+	                        forms: "Capsules (150 mg, 300 mg), IV",
+	                        ind: "Skin/soft tissue infection (selected), dental infections, anaerobic coverage; high C. difficile risk",
+	                        dose: ul([
+	                            "Adults (PO): 300-450 mg PO q6-8h; severe: 600-900 mg IV q8h.",
+	                            "Pediatrics: 10-13 mg/kg/dose q8h (max 900 mg/dose) depending on indication.",
+	                            "Renal: no adjustment generally required.",
+	                            "Hepatic: use caution in severe hepatic disease (monitor with prolonged therapy).",
+	                            "Duration: often 5-10 days depending on source and response."
+	                        ]),
+	                        contra: ul([
+	                            "History of C. difficile colitis (relative/strong precaution).",
+	                            "Clindamycin/lincomycin hypersensitivity.",
+	                            "Severe diarrhea during therapy—stop and assess for C. diff.",
+	                            "Physician approval: severe infection, suspected necrotizing infection, immunocompromised, prior C. diff."
+	                        ]),
+	                        protip: ul([
+	                            "Counsel hard on C. diff: watery diarrhea can occur during or weeks after treatment.",
+	                            "For abscesses, incision & drainage is often the key intervention—antibiotics may be adjunct only.",
+	                            "If using for suspected MRSA, local resistance can be high—consider culture when feasible."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Binds 50S ribosomal subunit → inhibits protein synthesis (bacteriostatic); suppresses toxin production in some streptococcal/staphylococcal infections.",
+	                                    "Expected response: pain, swelling, and fever improve within 48-72 hours if appropriate and source controlled.",
+	                                    "Treatment failure: worsening erythema/pain, persistent fever, or undrained abscess—reassess for I&D, culture, alternate agent."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, diarrhea, unpleasant taste.",
+	                                    "Serious: C. difficile colitis, severe rash (rare), neutropenia with prolonged courses (rare).",
+	                                    "Stop/urgent review: severe watery diarrhea, abdominal pain/fever with diarrhea, rash with mucosal involvement."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Neuromuscular blockers: potentiation (perioperative relevance).",
+	                                    "Warfarin: possible INR increase—monitor if high risk or prolonged therapy."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: assess prior C. diff and GI risk; consider CBC/LFT if prolonged therapy or hepatic disease.",
+	                                    "Follow-up: reassess at 48-72 hours; monitor stool frequency and abdominal pain.",
+	                                    "Escalate: severe diarrhea, dehydration, no improvement by 72 hours, or systemic toxicity."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with a full glass of water; food may reduce stomach upset.",
+	                                    "Call urgently for watery diarrhea (especially >3/day), blood in stool, or severe belly pain.",
+	                                    "Finish the course unless a serious side effect occurs."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "MRSA SSTI: TMP-SMX or doxycycline (depending on local susceptibility and clinical picture).",
+	                                    "Dental infections: amoxicillin (± clavulanate) if no penicillin allergy; consider dental source control."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected C. diff colitis: stop clindamycin and urgent evaluation/testing; treat per protocol.",
+	                                    "Severe allergy: treat as anaphylaxis when indicated.",
+	                                    "Document: indication, C. diff risk screen, dose/duration, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Nitrofurantoin (Macrobid)",
+	                        forms: "Capsules (100 mg), Suspension (selected)",
+	                        ind: "Uncomplicated cystitis (first-line option); not for pyelonephritis or systemic infection",
+	                        dose: ul([
+	                            "Adults (Macrobid): 100 mg PO q12h x 5 days (take with food).",
+	                            "Pediatrics: weight-based dosing varies by formulation—physician/pharmacy guidance; generally avoid <1 month.",
+	                            "Renal: avoid if eGFR/CrCl <30 (poor urinary concentrations and higher toxicity risk).",
+	                            "Pregnancy: generally acceptable except avoid at term (38-42 weeks) and during labor/delivery (hemolysis risk).",
+	                            "Treatment failure: persistent fever/flank pain → consider pyelonephritis and escalate."
+	                        ]),
+	                        contra: ul([
+	                            "Suspected pyelonephritis, urosepsis, or prostatitis (does not reach adequate tissue levels).",
+	                            "eGFR/CrCl <30.",
+	                            "History of nitrofurantoin-induced liver injury.",
+	                            "G6PD deficiency (hemolysis risk—relative).",
+	                            "Physician approval: pregnancy near term, recurrent UTI prophylaxis, significant comorbidities."
+	                        ]),
+	                        protip: ul([
+	                            "If there is flank pain, fever, or vomiting, this is not simple cystitis—do not use nitrofurantoin.",
+	                            "Harmless brown urine can occur; taking with food helps nausea.",
+	                            "Shortness of breath, cough, or chest tightness during therapy → stop and seek care (rare pulmonary reaction)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Reduced by bacterial enzymes to reactive intermediates that damage DNA/ribosomal proteins; concentrates in urine.",
+	                                    "Expected response: dysuria/urgency improve within 24-72 hours.",
+	                                    "Treatment failure: persistent symptoms at 48-72 hours or systemic symptoms—consider resistant organism, wrong diagnosis, or upper tract infection."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, headache; dark/brown urine (benign).",
+	                                    "Serious (rare): acute pneumonitis or chronic pulmonary fibrosis, hepatotoxicity, peripheral neuropathy, hemolytic anemia (G6PD).",
+	                                    "Stop/urgent review: shortness of breath, new cough/fever, jaundice, numbness/tingling."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Probenecid/sulfinpyrazone: can reduce renal excretion and increase toxicity risk.",
+	                                    "Magnesium trisilicate antacids: may reduce absorption (take separately)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: assess for pyelonephritis red flags; renal function if older adult/CKD.",
+	                                    "Follow-up: reassess in 48-72 hours if symptoms persist; urine culture if recurrent or treatment failure.",
+	                                    "Escalate: fever, flank pain, vomiting, or worsening symptoms at any time."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take with food and plenty of water.",
+	                                    "If you develop fever, back/flank pain, or vomiting—seek care urgently (could be a kidney infection).",
+	                                    "Finish the 5-day course even if symptoms improve early."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Uncomplicated cystitis: TMP-SMX or fosfomycin (depending on local resistance and patient factors).",
+	                                    "Pyelonephritis: ceftriaxone lead-in and oral step-down per culture (physician-directed)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Allergic reaction: stop drug and treat as anaphylaxis if indicated.",
+	                                    "Severe pulmonary symptoms: stop drug and urgent evaluation/ED.",
+	                                    "Document: cystitis criteria, red-flag screen (no flank pain/fever), dose/duration, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Valacyclovir",
+	                        forms: "Tablets (500 mg, 1 g)",
+	                        ind: "Herpes zoster (shingles), HSV outbreaks and suppression (antiviral)",
+	                        dose: ul([
+	                            "Shingles: 1 g PO q8h x 7 days (start ASAP, ideally within 72 hours of rash onset).",
+	                            "Genital HSV (recurrent): 500 mg PO q12h x 3 days (common regimen); suppression: 500 mg to 1 g PO daily (physician-directed).",
+	                            "Renal: adjust dose/interval when CrCl <50; older adults need hydration and renal dosing.",
+	                            "Pregnancy: commonly used when benefits outweigh risks—physician approval recommended.",
+	                            "Treatment failure: worsening pain/new lesions after several days—reassess diagnosis and immune status."
+	                        ]),
+	                        contra: ul([
+	                            "Hypersensitivity to valacyclovir/acyclovir.",
+	                            "Severe renal impairment without ability to adjust/monitor (relative).",
+	                            "Physician approval: immunocompromised patients, severe/ocular disease, pregnancy/breastfeeding, significant CKD."
+	                        ]),
+	                        protip: ul([
+	                            "Early start matters most for shingles to reduce severity and post-herpetic neuralgia risk.",
+	                            "Hydration is important—renal toxicity and confusion are more likely with dehydration/CKD.",
+	                            "This reduces viral shedding but does not eliminate transmission risk—counsel on safer sex and lesion avoidance."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Prodrug of acyclovir → inhibits viral DNA polymerase after activation in infected cells.",
+	                                    "Expected response: fewer new lesions and less pain within 1-3 days; shingles rash still takes time to crust/heal.",
+	                                    "Treatment failure: continued lesion formation beyond 72 hours of therapy or systemic illness—consider alternative diagnosis, nonadherence, or resistance (rare; immunocompromised)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: headache, nausea, abdominal pain.",
+	                                    "Serious: acute kidney injury/crystalluria (rare with adequate hydration), neurotoxicity (confusion/hallucinations) especially in CKD.",
+	                                    "Stop/urgent review: confusion, severe drowsiness, decreased urine output, severe allergic symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Other nephrotoxins (e.g., NSAIDs in high doses, aminoglycosides): increased kidney risk—use caution and hydrate.",
+	                                    "Cimetidine/probenecid: may increase acyclovir levels (usually not clinically significant but consider in CKD)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline: renal function if older adult/CKD or high-dose therapy; assess for ocular involvement or disseminated disease.",
+	                                    "Follow-up: pain and rash progression; ensure lesions are drying/crusting over the first week.",
+	                                    "Escalate: eye pain/vision changes (ophthalmic zoster), facial weakness, severe headache/neck stiffness, immunocompromised with extensive rash."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Start as soon as possible; take with water and stay hydrated.",
+	                                    "Shingles: keep rash clean/dry; avoid contact with pregnant people, newborns, and immunocompromised until crusted.",
+	                                    "HSV: avoid sexual contact when lesions are present; condoms reduce but do not eliminate transmission risk."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Acyclovir or famciclovir are alternatives (dosing differs).",
+	                                    "Supportive care: analgesics, topical measures; consider neuropathic pain agents if persistent pain (physician-directed)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Anaphylaxis: stop drug and activate emergency response; treat with Epinephrine if indicated.",
+	                                    "Ocular symptoms or neurologic symptoms: urgent physician/ED assessment.",
+	                                    "Document: indication, start time relative to rash, dose/renal adjustment, counselling, and follow-up."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Truvada",
+	                        forms: "Tablets (Emtricitabine 200 mg / Tenofovir DF 300 mg)",
+	                        ind: "HIV PrEP (pre-exposure prophylaxis) and HIV PEP (with a 3rd drug) to prevent HIV infection",
+	                        dose: ul([
+	                            "PrEP: 1 tablet PO daily (requires confirmed HIV-negative test before starting).",
+	                            "PEP: start ASAP (must be within 72 hours of exposure) and continue 1 tablet PO daily x 28 days PLUS a 3rd agent (physician-directed).",
+	                            "Renal: avoid for PrEP if eGFR <60; consider alternative PrEP strategy (physician-directed).",
+	                            "Adherence matters: missed doses reduce protection—do not start/stop without a plan (especially if hepatitis B)."
+	                        ]),
+	                        contra: ul([
+	                            "Known HIV infection or suspected acute HIV (must test before starting; do not use as PrEP if positive).",
+	                            "eGFR <60 for TDF/FTC PrEP (avoid/physician-directed alternative).",
+	                            "Hypersensitivity (rare).",
+	                            "Chronic hepatitis B is not a contraindication but stopping can cause HBV flare—physician approval required.",
+	                            "Physician approval: pregnancy/breastfeeding, adolescents, CKD, suspected acute HIV, complex exposures."
+	                        ]),
+	                        protip: ul([
+	                            "Always assess for acute HIV symptoms and obtain HIV testing before dispensing PrEP.",
+	                            "For PEP, time is critical—start now and confirm the full 3-drug regimen with the supervising physician.",
+	                            "Avoid high-dose or prolonged NSAID use when possible (kidney risk)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Two nucleos(t)ide reverse transcriptase inhibitors → block HIV reverse transcriptase and prevent replication.",
+	                                    "Expected effect: substantially lowers HIV acquisition risk with high adherence (PrEP) or when started promptly and completed (PEP).",
+	                                    "Failure looks like: HIV seroconversion (often from missed doses, delayed PEP, or ongoing exposures); symptoms of acute HIV can include fever, sore throat, rash, lymphadenopathy."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common early: nausea, headache, diarrhea (often improve after 1-2 weeks).",
+	                                    "Serious: renal tubular toxicity/AKI, decreased bone mineral density; rare lactic acidosis/hepatic steatosis.",
+	                                    "Stop/urgent review: marked weakness, severe abdominal pain with vomiting, yellowing of skin/eyes, significantly reduced urination."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Nephrotoxic drugs (e.g., high-dose NSAIDs, aminoglycosides) increase kidney risk—avoid when possible.",
+	                                    "Other tenofovir-containing products: avoid duplication.",
+	                                    "Most interactions are regimen-dependent for PEP (the 3rd agent often has key interactions)—physician/pharmacy review."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Baseline (before PrEP): HIV test; renal function; hepatitis B status; STI screen; pregnancy test when applicable.",
+	                                    "Follow-up (PrEP): HIV testing every 3 months; renal function every 6-12 months (more often if older/CKD risk); STI screening per risk.",
+	                                    "Follow-up (PEP): HIV testing per protocol (e.g., baseline and follow-up), assess adherence and side effects during the 28 days.",
+	                                    "Escalate: symptoms of acute HIV, rising creatinine, or inability to tolerate regimen."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "This prevents HIV when taken consistently; it does not treat other STIs—use condoms and safer-sex practices.",
+	                                    "Take daily at about the same time; missed doses reduce protection.",
+	                                    "Do not share medication; keep follow-up testing appointments (especially HIV tests)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Non-medication: condoms, harm reduction, STI prevention strategies.",
+	                                    "PrEP alternatives depend on exposure type and renal function—physician-directed selection.",
+	                                    "PEP alternatives: different 3-drug regimens based on exposure and interactions—physician-directed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Allergic reaction/anaphylaxis: stop and activate emergency response as indicated.",
+	                                    "Suspected acute HIV or medication intolerance preventing completion of PEP: urgent physician review.",
+	                                    "Document: exposure type/timing, HIV test status, delegated authority, dose, counselling, and follow-up/monitoring plan."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
             {
                 category: "Immunological & Vaccines",
                 medications: [
