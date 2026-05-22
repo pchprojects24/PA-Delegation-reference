@@ -3839,8 +3839,199 @@
             {
                 category: "Infectious Disease",
                 medications: [
-                    { name: "Cefazolin", forms: "Vial for IV", ind: "Cellulitis, surgical prophylaxis", dose: "1-2 g IV q8h.", contra: "Severe IgE-mediated Penicillin allergy.", protip: "Excellent first-line IV antibiotic for non-purulent skin infections." },
-                    { name: "Cephalexin (Keflex)", forms: "Capsules (500mg)", ind: "Skin infections, simple UTI", dose: "500 mg PO qid for 5-7 days.", contra: "Severe Penicillin allergy.", protip: "Standard oral step-down therapy from IV Cefazolin." },
+                    {
+                        name: "Cefazolin",
+                        forms: "Vial for IV (1g, 2g)",
+                        ind: "Non-purulent cellulitis, skin/soft tissue infections, surgical prophylaxis (first-generation cephalosporin)",
+                        dose: ul([
+                            "Adults: 1-2 g IV q8h for cellulitis/SSTI; duration 5-7 days or until clinical improvement.",
+                            "Surgical prophylaxis: 2 g IV within 60 minutes before incision (3 g if >120 kg); redose if procedure >4 hours.",
+                            "Pediatrics: 25-50 mg/kg/dose IV q8h (max 6 g/day).",
+                            "Renal adjustment: CrCl 10-50: 1 g q12h; CrCl <10: 1 g q24h.",
+                            "Pregnancy: Category B—safe to use."
+                        ]),
+                        contra: ul([
+                            "Severe IgE-mediated penicillin allergy (anaphylaxis, urticaria, angioedema)—cross-reactivity ~1-2%.",
+                            "Previous severe reaction to cephalosporins.",
+                            "Physician approval: uncertain allergy history, severe renal impairment, pregnancy."
+                        ]),
+                        protip: ul([
+                            "Excellent first-line IV antibiotic for non-purulent skin infections—covers Strep and MSSA.",
+                            "Safe in most penicillin allergies unless severe immediate-type reaction.",
+                            "Often transitioned to oral cephalexin once improving."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Beta-lactam antibiotic—binds penicillin-binding proteins → inhibits bacterial cell wall synthesis → bactericidal effect.",
+                                    "Spectrum: Gram-positive (Strep, MSSA); some Gram-negative (E. coli, Klebsiella); no MRSA, anaerobes, or Pseudomonas.",
+                                    "Expected response: reduced redness, warmth, swelling within 48-72 hours.",
+                                    "Treatment failure: worsening cellulitis, fever persists >72 hours—consider MRSA, abscess, resistant organism, alternative diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: injection site pain/thrombophlebitis, GI upset, diarrhea.",
+                                    "Serious: anaphylaxis (rare), C. difficile colitis, nephrotoxicity (rare), drug fever, seizures (very high doses/renal failure).",
+                                    "Red flags: rash, hives, difficulty breathing, severe diarrhea, worsening infection."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Probenecid: increases cefazolin levels—may prolong effect.",
+                                    "Aminoglycosides: additive nephrotoxicity—monitor renal function.",
+                                    "Warfarin: may increase INR—monitor closely.",
+                                    "Live vaccines: no interaction."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: allergy history, CBC, renal function (CrCl), culture infected area if possible.",
+                                    "Follow-up: clinical response at 48-72 hours; repeat CBC if prolonged course; renal function if baseline impairment.",
+                                    "Monitor for: worsening infection, hypersensitivity, C. diff diarrhea.",
+                                    "Escalate if: no improvement by 72 hours, worsening, severe allergic reaction."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "IV antibiotic for bacterial skin infection—usually given in hospital or outpatient infusion.",
+                                    "Expected benefit: reduced pain, redness, swelling within 2-3 days.",
+                                    "Common side effects: IV site discomfort, mild diarrhea.",
+                                    "Red flags: new rash, hives, difficulty breathing, swelling, severe diarrhea, worsening infection—seek care immediately.",
+                                    "Complete full course even if feeling better.",
+                                    "Mark cellulitis border with pen to track improvement."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Oral step-down: cephalexin 500 mg PO qid once improving.",
+                                    "MRSA suspected: vancomycin IV or clindamycin PO/IV.",
+                                    "Penicillin allergy: vancomycin, clindamycin, or doxycycline.",
+                                    "Severe infection/sepsis: broader spectrum (piperacillin-tazobactam, vancomycin + ceftriaxone)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Anaphylaxis: stop infusion, Epinephrine 0.3 mg IM, IV fluids, Benadryl, steroids—call code/ED.",
+                                    "Severe infusion reaction: stop drug, antihistamines, consider desensitization protocol if essential.",
+                                    "Treatment failure at 72 hours: escalate to physician—consider imaging, MRSA coverage, surgical consult.",
+                                    "C. diff diarrhea: stop cefazolin, send stool testing, start oral vancomycin or fidaxomicin.",
+                                    "Escalate to physician: severe infection, sepsis, unclear response, uncertain allergy, complications.",
+                                    "Document: indication, allergy screen, dose, renal adjustment, monitoring plan, response."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Cephalexin (Keflex)",
+                        forms: "Capsules (250mg, 500mg), Suspension (125mg/5mL, 250mg/5mL)",
+                        ind: "Skin/soft tissue infections, simple UTI (uncomplicated cystitis), pharyngitis (Strep throat), step-down from IV cefazolin",
+                        dose: ul([
+                            "Adults: 500 mg PO qid (or 1g bid) for 5-7 days; UTI: 500 mg bid for 5-7 days.",
+                            "Pediatrics: 25-50 mg/kg/day divided q6-12h (max 4 g/day).",
+                            "Renal adjustment: CrCl 10-50: 500 mg q8-12h; CrCl <10: 250-500 mg q12-24h.",
+                            "Pregnancy: Category B—safe to use."
+                        ]),
+                        contra: ul([
+                            "Severe IgE-mediated penicillin allergy (anaphylaxis)—cross-reactivity ~1-2%.",
+                            "Previous severe cephalosporin reaction.",
+                            "Physician approval: uncertain allergy history, severe renal impairment."
+                        ]),
+                        protip: ul([
+                            "Standard oral step-down from IV cefazolin once patient improving.",
+                            "Safe in most patients with non-severe penicillin allergy.",
+                            "Does NOT cover MRSA—if purulent infection, use TMP-SMX or doxycycline."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "First-generation cephalosporin—beta-lactam antibiotic inhibiting bacterial cell wall synthesis.",
+                                    "Spectrum: Strep (including Group A Strep), MSSA, E. coli (UTI); no MRSA, Enterococcus, or Pseudomonas.",
+                                    "Expected response: symptom improvement within 48-72 hours.",
+                                    "Treatment failure: worsening symptoms, persistent fever >72 hours—consider resistant organism (MRSA), abscess, or alternative diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: GI upset, nausea, diarrhea (10-30% of patients).",
+                                    "Serious: C. difficile colitis, anaphylaxis (rare), drug rash.",
+                                    "Red flags: hives, facial swelling, difficulty breathing, severe watery/bloody diarrhea, worsening infection."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Probenecid: increases cephalexin levels.",
+                                    "Warfarin: may increase INR—monitor if prolonged use.",
+                                    "Metformin: rare reports of increased metformin levels—monitor glucose.",
+                                    "Live vaccines: no significant interaction."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: allergy history, renal function if impaired.",
+                                    "Follow-up: clinical response at 48-72 hours; complete full course.",
+                                    "No routine labs needed for uncomplicated infection.",
+                                    "Escalate if: no improvement by 72 hours, worsening, allergic reaction."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Oral antibiotic for bacterial infection—take with or without food.",
+                                    "Expected benefit: reduced pain, redness within 2-3 days.",
+                                    "Common side effects: mild stomach upset, diarrhea.",
+                                    "Red flags: rash, hives, facial swelling, breathing problems, severe diarrhea—seek care immediately.",
+                                    "Complete full course (usually 5-7 days) even if feeling better.",
+                                    "Missed dose: take as soon as remembered unless close to next dose; don't double up.",
+                                    "Storage: room temperature; suspension refrigerate after reconstitution (good for 14 days)."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "MRSA suspected: TMP-SMX, doxycycline, or clindamycin.",
+                                    "Penicillin allergy: doxycycline, TMP-SMX, clindamycin, or macrolide.",
+                                    "Severe infection: IV cefazolin or vancomycin.",
+                                    "UTI alternatives: nitrofurantoin, TMP-SMX, fosfomycin."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Anaphylaxis: stop drug, Epinephrine 0.3 mg IM, antihistamines, steroids—call ED.",
+                                    "Severe rash/Stevens-Johnson syndrome: stop drug immediately, urgent dermatology/ED referral.",
+                                    "C. diff diarrhea: stop cephalexin, send stool testing, start oral vancomycin.",
+                                    "Treatment failure: escalate to physician—consider imaging, culture, alternative antibiotics.",
+                                    "Document: indication, allergy screen, dose, renal adjustment, counselling, follow-up plan."
+                                ])
+                            }
+                        ]
+                    },
                     { name: "Ceftriaxone", forms: "Vial for IV/IM", ind: "Meningitis, Gonorrhea, Pyelonephritis, Pneumonia", dose: "1-2 g IV daily. Gonorrhea: 500 mg IM x 1.", contra: "Neonates <28 days with jaundice.", protip: "If giving IM for gonorrhea, dilute with 1% Lidocaine instead of saline to significantly reduce injection pain." },
                     { name: "Azithromycin", forms: "Tablets (250mg, 500mg)", ind: "Atypical pneumonia, Chlamydia", dose: "Chlamydia: 1 g PO x 1. Pneumonia: 500 mg day 1, then 250 mg days 2-5.", contra: "History of cholestatic jaundice with prior use, prolonged QTc.", protip: "Watch out for QTc prolongation, especially if the patient is on other QTc-prolonging drugs like Ondansetron or Amiodarone." },
                     { name: "Amoxicillin / Clavulanate (Clavulin)", forms: "Tablets (875/125mg)", ind: "Animal bites, severe sinusitis, otitis media", dose: "875/125 mg PO bid.", contra: "Penicillin allergy, hepatic dysfunction with prior use.", protip: "The classic drug of choice for animal (dog/cat) and human bites to cover Pasteurella and oral anaerobes. Causes diarrhea frequently." },
