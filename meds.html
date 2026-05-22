@@ -4922,12 +4922,502 @@
             {
                 category: "Musculoskeletal & Connective Tissue",
                 medications: [
-                    { name: "Ibuprofen (Advil/Motrin)", forms: "Tablets (200-600mg), Liquid", ind: "Mild-moderate pain, fever, inflammation", dose: "400-600 mg PO q6h.", contra: "Active GI bleed, CKD, 3rd-trimester pregnancy.", protip: "Take with food to minimize GI upset. Max dose is generally 2400mg/day." },
-                    { name: "Tylenol (Acetaminophen)", forms: "Tablets (325, 500mg), Liquid", ind: "Pain, fever", dose: "500-1000 mg PO q6h.", contra: "Severe liver failure.", protip: "Max daily dose is 4000mg. Be careful of combination cold meds/opioids (like Tylenol #3) which contain hidden acetaminophen." },
-                    { name: "Naproxen (Aleve)", forms: "Tablets (250, 500mg)", ind: "MSK pain, gout, dysmenorrhea", dose: "500 mg PO bid.", contra: "Active GI bleed, CKD, true NSAID allergy.", protip: "Has a longer half-life than Ibuprofen, allowing for convenient twice-daily dosing." },
-                    { name: "Indomethacin", forms: "Capsules (25, 50mg)", ind: "Acute Gout attacks", dose: "50 mg PO tid.", contra: "PUD, renal impairment.", protip: "Very tough on the stomach. Excellent for gout, but usually switched to a milder NSAID once the acute flare subsides." },
-                    { name: "Ketorolac (Toradol)", forms: "Vial (30mg/mL IV/IM), Tablets (10mg)", ind: "Moderate-severe acute MSK pain, renal colic", dose: "15-30 mg IV/IM q6h.", contra: "Renal impairment, active bleeding, upcoming surgery.", protip: "Highly effective for kidney stones. Do not use for more than 5 days total (IV + PO combined) due to high risk of GI bleed and renal toxicity." },
-                    { name: "Voltaren gel (Diclofenac)", forms: "Topical Gel (1%, 2%)", ind: "Localized osteoarthritis, sprains", dose: "Apply to affected joint qid.", contra: "Broken skin.", protip: "Great alternative for elderly patients with kidney issues or GI bleed history, as systemic absorption is very low." }
+                    {
+                        name: "Ibuprofen (Advil/Motrin)",
+                        forms: "Tablets (200–600 mg), liquid",
+                        ind: "First-line PRN for mild–moderate MSK pain/inflammation and fever (when no NSAID contraindication).",
+                        dose: ul([
+                            "Adults: 200–400 mg PO q4–6h PRN (OTC) or 400–600 mg PO q6h PRN (anti-inflammatory dosing varies by protocol).",
+                            "Pediatrics (≥6 months, if applicable): 10 mg/kg PO q6–8h PRN (max 40 mg/kg/day).",
+                            "Max: generally 2400 mg/day for routine short-term use (lower OTC max often applies).",
+                            "Adjustments: avoid if eGFR <30; use lowest dose/shortest course and consider longer intervals if eGFR 30–59. Avoid after ~20 weeks gestation; contraindicated in 3rd trimester.",
+                            "Duration: shortest effective; reassess if needing >3–5 days for pain or >3 days for fever."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: active GI bleed/ulcer, prior severe NSAID hypersensitivity (anaphylaxis/angioedema), eGFR <30 or acute kidney injury, 3rd-trimester pregnancy, peri-operative CABG.",
+                            "Relative/precautions: anticoagulation/antiplatelets, prior GI bleed, uncontrolled HTN, heart failure/edema, asthma with NSAID sensitivity, older adults/frailty, dehydration, IBD.",
+                            "Physician approval before use/renewal: pregnancy, CKD stage ≥3, high GI-bleed risk, significant cardiovascular disease, concurrent steroids/SSRI/SNRI or anticoagulants."
+                        ]),
+                        protip: ul([
+                            "Avoid combining multiple NSAIDs (including OTC); if taking ASA for cardioprotection, separate timing and confirm plan.",
+                            "Take with food/water; ensure hydration to reduce renal risk.",
+                            "Prefer topical NSAID for localized OA pain in older adults/high-risk patients."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Nonselective COX inhibition → ↓ prostaglandins → analgesic, antipyretic, anti-inflammatory effects.",
+                                    "Expected response: pain/fever relief within ~30–60 minutes; anti-inflammatory benefit may take 24–48 hours of regular dosing.",
+                                    "Treatment failure: persistent/worsening pain, swelling, or fever despite adequate dosing; recurrent symptoms requiring ongoing daily NSAID use."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dyspepsia, nausea, heartburn, mild dizziness.",
+                                    "Serious: GI ulcer/bleed, acute kidney injury, fluid retention/HTN, hyperkalemia, cardiovascular thrombotic events, bronchospasm in NSAID-sensitive asthma.",
+                                    "Stop/urgent review: black/tarry stools, vomiting blood, severe abdominal pain, chest pain/SOB, facial/lip swelling or wheeze, markedly reduced urine output."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "↑ Bleeding risk with anticoagulants, antiplatelets, SSRIs/SNRIs, and systemic steroids.",
+                                    "Renal injury risk with ACEi/ARB + diuretic (“triple whammy”), dehydration, or other nephrotoxins.",
+                                    "↑ Levels/toxicity: lithium, methotrexate (monitor/physician-directed).",
+                                    "Avoid adding another NSAID (including ketorolac) unless physician-directed."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline (if risk or >a few days use): BP, renal function; consider CBC if prolonged course or anemia/bleeding risk.",
+                                    "Follow-up: reassess pain/function and GI/renal symptoms; repeat creatinine if ongoing use in high-risk patients."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Use the lowest effective dose for the shortest time; take with food if stomach upset.",
+                                    "Avoid alcohol excess and avoid duplicate OTC cold/pain products that also contain NSAIDs.",
+                                    "Missed dose (scheduled use): take when remembered unless close to next; do not double. PRN use: take only as needed.",
+                                    "Red flags: GI bleeding symptoms, chest pain/SOB, swelling/wheeze, or low urine output → urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: rest/ice/heat, compression/elevation, physiotherapy, stretching, activity modification.",
+                                    "Medication: acetaminophen; topical diclofenac for localized OA; short course oral steroid only if physician-directed and appropriate diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction/anaphylaxis: stop drug; use epinephrine per protocol and activate emergency response.",
+                                    "Suspected GI bleed, severe renal injury, or chest pain/SOB: stop and send to ED/urgent evaluation.",
+                                    "Contact supervising physician for high-risk patients, need for >5–7 days therapy, unclear diagnosis, or inadequate response."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Tylenol (Acetaminophen)",
+                        forms: "Tablets (325 mg, 500 mg), liquid, suppository (varies)",
+                        ind: "First-line for fever and mild–moderate pain when NSAIDs are unsuitable or as part of multimodal analgesia.",
+                        dose: ul([
+                            "Adults: 650–1000 mg PO q6h PRN (or 325–650 mg q4–6h) based on product; avoid duplicate acetaminophen products.",
+                            "Pediatrics: 10–15 mg/kg PO/PR q4–6h PRN (max 75 mg/kg/day; do not exceed adult max).",
+                            "Max: 4000 mg/day for short-term use in healthy adults; consider ≤3000 mg/day for older adults or prolonged use; ≤2000 mg/day if liver disease, heavy alcohol use, or malnutrition (physician-guided).",
+                            "Adjustments: severe renal impairment may require longer intervals (e.g., q6–8h). No taper needed."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: severe hepatic failure or active severe liver disease; prior serious acetaminophen hypersensitivity.",
+                            "Relative/precautions: chronic alcohol use, malnutrition/low body weight, concurrent hepatotoxic drugs (physician-directed), prolonged high-dose use.",
+                            "Physician approval before use/renewal: known liver disease, heavy alcohol use, or need for high-dose therapy beyond a few days."
+                        ]),
+                        protip: ul([
+                            "Most “accidental overdoses” come from combination products (cold/flu, opioids, migraine meds). Count total daily acetaminophen from all sources.",
+                            "If pain is inflammatory, acetaminophen may help less than NSAIDs—combine with non-med measures or topical NSAID when appropriate."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Central analgesic/antipyretic (mechanism not fully defined; minimal peripheral anti-inflammatory effect).",
+                                    "Expected response: fever reduction and pain relief within ~30–60 minutes.",
+                                    "Treatment failure: persistent high fever, worsening pain, or need for escalating doses—reassess diagnosis and consider alternatives."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: generally well tolerated at recommended doses; occasional nausea.",
+                                    "Serious: hepatotoxicity (dose-related), rare severe skin reactions (SJS/TEN).",
+                                    "Stop/urgent review: jaundice, RUQ pain, persistent vomiting, confusion, or any rash with mucosal involvement."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Alcohol and enzyme inducers (e.g., some anticonvulsants) increase hepatotoxicity risk at higher doses.",
+                                    "Warfarin: prolonged regular use may increase INR—monitor if ongoing daily dosing.",
+                                    "Avoid combining with other acetaminophen-containing products."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: screen for liver disease, heavy alcohol use, and other acetaminophen sources.",
+                                    "Follow-up: if frequent/high-dose use or risk factors, consider LFTs per physician plan; reassess if symptoms persist >3 days (fever) or >5–7 days (pain)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Check labels and keep a running daily total; do not exceed your maximum dose.",
+                                    "Avoid heavy alcohol while using; do not “double up” after a missed dose.",
+                                    "Seek care for persistent fever, worsening pain, or signs of liver injury."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: rest, hydration, ice/heat, physiotherapy depending on diagnosis.",
+                                    "Medication: NSAID if appropriate; topical diclofenac for localized OA; targeted therapy for the underlying cause."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected overdose or supratherapeutic stacking: call poison control/ED urgently (N-acetylcysteine is time-sensitive).",
+                                    "Allergic reaction: stop and treat per protocol; escalate to supervising physician for future analgesic planning."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Naproxen (Aleve)",
+                        forms: "Tablets (250 mg, 500 mg); OTC naproxen sodium 220 mg",
+                        ind: "First-line PRN for inflammatory MSK pain; option for acute gout flare pain (if NSAID-appropriate) and dysmenorrhea.",
+                        dose: ul([
+                            "Adults: 250–500 mg PO BID PRN; some acute pain regimens use a one-time higher first dose per protocol.",
+                            "Max: commonly 1000 mg/day (some protocols allow 1250 mg on day 1).",
+                            "Pediatrics: weight-based dosing is condition-specific (e.g., JIA); avoid routine use for pain in young children unless physician-directed.",
+                            "Adjustments: avoid if eGFR <30; use caution/short course if eGFR 30–59. Avoid after ~20 weeks gestation; contraindicated in 3rd trimester."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: active GI bleed/ulcer, severe NSAID hypersensitivity, eGFR <30/AKI, 3rd-trimester pregnancy, peri-operative CABG.",
+                            "Relative/precautions: anticoagulation/antiplatelets, prior GI bleed, uncontrolled HTN, HF/edema, older adults/frailty, dehydration.",
+                            "Physician approval: high GI/CV risk, CKD stage ≥3, pregnancy/breastfeeding, concurrent steroids/anticoagulants."
+                        ]),
+                        protip: ul([
+                            "Longer half-life than ibuprofen → convenient BID dosing; avoid stacking with other NSAIDs.",
+                            "Consider gastroprotection in higher-risk patients if NSAID is necessary (physician-directed)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Nonselective COX inhibition → ↓ prostaglandins → analgesic and anti-inflammatory effects.",
+                                    "Expected response: pain relief within ~1 hour; inflammatory improvement may take 24–48 hours.",
+                                    "Treatment failure: persistent/worsening pain/swelling or need for continuous NSAID use—reassess diagnosis and plan."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dyspepsia, nausea, heartburn.",
+                                    "Serious: GI bleed/ulcer, kidney injury, fluid retention/HTN, cardiovascular events, bronchospasm in NSAID-sensitive asthma.",
+                                    "Stop/urgent review: melena/hematemesis, severe abdominal pain, chest pain/SOB, facial swelling/wheeze, low urine output."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "↑ Bleeding with anticoagulants/antiplatelets/SSRIs/SNRIs and systemic steroids.",
+                                    "Renal risk with ACEi/ARB + diuretic and dehydration; caution with nephrotoxins.",
+                                    "↑ Levels/toxicity: lithium, methotrexate (physician-directed monitoring)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline (if risk or multi-day use): BP and renal function; consider CBC if prolonged course/high bleed risk.",
+                                    "Follow-up: reassess pain/function and GI/renal symptoms; repeat creatinine if ongoing use in high-risk patients."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take with food/water; avoid alcohol excess and avoid other NSAIDs.",
+                                    "Use shortest effective course; seek care if pain persists or red flags appear.",
+                                    "Missed dose (scheduled): take when remembered unless close to next; do not double."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: ice/heat, rest, physiotherapy, activity modification.",
+                                    "Medication: acetaminophen; topical diclofenac for localized OA; for gout flare consider colchicine or corticosteroid (physician plan)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected GI bleed, severe renal injury, or allergic reaction/anaphylaxis: stop drug and urgent evaluation/activate emergency response.",
+                                    "Escalate to supervising physician for high-risk patients, need for >5–7 days use, or inadequate response."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Indomethacin",
+                        forms: "Capsules (25 mg, 50 mg)",
+                        ind: "Acute gout flare pain (NSAID option; effective but higher GI/CNS risk than many alternatives).",
+                        dose: ul([
+                            "Adults (acute gout): 50 mg PO TID until significant improvement, then taper/step down (duration typically a few days).",
+                            "Max: commonly 200 mg/day (protocol dependent).",
+                            "Adjustments: avoid if eGFR <30/AKI; use extreme caution in older adults/frailty and high GI-bleed risk.",
+                            "Avoid after ~20 weeks gestation; contraindicated in 3rd trimester."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: active GI bleed/ulcer, severe NSAID hypersensitivity, eGFR <30/AKI, 3rd-trimester pregnancy, peri-operative CABG.",
+                            "Relative/precautions: older adults (CNS/GI toxicity), anticoagulation/antiplatelets, uncontrolled HTN, HF/edema, history of stroke, dehydration.",
+                            "Physician approval strongly recommended: any high-risk comorbidity, polypharmacy, or if diagnosis of gout is uncertain."
+                        ]),
+                        protip: ul([
+                            "Reserve for confirmed/suspected gout flare when an NSAID is appropriate; many patients tolerate naproxen/ibuprofen better.",
+                            "Switch/step-down once flare improves; do not continue at high dose beyond the acute phase."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Nonselective COX inhibition → anti-inflammatory analgesia.",
+                                    "Expected response: gout pain relief often within 12–24 hours; swelling/tenderness improves over several days.",
+                                    "Treatment failure: no meaningful improvement within 24–48 hours, recurrent severe pain, or inability to tolerate—consider alternative therapy/diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dyspepsia, nausea; headache/dizziness can occur (CNS effects).",
+                                    "Serious: GI bleed/ulcer, kidney injury, fluid retention/HTN, cardiovascular events, confusion (especially older adults).",
+                                    "Stop/urgent review: melena/hematemesis, severe abdominal pain, severe dizziness/confusion, chest pain/SOB, facial swelling/wheeze, low urine output."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "↑ Bleeding with anticoagulants/antiplatelets/SSRIs/SNRIs and systemic steroids.",
+                                    "Renal risk with ACEi/ARB + diuretic; caution with nephrotoxins.",
+                                    "↑ Levels/toxicity: lithium, methotrexate (physician-directed). Avoid other NSAIDs."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Confirm gout flare features and screen red flags (septic arthritis concern).",
+                                    "If risk factors: baseline BP/renal function; reassess within 48–72 hours for response and toxicity."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take with food/water; avoid alcohol excess and avoid other NSAIDs.",
+                                    "Expect improvement within 1 day; if not improving or if severe side effects occur, seek review.",
+                                    "Red flags (possible infection): fever, rapidly worsening joint pain, inability to bear weight, or severe systemic symptoms → urgent assessment."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Acute gout: colchicine or oral/intra-articular corticosteroid (physician plan).",
+                                    "If diagnosis unclear: reassess; consider aspiration/imaging per supervising physician."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected septic arthritis, GI bleed, severe renal injury, or allergic reaction/anaphylaxis: stop drug and urgent evaluation/ED.",
+                                    "Escalate to supervising physician if flare is refractory, patient is high risk, or urate-lowering therapy questions arise."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Ketorolac (Toradol)",
+                        forms: "Vial (IV/IM), tablets (10 mg)",
+                        ind: "Restricted-use short-term treatment of moderate–severe acute pain (e.g., renal colic, acute MSK injury) when a potent NSAID is appropriate.",
+                        dose: ul([
+                            "Adults <65 years, normal renal function: 30 mg IV/IM q6h PRN (max 120 mg/day).",
+                            "Adults ≥65 years, <50 kg, or renal impairment: 15 mg IV/IM q6h PRN (max 60 mg/day).",
+                            "PO (if used): 10 mg PO q4–6h PRN (max 40 mg/day); typically after parenteral dose per protocol.",
+                            "Max duration: 5 days total (all routes combined). No taper."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: active GI bleed/ulcer, recent or high-risk bleeding, advanced renal impairment/AKI, concomitant NSAIDs (including aspirin for pain), severe NSAID hypersensitivity, 3rd-trimester pregnancy or labor/delivery, peri-operative CABG.",
+                            "Relative/precautions: anticoagulation/antiplatelets, older adults/frailty, dehydration, uncontrolled HTN, HF/edema, asthma with NSAID sensitivity.",
+                            "Physician approval: any bleeding risk, CKD stage ≥3, need beyond ED/initial setting, or unclear diagnosis."
+                        ]),
+                        protip: ul([
+                            "Think of ketorolac as “high-risk NSAID”: keep duration short, use lower dose in older adults/low weight, and avoid stacking with other NSAIDs.",
+                            "If patient needs ongoing analgesia after ketorolac, transition to safer options (acetaminophen, topical NSAID) per physician plan."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Nonselective COX inhibition → potent analgesic effect; no opioid activity.",
+                                    "Expected response: analgesia within minutes (IV) or within ~30–60 minutes (IM/PO).",
+                                    "Treatment failure: persistent severe pain despite appropriate dosing—reassess diagnosis and consider opioid or procedural management per physician."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dyspepsia, nausea, dizziness.",
+                                    "Serious: GI bleed/perforation, renal failure, severe bleeding, cardiovascular thrombotic events, bronchospasm in NSAID-sensitive asthma.",
+                                    "Stop/urgent review: melena/hematemesis, severe abdominal pain, syncope, chest pain/SOB, facial swelling/wheeze, low urine output."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Avoid with other NSAIDs and with anticoagulants/antiplatelets when possible (bleeding risk).",
+                                    "Renal risk with ACEi/ARB + diuretic, dehydration, and other nephrotoxins.",
+                                    "↑ Levels/toxicity: lithium, methotrexate (physician-directed)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: screen for GI bleed history, renal disease/dehydration, bleeding risk, pregnancy.",
+                                    "Follow-up: monitor pain response, BP, urine output; check creatinine if ongoing dosing or risk factors."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Do not take other NSAIDs while on ketorolac; avoid alcohol excess.",
+                                    "This is short-term only (max 5 days). If pain persists, you need reassessment rather than extending ketorolac.",
+                                    "Red flags: GI bleeding symptoms, chest pain/SOB, allergic symptoms, or low urine output → urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: ice/immobilization, physiotherapy, local measures.",
+                                    "Medication: acetaminophen; topical diclofenac for localized pain; opioid or regional anesthesia when indicated (physician-directed)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected GI bleed, severe renal injury, or allergic reaction/anaphylaxis: stop drug and urgent evaluation/activate emergency response.",
+                                    "Escalate to supervising physician if severe pain persists, diagnosis is uncertain, or any high-risk comorbidity is present."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Voltaren gel (Diclofenac)",
+                        forms: "Topical gel (commonly 1%; other strengths vary)",
+                        ind: "First-line option for localized osteoarthritis pain (hand/knee) and localized soft-tissue pain when topical therapy is appropriate.",
+                        dose: ul([
+                            "Apply to intact skin to the affected area up to QID; follow product dosing card/grams per joint.",
+                            "Typical 1% gel dosing: upper extremity 2 g QID; lower extremity 4 g QID (do not exceed label maximum; total daily max often 32 g/day).",
+                            "Avoid occlusive dressings unless directed; wash hands after (unless treating hands).",
+                            "Adjustments: lower systemic exposure than oral NSAIDs, but use caution in CKD, anticoagulation, and pregnancy; avoid in 3rd trimester."
+                        ]),
+                        contra: ul([
+                            "Absolute/avoid: application to broken/infected skin; prior severe NSAID hypersensitivity; 3rd-trimester pregnancy.",
+                            "Relative/precautions: concurrent oral NSAIDs/anticoagulants, significant CKD, high CV risk (systemic NSAID warnings still apply, though risk is lower topically).",
+                            "Physician approval: prolonged use, large surface area use, pregnancy, or significant comorbidity/polypharmacy."
+                        ]),
+                        protip: ul([
+                            "Good choice when you want NSAID benefit with less systemic risk—especially localized OA in older adults.",
+                            "If skin irritation occurs, stop and reassess; don’t apply to heat-treated areas or immediately after a hot shower."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Local COX inhibition in tissues → ↓ prostaglandins → localized analgesic/anti-inflammatory effect with low systemic absorption.",
+                                    "Expected response: some pain relief within days; maximal benefit may take 1–2 weeks of regular use.",
+                                    "Treatment failure: no meaningful functional improvement after ~1–2 weeks, or pain is diffuse/systemic → consider alternative diagnosis/therapy."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: local rash, itching, dryness, contact dermatitis.",
+                                    "Serious (rare): systemic NSAID effects (GI/CV/renal) can occur, especially with high-dose/large-area use.",
+                                    "Stop/urgent review: widespread hives/facial swelling/wheeze, severe skin reaction, or GI bleeding symptoms."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Systemic interactions are less likely, but caution with anticoagulants/antiplatelets and other NSAIDs if using extensively or long-term.",
+                                    "Avoid using multiple NSAID products concurrently unless physician-directed."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Check skin integrity and local irritation at follow-up.",
+                                    "If prolonged/high-area use in higher-risk patients: consider BP/renal monitoring per physician plan."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply to intact skin only; avoid eyes/mucosa. Let it dry before clothing; avoid heat/occlusion unless advised.",
+                                    "Wash hands after application; if treating hands, avoid washing for a short period per product guidance.",
+                                    "Seek care for allergic symptoms or if pain/swelling/redness worsens."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: exercise/strengthening, weight management, physiotherapy, bracing, ice/heat.",
+                                    "Medication: acetaminophen; oral NSAID if appropriate; intra-articular steroid for OA flare (physician-directed)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Allergic reaction/anaphylaxis: stop and activate emergency response.",
+                                    "Escalate to supervising physician if pain is severe, function is declining, infection is suspected, or prolonged therapy is required."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             },
             {
