@@ -2009,14 +2009,656 @@
             {
                 category: "Ear-Nose-Throat (ENT)",
                 medications: [
-                    { name: "Ciprodex", forms: "Otic suspension (Ciprofloxacin 0.3% / Dexamethasone 0.1%)", ind: "Acute otitis externa, otitis media with tympanostomy tubes", dose: "4 drops in affected ear(s) twice daily for 7 days.", contra: "Viral infections of the external canal.", protip: "Warm the bottle in hands before instilling; cold drops can cause severe vertigo." },
-                    { name: "Beclomethasone nasal spray", forms: "Nasal spray", ind: "Allergic rhinitis", dose: "1-2 sprays per nostril bid.", contra: "Untreated localized infection involving nasal mucosa.", protip: "Aim spray away from the nasal septum to avoid epistaxis and septal perforation over time." },
-                    { name: "Nasonex (Mometasone)", forms: "Nasal spray", ind: "Allergic rhinitis, nasal polyps", dose: "2 sprays per nostril daily.", contra: "Recent nasal surgery or trauma until healed.", protip: "Takes 1-2 weeks of daily use to reach peak effectiveness; it is not a PRN immediate-relief drug." },
-                    { name: "Dristan / Otrivin (Xylometazoline)", forms: "Nasal spray", ind: "Nasal congestion", dose: "1-2 sprays per nostril q8-10h PRN.", contra: "MAOI use, narrow-angle glaucoma.", protip: "Do not use for more than 3-5 days to avoid severe rebound congestion (rhinitis medicamentosa)." },
-                    { name: "Oracort (Triamcinolone paste)", forms: "Dental paste", ind: "Aphthous ulcers (canker sores)", dose: "Press small dab onto lesion at bedtime.", contra: "Oral fungal/viral infections.", protip: "Do not rub it in; dab it on to form a protective film over the ulcer." },
-                    { name: "Zilactin-B", forms: "Oral gel (Benzocaine 10%)", ind: "Oral pain, canker sores, cold sores", dose: "Apply up to qid.", contra: "History of methemoglobinemia.", protip: "Forms a film that protects the sore from irritation while eating." },
-                    { name: "Saline", forms: "Drops, spray", ind: "Nasal dryness, mucus clearance", dose: "Use as needed.", contra: "None.", protip: "Excellent and safe first-line choice for infants with congested noses before feeding." },
-                    { name: "Pseudoephedrine HCl", forms: "Tablets (30mg, 60mg)", ind: "Nasal and sinus congestion", dose: "60 mg PO q4-6h.", contra: "Severe hypertension, CAD, MAOI use.", protip: "Can cause insomnia and tachycardia. Avoid giving close to bedtime." }
+                    {
+                        name: "Ciprodex",
+                        forms: "Otic suspension (Ciprofloxacin 0.3% / Dexamethasone 0.1%)",
+                        ind: "Acute otitis externa; otorrhea with tympanostomy tubes (selected otitis media)",
+                        dose: ul([
+                            "Adults + pediatrics: 4 drops in affected ear(s) BID for 7 days.",
+                            "Technique: keep ear up ~1 minute after drops; pump tragus several times; avoid contaminating dropper tip.",
+                            "Treatment failure: persistent/worsening pain or discharge after 48-72 hours, or not improving by day 7 → reassess and escalate."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to ciprofloxacin/quinolones, dexamethasone, or components.",
+                            "Suspected fungal otitis externa or viral infection of the external canal (e.g., herpes).",
+                            "Precautions/physician approval: diabetes or immunocompromise, severe canal edema preventing penetration, systemic illness/fever, mastoid tenderness."
+                        ]),
+                        protip: ul([
+                            "Warm bottle in hands before use (cold drops can trigger vertigo).",
+                            "If canal is very swollen, an ear wick may be needed (protocol/physician decision).",
+                            "Keep ear dry (no swimming) until improved; avoid cotton swabs in canal."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Ciprofloxacin: topical antibiotic active vs common otitis externa pathogens (incl. Pseudomonas).",
+                                    "Dexamethasone: reduces inflammation and pain.",
+                                    "Expected response: pain/itching and discharge improve within 48-72 hours; near-resolution by end of course."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: ear discomfort, pruritus, unpleasant taste, local irritation.",
+                                    "Serious (rare): hypersensitivity reaction; persistent severe vertigo or new hearing changes.",
+                                    "Stop/urgent review: facial swelling, wheeze, widespread rash, sudden hearing loss, severe worsening pain."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Minimal systemic absorption → clinically significant interactions are unlikely.",
+                                    "Avoid adding other otic products unless directed (can impair delivery/technique)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: otoscopy if possible, systemic symptoms, mastoid tenderness, and risk factors (diabetes/immunocompromise).",
+                                    "Follow-up: reassess if not improving within 48-72 hours or not resolved by day 7.",
+                                    "Escalate urgently if red flags: post-auricular swelling, cranial nerve deficits, severe nocturnal pain (consider malignant otitis externa)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Complete the full course even if symptoms improve.",
+                                    "Keep ear dry; do not insert objects into ear canal.",
+                                    "Missed dose: use when remembered unless close to next dose; do not double.",
+                                    "Seek care for fever, worsening pain, spreading redness, or new hearing loss."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: aural toilet/cleaning and keeping canal dry.",
+                                    "Other otic options (protocol dependent): ofloxacin drops; acetic acid for mild cases.",
+                                    "Systemic antibiotics are physician-directed if cellulitis/systemic features."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Anaphylaxis: stop drug; treat per protocol and document allergy.",
+                                    "Diabetic/immunocompromised, mastoid tenderness, severe pain, or treatment failure → contact supervising physician and consider ED.",
+                                    "Document: exam findings, indication, dosing, counselling (keep dry/return precautions), and follow-up plan."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Beclomethasone nasal spray",
+                        forms: "Nasal spray",
+                        ind: "Allergic rhinitis (first-line for persistent or moderate-severe symptoms)",
+                        dose: ul([
+                            "Adults: 1-2 sprays per nostril BID (use lowest effective dose).",
+                            "Pediatrics: product/age dependent—physician approval if young child; use lowest effective dose and monitor growth.",
+                            "Onset: some benefit within 12-24 hours; peak effect typically 1-2 weeks of daily use."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to components.",
+                            "Untreated localized nasal infection; active/recurrent epistaxis requiring evaluation.",
+                            "Precautions/physician approval: recent nasal surgery/trauma until healed, glaucoma/cataracts history, significant immunosuppression."
+                        ]),
+                        protip: ul([
+                            "Aim away from the nasal septum (toward the ipsilateral ear) to reduce epistaxis risk.",
+                            "Controller medication—use daily, not PRN.",
+                            "Consider saline spray/gel if dryness or crusting limits adherence."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Topical corticosteroid reduces nasal mucosal inflammation (congestion, sneezing, rhinorrhea, itch).",
+                                    "Expected response: improved nasal symptoms over days; maximal benefit after consistent use."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: nasal irritation/burning, dryness, sore throat, epistaxis.",
+                                    "Rare serious: septal perforation, oral/nasal candidiasis, ocular effects with long-term use.",
+                                    "Stop/urgent review: recurrent heavy nosebleeds, severe facial pain/fever, vision changes."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Strong CYP3A4 inhibitors (e.g., ritonavir/cobicistat) can increase systemic steroid exposure—physician approval.",
+                                    "No meaningful food/alcohol interactions."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Reassess symptoms and adverse effects after 1-2 weeks, then periodically.",
+                                    "Children: monitor growth if prolonged use.",
+                                    "Escalate if persistent symptoms despite adherence/technique or if recurrent epistaxis."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Use daily; do not expect immediate decongestant effect.",
+                                    "Technique: gentle sniff; avoid hard inhalation that sends spray to throat.",
+                                    "Missed dose: take when remembered; skip if close to next dose—do not double."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: allergen avoidance, HEPA filtration, saline irrigation.",
+                                    "Medication options: oral/intranasal antihistamines; leukotriene receptor antagonist (selected).",
+                                    "Persistent/severe disease: consider allergy testing and immunotherapy referral."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Significant epistaxis: stop temporarily, apply pressure/topical measures per protocol; contact supervising physician if recurrent.",
+                                    "Suspected allergic reaction: stop and manage per protocol; document allergy.",
+                                    "Document: indication, dosing plan, technique counselling, and follow-up timeframe."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Nasonex (Mometasone)",
+                        forms: "Nasal spray",
+                        ind: "Allergic rhinitis; nasal polyps (selected—often physician-directed)",
+                        dose: ul([
+                            "Allergic rhinitis (adults/adolescents): 2 sprays per nostril once daily; step down once controlled.",
+                            "Pediatrics: age-dependent (often 1 spray per nostril daily)—physician approval for younger children.",
+                            "Nasal polyps (adults): typically 2 sprays per nostril daily (may be increased per prescriber).",
+                            "Onset: partial benefit in 12-24 hours; peak effect 1-2 weeks."
+                        ]),
+                        contra: ul([
+                            "Hypersensitivity to components.",
+                            "Recent nasal surgery or trauma until healed; untreated localized nasal infection.",
+                            "Precautions/physician approval: recurrent epistaxis, ocular disease (glaucoma/cataracts), significant immunosuppression."
+                        ]),
+                        protip: ul([
+                            "Not an immediate-relief PRN drug—set expectations (benefit builds with daily use).",
+                            "For polyps or refractory symptoms, ensure a documented reassessment/follow-up plan."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Topical corticosteroid decreases mucosal inflammation; can reduce polyp size over time.",
+                                    "Expected response: reduced congestion/post-nasal drip/sneezing; improved smell may take weeks in polyps.",
+                                    "Treatment failure: poor adherence/technique, persistent triggers, or alternate diagnosis/structural obstruction."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: irritation/dryness, epistaxis, sore throat.",
+                                    "Rare serious: septal perforation, candidiasis, ocular effects with long-term use.",
+                                    "Stop/urgent review: heavy/recurrent nosebleeds, severe unilateral facial pain/fever, vision changes."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Strong CYP3A4 inhibitors (e.g., ritonavir/cobicistat) may increase systemic steroid effects—physician approval.",
+                                    "No clinically relevant interaction with saline or antihistamines."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Reassess at 2-4 weeks; confirm technique and adherence.",
+                                    "Polyps/refractory symptoms: ensure follow-up with supervising physician/ENT if not improving.",
+                                    "Children: monitor growth if prolonged use."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Aim away from septum; avoid vigorous sniffing.",
+                                    "If epistaxis occurs: pause 1-2 days, add saline/gel, restart with improved technique; escalate if recurrent.",
+                                    "Missed dose: take when remembered; skip if close to next dose."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Allergic rhinitis: antihistamines (oral/intranasal), allergen avoidance, saline irrigation.",
+                                    "Polyps: short course oral steroids or surgery are physician-directed options; consider ENT referral."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe epistaxis, suspected septal perforation, or signs of severe sinus infection → contact supervising physician/consider ED.",
+                                    "Document: indication (rhinitis vs polyps), dosing plan, counselling, and reassessment date."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Dristan / Otrivin (Xylometazoline)",
+                        forms: "Nasal spray",
+                        ind: "Short-term nasal congestion (viral URI or allergic rhinitis flare) — rescue/short course only",
+                        dose: ul([
+                            "Adults (typically 0.1%): 1 spray per nostril q8-10h PRN (max 3 doses/day).",
+                            "Pediatrics: use age-appropriate concentration (often 0.05%) and follow product label; physician approval for young children.",
+                            "Duration: limit to ≤3 days (up to 5 days max) to avoid rebound congestion (rhinitis medicamentosa)."
+                        ]),
+                        contra: ul([
+                            "MAOI use (or within 14 days), narrow-angle glaucoma, hypersensitivity.",
+                            "Precautions/physician approval: severe hypertension, CAD/arrhythmias, hyperthyroidism, BPH/urinary retention, pregnancy (risk/benefit)."
+                        ]),
+                        protip: ul([
+                            "Set a stop date up front; rebound congestion is common with prolonged use.",
+                            "If allergic component, pair with daily intranasal steroid to reduce reliance on decongestant sprays."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Topical α-adrenergic agonist → vasoconstriction of nasal mucosa.",
+                                    "Expected response: congestion relief within minutes; lasts hours.",
+                                    "Treatment failure: alternative diagnosis (sinusitis, foreign body, structural obstruction) or severe inflammation requiring other therapy."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dryness/burning, sneezing.",
+                                    "Serious: rebound congestion; hypertension/tachycardia from systemic absorption.",
+                                    "Stop/urgent review: chest pain, severe headache, palpitations, severe anxiety."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Avoid with MAOIs; use caution with other sympathomimetics/stimulants (additive BP/HR effects).",
+                                    "Limit caffeine and other OTC cold products with decongestants."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Assess BP/HR risk factors before recommending; re-check if palpitations or hypertension symptoms occur.",
+                                    "Reassess if congestion persists >7-10 days or if rebound develops."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Use the shortest duration possible; do not exceed max doses/day.",
+                                    "Do not share spray bottles; clean nozzle to reduce contamination.",
+                                    "Missed dose: use only if needed; do not double."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: humidification, saline spray/irrigation.",
+                                    "Allergic rhinitis: intranasal corticosteroid, antihistamines.",
+                                    "If bacterial sinusitis suspected: supportive care and physician-directed antibiotics when criteria met."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Severe hypertension symptoms, chest pain, or overdose in a child → ED/poison control per protocol.",
+                                    "Document: indication, planned stop date, counselling on rebound and return precautions."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Oracort (Triamcinolone paste)",
+                        forms: "Dental paste",
+                        ind: "Aphthous ulcers (canker sores) — symptom relief/anti-inflammatory (not for infectious ulcers)",
+                        dose: ul([
+                            "Apply a small dab to the lesion 2-4 times daily (after meals and at bedtime), forming a thin film.",
+                            "Typical duration: up to 7-14 days; physician approval if prolonged or frequent recurrent use.",
+                            "Treatment failure: no improvement in pain/size by ~7 days or ulcer persists >14 days → reassess and escalate."
+                        ]),
+                        contra: ul([
+                            "Oral fungal or viral infections (e.g., thrush, herpes) unless physician-directed.",
+                            "Hypersensitivity to corticosteroids or components.",
+                            "Precautions/physician approval: immunocompromised, extensive/atypical lesions, systemic symptoms, concern for malignancy."
+                        ]),
+                        protip: ul([
+                            "Dry the area first; dab on gently—do not rub in (helps it adhere).",
+                            "Avoid eating/drinking for ~30 minutes after application to keep the film in place."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Topical corticosteroid reduces local inflammation and pain.",
+                                    "Expected response: pain improves within 1-3 days; ulcer healing over 7-14 days."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: mild burning/irritation, taste disturbance.",
+                                    "Serious (rare): oral candidiasis with prolonged use; delayed healing if used on infectious lesions.",
+                                    "Stop/urgent review: worsening pain/swelling, fever, spreading oral lesions, signs of thrush."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Minimal systemic absorption → significant interactions unlikely at typical use.",
+                                    "Use caution/physician approval with strong CYP3A4 inhibitors if prolonged/high-frequency use."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Reassess if not improving within 7 days or if recurrent/severe aphthae.",
+                                    "Escalate for ulcers >2 weeks, weight loss, dysphagia, or neck mass (alternate diagnosis)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply after meals/bedtime; wash hands before/after.",
+                                    "Avoid irritants (spicy/acidic foods, trauma) while healing.",
+                                    "Missed dose: apply when remembered; do not double large amounts."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: saltwater/baking soda rinses; avoid trigger foods; soft toothbrush.",
+                                    "Symptom relief: topical protective pastes or selected anesthetics (with safety counselling).",
+                                    "Frequent/severe ulcers: evaluate for nutritional deficiency/IBD/Behçet—physician workup."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Airway compromise, significant swelling, or systemic allergic reaction → ED.",
+                                    "Physician contact if lesions are atypical, recurrent, or persist >14 days.",
+                                    "Document: lesion description, duration, dosing plan, counselling, and follow-up."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Zilactin-B",
+                        forms: "Oral gel/film-forming topical (Benzocaine 10%)",
+                        ind: "Short-term topical analgesia for oral sores (canker sores/cold sores) — symptomatic relief only",
+                        dose: ul([
+                            "Apply a thin layer to affected area up to QID PRN (use the smallest amount needed).",
+                            "Avoid prolonged/frequent use; reassess if pain persists >3-5 days or lesions persist >14 days.",
+                            "Pediatrics: physician approval for young children; avoid in infants/toddlers (methemoglobinemia risk)."
+                        ]),
+                        contra: ul([
+                            "History of methemoglobinemia or benzocaine hypersensitivity.",
+                            "Infants/very young children: avoid unless physician-directed (higher methemoglobinemia risk).",
+                            "Precautions/physician approval: large denuded mucosal areas, significant cardiopulmonary disease, concurrent oxidizing agents."
+                        ]),
+                        protip: ul([
+                            "Use sparingly—more is not better and increases risk.",
+                            "The film can help protect the sore during eating; avoid biting numb areas."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Topical local anesthetic reduces pain by blocking sodium channels in superficial nerves.",
+                                    "Expected response: pain relief within minutes; duration is limited (reapply per label)."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: transient burning/numbness, altered taste.",
+                                    "Serious: methemoglobinemia (rare but dangerous), allergic reactions.",
+                                    "Stop/urgent review: blue/gray lips or skin, shortness of breath, fatigue, dizziness, headache, tachycardia."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Avoid combining with other topical anesthetics or agents that increase methemoglobinemia risk unless physician-directed.",
+                                    "No major food/alcohol interactions, but avoid excessive application before meals if aspiration/biting risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Clinical monitoring only; educate on methemoglobinemia symptoms.",
+                                    "Escalate if lesions are widespread, recurrent, or associated with fever/systemic symptoms."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Apply a small amount; do not exceed QID and do not swallow large quantities.",
+                                    "Avoid hot foods/drinks immediately after (burn risk due to numbness).",
+                                    "Missed dose: use only if needed; do not double."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: saltwater rinses, avoid spicy/acidic foods, cold liquids/ice chips.",
+                                    "Protectants: barrier pastes/films without anesthetic.",
+                                    "If herpes suspected: antiviral therapy may be indicated—physician decision based on timing/diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected methemoglobinemia or significant allergic reaction → ED (consider methylene blue per protocol).",
+                                    "Physician contact if lesions persist >14 days, are atypical, or patient is immunocompromised.",
+                                    "Document: indication, safety counselling (methemoglobinemia red flags), and follow-up."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Saline",
+                        forms: "Drops, spray, irrigation",
+                        ind: "Nasal dryness; mucus clearance; adjunct in rhinitis/sinus symptoms (first-line supportive care)",
+                        dose: ul([
+                            "Adults: spray or irrigation as needed (often 2-6 times/day).",
+                            "Infants/children: 1-2 drops/sprays per nostril PRN before feeds/sleep; gentle suction after drops if needed.",
+                            "If using irrigation: use sterile/distilled/boiled-then-cooled water and clean device after each use."
+                        ]),
+                        contra: ul([
+                            "None absolute.",
+                            "Precautions: avoid forceful irrigation with significant ear pain or recent sinus surgery unless instructed; use safe water to prevent infection."
+                        ]),
+                        protip: ul([
+                            "Low-risk option to try first for congestion—especially in infants before feeding.",
+                            "Saline before intranasal steroids can improve delivery and reduce irritation."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Hydrates mucosa and mechanically thins/clears secretions.",
+                                    "Expected response: improved nasal airflow and comfort; best with repeated use."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: mild irritation, transient ear fullness with irrigation.",
+                                    "Serious (rare): infection from contaminated water/device."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "None clinically significant.",
+                                    "If using multiple sprays, separate saline and medicated sprays by a few minutes for comfort."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Clinical monitoring only; reassess if symptoms persist >10 days, worsen after initial improvement, or are severe.",
+                                    "Escalate if high fever, facial swelling, severe headache, neck stiffness, or respiratory distress."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Technique: gentle spray/drops; avoid force in infants.",
+                                    "Use safe water for irrigation; keep bottles/devices clean.",
+                                    "No strict missed-dose instructions—use as needed."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Humidifier/steam, hydration.",
+                                    "Medication options depend on cause: intranasal steroid/antihistamines for allergies; short-course decongestant for selected adults."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Signs of severe infection/meningitis features or respiratory distress → urgent evaluation/ED.",
+                                    "Document: supportive-care indication, safe-water education (if irrigating), and return precautions."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Pseudoephedrine HCl",
+                        forms: "Tablets (30 mg, 60 mg); extended-release preparations vary",
+                        ind: "Nasal/sinus congestion (short-term symptomatic relief; use caution with cardiovascular risk)",
+                        dose: ul([
+                            "Adults: 60 mg PO q4-6h PRN (max 240 mg/day) OR ER 120 mg PO q12h (max 240 mg/day).",
+                            "Pediatrics: avoid in young children unless physician-directed; follow product/age dosing. Adolescents ≥12 years typically use adult dosing.",
+                            "Duration: shortest possible; reassess if needed beyond ~7 days."
+                        ]),
+                        contra: ul([
+                            "Severe hypertension, CAD/ischemic heart disease, significant arrhythmias, MAOI use (or within 14 days).",
+                            "Precautions/physician approval: controlled hypertension, hyperthyroidism, diabetes, BPH/urinary retention, pregnancy/breastfeeding, glaucoma."
+                        ]),
+                        protip: ul([
+                            "Ask about blood pressure, palpitations, and other OTC cold meds (duplicate decongestants are common).",
+                            "Avoid taking close to bedtime (insomnia)."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Systemic sympathomimetic (primarily α-adrenergic) → reduces nasal mucosal edema via vasoconstriction.",
+                                    "Expected response: congestion relief within 30-60 minutes; ER lasts longer.",
+                                    "Treatment failure: non-congestive causes (polyps, deviated septum) or sinusitis requiring different management."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: insomnia, jitteriness/anxiety, tremor, dry mouth, mild tachycardia.",
+                                    "Serious: marked hypertension, palpitations/arrhythmias, chest pain, urinary retention.",
+                                    "Stop/urgent review: chest pain, severe headache, shortness of breath, fainting, severe palpitations."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Avoid with MAOIs; use caution with other stimulants/sympathomimetics (including some ADHD meds) and excess caffeine.",
+                                    "Check OTC combination products to prevent double-dosing decongestants."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: assess BP/HR history, cardiac disease, glaucoma, and urinary retention risk.",
+                                    "Follow-up: reassess if symptoms persist >7-10 days, worsen, or if BP/HR symptoms occur."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Take earlier in the day; avoid combining with other decongestants/energy products.",
+                                    "Do not exceed max daily dose; short-term use only.",
+                                    "Missed dose (scheduled use): skip if close to next dose; do not double."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-medication: saline irrigation, humidification, hydration.",
+                                    "Allergic rhinitis: intranasal steroid ± antihistamine (often preferred for ongoing symptoms).",
+                                    "Topical nasal decongestant: short course only (rebound risk)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected overdose (especially pediatric) or severe hypertension/chest pain → ED/poison control per protocol.",
+                                    "Physician contact before use if significant cardiac disease, pregnancy, uncontrolled BP, or complex polypharmacy.",
+                                    "Document: indication, screening questions (BP/cardiac history), dose/duration, counselling, and return precautions."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             },
             {
