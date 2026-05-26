@@ -5729,17 +5729,584 @@
             {
                 category: "Controlled Substances — Narcotics",
                 medications: [
-                    { name: "Morphine Sulphate", forms: "Vial (10mg/mL)", ind: "Severe pain", dose: "2-5 mg IV q5-15min PRN.", contra: "Hypotension, respiratory depression.", protip: "Causes histamine release, leading to flushing, itching, and transient drops in blood pressure (not a true allergy)." },
-                    { name: "Ketamine", forms: "Vial (50mg/mL)", ind: "Severe pain, Procedural Sedation, Excited Delirium", dose: "Analgesia: 0.1-0.3 mg/kg IV. Sedation: 1-2 mg/kg IV.", contra: "Schizophrenia (relative).", protip: "Preserves airway reflexes and blood pressure, making it incredibly safe hemodynamically. Can cause vivid emergence nightmares." },
-                    { name: "Fentanyl", forms: "Vial (50mcg/mL)", ind: "Severe pain, RSI premedication", dose: "1-2 mcg/kg IV.", contra: "Respiratory depression.", protip: "100x more potent than morphine but much faster acting with a shorter duration. Pushing rapidly can cause rare but fatal chest wall rigidity." }
+                    {
+                        name: "Morphine Sulphate",
+                        forms: "Vial (10mg/mL)",
+                        ind: "Severe acute pain (opioid-responsive)",
+                        dose: ul([
+                            "Adults: 2–4 mg IV q5–10 min PRN; titrate to functional pain relief (not zero pain).",
+                            "Pediatrics: 0.05–0.1 mg/kg IV (typical max single dose 5 mg), reassess before re-dose.",
+                            "Max/limits: titrate cautiously; if escalating doses without effect or needing repeated dosing, reassess diagnosis and call supervising physician.",
+                            "Adjustments: start lower and titrate slowly in older adults, frailty, OSA, hypotension, renal/hepatic impairment, or with other sedatives; pregnancy—use only if clearly needed.",
+                            "Route/duration: IV preferred for rapid titration; use shortest duration and lowest effective dose."
+                        ]),
+                        contra: ul([
+                            "Absolute: known serious hypersensitivity (rare), severe respiratory depression without airway support.",
+                            "Relative/high risk: hypotension/shock, acute severe asthma/bronchospasm, significant OSA, head injury/altered mental status, concomitant CNS depressants.",
+                            "Physician approval: high-risk comorbidities, repeated dosing, need for take-home opioids, or unclear pain etiology."
+                        ]),
+                        protip: ul([
+                            "Histamine-mediated itching/flushing and mild BP drop can occur and is not usually a true allergy.",
+                            "Reassess within 5–10 min of IV dosing; avoid “stacking” doses without reassessment.",
+                            "Treat the cause of pain (splint, reduce, drain, regional anesthesia) alongside analgesia."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "μ-opioid receptor agonist → analgesia with dose-dependent sedation and respiratory depression.",
+                                    "Onset: ~5 min IV (peak ~15–30 min); duration ~2–4 h (variable).",
+                                    "Expected response: improved ability to breathe/move/participate in care; failure = persistent severe pain despite appropriate titration or worsening clinical picture."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: nausea/vomiting, pruritus, constipation (later), dizziness, sedation.",
+                                    "Serious: respiratory depression/apnea, hypotension, delirium (esp. older adults).",
+                                    "Stop/urgent review: RR &lt; 10, increasing sedation, cyanosis, severe hypotension, new confusion, or suspected overdose."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive CNS/respiratory depression with alcohol, benzodiazepines, sedating antihistamines, gabapentinoids, other opioids.",
+                                    "Avoid combining with other sedatives unless there is a clear plan and monitoring.",
+                                    "Constipating meds (anticholinergics, iron) worsen bowel effects—plan prevention if ongoing use."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline and after each dose: pain score + function, RR, SpO₂, BP/HR, sedation level.",
+                                    "High-risk or repeated dosing: consider continuous SpO₂ and capnography if available.",
+                                    "Escalate if inadequate relief after titration, adverse effects, or concern for occult diagnosis (e.g., compartment syndrome, ischemia, perforation)."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Purpose: short-term relief to help movement/breathing and allow care to proceed.",
+                                    "Avoid alcohol/sedatives; no driving/operating machinery for at least 24 h after parenteral dosing.",
+                                    "Red flags: extreme sleepiness, slow/shallow breathing, fainting, severe dizziness, or allergic symptoms—seek urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-med: ice/heat, immobilization/splinting, reduction, wound care, reassurance/coaching.",
+                                    "First-line (when appropriate): acetaminophen and/or NSAID; topical NSAID for minor MSK pain.",
+                                    "Adjuncts: regional anesthesia/nerve block, ketamine (sub-dissociative), fentanyl (shorter acting) per protocol."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected overdose/respiratory depression: stimulate, support airway/ventilation, give naloxone per protocol, and activate emergency response.",
+                                    "Allergic reaction/anaphylaxis: stop drug, treat per anaphylaxis protocol, and escalate.",
+                                    "Notify supervising physician for repeated dosing, high-risk patients, unexpected sedation, or need for outpatient opioid plan."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication (pain source), baseline vitals/sedation, dose/route/time, response, and adverse effects.",
+                                    "Record monitoring plan (when next reassessment), counselling given, and any physician contact/authorization.",
+                                    "If discharge opioid considered: document alternatives tried, PDMP/check requirements (local), and follow-up/return precautions."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Ketamine",
+                        forms: "Vial (50mg/mL)",
+                        ind: "Severe pain (opioid-sparing), procedural sedation, excited delirium (protocol-dependent)",
+                        dose: ul([
+                            "Analgesia (sub-dissociative): 0.1–0.3 mg/kg IV slow (over ~10–15 min); may repeat carefully based on response.",
+                            "Procedural sedation (dissociative): 1–2 mg/kg IV (or 4–5 mg/kg IM per protocol).",
+                            "Adjustments: start lower in older adults/frailty; use caution in severe hypertension, ischemic heart disease, or significant hepatic disease.",
+                            "Titration: analgesia can be titrated; sedation requires full monitoring, resuscitation readiness, and physician-level oversight per local policy."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity.",
+                            "Relative/high risk: acute psychosis/schizophrenia, poorly controlled hypertension, aneurysm/dissection, severe CAD, significant glaucoma/ocular injury, severe hepatic disease.",
+                            "Physician approval: procedural sedation, excited delirium management, or any uncertain indication."
+                        ]),
+                        protip: ul([
+                            "Give sub-dissociative doses slowly to reduce dysphoria, nausea, and transient hypertension.",
+                            "Have suction ready—hypersalivation can occur; consider anticholinergic only if needed.",
+                            "Calm, low-stimulation environment reduces emergence reactions."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "NMDA receptor antagonism → analgesia; at higher doses causes dissociation and amnesia.",
+                                    "Onset: ~1 min IV; IM onset ~3–5 min; duration ~10–20 min (sedation) with longer recovery.",
+                                    "Treatment failure: ongoing severe pain/agitation after appropriate dosing or inability to complete procedure safely."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dizziness, nausea/vomiting, hypersalivation, nystagmus, dysphoria.",
+                                    "Physiologic: transient ↑BP/HR (typical), rare apnea (more likely with rapid IV push or co-sedatives).",
+                                    "Rare serious: laryngospasm—requires immediate airway maneuvers and escalation."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive sedation/respiratory risk with benzodiazepines, opioids, alcohol, or other sedatives.",
+                                    "Sympathomimetics/MAOIs may increase BP/HR—use caution and monitor closely.",
+                                    "If emergence reaction occurs, small benzodiazepine doses can help but increase respiratory risk."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Analgesia dosing: monitor BP/HR, SpO₂, mental status; reassess pain and function.",
+                                    "Sedation: continuous ECG, BP, SpO₂ and ideally capnography; airway equipment and trained personnel at bedside.",
+                                    "Escalate for hypoxia, apnea, severe hypertension, persistent agitation, or inability to maintain airway."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "May cause a brief “floaty/dissociated” feeling; this is expected and short-lived.",
+                                    "After sedation: no driving, alcohol, or important decisions for 24 h; responsible adult supervision as per local policy.",
+                                    "Return urgently for breathing difficulty, chest pain, persistent vomiting, or severe confusion."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Pain: acetaminophen/NSAID, regional anesthesia/nerve block, fentanyl/morphine (with monitoring).",
+                                    "Procedural sedation: nitrous oxide (if available), propofol/etomidate (physician-led), ketofol per local protocol.",
+                                    "Agitation: de-escalation, benzodiazepine, antipsychotic (agent depends on cause and local protocol)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Laryngospasm/hypoventilation: jaw thrust, suction, BVM/PPV; prepare for advanced airway and call for help.",
+                                    "Severe emergence reaction: reduce stimulation; consider benzodiazepine with close respiratory monitoring.",
+                                    "Notify supervising physician for sedation cases, high-risk cardiovascular patients, or repeated dosing without response."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication (pain vs sedation), consent (if sedation), baseline vitals, airway risk, and fasting status if relevant.",
+                                    "Record dose/route/time, monitoring performed, response, and recovery status.",
+                                    "Note physician authorization/attendance for sedation and discharge instructions provided."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Fentanyl",
+                        forms: "Vial (50mcg/mL)",
+                        ind: "Severe acute pain, RSI/airway premedication (protocol-dependent)",
+                        dose: ul([
+                            "Adults: 25–50 mcg IV slow push; repeat q5–10 min PRN (or 0.5–1 mcg/kg IV).",
+                            "Pediatrics: 1–2 mcg/kg IV slow push; reassess before repeat dosing.",
+                            "Max/limits: titrate to effect; if needing frequent re-dosing or escalating totals, reassess pain source and contact supervising physician.",
+                            "Adjustments: start lower in older adults, frailty, OSA, hepatic impairment; use caution with severe hypotension.",
+                            "Onset/duration: rapid onset with shorter duration than morphine—plan reassessment and next-step analgesia."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity, severe respiratory depression without airway support.",
+                            "Relative/high risk: significant OSA, concomitant sedatives, hemodynamic instability, severe COPD/CO₂ retainers.",
+                            "Physician approval: airway/RSI use, repeated dosing, or high-risk comorbidities."
+                        ]),
+                        protip: ul([
+                            "Give slowly—rapid IV push can rarely cause chest wall rigidity and apnea.",
+                            "Short duration means pain may recur; pair with longer-acting plan if needed (non-opioid, block, or physician-guided opioid plan).",
+                            "Reassess within 2–5 min after IV dosing and monitor respiratory status closely."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Potent μ-opioid receptor agonist (highly lipophilic) → rapid analgesia and sedation.",
+                                    "Onset: ~1–2 min IV; duration ~30–60 min (variable).",
+                                    "Treatment failure: inadequate pain relief despite titration or rapid recurrence suggesting need for alternative strategy/diagnosis."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: nausea/vomiting, pruritus, dizziness, sedation.",
+                                    "Serious: respiratory depression/apnea, bradycardia, hypotension; rare chest wall rigidity (rapid push/high doses).",
+                                    "Stop/urgent review: hypoxia, RR &lt; 10, increasing somnolence, severe hypotension, or suspected overdose."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive CNS/respiratory depression with alcohol, benzodiazepines, other sedatives/opioids.",
+                                    "Strong CYP3A4 inhibitors (e.g., azoles, macrolides, ritonavir) can increase effect—use extra caution with repeat dosing.",
+                                    "Serotonergic toxicity is rare but possible with MAOI/other serotonergic agents—monitor for agitation, clonus, hyperthermia."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline and after each dose: RR, SpO₂, BP/HR, sedation level, pain/function.",
+                                    "High-risk/repeated dosing: consider continuous SpO₂ and capnography if available.",
+                                    "Escalate if frequent re-dosing required, adverse effects occur, or pain etiology is unclear."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Rapid relief is expected; drowsiness can occur—avoid driving/operating machinery after dosing.",
+                                    "Avoid alcohol and sedatives; take only as directed.",
+                                    "Red flags: slow/shallow breathing, extreme sleepiness, fainting, or severe itching/swelling—seek urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-opioids: acetaminophen/NSAID where appropriate; topical/local anesthesia; immobilization.",
+                                    "Opioid alternatives: morphine (longer acting) or sub-dissociative ketamine (opioid-sparing) per protocol.",
+                                    "Procedure-related pain: consider regional anesthesia/nerve blocks when available."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Overdose/respiratory depression: airway/ventilation support + naloxone per protocol; activate emergency response.",
+                                    "Chest wall rigidity/apnea: call for help, support ventilation; consider naloxone and advanced airway measures per protocol.",
+                                    "Notify supervising physician for high-risk patients, repeated dosing, or airway/RSI use."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication, baseline vitals/sedation, dose/route/time, reassessment results, and monitoring plan.",
+                                    "Record counselling (avoid alcohol/sedatives, driving restrictions) and return precautions.",
+                                    "Note physician authorization when required (airway use, high-risk patients, repeated dosing)."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             },
             {
                 category: "Controlled Substances — Benzodiazepines",
                 medications: [
-                    { name: "Diazepam (Valium)", forms: "Vial (5mg/mL), Tablets", ind: "Status epilepticus, muscle spasm, alcohol withdrawal", dose: "5-10 mg IV/PO.", contra: "Respiratory depression, narrow-angle glaucoma.", protip: "Has active metabolites with a very long half-life (up to 100 hours). May accumulate in the elderly." },
-                    { name: "Midazolam (Versed)", forms: "Vial (1mg/mL, 5mg/mL)", ind: "Procedural sedation, status epilepticus, extreme agitation", dose: "Sedation: 1-2 mg IV slow push. Seizure: 5-10 mg IM.", contra: "Shock, respiratory depression.", protip: "Excellent amnesic properties. It is short-acting but causes significant respiratory depression; always have airway equipment ready." },
-                    { name: "Lorazepam (Ativan)", forms: "Vial (2mg/mL, 4mg/mL), Tablets/SL", ind: "Status epilepticus, severe anxiety, alcohol withdrawal", dose: "Seizure: 2-4 mg IV.", contra: "Respiratory depression.", protip: "The drug of choice for status epilepticus due to its fast onset and longer duration of action in the brain compared to diazepam." }
+                    {
+                        name: "Diazepam (Valium)",
+                        forms: "Vial (5mg/mL), Tablets, Rectal gel (where available)",
+                        ind: "Status epilepticus, acute muscle spasm, alcohol withdrawal (selected)",
+                        dose: ul([
+                            "Seizure (adult): 5–10 mg IV slow push; may repeat q5–10 min PRN (max per protocol; call supervising physician if repeated dosing).",
+                            "Pediatrics: use weight-based dosing per protocol (commonly ~0.2–0.3 mg/kg IV/PR/IN depending on route).",
+                            "Alcohol withdrawal: symptom-triggered dosing per protocol; avoid over-sedation.",
+                            "Adjustments: start lower and titrate cautiously in older adults/frailty, hepatic impairment, COPD/OSA, or with other sedatives; pregnancy—avoid unless urgent."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity.",
+                            "Relative/high risk: significant respiratory depression, severe COPD/OSA, myasthenia gravis, acute intoxication with other CNS depressants.",
+                            "Narrow-angle glaucoma (relative); consider alternatives.",
+                            "Physician approval: ongoing withdrawal management, repeated dosing, or procedural sedation."
+                        ]),
+                        protip: ul([
+                            "Long half-life/active metabolites → prolonged sedation, especially in older adults and hepatic impairment.",
+                            "Use the lowest effective dose; reassess frequently and avoid stacking doses.",
+                            "Avoid combining with opioids unless a clear plan and monitoring are in place."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "GABA-A positive allosteric modulator → anticonvulsant, anxiolytic, muscle relaxant effects.",
+                                    "Onset: minutes IV; clinical duration can be prolonged due to redistribution and metabolites.",
+                                    "Failure: ongoing seizure activity after appropriate dosing → move to next-line agents and escalate immediately."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: drowsiness, dizziness, ataxia, confusion.",
+                                    "Serious: respiratory depression, hypotension, paradoxical agitation (rare), aspiration risk.",
+                                    "Stop/urgent review: hypoventilation, inability to protect airway, hypotension, or persistent altered mental status."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Strong additive CNS depression with opioids, alcohol, sedating antihistamines, antipsychotics, gabapentinoids.",
+                                    "CYP inhibitors (some azoles/macrolides) can prolong effect; repeated dosing increases risk.",
+                                    "Avoid routine co-administration with other sedatives unless supervised with monitoring."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "After dosing: RR, SpO₂, BP/HR, sedation level; consider capnography if available.",
+                                    "Seizures: continuous monitoring and frequent reassessment; be ready for airway support.",
+                                    "Escalate for recurrent seizures, repeated dosing need, or over-sedation."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Causes drowsiness and impaired coordination—no driving/alcohol/sedatives.",
+                                    "If for withdrawal: do not self-escalate; follow close follow-up plan.",
+                                    "Red flags: breathing difficulty, severe confusion, falls, or recurrent seizures—seek emergency care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Status epilepticus: lorazepam (often preferred), midazolam IM/IN if no IV access; then levetiracetam/phenytoin/valproate per protocol.",
+                                    "Muscle spasm: non-benzo options when appropriate (NSAIDs, acetaminophen, physiotherapy).",
+                                    "Withdrawal: phenobarbital or other protocol-based regimens (physician-led)."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Over-sedation/respiratory depression: airway/ventilation support; consider flumazenil only for iatrogenic benzodiazepine exposure in selected cases (physician decision).",
+                                    "Status epilepticus: if no response after initial benzo dosing, escalate immediately to next-line therapy and physician.",
+                                    "Notify supervising physician for repeated dosing, withdrawal management plans, or any airway concern."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication (seizure vs withdrawal vs spasm), baseline vitals, dose/route/time, and clinical response.",
+                                    "Record monitoring frequency and any co-administered sedatives/opioids.",
+                                    "Note physician contact, delegated authority, and follow-up/return precautions."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Midazolam (Versed)",
+                        forms: "Vial (1mg/mL, 5mg/mL), Intranasal option (via atomizer) where available",
+                        ind: "Procedural sedation (physician-led), status epilepticus, severe agitation",
+                        dose: ul([
+                            "Sedation (adult): 0.5–1 mg IV slow push; repeat q2–3 min to effect (commonly total 2–5 mg; higher totals require physician oversight).",
+                            "Seizure (adult, no IV): 5–10 mg IM or IN (protocol dependent).",
+                            "Pediatrics: weight-based dosing per protocol (commonly ~0.1 mg/kg IV or ~0.2 mg/kg IN/IM; max often 10 mg).",
+                            "Adjustments: reduce dose in older adults, frailty, hepatic impairment, and when combined with opioids/other sedatives."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity.",
+                            "Relative/high risk: shock/hypotension, significant respiratory depression, severe COPD/OSA, acute intoxication with other CNS depressants.",
+                            "Physician approval: procedural sedation, repeated dosing, or combined sedative regimens."
+                        ]),
+                        protip: ul([
+                            "Short-acting but can still cause significant respiratory depression—monitor closely.",
+                            "Titrate slowly; avoid large boluses, especially with opioids.",
+                            "For seizures without IV access, IM/IN midazolam is often fastest to give—follow protocol."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "GABA-A positive allosteric modulator → rapid anxiolysis, anticonvulsant effect, and amnesia.",
+                                    "Onset: ~1–2 min IV; IM/IN onset ~5–10 min (variable).",
+                                    "Failure: persistent seizure/agitation after appropriate dosing → move to next-line therapy and escalate."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: drowsiness, impaired coordination, paradoxical agitation (rare).",
+                                    "Serious: apnea/respiratory depression, hypotension, aspiration.",
+                                    "Stop/urgent review: hypoxia, bradypnea, inability to maintain airway, or hypotension."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Potent additive respiratory depression with opioids, alcohol, other sedatives.",
+                                    "CYP3A4 inhibitors (e.g., azoles, macrolides, some antivirals) can prolong effect—extra caution with repeat dosing.",
+                                    "Avoid combining with other sedatives unless there is clear supervision and monitoring."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Continuous SpO₂; frequent RR, BP/HR, sedation scoring; capnography strongly preferred for sedation.",
+                                    "Seizures/agitation: continuous monitoring and readiness for airway support and restraints per policy.",
+                                    "Escalate if repeated dosing required, airway compromise, or recurrent seizures."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Expect drowsiness and impaired judgment—no driving/alcohol for 24 h after sedation/large doses.",
+                                    "Do not take other sedatives unless prescribed and discussed.",
+                                    "Red flags: breathing trouble, severe confusion, falls, or seizure recurrence—seek urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Status epilepticus: lorazepam IV (if access), diazepam IV/PR; then second-line anti-seizure agents per protocol.",
+                                    "Agitation: de-escalation, antipsychotic options (cause-specific), ketamine (protocol dependent).",
+                                    "Procedural sedation: physician-led agents per local sedation pathway."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Respiratory depression: airway positioning, BVM/PPV; call for help and consider reversal only in selected iatrogenic cases (physician decision).",
+                                    "Ongoing seizures: escalate immediately to next-line therapy; treat hypoglycemia, hypoxia, and reversible causes.",
+                                    "Notify supervising physician for repeated dosing, sedation cases, or any airway concern."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication, baseline vitals/sedation, dose/route/time, and response.",
+                                    "Record monitoring performed (SpO₂/ECG/capnography), adverse effects, and disposition plan.",
+                                    "Note physician authorization when required (sedation, repeated dosing, combined sedatives)."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Lorazepam (Ativan)",
+                        forms: "Vial (2mg/mL, 4mg/mL), Tablets/SL",
+                        ind: "Status epilepticus, severe anxiety/panic (acute), alcohol withdrawal (selected)",
+                        dose: ul([
+                            "Status epilepticus (adult): 0.1 mg/kg IV (max 4 mg per dose); may repeat once after 5–10 min per protocol.",
+                            "Anxiety (adult): 0.5–2 mg PO/SL/IV (route depends on urgency and monitoring setting).",
+                            "Pediatrics: weight-based dosing per protocol (commonly 0.05–0.1 mg/kg IV; max per dose per protocol).",
+                            "Adjustments: reduce dose in older adults/frailty, hepatic impairment, COPD/OSA, and with opioids/other sedatives; avoid prolonged courses without a taper plan."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity.",
+                            "Relative/high risk: respiratory depression, severe COPD/OSA, myasthenia gravis, acute intoxication with other CNS depressants.",
+                            "Physician approval: repeated dosing, withdrawal management plans, or procedural sedation."
+                        ]),
+                        protip: ul([
+                            "Often preferred for status epilepticus due to longer CNS duration than diazepam.",
+                            "Treat reversible seizure causes in parallel (glucose, oxygenation, electrolytes, tox).",
+                            "Avoid combining with opioids unless there is a clear plan and monitoring."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "GABA-A positive allosteric modulator → anticonvulsant, anxiolytic, sedative effects.",
+                                    "Onset: ~1–3 min IV; clinical duration longer than diazepam in CNS (variable).",
+                                    "Failure: ongoing seizure activity after appropriate dosing → escalate immediately to second-line anti-seizure therapy and physician."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: drowsiness, dizziness, confusion, ataxia.",
+                                    "Serious: respiratory depression/apnea, hypotension, aspiration; paradoxical agitation (rare).",
+                                    "Stop/urgent review: hypoxia, bradypnea, hypotension, or inability to protect airway."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Major additive risk with opioids, alcohol, other sedatives—avoid unless supervised with monitoring.",
+                                    "CNS depressants (antipsychotics, sedating antihistamines, gabapentinoids) increase falls/over-sedation risk.",
+                                    "If repeated dosing is required, reassess for ongoing exposure/tox causes and need for airway support."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "After dosing: RR, SpO₂, BP/HR, sedation level; consider capnography if available.",
+                                    "Status epilepticus: continuous monitoring; reassess every few minutes until controlled.",
+                                    "Escalate for recurrent seizures, repeated dosing need, or over-sedation."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Causes sedation and impaired judgment—no driving, alcohol, or sedatives.",
+                                    "If used for anxiety/withdrawal: use only as prescribed; risk of dependence with repeated use.",
+                                    "Red flags: breathing difficulty, severe confusion, falls, or seizure recurrence—seek emergency care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Status epilepticus: midazolam IM/IN if no IV; then levetiracetam/phenytoin/valproate per protocol.",
+                                    "Anxiety: non-pharmacologic de-escalation, reassurance, breathing coaching; consider non-benzo options for longer-term management.",
+                                    "Withdrawal: protocol-based regimens (often physician-led), consider adjuncts based on severity."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Respiratory depression: airway/ventilation support; activate emergency response; reversal (flumazenil) is rarely appropriate and is physician-directed.",
+                                    "Refractory seizures: escalate immediately to next-line agents and consider ICU/airway management.",
+                                    "Notify supervising physician for repeated dosing, withdrawal plans, or any airway concern."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication, seizure timing/description (if applicable), baseline vitals/sedation, dose/route/time, and response.",
+                                    "Record monitoring plan, reassessment timing, and any co-administered CNS depressants.",
+                                    "Note physician authorization, follow-up plan, and return precautions."
+                                ])
+                            }
+                        ]
+                    }
                 ]
             }
         ];
