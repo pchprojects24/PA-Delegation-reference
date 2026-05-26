@@ -5717,7 +5717,7 @@
                     },
                     {
                         name: "Ketorolac (Toradol)",
-                        forms: "Vial (IV/IM), tablets (10 mg)",
+                        forms: "Vial (30mg/mL Injection 1mL, IV/IM), tablets (10 mg)",
                         ind: "Restricted-use short-term treatment of moderate–severe acute pain (e.g., renal colic, acute MSK injury) when a potent NSAID is appropriate.",
                         dose: ul([
                             "Adults <65 years, normal renal function: 30 mg IV/IM q6h PRN (max 120 mg/day).",
@@ -5874,6 +5874,102 @@
                                 content: ul([
                                     "Allergic reaction/anaphylaxis: stop and activate emergency response.",
                                     "Escalate to supervising physician if pain is severe, function is declining, infection is suspected, or prolonged therapy is required."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Methoxyflurane 99.9% Inhalation with Device",
+                        forms: "Inhalation device (3mL vial with handheld inhaler/whistle device)",
+                        ind: "Short-term relief of moderate–severe acute pain (trauma, burns, procedural pain) when rapid-onset analgesia is needed and patient can self-administer",
+                        dose: ul([
+                            "Adults/adolescents ≥12 years: Inhale intermittently from device as needed for pain relief; max single use ~3 mL (up to 6 mL total per day; 15 mL per week).",
+                            "Patient-controlled: patient holds device and inhales PRN; self-limiting (drops device when sedated).",
+                            "Duration: continuous use typically 25–30 min per 3 mL dose; analgesia persists briefly after stopping.",
+                            "Adjustments: avoid in renal impairment, hepatic disease; pregnancy/breastfeeding—use only if clearly needed and benefits outweigh risks; not recommended in children <12 years."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity to methoxyflurane, severe renal impairment/AKI, severe hepatic impairment, known/family history of malignant hyperthermia, cardiovascular instability.",
+                            "Relative/high risk: pre-existing renal disease, concurrent nephrotoxic drugs (NSAIDs, aminoglycosides, contrast), altered consciousness/inability to self-administer.",
+                            "Physician approval: repeated dosing (especially cumulative >15 mL/week), high-risk comorbidities, or uncertain diagnosis."
+                        ]),
+                        protip: ul([
+                            "Best for awake, cooperative patients who can follow instructions and self-titrate; excellent for prehospital/field use and minor procedures.",
+                            "Monitor for over-sedation—patient typically drops device when adequately sedated (self-limiting safety feature).",
+                            "Do not exceed cumulative weekly dose limits due to nephrotoxicity risk; document total mL used."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Volatile halogenated ether; CNS depression via GABA/glycine receptor modulation → analgesia, mild sedation, anxiolysis.",
+                                    "Onset: analgesia within 6–10 inhalations (~3–5 min); peak effect ~20–30 min; wears off minutes after stopping.",
+                                    "Expected response: reduced pain scores, improved ability to tolerate movement/procedures; treatment failure = persistent severe pain or intolerance."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dizziness, drowsiness, euphoria, nausea, headache, cough.",
+                                    "Serious: nephrotoxicity (dose-related; monitor cumulative exposure), hepatotoxicity (rare), over-sedation with loss of airway protective reflexes.",
+                                    "Stop/urgent review: severe drowsiness/unresponsiveness, hypotension, respiratory depression, oliguria/anuria, jaundice."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive sedation/CNS depression with opioids, benzodiazepines, alcohol; avoid concurrent use or monitor closely.",
+                                    "Nephrotoxic drugs (NSAIDs, aminoglycosides, contrast) increase renal injury risk—avoid or use extreme caution.",
+                                    "Enzyme inducers (e.g., isoniazid, certain anticonvulsants) may increase nephrotoxic metabolites."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: screen for renal/hepatic disease, nephrotoxic drugs, cardiovascular stability, ability to self-administer.",
+                                    "During use: continuous observation; monitor pain, sedation level, respiratory rate, BP/HR; document total mL used.",
+                                    "Post-use: reassess renal function (creatinine, urine output) if repeated/high-dose use or baseline renal impairment."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Inhale from device as needed for pain; you may feel drowsy/dizzy—sit or lie down during use.",
+                                    "Do not drive or operate machinery for several hours after use; avoid alcohol.",
+                                    "If you become too drowsy, you will naturally stop inhaling (device drops from hand)—this is a safety feature.",
+                                    "Red flags: severe drowsiness, fainting, chest pain, difficulty breathing, low urine output—seek urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-opioid: acetaminophen/NSAID (if appropriate); topical/local anesthesia; ice/immobilization.",
+                                    "Opioid: fentanyl or morphine IV/IM for severe pain; nitrous oxide (if available) for procedural sedation.",
+                                    "Regional anesthesia/nerve blocks when appropriate for localized pain."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Over-sedation/respiratory depression: remove device, support airway/ventilation, monitor closely; activate emergency response if severe.",
+                                    "Suspected renal injury (oliguria, rising creatinine): stop drug, IV fluids, urgent nephrology consultation if severe.",
+                                    "Notify supervising physician for repeated use, high cumulative dose (>6 mL/day or >15 mL/week), inadequate response, or high-risk patients."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication, baseline vitals/mental status, total mL administered, duration of use, and pain/sedation response.",
+                                    "Record cumulative weekly dose (critical for nephrotoxicity monitoring); note any concomitant nephrotoxic drugs.",
+                                    "Document counselling (driving restrictions, self-limiting nature, follow-up precautions) and physician authorization when required."
                                 ])
                             }
                         ]
@@ -8062,6 +8158,104 @@
                                     "Document indication, baseline vitals/sedation, dose/route/time, reassessment results, and monitoring plan.",
                                     "Record counselling (avoid alcohol/sedatives, driving restrictions) and return precautions.",
                                     "Note physician authorization when required (airway use, high-risk patients, repeated dosing)."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Acetaminophen with Codeine Tablets",
+                        forms: "Tablets (commonly Tylenol #3: 300mg acetaminophen/30mg codeine; Tylenol #4: 300mg/60mg)",
+                        ind: "Moderate acute pain when combination therapy with opioid is appropriate and non-opioid alone is inadequate",
+                        dose: ul([
+                            "Adults: 1–2 tablets PO q4–6h PRN (typically Tylenol #3 strength); max 4000 mg acetaminophen/day and codeine per protocol limits.",
+                            "Pediatrics: dosing based on codeine component per weight-based protocol; generally avoided in children <12 years due to metabolism variability.",
+                            "Max/limits: limit duration to 3–5 days; reassess if ongoing pain requires continued opioid.",
+                            "Adjustments: reduce dose or avoid in severe hepatic/renal impairment, older adults (start with 1 tablet); pregnancy—use only if clearly needed (risk of neonatal withdrawal with prolonged use).",
+                            "CYP2D6 considerations: ultra-rapid metabolizers convert more codeine to morphine (toxicity risk); poor metabolizers get minimal analgesia."
+                        ]),
+                        contra: ul([
+                            "Absolute: hypersensitivity to codeine/acetaminophen, severe respiratory depression without airway support, post-operative tonsillectomy/adenoidectomy in children.",
+                            "Relative/high risk: significant OSA, concomitant sedatives/alcohol, severe COPD, acute severe asthma, known CYP2D6 ultra-rapid metabolizer status.",
+                            "Acetaminophen component: active or recent liver disease, alcohol use disorder (relative; lower daily max to 2000–3000 mg).",
+                            "Physician approval: children <12 years, breastfeeding, repeated prescriptions, or high-risk comorbidities."
+                        ]),
+                        protip: ul([
+                            "Counsel on total acetaminophen intake—patients often take additional Tylenol unknowingly.",
+                            "Codeine is a prodrug requiring CYP2D6 conversion to morphine; variable efficacy and risk profile across populations.",
+                            "First-line should be acetaminophen and/or NSAID alone; reserve combination opioid for clear need with short duration."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Acetaminophen: central analgesic/antipyretic (mechanism incompletely understood); codeine: prodrug converted to morphine (μ-opioid agonist).",
+                                    "Expected response: improved pain within 30–60 min PO; functional improvement (able to move/sleep/participate in ADLs).",
+                                    "Treatment failure: persistent severe pain after appropriate trial suggests need for reassessment of diagnosis, alternative analgesia, or physician consultation."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects & Serious Harms",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: constipation, nausea, dizziness, drowsiness.",
+                                    "Serious: respiratory depression (especially with other sedatives or ultra-rapid metabolizers), hepatotoxicity (acetaminophen overdose), allergic reactions.",
+                                    "Stop/urgent review: severe drowsiness, slow/shallow breathing, jaundice/dark urine, severe nausea/vomiting, signs of allergic reaction."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "Additive CNS/respiratory depression with alcohol, benzodiazepines, sedating antihistamines, gabapentinoids, other opioids.",
+                                    "Acetaminophen: hepatotoxicity risk with chronic alcohol use, warfarin INR may increase slightly with regular acetaminophen use.",
+                                    "CYP2D6 inhibitors (e.g., fluoxetine, paroxetine, bupropion) reduce codeine efficacy; inducers or ultra-rapid metabolizers increase morphine formation (toxicity risk)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: screen for liver disease, alcohol use, OSA, concomitant sedatives/opioids, CYP2D6 status if known.",
+                                    "Follow-up: reassess pain and function within 24–48 h; monitor for sedation, constipation, and signs of acetaminophen toxicity if extended use.",
+                                    "Escalate if inadequate relief after 2–3 days, excessive sedation, or concern for misuse/diversion."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Do not exceed prescribed dose; avoid alcohol and additional acetaminophen products (check labels on cold/flu meds).",
+                                    "This is short-term only (3–5 days typical); if pain persists, you need reassessment rather than continued opioid use.",
+                                    "Expect constipation—increase fluids/fiber, use stool softener if needed; avoid driving/operating machinery while taking this medication.",
+                                    "Red flags: extreme drowsiness, slow/shallow breathing, yellowing of skin/eyes, severe itching/rash—seek urgent care."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Non-opioid: acetaminophen alone (up to 4000 mg/day) and/or NSAID (if no contraindication); topical NSAID for localized pain.",
+                                    "Non-medication: ice/heat, immobilization/splinting, physiotherapy, reassurance/coaching.",
+                                    "Stronger opioid (physician-directed): tramadol, morphine, hydromorphone for severe pain; regional anesthesia when appropriate."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Suspected overdose/respiratory depression: airway support + naloxone per protocol; activate emergency response.",
+                                    "Suspected acetaminophen toxicity: urgent serum acetaminophen level, hepatic panel; contact poison control/toxicology and arrange N-acetylcysteine if indicated.",
+                                    "Notify supervising physician for repeated prescriptions, high-risk patients, inadequate response, or concerns about misuse/diversion."
+                                ])
+                            },
+                            {
+                                title: "Delegation & Documentation",
+                                icon: "file-text",
+                                content: ul([
+                                    "Document indication (pain source), alternatives tried, baseline assessment, and total daily acetaminophen from all sources.",
+                                    "Record counselling (no additional acetaminophen, avoid alcohol/sedatives, driving restrictions, constipation management, duration limits).",
+                                    "Note PDMP check per local requirements, follow-up plan, and return precautions; document physician authorization when required."
                                 ])
                             }
                         ]
