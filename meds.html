@@ -5678,54 +5678,1902 @@
                     }
                 ]
             },
-            {
-                category: "Neurological",
-                medications: [
-                    { name: "Atropine Sulfate", forms: "Pre-filled syringe (1mg/10mL)", ind: "Symptomatic Bradycardia, Organophosphate poisoning", dose: "Bradycardia: 1 mg IV push q3-5 min (max 3mg).", contra: "None in emergency setting.", protip: "Will not work for heart blocks below the AV node (e.g., Mobitz II or 3rd-degree block) or in heart transplant patients (denervated heart)." },
-                    { name: "Cyclobenzaprine (Flexeril)", forms: "Tablets (10mg)", ind: "Muscle spasms", dose: "5-10 mg PO tid.", contra: "Recent MI, MAOI use, hyperthyroidism.", protip: "Structurally related to tricyclic antidepressants. Highly sedating; warn patients not to drive." },
-                    { name: "Phenytoin (Dilantin)", forms: "Vial (50mg/mL)", ind: "Status epilepticus, seizure prophylaxis", dose: "Loading: 15-20 mg/kg IV.", contra: "Sinus bradycardia, heart block.", protip: "Must be pushed very slowly (max 50 mg/min) and only mixed in Normal Saline to avoid precipitation and severe hypotension/arrhythmias." },
-                    { name: "Haloperidol (Haldol)", forms: "Vial (5mg/mL)", ind: "Acute agitation, severe delirium, psychosis", dose: "2.5-5 mg IV/IM.", contra: "Parkinson's disease, prolonged QTc.", protip: "Can cause severe extrapyramidal symptoms (EPS) and prolong the QTc interval leading to Torsades de Pointes. Have an ECG handy." },
-                    { name: "Zopiclone", forms: "Tablets (5, 7.5mg)", ind: "Short-term insomnia", dose: "3.75 - 7.5 mg PO at bedtime.", contra: "Severe respiratory impairment.", protip: "Causes a characteristic bitter/metallic taste in the mouth the next morning. Warn patients to ensure they have 7-8 hours to sleep." }
-                ]
-            },
-            {
-                category: "Obstetrical & Gynecological",
-                medications: [
-                    { name: "Canesten + Fluconazole", forms: "Vaginal cream/suppository + Oral Tab (150mg)", ind: "Vulvovaginal Candidiasis (Yeast infection)", dose: "Fluconazole 150mg PO x 1. Canesten applied locally.", contra: "Pregnancy (for oral Fluconazole—use topical only).", protip: "Oral Fluconazole is contraindicated in pregnancy. If pregnant, the patient must use 7 days of topical clotrimazole/miconazole." }
-                ]
-            },
-            {
-                category: "Ophthalmic",
-                medications: [
-                    { name: "Erythromycin ointment", forms: "Ophthalmic ointment (0.5%)", ind: "Bacterial conjunctivitis, corneal abrasion prophylaxis", dose: "1 cm ribbon to lower lid qid.", contra: "Hypersensitivity.", protip: "Ointments blur vision. Advise patients not to drive immediately after application. Apply to the inner lower lid, without touching the tube to the eye." },
-                    { name: "Gramicidin-Polymyxin B (Polysporin eye drops)", forms: "Eye drops", ind: "Bacterial conjunctivitis", dose: "1-2 drops q3-4h.", contra: "Viral/fungal eye infections.", protip: "Good first-line agent. If the patient wears contacts, they must stop wearing them and switch to Ciprofloxacin/Ofloxacin drops to cover Pseudomonas." },
-                    { name: "Fluorescein", forms: "Strips/Drops", ind: "Detection of corneal abrasions/ulcers", dose: "1 drop/strip applied to conjunctiva.", contra: "None.", protip: "Use with a Wood's lamp or Cobalt blue light. Abrasions will glow bright green. Remove contact lenses before use, as it permanently stains soft lenses." },
-                    { name: "Lubricating ointment", forms: "Ointment/Drops", ind: "Dry eyes, Bell's Palsy eye protection", dose: "Apply as needed.", contra: "None.", protip: "Crucial for patients with Bell's Palsy to prevent corneal drying and ulceration since they cannot blink or close the eye fully." }
-                ]
-            },
-            {
-                category: "Respiratory",
-                medications: [
-                    { name: "Salbutamol (Albuterol/Ventolin)", forms: "MDI, Nebulizer solution (2.5-5mg)", ind: "Asthma, COPD, bronchospasm, hyperkalemia", dose: "2.5-5 mg nebulized q20min. MDI: 4-8 puffs.", contra: "Severe tachycardia (relative).", protip: "It is a beta-2 agonist but has some beta-1 crossover. It will cause tachycardia and tremors; reassure the patient this is a normal side effect." },
-                    { name: "Beclomethasone dip", forms: "MDI (QVAR)", ind: "Maintenance asthma therapy", dose: "1-2 puffs bid.", contra: "Acute asthma attack.", protip: "This is a preventer, not a reliever. Patient MUST rinse their mouth after use to prevent oral thrush (candidiasis)." },
-                    { name: "Lidocaine endotracheal spray", forms: "LMA spray (10mg/dose)", ind: "Topical anesthesia for intubation/bronchoscopy", dose: "1-2 sprays to vocal cords.", contra: "Amide anesthetic allergy.", protip: "Suppresses the gag/cough reflex. Patient must be strictly NPO until numbness wears off to prevent aspiration." }
-                ]
-            },
-            {
-                category: "IV Fluids, Blood Products, Electrolytes",
-                medications: [
-                    { name: "Naloxone (Narcan)", forms: "Vial (0.4mg/mL, 2mg/2mL), Nasal Spray", ind: "Opioid overdose", dose: "0.4 - 2 mg IV/IM/IN q2-3min.", contra: "None in overdose.", protip: "The half-life of Naloxone (~30-60 mins) is shorter than most opioids. Monitor closely for re-sedation after the patient wakes up." },
-                    { name: "Flumazenil", forms: "Vial (0.1mg/mL)", ind: "Benzodiazepine reversal (iatrogenic)", dose: "0.2 mg IV over 15 sec.", contra: "Chronic benzo users, TCA overdose, seizure history.", protip: "Rarely used in the ED for unknown overdoses because if the patient is a chronic benzo user, reversing it can cause intractable, fatal seizures." },
-                    { name: "Dextrose (D50W)", forms: "Pre-filled syringe (25g/50mL)", ind: "Severe hypoglycemia", dose: "1 ampule (25g) IV push.", contra: "No IV access.", protip: "Highly hypertonic. Extravasation causes severe tissue necrosis. Ensure a perfectly patent IV line before pushing." },
-                    { name: "Lactated Ringer’s", forms: "IV Bag", ind: "Resuscitation, trauma, burns", dose: "Bolus or continuous.", contra: "Severe hyperkalemia, liver failure (can't process lactate).", protip: "More physiologic than Normal Saline. Preferred in trauma and large volume resuscitation to prevent hyperchloremic metabolic acidosis." },
-                    { name: "NaCl 0.9% (Normal Saline)", forms: "IV Bag", ind: "Resuscitation, hydration", dose: "Bolus or continuous.", contra: "Fluid overload, CHF.", protip: "Despite the name, it is not 'normal' (pH is ~5.5, chloride is 154). Large volumes can cause hyperchloremic non-anion gap metabolic acidosis." },
-                    { name: "Thiamine (B1)", forms: "Vial (100mg/mL)", ind: "Wernicke's encephalopathy, chronic alcoholism", dose: "100 mg IV/IM.", contra: "None.", protip: "In alcoholic or malnourished patients, ALWAYS give Thiamine before or alongside IV Dextrose to prevent precipitating Wernicke's encephalopathy." },
-                    { name: "Calcium gluconate", forms: "Vial (10%)", ind: "Severe Hyperkalemia, Calcium channel blocker overdose", dose: "1-2 g IV over 5-10 mins.", contra: "Digoxin toxicity (relative), hypercalcemia.", protip: "Does NOT lower potassium levels. It solely stabilizes the cardiac membrane to prevent fatal arrhythmias while other drugs work." },
-                    { name: "Magnesium Sulphate", forms: "Vial (50%)", ind: "Torsades de Pointes, Severe asthma, Eclampsia", dose: "Asthma/Torsades: 2 g IV over 10-20 min. Eclampsia: 4 g IV.", contra: "Heart block, renal failure.", protip: "Watch for loss of deep tendon reflexes and respiratory depression. The antidote is Calcium Gluconate." },
-                    { name: "Sodium Bicarbonate", forms: "Pre-filled syringe (50mEq/50mL)", ind: "TCA Overdose, Severe Metabolic Acidosis, Hyperkalemia", dose: "1-2 ampules (50-100 mEq) IV push.", contra: "Alkalosis.", protip: "In TCA overdose with widened QRS, push bicarb until the QRS narrows. It works via sodium channel loading and alkalinization." },
-                    { name: "Cyanokit (Hydroxocobalamin)", forms: "Vial (5g)", ind: "Cyanide toxicity (smoke inhalation in house fires)", dose: "5 g IV infusion over 15 mins.", contra: "None in suspected CN toxicity.", protip: "Will instantly turn the patient's skin, mucous membranes, and urine bright cherry red for days. This is normal." }
-                ]
-            },
+	            {
+	                category: "Neurological",
+	                medications: [
+	                    {
+	                        name: "Atropine Sulfate",
+	                        forms: "Pre-filled syringe (1 mg/10 mL)",
+	                        ind: "Symptomatic bradycardia (ACLS); organophosphate/nerve agent poisoning (adjunct for secretions/bronchorrhea)",
+	                        dose: ul([
+	                            "Adults (bradycardia): 1 mg IV push q3–5 min PRN (max 3 mg).",
+	                            "Pediatrics (bradycardia): 0.02 mg/kg IV/IO (min 0.1 mg; max single dose 0.5 mg child/1 mg adolescent), may repeat once (max 1 mg child/2 mg adolescent).",
+	                            "Organophosphate poisoning: large, repeated IV doses may be required; titrate to drying secretions/adequate ventilation per protocol/toxicology.",
+	                            "Adjustments: no renal adjustment; use caution in older adults (delirium/urinary retention risk) when non-emergent."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications in life-threatening bradycardia or cholinergic toxidrome.",
+	                            "Relative/precautions (non-emergent): narrow-angle glaucoma, urinary retention/BPH, tachyarrhythmias, severe CAD/ischemia risk.",
+	                            "Treatment failure is common in infranodal blocks (Mobitz II/3rd-degree) and in heart transplant patients (denervated heart).",
+	                            "Physician approval: suspected high-grade/infranodal block, need for infusions/pacing, or toxicology dosing beyond protocol."
+	                        ]),
+	                        protip: ul([
+	                            "If unstable bradycardia persists after atropine, move quickly to pacing and/or pressor infusion—don’t delay escalation.",
+	                            "In organophosphate poisoning, atropine treats secretions/bronchospasm; it does not reverse nicotinic weakness—give pralidoxime per protocol and secure the airway early."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Antimuscarinic (parasympatholytic) → increases SA node rate and AV node conduction; decreases secretions and bronchoconstriction.",
+	                                    "Onset: minutes IV; expected response is improved HR/perfusion in vagal/AV-node mediated bradycardia.",
+	                                    "Treatment failure: persistent brady/hypoperfusion from infranodal block, hypoxia, hypothermia, or drug/toxin effects → pacing/pressors and treat cause."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: tachycardia, dry mouth, blurred vision, urinary retention, constipation.",
+	                                    "Serious: precipitated ischemia/arrhythmia, severe agitation/delirium, hyperthermia (anticholinergic toxicity)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive anticholinergic effects with antihistamines, TCAs, antipsychotics, and antiparkinsonian anticholinergics.",
+	                                    "Tachycardia/arrhythmia risk increases with sympathomimetics or existing stimulant intoxication."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Continuous ECG, BP, mental status; reassess perfusion after each dose.",
+	                                    "If using for poisoning: monitor airway/ventilation, secretions, and temperature; frequent reassessment is mandatory."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "In ED use: possible dry mouth, blurry vision, palpitations, and temporary confusion—staff will monitor HR/BP closely.",
+	                                    "Seek urgent care for chest pain, severe agitation/confusion, or inability to urinate after discharge."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Bradycardia: transcutaneous pacing; dopamine or epinephrine infusion per ACLS/protocol.",
+	                                    "Organophosphate poisoning: pralidoxime (2-PAM) and benzodiazepines (seizures) plus aggressive airway support."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If unstable bradycardia persists: initiate pacing and call supervising physician immediately; treat reversible causes (hypoxia, hyperK, drugs).",
+	                                    "Suspected anticholinergic toxicity: stop anticholinergics, provide cooling/sedation/IV fluids; physostigmine is specialist-directed—consult toxicology."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Cyclobenzaprine (Flexeril)",
+	                        forms: "Tablets (commonly 10 mg; some regions have 5 mg)",
+	                        ind: "Short-term adjunct for acute painful muscle spasm when non-pharmacologic measures/analgesics are insufficient (not for chronic spasticity)",
+	                        dose: ul([
+	                            "Adults: 5 mg PO TID; may increase to 10 mg PO TID PRN (max 30 mg/day).",
+	                            "Older adults/frailty: start 5 mg PO daily or BID; avoid higher doses if sedation/falls risk.",
+	                            "Duration: typically ≤2–3 weeks; reassess if not improving.",
+	                            "Hepatic impairment: start low/avoid in moderate–severe impairment; renal adjustment not usually required."
+	                        ]),
+	                        contra: ul([
+	                            "MAOI use within 14 days (risk of serotonin syndrome/hypertensive crisis).",
+	                            "Recent MI, arrhythmias, heart block/conduction disturbance, CHF; hyperthyroidism.",
+	                            "Relative/precautions: glaucoma, urinary retention/BPH, significant sedation risk (OSA, alcohol/other sedatives).",
+	                            "Physician approval: prolonged use, high-risk cardiac history, or concomitant serotonergic polypharmacy."
+	                        ]),
+	                        protip: ul([
+	                            "Highly sedating and anticholinergic—bedtime dosing (or lowest effective dose) often improves tolerability.",
+	                            "Structurally related to TCAs; treat overdose like a TCA overdose (ECG/QRS attention)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Centrally acting skeletal muscle relaxant (brainstem) that reduces tonic somatic motor activity; not a direct muscle effect.",
+	                                    "Expected response: reduced spasm and improved function within 1–2 days; maximal benefit usually within the first week.",
+	                                    "Treatment failure: persistent severe pain/spasm after several days or red flags (weakness, bowel/bladder issues) → reassess diagnosis/escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: drowsiness, dizziness, dry mouth, constipation.",
+	                                    "Serious: confusion/delirium (older adults), falls, tachyarrhythmia/QT effects (rare), serotonin syndrome (rare)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Alcohol, opioids, benzodiazepines, and other sedatives → additive CNS/respiratory depression.",
+	                                    "Serotonergic drugs (SSRIs/SNRIs, tramadol, linezolid, MAOIs) → serotonin syndrome risk.",
+	                                    "Other anticholinergics (1st gen antihistamines, TCAs, antipsychotics) → delirium/urinary retention."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Assess sedation, falls risk, and ability to work/drive safely; reassess benefit within 1–2 weeks.",
+	                                    "Escalate if chest pain/palpitations/syncope, confusion, or worsening neurologic symptoms occur."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take at the lowest effective dose; avoid driving/operating machinery until you know how sleepy it makes you.",
+	                                    "Avoid alcohol and other sedatives; use short-term only alongside stretching/heat/activity as tolerated.",
+	                                    "Seek urgent care for fainting, severe confusion, or symptoms of serotonin syndrome (fever, rigidity, agitation)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Non-medication: heat/ice, stretching, early mobilization, physiotherapy, ergonomic changes.",
+	                                    "Medication: acetaminophen or NSAID (if appropriate); topical NSAIDs; other muscle relaxants per formulary."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Overdose: treat as possible TCA-like toxicity—obtain ECG, manage QRS widening with sodium bicarbonate per protocol, and consult poison control/toxicology.",
+	                                    "Stop the medication and escalate for severe sedation, delirium, or suspected serotonin syndrome."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Phenytoin (Dilantin)",
+	                        forms: "Vial (50 mg/mL)",
+	                        ind: "Status epilepticus (after benzodiazepine) or prevention of recurrent seizures when indicated by protocol/physician",
+	                        dose: ul([
+	                            "IV loading: 15–20 mg/kg (typical max 1,000–1,500 mg) infused at ≤50 mg/min with continuous ECG/BP monitoring.",
+	                            "Maintenance (after load): often ~4–6 mg/kg/day divided (physician-directed).",
+	                            "Administration: use ONLY normal saline; use in-line filter; avoid rapid infusion (hypotension/arrhythmias).",
+	                            "Adjustments: interpret levels carefully with low albumin/renal failure; lower doses often needed in older adults/hepatic impairment."
+	                        ]),
+	                        contra: ul([
+	                            "Sinus bradycardia, SA block, 2nd/3rd-degree AV block, or Adams–Stokes syndrome.",
+	                            "Known hypersensitivity to hydantoins; history of severe cutaneous reaction to phenytoin.",
+	                            "Relative/precautions: significant hypotension, severe hepatic disease, pregnancy (teratogenic—specialist/physician oversight).",
+	                            "Physician approval: non-emergent initiation, pregnancy, complex comorbidity/polypharmacy, or planned long-term therapy."
+	                        ]),
+	                        protip: ul([
+	                            "If you have it, fosphenytoin is often preferred for IV loading (less infusion-related hypotension and easier compatibility).",
+	                            "Treat IV phenytoin like a high-risk infusion: dedicated line, slow rate, and continuous ECG/BP monitoring."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Voltage-gated sodium channel blockade → stabilizes neuronal membranes and limits seizure propagation.",
+	                                    "Expected response: reduced seizure recurrence after adequate loading; it does not replace airway management or benzodiazepines for active convulsions.",
+	                                    "Treatment failure: ongoing/recurrent seizures despite appropriate dosing → escalate to second-line agents and physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Infusion-related: hypotension, bradycardia, ventricular arrhythmias (risk rises with faster rates).",
+	                                    "Neurologic: nystagmus, ataxia, dizziness, sedation.",
+	                                    "Serious: SJS/TEN/DRESS, hepatotoxicity, blood dyscrasias (rare)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Strong CYP inducer: lowers effectiveness of oral contraceptives, some anticoagulants/DOACs, and many other drugs; interaction checks are essential.",
+	                                    "Warfarin interaction is complex (can increase or decrease INR); valproate can increase free phenytoin (protein binding).",
+	                                    "Enteral feeds can reduce absorption (tube feeds often need timing adjustments per protocol)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "During IV load: continuous ECG and BP; watch for hypotension/arrhythmia and infusion site injury.",
+	                                    "If ongoing therapy: serum levels (especially with toxicity or interactions), CBC and LFTs per physician plan; monitor for rash."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Do not stop abruptly; take consistently; report rash immediately (can be life-threatening).",
+	                                    "May cause dizziness/coordination issues—avoid driving until stable; maintain good dental hygiene (gum changes with long-term use).",
+	                                    "Discuss pregnancy/contraception due to teratogenicity and interaction with hormonal contraception."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Status epilepticus: levetiracetam or valproate (protocol dependent) after benzodiazepines; fosphenytoin as alternative to phenytoin.",
+	                                    "Refractory seizures: anesthetic infusions/ICU pathway (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If hypotension/arrhythmia occurs: stop/slow infusion, support ABCs, and escalate urgently.",
+	                                    "Severe rash, facial swelling, or systemic symptoms (fever, lymphadenopathy) → stop immediately and urgent physician/ED escalation.",
+	                                    "Suspected overdose: supportive care, ECG, labs; consult poison control/toxicology."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Haloperidol (Haldol)",
+	                        forms: "Vial (5 mg/mL); tablets (varies)",
+	                        ind: "Acute agitation, severe delirium, psychosis (restricted/high-risk medication—use per protocol and consider physician input)",
+	                        dose: ul([
+	                            "Adults: 2.5–5 mg IM/IV; may repeat q15–30 min PRN to effect (use the lowest effective dose; typical ED max often ~20 mg total—follow local protocol).",
+	                            "Older adults/frailty: 0.5–1 mg IM/IV; reassess frequently to avoid oversedation/EPS.",
+	                            "Avoid routine outpatient starts for delirium without physician plan.",
+	                            "Adjustments: no specific renal adjustment; use caution in hepatic impairment and in patients with prolonged QT or electrolyte abnormalities."
+	                        ]),
+	                        contra: ul([
+	                            "Parkinson’s disease or Lewy body dementia (high risk of severe rigidity/neuroleptic sensitivity).",
+	                            "Known prolonged QTc, history of torsades, or untreated significant hypokalemia/hypomagnesemia (avoid/physician decision).",
+	                            "Coma/CNS depression from alcohol/sedatives (relative—risk of respiratory compromise).",
+	                            "Physician approval: IV use (if restricted locally), high cumulative dosing, known QT issues, or complex intoxication/withdrawal."
+	                        ]),
+	                        protip: ul([
+	                            "Get an ECG (or at least review QT-risk history/meds) when feasible—QT prolongation is the key safety issue.",
+	                            "Have dystonia/EPS treatment ready (diphenhydramine or benztropine)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "D2 receptor antagonism → antipsychotic and anti-agitation effect; also antiemetic properties.",
+	                                    "Onset: IV ~5–10 min; IM ~20–30 min (variable).",
+	                                    "Treatment failure: persistent dangerous agitation despite appropriate dosing and de-escalation → escalate to physician and consider alternative agents/causes."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: sedation, hypotension (less than some agents), akathisia, dystonia.",
+	                                    "Serious: QT prolongation/torsades, neuroleptic malignant syndrome (NMS), severe EPS, aspiration risk from oversedation."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive QT risk with macrolides, fluoroquinolones, ondansetron, methadone, many antipsychotics/antidepressants.",
+	                                    "Additive sedation/respiratory depression with alcohol, opioids, benzodiazepines, and other sedatives.",
+	                                    "Dopamine agonists (Parkinson meds) oppose effect and can worsen Parkinsonian symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Vitals and level of consciousness; monitor for airway compromise when combined with sedatives.",
+	                                    "ECG/QTc and electrolytes (K/Mg) when possible, especially with IV dosing, repeated dosing, or QT-risk factors.",
+	                                    "Watch for acute dystonia/akathisia and NMS signs (fever/rigidity/AMS)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "May cause sleepiness and restlessness; avoid driving/work hazards until fully recovered.",
+	                                    "Seek urgent care for severe muscle stiffness, fever, fainting/palpitations, or trouble breathing/swallowing."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Non-medication: verbal de-escalation, reduce stimuli, treat pain/hypoxia/hypoglycemia/withdrawal.",
+	                                    "Medication options (protocol dependent): olanzapine, droperidol, or benzodiazepines in selected cases."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Acute dystonia: give diphenhydramine or benztropine per protocol; monitor airway if laryngeal involvement suspected.",
+	                                    "Torsades/ventricular arrhythmia: stop QT-prolongers, give magnesium, defibrillate if unstable, and escalate immediately.",
+	                                    "Suspected NMS: stop antipsychotic, supportive care, aggressive cooling/IV fluids, and urgent physician/ICU pathway."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Zopiclone",
+	                        forms: "Tablets (5 mg, 7.5 mg)",
+	                        ind: "Short-term insomnia when non-drug measures fail (avoid in high-risk respiratory or substance use situations)",
+	                        dose: ul([
+	                            "Adults: 3.75–7.5 mg PO at bedtime; take immediately before sleep.",
+	                            "Older adults/frailty: start 3.75 mg at bedtime; max 7.5 mg (often lower is safer).",
+	                            "Hepatic impairment/respiratory disease: start 3.75 mg; avoid in severe hepatic impairment.",
+	                            "Duration: shortest possible (often ≤7–10 days; generally avoid >2–4 weeks). Consider taper if prolonged use."
+	                        ]),
+	                        contra: ul([
+	                            "Severe respiratory impairment, sleep apnea, or severe hepatic impairment.",
+	                            "Myasthenia gravis (avoid) and significant substance use disorder (relative—high misuse risk).",
+	                            "Pregnancy/breastfeeding: avoid unless physician-directed (risk/benefit).",
+	                            "Physician approval: prolonged use, recurrent prescriptions, or complex comorbidity/polypharmacy."
+	                        ]),
+	                        protip: ul([
+	                            "The bitter/metallic taste is common and benign but bothersome—set expectations up front.",
+	                            "Complex sleep behaviors can occur (sleepwalking/driving); if it happens, stop the medication and escalate."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Non-benzodiazepine hypnotic that enhances GABA-A activity (benzodiazepine receptor site) → sedation.",
+	                                    "Onset: ~30–60 min; expected response is reduced sleep latency and fewer awakenings that night.",
+	                                    "Treatment failure: persistent insomnia after a short trial → reassess sleep hygiene, triggers, and alternative diagnoses."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: metallic taste, next-day drowsiness, dizziness, headache.",
+	                                    "Serious: respiratory depression (especially with other sedatives), falls, dependence/withdrawal, complex sleep behaviors, confusion (older adults)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Alcohol, opioids, benzodiazepines, and other sedatives → increased respiratory depression and overdose risk (avoid).",
+	                                    "CYP3A4 inhibitors (e.g., some macrolides, azoles) can increase sedation; CYP3A4 inducers can reduce effect."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Reassess within days to weeks for daytime sedation, falls, and ongoing need; stop if ineffective.",
+	                                    "Escalate if confusion, breathing problems, or abnormal nighttime behaviors occur."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take only when you can sleep 7–8 hours; do not drive/work hazards the next morning if drowsy.",
+	                                    "Avoid alcohol and other sedatives; keep it securely stored (misuse risk).",
+	                                    "Missed dose: skip—do not take during the night if you can’t get a full sleep period."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "First-line: sleep hygiene and CBT-I.",
+	                                    "Other options (physician-directed): melatonin, low-dose doxepin, or other agents based on comorbidities."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Overdose or breathing problems: call EMS/ED; support airway/ventilation and treat co-ingestants.",
+	                                    "Stop the drug and notify supervising physician if complex sleep behaviors, severe confusion, or suspected dependence develops."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
+	            {
+	                category: "Obstetrical & Gynecological",
+	                medications: [
+	                    {
+	                        name: "Canesten + Fluconazole",
+	                        forms: "Topical azole (e.g., clotrimazole) + oral fluconazole (150 mg tab)",
+	                        ind: "Vulvovaginal candidiasis (uncomplicated vs. complicated/recurrent). Pregnancy: topical azole is preferred.",
+	                        dose: ul([
+	                            "Uncomplicated (non-pregnant): fluconazole 150 mg PO once OR topical azole course per product.",
+	                            "Pregnancy: use topical azole therapy for 7 days; avoid oral fluconazole unless physician/specialist directs.",
+	                            "Severe or complicated infection: may require longer topical course or repeated fluconazole dosing (physician-directed).",
+	                            "If recurrent (≥4/year): needs assessment and maintenance strategy (physician)."
+	                        ]),
+	                        contra: ul([
+	                            "Hypersensitivity to azoles.",
+	                            "Pregnancy: avoid oral fluconazole in routine cases (use topical only).",
+	                            "Relative/precautions: significant hepatic disease, known QT prolongation, or substantial interacting medications.",
+	                            "Physician approval: recurrent/complicated disease, immunocompromise, diabetes with poor control, or uncertain diagnosis."
+	                        ]),
+	                        protip: ul([
+	                            "Confirm it’s yeast: prominent odor, pelvic pain, fever, or STI risk suggests an alternate diagnosis—don’t just repeat antifungals.",
+	                            "Topical azole products can weaken latex condoms/diaphragms—counsel accordingly."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Azole antifungals inhibit ergosterol synthesis → impaired fungal cell membrane.",
+	                                    "Expected response: itching/burning improves within 1–3 days; discharge may take several days longer.",
+	                                    "Treatment failure: no improvement by ~3 days, worsening pain, or recurrent symptoms → reassess diagnosis (BV/STI/dermatitis) and consider culture/physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Topical: local burning/irritation; contact dermatitis (uncommon).",
+	                                    "Fluconazole: headache, nausea, abdominal upset.",
+	                                    "Serious (rare): severe rash, hepatotoxicity, QT prolongation/arrhythmia."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Fluconazole can increase effects of warfarin (↑INR), some sulfonylureas (hypoglycemia), and some statins (myopathy).",
+	                                    "Additive QT risk with other QT-prolonging drugs; check interactions when polypharmacy is present.",
+	                                    "Topical azoles have minimal systemic interactions."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Uncomplicated single-dose therapy: usually no labs required; reassess if not improving or if recurrent.",
+	                                    "If repeated oral dosing or hepatic risk: consider LFT monitoring per physician plan.",
+	                                    "Escalate for fever, pelvic pain, bleeding, severe vulvar pain/swelling, or pregnancy with persistent symptoms."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Take fluconazole as a single dose (if appropriate) and avoid unnecessary repeat dosing without reassessment.",
+	                                    "Topical therapy: complete the full course; symptoms may improve before the course is finished.",
+	                                    "Seek care urgently for fever, pelvic pain, or symptoms that keep returning.",
+	                                    "Pregnancy: use topical only unless explicitly directed by a physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Topical azoles (clotrimazole/miconazole) are first-line in pregnancy and a safe alternative in non-pregnant patients.",
+	                                    "If non-albicans or refractory infection: may need culture and alternative regimens (physician/specialist)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Anaphylaxis/severe rash: stop medication and activate emergency response.",
+	                                    "Severe abdominal pain, jaundice, dark urine, or syncope/palpitations after oral fluconazole → urgent medical assessment.",
+	                                    "Escalate to supervising physician for recurrent/complicated cases or diagnostic uncertainty."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
+	            {
+	                category: "Ophthalmic",
+	                medications: [
+	                    {
+	                        name: "Erythromycin ointment",
+	                        forms: "Ophthalmic ointment (0.5%)",
+	                        ind: "Bacterial conjunctivitis; corneal abrasion prophylaxis/treatment (when indicated)",
+	                        dose: ul([
+	                            "Adults/children: apply ~1 cm ribbon to the lower conjunctival sac QID.",
+	                            "Typical duration: 5–7 days for conjunctivitis; for abrasion, continue until symptoms resolve and re-epithelialization is expected (often 2–5 days) per follow-up plan.",
+	                            "Avoid touching the tube tip to the eye/skin; hand hygiene before/after application.",
+	                            "Adjustments: none specific for renal/hepatic disease; safe in pregnancy and pediatrics when used topically."
+	                        ]),
+	                        contra: ul([
+	                            "Hypersensitivity to erythromycin/macrolides.",
+	                            "Relative/precautions: contact lens wearer with suspected bacterial keratitis (needs antipseudomonal coverage and urgent follow-up).",
+	                            "Physician/ophthalmology escalation: severe pain, photophobia, decreased vision, corneal opacity, or contact lens-related infection."
+	                        ]),
+	                        protip: ul([
+	                            "Ointments blur vision—tell patients not to drive immediately after use; bedtime dosing can improve tolerability.",
+	                            "If red eye is painful with photophobia or vision change, treat as higher-risk and escalate."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Macrolide antibiotic → inhibits bacterial protein synthesis.",
+	                                    "Expected response: discharge/irritation improve within 24–48 h; abrasions should feel better daily.",
+	                                    "Treatment failure: worsening pain, new photophobia, reduced vision, or no improvement in 48 h → reassess diagnosis and escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: transient burning/irritation, blurred vision.",
+	                                    "Rare: allergic reaction/contact dermatitis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Minimal systemic interactions with topical ophthalmic use.",
+	                                    "Avoid using multiple ophthalmic agents back-to-back—separate by several minutes to reduce washout."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Reassess symptoms (pain, photophobia, vision) and discharge within 24–48 h.",
+	                                    "Escalate if contact lens wearer, immunocompromised, or if red flags develop."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Wash hands; avoid rubbing eyes; do not share towels/eye makeup; discard contaminated cosmetics.",
+	                                    "No contact lenses until fully resolved and treatment completed.",
+	                                    "Go urgently for severe pain, light sensitivity, reduced vision, or worsening redness/swelling."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Other first-line conjunctivitis options depend on local guidance (e.g., polymyxin/trimethoprim).",
+	                                    "Contact lens-related infections: fluoroquinolone drops (e.g., ofloxacin/ciprofloxacin) are commonly preferred for pseudomonas coverage (per protocol)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected keratitis/ulcer (pain + photophobia/vision change/corneal opacity) → urgent ophthalmology/ED.",
+	                                    "Anaphylaxis: stop medication and activate emergency response."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Gramicidin-Polymyxin B (Polysporin eye drops)",
+	                        forms: "Ophthalmic drops",
+	                        ind: "Bacterial conjunctivitis (uncomplicated). Not appropriate for suspected viral conjunctivitis or corneal ulcer/keratitis.",
+	                        dose: ul([
+	                            "Adults/children: 1–2 drops to affected eye(s) q3–4 h while awake.",
+	                            "Typical duration: 5–7 days; reassess if not improving by 48 h.",
+	                            "Contact lens wearers: stop lenses; if bacterial keratitis is possible, use antipseudomonal agent and escalate.",
+	                            "Adjustments: none specific for renal/hepatic disease; systemic exposure is minimal."
+	                        ]),
+	                        contra: ul([
+	                            "Hypersensitivity to components.",
+	                            "Avoid for suspected viral/fungal eye infection; avoid as monotherapy for contact lens-related keratitis.",
+	                            "Physician/ophthalmology escalation: severe pain, photophobia, reduced vision, corneal opacity, or contact lens-related infection."
+	                        ]),
+	                        protip: ul([
+	                            "If the patient wears contact lenses, think pseudomonas—hold lenses and use antipseudomonal coverage per protocol/follow-up plan.",
+	                            "Teach drop technique: don’t touch the dropper tip to the eye or skin."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Topical antibiotics with activity against common conjunctivitis bacteria.",
+	                                    "Expected response: less discharge/irritation within 24–48 h.",
+	                                    "Treatment failure: no improvement by 48 h or worsening pain/vision → reassess and escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: stinging/irritation, blurred vision immediately after instillation.",
+	                                    "Rare: allergic reaction/contact dermatitis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Minimal systemic interactions with topical use.",
+	                                    "Separate from other eye drops by several minutes to reduce washout."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Reassess in 24–48 h; monitor for red flags (pain, photophobia, vision change).",
+	                                    "Escalate if contact lens wearer or if symptoms persist/worsen."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Hand hygiene; avoid eye rubbing; do not share towels/eye makeup; discard contaminated cosmetics.",
+	                                    "Stop contact lenses until resolved and replace/clean lens case as advised.",
+	                                    "Urgent care for severe pain, light sensitivity, reduced vision, or swelling around the eye."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Supportive care only if viral conjunctivitis is likely (no purulent discharge, URI symptoms) and no red flags.",
+	                                    "Fluoroquinolone drops for contact lens wearers or suspected keratitis (protocol dependent)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected keratitis/ulcer (pain + photophobia/vision change) → urgent ophthalmology/ED.",
+	                                    "Anaphylaxis: stop medication and activate emergency response."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Fluorescein",
+	                        forms: "Ophthalmic strip or drops",
+	                        ind: "Detection of corneal epithelial defects (abrasion/ulcer) and assessment for Seidel sign (globe leak) with cobalt blue/Wood’s lamp",
+	                        dose: ul([
+	                            "Apply 1 moistened strip to the inferior conjunctival sac (or 1 drop if using drops).",
+	                            "Have the patient blink to distribute; examine under cobalt blue light.",
+	                            "Remove contact lenses before application (stains soft lenses).",
+	                            "Not a treatment—this is diagnostic only."
+	                        ]),
+	                        contra: ul([
+	                            "Known hypersensitivity (rare).",
+	                            "Relative/precautions: avoid contaminating the strip; do not touch the cornea directly with the strip tip.",
+	                            "Physician/ophthalmology escalation: suspected globe rupture or positive Seidel sign."
+	                        ]),
+	                        protip: ul([
+	                            "Abrasions fluoresce bright green; branching/dendritic lesions suggest HSV—avoid topical steroids and escalate.",
+	                            "If Seidel sign is positive (streaming dye), shield the eye and send urgently."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Fluorescent dye adheres to exposed corneal stroma/epithelial defects → highlights abrasions/ulcers under blue light.",
+	                                    "Expected result: clear visualization of defect pattern and size.",
+	                                    "Treatment failure: if exam is limited by pain/blepharospasm or uncertain findings → consider anesthetic drop for exam per protocol and escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: transient stinging; yellow/green staining of tears/skin.",
+	                                    "Rare: allergic reaction."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "No meaningful systemic interactions with topical diagnostic use.",
+	                                    "Staining can interfere with contact lenses and some topical products—remove lenses first."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Document location/size/pattern of staining and presence/absence of Seidel sign.",
+	                                    "Escalate if ulcer, dendritic pattern, or suspected penetrating injury is present."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "The dye can temporarily stain tears/skin and will wash out.",
+	                                    "Do not reinsert contact lenses until cleared and instructed; replace/clean lenses and case if infection suspected."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "If fluorescein not available: careful exam with light and history, but diagnostic sensitivity is reduced.",
+	                                    "Slit-lamp exam (when available) provides best assessment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected globe rupture or positive Seidel sign: shield the eye, avoid pressure/patching, and urgent ophthalmology/ED.",
+	                                    "Anaphylaxis: stop and activate emergency response."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Lubricating ointment",
+	                        forms: "Ophthalmic lubricating ointment/gel; artificial tears (drops)",
+	                        ind: "Dry eyes; exposure keratopathy prevention (e.g., Bell’s palsy, incomplete lid closure)",
+	                        dose: ul([
+	                            "Ointment: apply a small ribbon to the lower lid at bedtime; may repeat during the day if severe exposure (expect blurred vision).",
+	                            "Artificial tears (drops): 1–2 drops QID–hourly PRN (preservative-free preferred if frequent use).",
+	                            "Bell’s palsy/exposure: consider eyelid taping at night and protective eyewear per plan.",
+	                            "Adjustments: none."
+	                        ]),
+	                        contra: ul([
+	                            "Known hypersensitivity to product components (rare).",
+	                            "Do not use as a substitute for antibiotic therapy if infection/ulcer is suspected.",
+	                            "Escalate if eye pain, photophobia, reduced vision, or corneal opacity develops."
+	                        ]),
+	                        protip: ul([
+	                            "For Bell’s palsy, lubrication is preventive care—lack of blinking can cause corneal injury quickly.",
+	                            "Ointment works best overnight; drops are better during the day when clear vision is needed."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Replaces/retains tear film and reduces friction/evaporation → protects corneal surface.",
+	                                    "Expected response: symptom relief within minutes; prevention of exposure-related injury with regular use.",
+	                                    "Treatment failure: persistent pain/foreign body sensation or new photophobia/vision change → reassess for abrasion/ulcer."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: temporary blurred vision (ointment), mild stinging.",
+	                                    "Rare: allergic reaction."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "If using multiple eye medications, apply drops first and ointment last; separate products by several minutes.",
+	                                    "No meaningful systemic interactions."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Monitor for symptom improvement and for red flags (pain, photophobia, vision change).",
+	                                    "If exposure risk persists, ensure follow-up plan to reassess cornea."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Ointment will blur vision—use at bedtime; avoid driving immediately after application.",
+	                                    "For Bell’s palsy: use drops during the day, ointment at night, and protect/tape the eyelid as instructed.",
+	                                    "Seek urgent care for eye pain, light sensitivity, or reduced vision."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Preservative-free tears, gels, moisture chamber goggles; treat underlying blepharitis/meibomian dysfunction if present.",
+	                                    "If significant exposure/lagophthalmos: ophthalmology evaluation may be needed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Worsening pain, photophobia, or vision changes: urgent assessment for abrasion/ulcer/keratitis.",
+	                                    "Anaphylaxis: stop product and activate emergency response."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
+	            {
+	                category: "Respiratory",
+	                medications: [
+	                    {
+	                        name: "Salbutamol (Albuterol/Ventolin)",
+	                        forms: "MDI (inhaler) + spacer; nebulized solution",
+	                        ind: "Bronchospasm (asthma/COPD); adjunct for hyperkalemia (shifts K intracellularly)",
+	                        dose: ul([
+	                            "Nebulized: 2.5–5 mg q20 min PRN x3, then reassess (protocol dependent).",
+	                            "MDI: 4–8 puffs via spacer q20 min PRN x3, then reassess.",
+	                            "Pediatrics: commonly 0.15 mg/kg (min 2.5 mg) nebulized; MDI dosing per age/spacer technique (protocol dependent).",
+	                            "Hyperkalemia (adjunct): high-dose nebulized albuterol may be used per protocol (e.g., 10–20 mg) with K/glucose monitoring."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications in life-threatening bronchospasm.",
+	                            "Relative/precautions: significant tachyarrhythmia, severe ischemic heart disease, uncontrolled hyperthyroidism, or severe hypokalemia.",
+	                            "Physician approval: high-dose therapy (hyperkalemia), repeated escalating treatments without response, or complex cardiac history."
+	                        ]),
+	                        protip: ul([
+	                            "Tachycardia and tremor are expected—reassure and keep treating the bronchospasm while monitoring.",
+	                            "If response is poor, add ipratropium and systemic steroids early, and reassess diagnosis (pneumonia, anaphylaxis, HF, PE)."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "β2-agonist → bronchodilation; also drives potassium intracellularly (temporary K-lowering effect).",
+	                                    "Onset: minutes (inhaled); expected response is improved wheeze, RR, work of breathing, and peak flow.",
+	                                    "Treatment failure: persistent hypoxia, rising CO2/fatigue, or worsening work of breathing despite therapy → escalate urgently."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: tremor, tachycardia, anxiety, headache.",
+	                                    "Metabolic: hypokalemia and hyperglycemia (dose-related); lactic acidosis can occur with frequent/high-dose use.",
+	                                    "Serious: precipitated tachyarrhythmia or ischemia (rare, higher risk in cardiac disease)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Non-selective β-blockers (e.g., propranolol) can blunt effect and worsen bronchospasm.",
+	                                    "Other sympathomimetics/stimulants increase tachyarrhythmia risk.",
+	                                    "Loop/thiazide diuretics can compound hypokalemia risk with high-dose β2-agonist therapy."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Vitals, SpO2, work of breathing, and response after each treatment; consider peak flow when appropriate.",
+	                                    "If frequent/high-dose therapy: monitor K and glucose; consider ECG in tachycardia or cardiac history.",
+	                                    "Escalate for exhaustion, altered mental status, silent chest, or refractory hypoxia."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "This is a reliever inhaler for symptoms; if you need it more often than prescribed, you need reassessment.",
+	                                    "Use proper technique (spacer helps); expect jitteriness/tremor and faster heart rate.",
+	                                    "Seek urgent care for severe shortness of breath, chest pain, or no relief after repeated doses."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Add-on in asthma/COPD exacerbation: ipratropium, systemic corticosteroids, magnesium (severe asthma), epinephrine for anaphylaxis.",
+	                                    "Hyperkalemia: calcium (membrane stabilization), insulin/glucose, bicarbonate (selected), dialysis and definitive management."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If severe exacerbation or impending respiratory failure: activate escalation pathway (continuous neb, NIV/intubation readiness) and notify supervising physician.",
+	                                    "Treat anaphylaxis with IM epinephrine—do not rely on albuterol alone."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Beclomethasone dip",
+	                        forms: "MDI (QVAR or equivalent)",
+	                        ind: "Maintenance asthma therapy (controller); not for acute bronchospasm",
+	                        dose: ul([
+	                            "Adults: commonly 1–2 puffs BID (strength-dependent); titrate to control and use the lowest effective dose.",
+	                            "Pediatrics: dosing is age/strength-dependent; follow product monograph/local guideline.",
+	                            "No loading dose; onset is days, with full benefit over 1–2+ weeks.",
+	                            "Adjustments: generally no renal adjustment; use caution with high doses/long duration (systemic steroid effects)."
+	                        ]),
+	                        contra: ul([
+	                            "Acute asthma attack/status asthmaticus (not a rescue medication).",
+	                            "Untreated serious respiratory infection (relative—physician decision); hypersensitivity to components.",
+	                            "Physician approval: escalating to high-dose ICS, poor control requiring step-up therapy, or repeated oral steroid bursts."
+	                        ]),
+	                        protip: ul([
+	                            "This is a preventer: it reduces airway inflammation over time—patients still need a reliever inhaler for acute symptoms.",
+	                            "Rinse and spit after each use (and consider a spacer) to reduce thrush/hoarseness."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Inhaled corticosteroid → decreases airway inflammation and hyperresponsiveness.",
+	                                    "Expected response: fewer symptoms/exacerbations and improved lung function over days to weeks.",
+	                                    "Treatment failure: persistent symptoms or frequent reliever use despite adherence/technique → step-up therapy and physician review."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: oral thrush, hoarseness/dysphonia, throat irritation.",
+	                                    "Serious (dose/long-term): adrenal suppression, osteoporosis, cataracts/glaucoma; growth effects in children (small, monitor)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Systemic interactions are uncommon at typical doses, but strong CYP3A4 inhibitors may increase steroid exposure (varies by product).",
+	                                    "Concurrent systemic steroids increase cumulative steroid burden."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Assess asthma control (symptoms, reliever use, exacerbations) and inhaler technique regularly.",
+	                                    "Long-term/high dose: monitor for thrush, voice changes, and systemic steroid effects; monitor growth in children.",
+	                                    "Escalate if frequent exacerbations, nocturnal symptoms, or signs of severe asthma."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Use every day as prescribed—even when feeling well; it prevents flare-ups.",
+	                                    "Rinse mouth and spit after use; use a spacer if available.",
+	                                    "Seek care urgently if reliever isn’t working or breathing worsens quickly."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Other ICS (budesonide, fluticasone) depending on formulary.",
+	                                    "Step-up options (physician-directed): ICS/LABA combinations, SMART therapy, leukotriene receptor antagonists, or biologics for severe asthma."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "This is not for emergencies—use reliever inhaler, follow action plan, and seek urgent care for severe symptoms.",
+	                                    "If frequent reliever use or repeated exacerbations occur, notify supervising physician to adjust controller regimen."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Lidocaine endotracheal spray",
+	                        forms: "Topical airway spray (dose per actuation varies; often ~10 mg/spray)",
+	                        ind: "Topical anesthesia of upper airway for intubation/bronchoscopy/airway manipulation (adjunct; does not replace sedation/airway plan)",
+	                        dose: ul([
+	                            "Apply 1–2 sprays to target area (e.g., oropharynx/vocal cords) as needed to blunt gag/cough reflex, per protocol.",
+	                            "Track total lidocaine dose from all sources; typical max total dose is ~3–4 mg/kg (without epinephrine) depending on formulation and patient factors.",
+	                            "Use extra caution in older adults, low body weight, and hepatic impairment (reduced clearance).",
+	                            "Duration: effect is temporary; ensure NPO/aspiration precautions until sensation returns."
+	                        ]),
+	                        contra: ul([
+	                            "Amide local anesthetic hypersensitivity (rare).",
+	                            "Relative/precautions: severe hepatic impairment, significant conduction disease/arrhythmia risk, seizure disorder, or methemoglobinemia history (rare with lidocaine).",
+	                            "Physician approval: large cumulative dosing, unclear dose delivered, or use in high-risk patients."
+	                        ]),
+	                        protip: ul([
+	                            "Numbs protective reflexes—strict aspiration precautions (NPO) until gag sensation returns.",
+	                            "Local anesthetic systemic toxicity (LAST) is rare with topical use but catastrophic—track dose and watch for early neuro symptoms."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Voltage-gated sodium channel blockade → local anesthesia and reduced cough/gag response.",
+	                                    "Onset: minutes; expected response is improved tolerance of airway instrumentation.",
+	                                    "Treatment failure: persistent gag/cough or intolerance → reassess technique, dosing, and overall airway/sedation plan (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: bitter taste, throat numbness, transient cough.",
+	                                    "Serious (rare): local anesthetic systemic toxicity (tinnitus, circumoral numbness, seizures, arrhythmias), aspiration due to impaired reflexes."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive toxicity with other local anesthetics (lidocaine, bupivacaine) and class I antiarrhythmics.",
+	                                    "Some CYP inhibitors can increase lidocaine levels (clinically relevant mainly with larger doses)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Monitor for signs of LAST, especially if repeated sprays/combined lidocaine sources are used.",
+	                                    "Maintain aspiration precautions until swallowing/gag reflex returns.",
+	                                    "Escalate if neurologic symptoms, arrhythmia, or airway compromise occurs."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Your throat may feel numb and swallowing may be unsafe for a period—no food/drink until told it’s safe.",
+	                                    "Report ringing in ears, metallic taste, dizziness, or numbness around the mouth (early toxicity signs)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Other topicalization methods per airway protocol (nebulized lidocaine, nerve blocks) with physician oversight.",
+	                                    "If instrumentation required, sedation/RSI pathway may be necessary (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected LAST: stop lidocaine, support ABCs, treat seizures, and initiate lipid emulsion therapy per protocol; notify supervising physician immediately.",
+	                                    "If aspiration or airway compromise occurs, manage airway and escalate urgently."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
+	            {
+	                category: "IV Fluids, Blood Products, Electrolytes",
+	                medications: [
+	                    {
+	                        name: "Naloxone (Narcan)",
+	                        forms: "Vial (0.4 mg/mL, 2 mg/2 mL); nasal spray (commonly 4 mg)",
+	                        ind: "Opioid overdose with respiratory depression (target: adequate ventilation, not full arousal)",
+	                        dose: ul([
+	                            "Adults (IV/IM): titrate—start 0.04 mg IV for suspected opioid-dependent patients; escalate 0.04 → 0.4 → 2 mg IV/IM q2–3 min PRN until RR improves.",
+	                            "Intranasal: 4 mg (one spray) IN; repeat q2–3 min PRN; consider higher total dosing for potent opioids.",
+	                            "Pediatrics: 0.1 mg/kg IV/IM/IN (max 2 mg per dose), repeat PRN per protocol.",
+	                            "Long-acting opioids: may require infusion or repeated dosing (physician/protocol)."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications in suspected overdose with respiratory compromise.",
+	                            "Relative/precautions: opioid dependence (precipitates acute withdrawal); use titrated dosing to avoid severe agitation/vomiting.",
+	                            "Physician approval: infusion needs, refractory cases, mixed/unknown overdose, or recurrent respiratory depression."
+	                        ]),
+	                        protip: ul([
+	                            "Naloxone’s duration is often shorter than many opioids—re-sedation is common; observe and reassess frequently.",
+	                            "If no response after adequate dosing, reconsider diagnosis (hypoglycemia, stroke, benzo co-ingestion) and support ventilation."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Competitive opioid receptor antagonist (μ >> κ/δ) → reverses opioid-induced respiratory depression.",
+	                                    "Onset: IV 1–2 min; IN/IM several minutes; expected response is improved RR/ventilation and mental status.",
+	                                    "Treatment failure: no improvement despite adequate dose → consider non-opioid cause, co-ingestants, or need for airway management."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: acute withdrawal (agitation, vomiting, diarrhea, pain, piloerection), tachycardia.",
+	                                    "Serious (rare): aspiration, pulmonary edema, severe hypertension/arrhythmia in high-risk patients."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Reverses analgesic effect of opioids and may precipitate withdrawal in opioid-dependent patients.",
+	                                    "Co-ingestants (benzodiazepines, alcohol) may limit apparent response—continue supportive care and reassessment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Continuous SpO2 and frequent RR/LOC reassessment; consider capnography when available.",
+	                                    "Observe for re-sedation for several hours (longer for long-acting opioids or large ingestions) per local protocol.",
+	                                    "Escalate for recurrent hypoventilation, aspiration, or agitation requiring sedation/restraints."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Naloxone can wear off—do not use opioids again after reversal; seek ongoing medical care/observation.",
+	                                    "If take-home naloxone is provided: call EMS after use, give rescue breaths, and repeat dosing if needed.",
+	                                    "Discuss overdose prevention and referral to addiction supports when appropriate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Primary alternative is supportive ventilation/airway management; naloxone is an adjunct, not a substitute for oxygenation/ventilation.",
+	                                    "For opioid use disorder: medication-assisted treatment pathways (physician/clinic)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If inadequate ventilation: bag-mask ventilation and airway management take priority—do not delay for naloxone.",
+	                                    "Recurrent respiratory depression: repeat naloxone and escalate for infusion/extended observation.",
+	                                    "Severe agitation/vomiting: protect airway, treat symptomatically, and escalate."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Flumazenil",
+	                        forms: "Vial (0.1 mg/mL)",
+	                        ind: "Benzodiazepine reversal in selected, known iatrogenic/single-agent exposures (restricted use; avoid in unknown/mixed overdoses)",
+	                        dose: ul([
+	                            "Adults: 0.2 mg IV over 15 sec; may repeat 0.2 mg q1 min PRN up to 1 mg total (some protocols allow up to 3 mg).",
+	                            "If re-sedation occurs: repeat small doses; consider infusion only with physician/toxicology input.",
+	                            "Pediatrics: 0.01 mg/kg IV (max 0.2 mg) q1 min PRN to max 1 mg (protocol dependent).",
+	                            "Short half-life: prolonged monitoring is required."
+	                        ]),
+	                        contra: ul([
+	                            "Chronic benzodiazepine use/dependence (high seizure risk).",
+	                            "Co-ingestion suspected (especially TCA, bupropion, cocaine/amphetamines) or unknown overdose.",
+	                            "Seizure disorder or elevated seizure risk; prolonged QRS/QT concerning for mixed overdose.",
+	                            "Physician/toxicology approval recommended for most uses."
+	                        ]),
+	                        protip: ul([
+	                            "If you can’t confidently rule out chronic benzo use or mixed overdose, don’t give flumazenil—supportive care is safer.",
+	                            "If a seizure occurs after flumazenil, benzodiazepines may be less effective—this becomes a high-risk situation; escalate immediately."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Competitive antagonist at the benzodiazepine binding site on GABA-A receptors.",
+	                                    "Onset: 1–2 min IV; expected response: improved consciousness/ventilation in isolated benzodiazepine sedation.",
+	                                    "Treatment failure: suggests non-benzodiazepine cause, mixed overdose, or need for airway support."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea, dizziness, agitation, anxiety.",
+	                                    "Serious: seizures (especially chronic benzo users/mixed overdoses), arrhythmias, re-sedation (short duration)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Reverses therapeutic benzodiazepines (including seizure control and alcohol withdrawal management).",
+	                                    "Dangerous in mixed overdoses where benzodiazepines may be protective against seizures."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Continuous monitoring of RR/LOC and ECG; observe for re-sedation.",
+	                                    "Seizure readiness: airway equipment and rescue meds available; escalate early if risk factors present."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Sedation can recur—do not drive/work hazards; continued observation is needed.",
+	                                    "Avoid additional sedatives/alcohol after reversal; seek help for substance use concerns when appropriate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Supportive care: airway protection, oxygen, ventilation as needed—usually preferred.",
+	                                    "If sedation is procedural/iatrogenic: allow time for drug clearance and adjust future sedative dosing."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If seizure occurs: manage ABCs, treat seizures per protocol, and urgently involve supervising physician/toxicology.",
+	                                    "If re-sedation occurs: repeat supportive care and reassess need for further doses vs. airway management."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Dextrose (D50W)",
+	                        forms: "Pre-filled syringe (25 g/50 mL); consider D10W as alternative where available",
+	                        ind: "Severe hypoglycemia or altered mental status with low glucose",
+	                        dose: ul([
+	                            "Adults: 25 g IV (one amp D50W) then recheck glucose in 10–15 min; repeat PRN based on response.",
+	                            "If no IV access: consider glucagon per protocol and establish IV/IO access.",
+	                            "Pediatrics: avoid D50 in small children; use D10W (commonly 5 mL/kg) or D25 per pediatric protocol.",
+	                            "After correction: give oral carbs if safe, and start dextrose infusion if recurrent hypoglycemia is likely (physician/protocol)."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications when treating life-threatening hypoglycemia.",
+	                            "Relative/precautions: extravasation risk (hypertonic); avoid small/fragile IVs.",
+	                            "Thiamine deficiency risk (alcoholism/malnutrition): give thiamine alongside/just before dextrose when feasible (do not delay life-saving glucose).",
+	                            "Physician approval: recurrent or refractory hypoglycemia, suspected sulfonylurea/long-acting insulin overdose, or unclear etiology."
+	                        ]),
+	                        protip: ul([
+	                            "Confirm IV patency before pushing—D50 extravasation can cause severe tissue injury.",
+	                            "If the patient keeps dropping their glucose, treat the cause (missed meals, insulin/sulfonylurea, sepsis) and plan ongoing dextrose/monitoring."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Provides rapidly available glucose → reverses neuroglycopenia.",
+	                                    "Onset: minutes IV; expected response: improved mentation and resolution of adrenergic symptoms.",
+	                                    "Treatment failure: persistent AMS despite normalized glucose → consider alternate diagnoses/co-ingestions."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: transient hyperglycemia; nausea.",
+	                                    "Serious: extravasation injury/necrosis, phlebitis; electrolyte shifts with repeated dosing."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Treats hypoglycemia due to insulin/sulfonylureas but does not stop their effect—ongoing monitoring is required.",
+	                                    "High glucose loads can affect insulin dosing plans—coordinate with physician if ongoing infusion is needed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Check point-of-care glucose after treatment and then at regular intervals until stable (frequency depends on cause).",
+	                                    "Monitor IV site for extravasation; monitor electrolytes if repeated dosing/infusion is needed.",
+	                                    "Escalate for recurrent hypoglycemia, seizure, or inability to protect airway."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Eat carbohydrates once awake and safe to swallow; review insulin/oral hypoglycemic dosing and missed meals.",
+	                                    "Seek urgent care if repeated low sugars, confusion, or seizures occur.",
+	                                    "If alcohol use/malnutrition is present, discuss thiamine and nutrition support."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Oral glucose (if alert and safe swallow).",
+	                                    "Glucagon IM/IN when IV access is delayed (effect may be limited in malnutrition/alcoholism).",
+	                                    "For sulfonylurea-induced hypoglycemia: octreotide is often used (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Seizure/airway compromise: manage ABCs, treat seizure per protocol, and give IV dextrose promptly.",
+	                                    "Extravasation: stop infusion, elevate, manage per extravasation protocol, and escalate.",
+	                                    "Refractory/recurrent hypoglycemia: urgent physician involvement and admission-level monitoring."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Lactated Ringer’s",
+	                        forms: "IV bag (balanced crystalloid)",
+	                        ind: "Volume resuscitation (trauma, burns, dehydration/shock) per protocol/clinical assessment",
+	                        dose: ul([
+	                            "Adults: bolus 500–1,000 mL IV, then reassess; repeat as needed based on perfusion and fluid status.",
+	                            "Pediatrics: commonly 20 mL/kg bolus, reassess; repeat per shock pathway/protocol.",
+	                            "Ongoing: titrate to clinical endpoints (MAP/perfusion/urine output) and avoid fluid overload.",
+	                            "Adjustments: use caution in heart failure/renal failure; consider smaller boluses and frequent reassessment."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications when resuscitation is required; risks are context-dependent.",
+	                            "Relative/precautions: severe volume overload/pulmonary edema, advanced renal failure with hyperkalemia risk, severe alkalosis.",
+	                            "Compatibility caution: LR contains calcium—follow local policy for blood product co-infusion and avoid mixing with bicarbonate in the same line (precipitation).",
+	                            "Physician approval: large-volume resuscitation, unclear shock etiology, or ongoing hypotension after initial boluses."
+	                        ]),
+	                        protip: ul([
+	                            "Use a reassess-and-repeat approach—give a bolus, reassess perfusion, lungs, and BP, then decide next step.",
+	                            "Balanced fluids can reduce hyperchloremic acidosis risk compared with large-volume normal saline."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Isotonic crystalloid expands intravascular volume temporarily and improves preload/perfusion.",
+	                                    "Onset: immediate; expected response: improved BP, capillary refill, mental status, urine output (if hypovolemic).",
+	                                    "Treatment failure: persistent hypotension despite adequate volume → consider hemorrhage, sepsis, cardiogenic shock, or obstructive causes; escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: dilutional effects with large volumes.",
+	                                    "Serious: pulmonary edema/respiratory failure, worsening third-spacing, electrolyte disturbances (context-dependent)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Line compatibility matters: avoid co-infusing incompatible medications; check compatibility when mixing drugs into LR.",
+	                                    "Do not run with bicarbonate in the same line (precipitation risk)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Vitals, lung exam, urine output, and mental status after each bolus; monitor for fluid overload.",
+	                                    "If large volumes: monitor electrolytes and acid-base status per protocol/physician.",
+	                                    "Escalate for worsening dyspnea/crackles, persistent hypotension, or rising lactate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "IV fluids are to support blood pressure/hydration; staff will monitor breathing and swelling.",
+	                                    "Report chest tightness, worsening shortness of breath, or new swelling."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Normal saline or other balanced crystalloids depending on availability and clinical scenario.",
+	                                    "Hemorrhagic shock: early blood products and source control are definitive (fluids are bridging).",
+	                                    "Distributive shock: may require vasopressors after appropriate fluid trial (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "If respiratory distress or pulmonary edema develops: stop/slow fluids, provide oxygen/NIV as needed, and escalate.",
+	                                    "Persistent shock despite fluids: notify supervising physician urgently; initiate shock pathway (pressors/blood/source control)."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "NaCl 0.9% (Normal Saline)",
+	                        forms: "IV bag (0.9% sodium chloride)",
+	                        ind: "Volume resuscitation and hydration; medication dilution/compatibility in selected situations",
+	                        dose: ul([
+	                            "Adults: bolus 500–1,000 mL IV, reassess; repeat based on perfusion and fluid status.",
+	                            "Pediatrics: commonly 20 mL/kg bolus, reassess; repeat per protocol.",
+	                            "Ongoing: titrate to response and avoid fluid overload; use smaller boluses in CHF/CKD.",
+	                            "Large-volume resuscitation requires frequent reassessment and labs per protocol."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications when resuscitation is required.",
+	                            "Relative/precautions: heart failure/volume overload, advanced renal failure, hypernatremia/hyperchloremic acidosis risk with large volumes.",
+	                            "Physician approval: large-volume resuscitation, persistent hypotension, or unclear shock type."
+	                        ]),
+	                        protip: ul([
+	                            "Despite being widely compatible, large volumes can cause hyperchloremic metabolic acidosis—reassess and consider balanced fluids when appropriate.",
+	                            "Use a bolus-and-reassess approach; avoid “set and forget” fluids."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Isotonic crystalloid expands intravascular volume temporarily.",
+	                                    "Onset: immediate; expected response: improved perfusion if hypovolemic.",
+	                                    "Treatment failure: ongoing hypotension after appropriate fluids → consider bleeding, sepsis, cardiogenic or obstructive shock; escalate."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: dilutional effects with large volumes.",
+	                                    "Serious: fluid overload/pulmonary edema; hyperchloremic acidosis and hypernatremia with large volumes."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Commonly used for medication dilution; always check compatibility for specific drugs.",
+	                                    "Does not replace electrolyte correction—monitor and replete as needed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Vitals, lung exam, urine output, and mental status after boluses; monitor for overload.",
+	                                    "If large volumes: electrolytes/acid-base (Cl, Na, bicarb) and renal function as indicated.",
+	                                    "Escalate for worsening dyspnea, crackles, or persistent shock."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "IV saline helps support hydration and blood pressure; staff will monitor for breathing issues or swelling.",
+	                                    "Report shortness of breath or swelling in legs/hands."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Balanced crystalloids (e.g., LR) in many resuscitation scenarios.",
+	                                    "Blood products for hemorrhagic shock; vasopressors for persistent distributive shock after fluids (physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Fluid overload: stop/slow fluids, provide oxygen/NIV as needed, and escalate for diuretics/pressor support per scenario.",
+	                                    "Persistent hypotension after fluids: urgent physician notification and shock pathway escalation."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Thiamine (B1)",
+	                        forms: "Vial (commonly 100 mg/mL)",
+	                        ind: "Suspected/at-risk Wernicke’s encephalopathy; chronic alcohol use, malnutrition, prolonged vomiting, or refeeding risk",
+	                        dose: ul([
+	                            "Prophylaxis/high risk: 100 mg IV/IM once daily (protocol dependent).",
+	                            "Suspected Wernicke’s encephalopathy: high-dose IV regimens are used (e.g., 500 mg IV TID) but require physician direction/local protocol.",
+	                            "Give before or alongside glucose in malnutrition/alcoholism when feasible (do not delay life-saving dextrose).",
+	                            "Adjustments: no specific renal adjustment; generally well-tolerated."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications; hypersensitivity is rare.",
+	                            "Physician approval: suspected Wernicke’s requiring high-dose regimen, persistent neurologic symptoms, or complex refeeding syndrome risk."
+	                        ]),
+	                        protip: ul([
+	                            "If malnourished or chronic alcohol use: thiamine is a low-risk, high-benefit intervention—give early.",
+	                            "Wernicke’s can present subtly (confusion/ataxia/eye findings); if suspected, treat and escalate rather than “watch and wait.”"
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Vitamin cofactor in carbohydrate metabolism; deficiency contributes to neurologic injury (Wernicke–Korsakoff).",
+	                                    "Expected effect: prevents/treats deficiency-related neurologic complications; symptomatic improvement may be partial and may take days.",
+	                                    "Treatment failure: ongoing confusion/ataxia/ophthalmoplegia → consider alternative diagnoses and escalate; continue deficiency treatment as directed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: local injection site discomfort.",
+	                                    "Rare: hypersensitivity/anaphylaxis (very uncommon)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "No meaningful interactions in typical emergency use.",
+	                                    "Refeeding risk management may involve coordinated electrolyte replacement (phosphate, Mg, K) per protocol."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Monitor mental status, gait, and ocular findings in suspected Wernicke’s; document response over time.",
+	                                    "In malnutrition/refeeding risk: monitor electrolytes (phosphate, Mg, K) and glucose per protocol/physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Thiamine replaces a vitamin your body needs for brain function; continued nutrition support is important.",
+	                                    "If alcohol use is present, offer supports and follow-up resources."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "No substitute for true deficiency—nutritional rehabilitation and multivitamin support are adjuncts.",
+	                                    "Treat other causes of confusion concurrently (infection, hypoglycemia, withdrawal)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected Wernicke’s with AMS/ataxia/eye findings: urgent physician involvement; give high-dose thiamine per protocol and consider admission.",
+	                                    "Anaphylaxis: stop medication and activate emergency response."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Calcium gluconate",
+	                        forms: "Vial (10% solution)",
+	                        ind: "Membrane stabilization in severe hyperkalemia; symptomatic hypocalcemia; calcium channel blocker overdose (adjunct)",
+	                        dose: ul([
+	                            "Adults: 1–2 g IV over 5–10 min; may repeat if ECG changes persist per protocol.",
+	                            "Pediatrics: 60–100 mg/kg of 10% calcium gluconate (0.6–1 mL/kg) IV slowly (max per protocol).",
+	                            "If no response and central access available: calcium chloride is more concentrated but higher extravasation risk (physician/protocol).",
+	                            "Adjustments: use caution in renal failure and in digoxin toxicity (relative)."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications when treating life-threatening hyperkalemia with ECG changes.",
+	                            "Relative/precautions: hypercalcemia; digoxin toxicity (risk of arrhythmias—use only with physician direction if needed).",
+	                            "Extravasation risk: avoid small peripheral lines if possible; monitor site closely.",
+	                            "Physician approval: suspected digoxin toxicity, need for repeated dosing, or CCB overdose management."
+	                        ]),
+	                        protip: ul([
+	                            "Calcium does not lower potassium—it buys time by stabilizing the myocardium while definitive hyperkalemia treatments work.",
+	                            "If ECG changes persist, repeat calcium per protocol and escalate early."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Raises extracellular calcium and stabilizes the cardiac membrane potential.",
+	                                    "Onset: minutes; expected response: narrowing of QRS/peaked T changes improve (ECG) and reduced arrhythmia risk.",
+	                                    "Treatment failure: ongoing ECG instability → repeat dose and escalate while treating underlying hyperkalemia/toxicity."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: flushing, nausea; local irritation.",
+	                                    "Serious: extravasation injury/necrosis; bradycardia/arrhythmia with rapid infusion; hypercalcemia with excessive dosing."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Avoid mixing in the same line with bicarbonate (precipitation).",
+	                                    "Caution with digoxin (arrhythmia risk); coordinate with physician in suspected toxicity."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Continuous ECG and BP during/after administration; reassess ECG response.",
+	                                    "Monitor IV site closely for extravasation.",
+	                                    "Check potassium/calcium and renal function as part of hyperkalemia/tox pathway."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "This is given to protect the heart while we correct the underlying electrolyte/toxin problem.",
+	                                    "Report burning or pain at the IV site immediately."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Calcium chloride (more concentrated; higher extravasation risk) in selected situations (physician/protocol).",
+	                                    "Definitive hyperkalemia treatments: insulin/glucose, β2-agonist, bicarbonate (selected), diuretics/dialysis, potassium binders."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Unstable arrhythmia or worsening ECG changes: repeat calcium per protocol and activate hyperkalemia emergency pathway; notify supervising physician immediately.",
+	                                    "Extravasation: stop infusion and manage per extravasation protocol; escalate urgently."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Magnesium Sulphate",
+	                        forms: "Vial (often 50%)",
+	                        ind: "Torsades de pointes; severe asthma exacerbation (adjunct); eclampsia/seizure prophylaxis (protocolized)",
+	                        dose: ul([
+	                            "Torsades: 2 g IV over 10–15 min; may repeat per protocol; consider infusion for recurrent torsades (physician).",
+	                            "Severe asthma: 2 g IV over 15–30 min (adult) as adjunct when not responding to bronchodilators/steroids.",
+	                            "Eclampsia: loading dose commonly 4–6 g IV followed by infusion 1–2 g/h (physician/OB protocol).",
+	                            "Renal impairment: reduced clearance—use caution and avoid repeated dosing without monitoring."
+	                        ]),
+	                        contra: ul([
+	                            "Heart block (especially high-grade) and severe renal failure (relative—risk of toxicity).",
+	                            "Myasthenia gravis (avoid/relative—can worsen weakness).",
+	                            "Physician approval: ongoing infusion, eclampsia protocols, or repeated dosing in renal impairment."
+	                        ]),
+	                        protip: ul([
+	                            "Toxicity is clinical: loss of deep tendon reflexes and respiratory depression are key warning signs.",
+	                            "Calcium gluconate is the antidote for magnesium toxicity."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Stabilizes myocardium and suppresses early afterdepolarizations (torsades); smooth muscle relaxation/bronchodilation adjunct; CNS effects in eclampsia.",
+	                                    "Onset: minutes IV; expected response: torsades termination/reduced recurrence; in asthma, modest improvement in airflow in severe cases.",
+	                                    "Treatment failure: persistent torsades or worsening respiratory status → escalation to defib/advanced airway and physician."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: flushing, nausea, hypotension (especially if infused rapidly).",
+	                                    "Serious: respiratory depression, bradycardia/heart block, loss of reflexes (toxicity)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Additive hypotension/bradycardia with calcium channel blockers and other AV nodal blockers.",
+	                                    "Neuromuscular blockade can be potentiated (important peri-intubation/anesthesia context)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "ECG and BP during administration; monitor RR and level of consciousness.",
+	                                    "If infusion/renal impairment: monitor reflexes, urine output, and magnesium levels per protocol/physician.",
+	                                    "Escalate if RR drops, reflexes disappear, or hypotension/bradycardia occurs."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "You may feel warmth/flushing; we monitor breathing, blood pressure, and heart rhythm closely.",
+	                                    "Report severe dizziness, trouble breathing, or chest discomfort immediately."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Torsades: immediate defibrillation if unstable; correct K/Mg; stop QT-prolonging drugs; consider overdrive pacing/iso (physician).",
+	                                    "Severe asthma: continuous bronchodilators, steroids, epinephrine (selected), NIV/intubation pathway (physician).",
+	                                    "Eclampsia: obstetric emergency protocol and definitive delivery planning (OB/physician)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Magnesium toxicity: stop infusion, support airway/ventilation, give calcium gluconate per protocol, and escalate urgently.",
+	                                    "Unstable torsades: defibrillate immediately and escalate; magnesium is adjunct not a delay."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Sodium Bicarbonate",
+	                        forms: "Pre-filled syringe (50 mEq/50 mL) or vial/amp (varies)",
+	                        ind: "TCA overdose with wide QRS/ventricular arrhythmias; severe metabolic acidosis; hyperkalemia (selected situations)",
+	                        dose: ul([
+	                            "TCA overdose with wide QRS: 1–2 mEq/kg IV bolus (commonly 50–100 mEq), repeat until QRS narrows and perfusion improves; then infusion per protocol/toxicology.",
+	                            "Severe metabolic acidosis: dosing depends on cause and ABG/VBG—physician-directed; avoid indiscriminate use.",
+	                            "Hyperkalemia: adjunct in severe acidemia or specific contexts per protocol; not definitive therapy alone.",
+	                            "Adjustments: use caution in renal failure/volume overload; monitor sodium and pH."
+	                        ]),
+	                        contra: ul([
+	                            "Metabolic/respiratory alkalosis (avoid).",
+	                            "Relative/precautions: hypernatremia, hypocalcemia, volume overload/CHF, severe hypokalemia risk with overcorrection.",
+	                            "Line compatibility: do not mix with calcium-containing solutions in the same line (precipitation).",
+	                            "Physician/toxicology approval: most non-TCA uses and any infusion strategy."
+	                        ]),
+	                        protip: ul([
+	                            "In TCA overdose, bicarbonate works by sodium loading and alkalinization—treat the ECG (QRS) and perfusion, not just the pH number.",
+	                            "Overuse can worsen hypokalemia and fluid/sodium load—monitor closely."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Buffers hydrogen ions (↑pH) and provides sodium load; in TCA toxicity, helps overcome sodium channel blockade.",
+	                                    "Onset: rapid; expected response in TCA toxicity is QRS narrowing and improved hemodynamics.",
+	                                    "Treatment failure: persistent wide QRS/arrhythmia or shock → repeat bolus and escalate to toxicology/advanced therapies."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: nausea; fluid/sodium load.",
+	                                    "Serious: metabolic alkalosis, hypokalemia, hypocalcemia symptoms, volume overload/pulmonary edema.",
+	                                    "Extravasation injury is possible—ensure line patency."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Incompatibility with calcium solutions (precipitation) in the same line.",
+	                                    "Alkalinization can affect drug ionization/excretion (clinically relevant in select toxicology contexts—physician/toxicology)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "ECG (QRS/QT), hemodynamics, and serial electrolytes (K, Ca, Na) and ABG/VBG when treating acidosis/toxicity.",
+	                                    "Monitor for pulmonary edema and neurologic changes with significant pH shifts.",
+	                                    "Escalate for worsening arrhythmia, seizures, or refractory hypotension."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "This is used in specific emergencies to correct dangerous acidity or toxin effects; continuous monitoring is required.",
+	                                    "Report chest discomfort, shortness of breath, or IV site pain immediately."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "TCA toxicity: supportive care, benzodiazepines for seizures, vasopressors for shock; lipid therapy may be considered in refractory cases (physician/toxicology).",
+	                                    "Acidosis: treat underlying cause (shock/sepsis/DKA/renal failure); dialysis in select cases.",
+	                                    "Hyperkalemia: calcium, insulin/glucose, β2-agonist, dialysis and definitive treatment."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "TCA overdose with wide QRS/ventricular arrhythmia: immediate bicarb bolus per protocol and urgent physician/toxicology involvement.",
+	                                    "If pulmonary edema or severe alkalosis develops: stop/slow therapy and escalate; correct electrolytes and support ventilation."
+	                                ])
+	                            }
+	                        ]
+	                    },
+	                    {
+	                        name: "Cyanokit (Hydroxocobalamin)",
+	                        forms: "Vial (5 g) for IV infusion",
+	                        ind: "Suspected cyanide poisoning (e.g., smoke inhalation in enclosed-space fire with AMS/hypotension/severe lactic acidosis)",
+	                        dose: ul([
+	                            "Adults: 5 g IV over ~15 min; may repeat 5 g once (total 10 g) if ongoing severe toxicity.",
+	                            "Pediatrics: 70 mg/kg IV (max 5 g) over ~15 min; may repeat once per protocol.",
+	                            "Do not delay supportive care (oxygen/ventilation) while preparing antidote.",
+	                            "Adjustments: none in emergency; anticipate lab interference."
+	                        ]),
+	                        contra: ul([
+	                            "No absolute contraindications when cyanide poisoning is strongly suspected.",
+	                            "Relative/precautions: hypersensitivity to hydroxocobalamin (rare) and caution in severe renal impairment (oxalate crystals/AKI risk reported).",
+	                            "Interferes with many lab tests and can trigger dialysis machine alarms—coordinate with lab/dialysis teams.",
+	                            "Physician approval: generally required; use within smoke inhalation/tox protocol."
+	                        ]),
+	                        protip: ul([
+	                            "It will turn skin/mucosa/urine red for days—this is expected and not hematuria.",
+	                            "In fire victims, treat suspected cyanide and carbon monoxide toxicity in parallel with aggressive supportive care."
+	                        ]),
+	                        details: [
+	                            {
+	                                title: "Mechanism & Expected Effect",
+	                                icon: "activity",
+	                                content: ul([
+	                                    "Binds cyanide to form cyanocobalamin → allows detoxification and restores cellular respiration.",
+	                                    "Expected response: improved hemodynamics and lactate over time when cyanide is the driver (often alongside other resuscitation).",
+	                                    "Treatment failure: persistent shock/AMS → consider alternate causes, ongoing CO poisoning, airway injury, and continue resuscitation."
+	                                ])
+	                            },
+	                            {
+	                                title: "Adverse Effects",
+	                                icon: "alert-triangle",
+	                                content: ul([
+	                                    "Common: transient hypertension, nausea, headache; intense red discoloration of skin and urine.",
+	                                    "Serious (rare): allergic reaction; acute kidney injury has been reported in some cases."
+	                                ])
+	                            },
+	                            {
+	                                title: "Drug Interactions",
+	                                icon: "link",
+	                                content: ul([
+	                                    "Major issue is diagnostic interference: can affect creatinine, bilirubin, lactate, and other assays (lab-dependent).",
+	                                    "May interfere with hemodialysis equipment sensors—notify dialysis team if needed."
+	                                ])
+	                            },
+	                            {
+	                                title: "Monitoring",
+	                                icon: "clipboard-list",
+	                                content: ul([
+	                                    "Continuous vitals and reassessment of perfusion; trend lactate and acid-base status with awareness of possible assay interference.",
+	                                    "Monitor renal function and urine output.",
+	                                    "Escalate for persistent shock, airway compromise, or severe metabolic acidosis."
+	                                ])
+	                            },
+	                            {
+	                                title: "Patient Counselling",
+	                                icon: "message-circle",
+	                                content: ul([
+	                                    "Skin and urine discoloration are expected; it can persist for several days.",
+	                                    "Follow-up may be needed for smoke inhalation complications (airway irritation, delayed lung injury)."
+	                                ])
+	                            },
+	                            {
+	                                title: "Alternatives",
+	                                icon: "shuffle",
+	                                content: ul([
+	                                    "Other cyanide antidote kits exist (institution-specific); choice depends on local protocol and availability.",
+	                                    "Definitive management remains aggressive supportive care: high-flow oxygen, ventilation, shock management, and burn/inhalation injury care."
+	                                ])
+	                            },
+	                            {
+	                                title: "Emergency & Escalation",
+	                                icon: "siren",
+	                                content: ul([
+	                                    "Suspected cyanide poisoning is a resuscitation emergency—activate toxicology/critical care pathway and notify supervising physician immediately.",
+	                                    "If anaphylaxis occurs: stop infusion and treat immediately; continue supportive care for poisoning."
+	                                ])
+	                            }
+	                        ]
+	                    }
+	                ]
+	            },
             {
                 category: "Controlled Substances — Narcotics",
                 medications: [
