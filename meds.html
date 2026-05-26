@@ -252,6 +252,109 @@
                         ]
                     },
                     {
+                        name: "Lidocaine (IV Antiarrhythmic)",
+                        forms: "Prefilled Syringe (100 mg/5 mL), Vial (1 g/25 mL or 2 g/50 mL for infusion)",
+                        ind: "VF/pVT refractory to defibrillation and epinephrine (alternative to amiodarone); stable VT; wide-complex tachycardia of uncertain type",
+                        dose: ul([
+                            "Cardiac arrest (VF/pVT): 1–1.5 mg/kg IV/IO push; may repeat 0.5–0.75 mg/kg q5–10 min (max cumulative 3 mg/kg).",
+                            "Perfusing VT/wide-complex tachycardia: 1–1.5 mg/kg IV over 2–3 min; may repeat 0.5–0.75 mg/kg to max 3 mg/kg.",
+                            "Maintenance infusion (if rhythm converts): 1–4 mg/min IV (typically 2 mg/min); reduce by 50% if >70 years, HF, or liver disease.",
+                            "Pediatrics: 1 mg/kg IV/IO bolus (max 100 mg); infusion 20–50 mcg/kg/min if needed.",
+                            "Adjustments: reduce dose/infusion in elderly, heart failure, hepatic disease, shock; monitor closely.",
+                            "Pregnancy Category B—generally safe but use lowest effective dose."
+                        ]),
+                        contra: ul([
+                            "2nd/3rd-degree AV block or severe bradycardia without pacemaker (relative in cardiac arrest).",
+                            "Known hypersensitivity to amide local anesthetics.",
+                            "Severe hepatic disease (accumulation risk—reduce dose).",
+                            "Caution: QT prolongation, hypokalemia/hypomagnesemia, concurrent use of other Na+ channel blockers.",
+                            "Physician approval: non-arrest use, prolonged infusion, complex arrhythmias, compromised cardiac function."
+                        ]),
+                        protip: ul([
+                            "Amiodarone is preferred over lidocaine in current ACLS guidelines for VF/pVT, but lidocaine is acceptable alternative.",
+                            "Always correct electrolytes (K+/Mg2+) before or during antiarrhythmic therapy to reduce proarrhythmic risk.",
+                            "If using maintenance infusion, reassess need q1–2 h; prolonged infusions increase toxicity risk.",
+                            "Watch for CNS toxicity signs (perioral numbness, tinnitus, confusion, seizures)—dose-related and reversible if caught early."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Class IB antiarrhythmic: blocks cardiac sodium channels → suppresses ventricular ectopy and reentry circuits.",
+                                    "Shortens action potential duration; minimal effect on conduction velocity or contractility at therapeutic doses.",
+                                    "Expected response: VF/pVT may become more amenable to defibrillation; perfusing VT terminates or slows within minutes.",
+                                    "Treatment failure: persistent/recurrent VT/VF despite appropriate dosing and defibrillation; consider amiodarone, procainamide, or cardioversion."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: dizziness, drowsiness, paresthesias (perioral numbness), mild hypotension.",
+                                    "Serious: CNS toxicity (confusion, slurred speech, tinnitus, seizures); cardiac toxicity (bradycardia, heart block, asystole); hypotension.",
+                                    "Proarrhythmia: rare but can occur with high doses or in presence of structural heart disease/electrolyte abnormalities.",
+                                    "Red flags: perioral tingling, metallic taste, tinnitus, confusion, seizures—stop infusion immediately and manage toxicity."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "β-blockers, amiodarone: may potentiate bradycardia and cardiac depression—monitor closely.",
+                                    "Other antiarrhythmics (procainamide, quinidine): additive cardiac toxicity and QT prolongation.",
+                                    "CYP3A4 inhibitors (macrolides, azole antifungals, cimetidine): increase lidocaine levels—reduce dose if possible.",
+                                    "Phenytoin, rifampin: may decrease lidocaine levels (CYP inducers).",
+                                    "Additive toxicity with other local anesthetics (bupivacaine, ropivacaine)."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: continuous ECG, BP, mental status, electrolytes (K/Mg).",
+                                    "During bolus/infusion: continuous ECG and BP; reassess rhythm, HR, mental status q5 min during loading, then q15–30 min.",
+                                    "Watch for: widening QRS (>50% baseline), bradycardia, hypotension, CNS symptoms (perioral numbness, tinnitus, confusion).",
+                                    "Therapeutic level: 1.5–5 mcg/mL (toxic >5 mcg/mL, seizures >9 mcg/mL)—levels not typically available emergently but useful if prolonged infusion.",
+                                    "Escalate immediately if: severe bradycardia/heart block, seizures, severe hypotension, refractory arrhythmias."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Not typically applicable in cardiac arrest (patient unconscious).",
+                                    "If conscious patient receiving lidocaine for VT: explain purpose is to stabilize heart rhythm and prevent dangerous arrhythmias.",
+                                    "Warn about possible tingling around mouth, lightheadedness, drowsiness—report immediately if severe or worsening.",
+                                    "If discharged on oral antiarrhythmic (mexiletine, others): strict follow-up with cardiology and do not stop without prescriber approval."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "VF/pVT: amiodarone 300 mg IV push (preferred in ACLS); epinephrine alone if antiarrhythmics unavailable.",
+                                    "Stable VT: amiodarone 150 mg IV over 10 min; procainamide (if available); synchronized cardioversion if unstable or refractory.",
+                                    "Polymorphic VT (torsades): magnesium sulphate 2 g IV, correct electrolytes, overdrive pacing if refractory.",
+                                    "If lidocaine fails or toxicity develops: switch to alternative antiarrhythmic or proceed to cardioversion/ablation per cardiology."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "CNS toxicity (confusion, seizures): STOP lidocaine immediately; protect airway; benzodiazepines for seizures; supportive care.",
+                                    "Cardiac arrest from toxicity (bradycardia/asystole): initiate ACLS; consider lipid emulsion 20% IV if severe toxicity suspected (1.5 mL/kg bolus over 1 min, then infusion).",
+                                    "Refractory VT/VF: stop lidocaine; give amiodarone (if not already given); consider procainamide, synchronized cardioversion, or escalate for ECMO/advanced support.",
+                                    "Severe bradycardia/heart block: stop infusion; atropine 0.5 mg IV; transcutaneous pacing; consider epinephrine infusion.",
+                                    "Hypotension: stop/reduce infusion rate; fluids; consider vasopressor if severe.",
+                                    "Document: indication, total dose given, rhythm response, any adverse effects, and escalation plan under delegated authority.",
+                                    "Escalate to physician: initiation in non-arrest patient, need for prolonged infusion, development of toxicity, or refractory arrhythmias."
+                                ])
+                            }
+                        ]
+                    },
+                    {
                         name: "Epinephrine",
                         forms: "Ampule 1:1,000 (1 mg/1 mL), Prefilled Syringe 1:10,000 (1 mg/10 mL)",
                         ind: "Cardiac arrest; anaphylaxis; severe asthma; severe symptomatic bradycardia/shock",
@@ -1115,6 +1218,105 @@
                                 content: ul([
                                     "If ischemia or severe hyponatremia develops, stop/adjust and escalate urgently.",
                                     "Document indication, target MAP/perfusion goals, and escalation plan under delegated authority."
+                                ])
+                            }
+                        ]
+                    },
+                    {
+                        name: "Dopamine",
+                        forms: "Vial (200 mg/5 mL, 400 mg/10 mL) for infusion",
+                        ind: "Symptomatic bradycardia unresponsive to atropine/pacing; hypotension with bradycardia; cardiogenic shock (selected)",
+                        dose: ul([
+                            "Start 5 mcg/kg/min IV infusion; titrate by 2.5–5 mcg/kg/min q5–10 min to desired effect.",
+                            "Typical range: 2–20 mcg/kg/min; dose-dependent receptor activity.",
+                            "Low-dose (2–5 mcg/kg/min): dopaminergic (renal); mid-dose (5–10): β1 (inotropy); high-dose (>10): α1 (vasoconstriction).",
+                            "Central line preferred; peripheral use acceptable temporarily in large vein with close monitoring.",
+                            "No renal/hepatic adjustments; pregnancy Category C—use only if benefit justifies risk."
+                        ]),
+                        contra: ul([
+                            "Pheochromocytoma; uncorrected tachyarrhythmias or VF.",
+                            "Relative: concurrent MAOI use within 2 weeks (severe hypertensive crisis risk).",
+                            "Caution in severe coronary disease (may increase ischemia) and extravasation risk.",
+                            "Physician approval: initiation, titration, and multi-pressor management."
+                        ]),
+                        protip: ul([
+                            "Consider transcutaneous pacing or epinephrine infusion instead for symptomatic bradycardia if dopamine unavailable.",
+                            "Monitor IV site closely—extravasation causes tissue necrosis; treat immediately with phentolamine.",
+                            "If tachyarrhythmia develops, reduce rate or switch to alternative agent per protocol.",
+                            "In cardiogenic shock, norepinephrine + dobutamine is often preferred over dopamine—follow local protocol."
+                        ]),
+                        details: [
+                            {
+                                title: "Mechanism & Expected Effect",
+                                icon: "activity",
+                                content: ul([
+                                    "Dose-dependent: dopaminergic (D1/D2) at low dose → renal vasodilation; β1 at mid-dose → ↑HR/contractility; α1 at high dose → vasoconstriction.",
+                                    "Onset within minutes; expected response is improved HR, BP, and cardiac output.",
+                                    "Treatment failure: persistent bradycardia/hypotension despite titration; development of tachyarrhythmias or worsening perfusion."
+                                ])
+                            },
+                            {
+                                title: "Adverse Effects",
+                                icon: "alert-triangle",
+                                content: ul([
+                                    "Common: tachycardia, palpitations, ectopy, hypertension, nausea.",
+                                    "Serious: ventricular arrhythmias, myocardial ischemia, peripheral/digital ischemia, extravasation necrosis.",
+                                    "May increase pulmonary shunt and worsen hypoxemia in some patients.",
+                                    "Red flags: chest pain, sustained tachycardia >120, new arrhythmias, limb ischemia—reduce/stop and escalate."
+                                ])
+                            },
+                            {
+                                title: "Drug Interactions",
+                                icon: "link",
+                                content: ul([
+                                    "MAOI: severe hypertension/hyperpyrexia—absolute contraindication if used within 2 weeks.",
+                                    "Phenytoin: may cause severe hypotension and bradycardia—avoid combination.",
+                                    "β-blockers: may blunt chronotropic effect; other vasopressors increase arrhythmia risk.",
+                                    "Butyrophenones (e.g., haloperidol, droperidol): may cause severe hypotension—use caution."
+                                ])
+                            },
+                            {
+                                title: "Monitoring",
+                                icon: "clipboard-list",
+                                content: ul([
+                                    "Baseline: BP, HR, ECG, mental status, perfusion markers (capillary refill, skin temperature, urine output).",
+                                    "During infusion: continuous ECG and BP monitoring (arterial line preferred in ICU); reassess HR, rhythm, perfusion q5–15 min during titration.",
+                                    "Monitor IV site continuously for signs of extravasation (blanching, coolness, pain).",
+                                    "Labs: baseline and serial lactate, ABG/VBG if shock; electrolytes (K/Mg) to reduce arrhythmia risk.",
+                                    "Escalate immediately if: sustained ventricular arrhythmias, severe hypertension, chest pain/ECG changes, limb ischemia, or extravasation."
+                                ])
+                            },
+                            {
+                                title: "Patient Counselling",
+                                icon: "message-circle",
+                                content: ul([
+                                    "Not typically applicable (critical care medication administered to unstable/sedated patients).",
+                                    "If patient aware: explain that medication is supporting heart rate and blood pressure; temporary palpitations or restlessness may occur.",
+                                    "Report immediately: chest pain, severe headache, numbness/pain in extremities."
+                                ])
+                            },
+                            {
+                                title: "Alternatives",
+                                icon: "shuffle",
+                                content: ul([
+                                    "Bradycardia: transcutaneous pacing (preferred for symptomatic bradycardia); epinephrine infusion (2–10 mcg/min).",
+                                    "Cardiogenic shock: norepinephrine + dobutamine preferred over dopamine (lower arrhythmia risk per guidelines).",
+                                    "Distributive shock: norepinephrine first-line; vasopressin adjunct; epinephrine second-line.",
+                                    "Atropine for bradycardia (0.5 mg IV q3–5 min, max 3 mg) before starting infusion—per ACLS."
+                                ])
+                            },
+                            {
+                                title: "Emergency & Escalation",
+                                icon: "siren",
+                                content: ul([
+                                    "Extravasation: STOP infusion immediately; leave catheter in place; aspirate residual drug if possible.",
+                                    "Administer phentolamine 5–10 mg in 10 mL NS subcutaneously around extravasation site within 12 hours (sooner better).",
+                                    "Elevate limb; apply warm compresses; photograph site; escalate to physician immediately.",
+                                    "Ventricular arrhythmias: reduce or stop infusion; correct electrolytes (K/Mg); consider amiodarone or cardioversion per ACLS.",
+                                    "Severe tachycardia (>120) without improvement in perfusion: reduce rate; consider switching to alternative pressor.",
+                                    "Myocardial ischemia (chest pain/ST changes): reduce/stop infusion; give oxygen, ASA, nitroglycerin (if BP allows); escalate urgently.",
+                                    "Refractory shock: escalate for multi-pressor strategy, inotrope addition (dobutamine), mechanical circulatory support evaluation.",
+                                    "Document: indication, starting/peak dose, response, complications, and escalation plan under delegated authority."
                                 ])
                             }
                         ]
