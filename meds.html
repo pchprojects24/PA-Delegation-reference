@@ -12546,13 +12546,14 @@
             "Clinical Pearls",
             "Additional Notes"
         ];
+        const defaultPlainText = "Not specified";
         const defaultRichText = "<p>Not specified.</p>";
-        const ensurePlainText = (value, fallback = "Not specified") =>
+        const suggestionBlurDelay = 100;
+        const ensurePlainText = (value, fallback = defaultPlainText) =>
             String(value ?? "").trim() || fallback;
         const stripHtml = (value = "") => {
-            const template = document.createElement("template");
-            template.innerHTML = String(value);
-            return template.content.textContent.replace(/\s+/g, " ").trim();
+            const parsedDocument = new DOMParser().parseFromString(String(value), "text/html");
+            return parsedDocument.body.textContent.replace(/\s+/g, " ").trim();
         };
         const ensureRichText = (value, fallback = defaultRichText) =>
             stripHtml(value) ? value : fallback;
@@ -12791,13 +12792,14 @@
 
                 button.innerHTML = `
                     <div>
-                        <div class="text-sm font-medium text-gray-900">${item.label}</div>
-                        <div class="mt-0.5 text-xs text-gray-500">${item.meta}</div>
+                        <div class="suggestion-label text-sm font-medium text-gray-900"></div>
+                        <div class="suggestion-meta mt-0.5 text-xs text-gray-500"></div>
                     </div>
-                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-gray-500">
-                        ${item.type}
-                    </span>
+                    <span class="suggestion-type rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-gray-500"></span>
                 `;
+                button.querySelector('.suggestion-label').textContent = item.label;
+                button.querySelector('.suggestion-meta').textContent = item.meta;
+                button.querySelector('.suggestion-type').textContent = item.type;
                 button.addEventListener('mousedown', (event) => event.preventDefault());
                 button.addEventListener('click', () => {
                     searchInput.value = item.searchValue;
@@ -13044,7 +13046,7 @@
         });
 
         searchInput.addEventListener('blur', () => {
-            setTimeout(() => searchSuggestions.classList.add('hidden'), 100);
+            setTimeout(() => searchSuggestions.classList.add('hidden'), suggestionBlurDelay);
         });
 
         document.addEventListener('click', (event) => {
