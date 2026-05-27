@@ -12549,6 +12549,8 @@
         const defaultPlainText = "Not specified";
         const defaultRichText = "<p>Not specified.</p>";
         const suggestionBlurDelay = 100;
+        const highlightExcludedTags = ['SCRIPT', 'STYLE', 'MARK'];
+        const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const ensurePlainText = (value, fallback = defaultPlainText) =>
             String(value ?? "").trim() || fallback;
         const stripHtml = (value = "") => {
@@ -12603,7 +12605,7 @@
                 .split(/\s+/)
                 .filter(Boolean);
         const matchesTokens = (text, tokens) =>
-            tokens.every((token) => text.includes(token));
+            tokens.every((token) => String(text).toLowerCase().includes(token));
         const getMedicationSearchText = (categoryName, med) =>
             [
                 categoryName,
@@ -12694,9 +12696,7 @@
             if (!tokens.length) return;
 
             const uniqueTokens = [...new Set(tokens)].sort((a, b) => b.length - a.length);
-            const escapedTokens = uniqueTokens.map((token) =>
-                token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-            );
+            const escapedTokens = uniqueTokens.map((token) => escapeRegex(token));
             const testPattern = new RegExp(`(${escapedTokens.join("|")})`, "i");
             const replacePattern = new RegExp(`(${escapedTokens.join("|")})`, "gi");
             const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
@@ -12705,7 +12705,7 @@
 
                     const parent = node.parentElement;
                     if (!parent) return NodeFilter.FILTER_REJECT;
-                    if (['SCRIPT', 'STYLE', 'MARK'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    if (highlightExcludedTags.includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
                     if (parent.closest('#searchSuggestions')) return NodeFilter.FILTER_REJECT;
 
                     return testPattern.test(node.nodeValue)
