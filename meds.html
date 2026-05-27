@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Medication Reference Guide</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script
+        defer
+        src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
     <style>
         .accordion-content {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
@@ -64,9 +69,17 @@
                         aria-controls="searchSuggestions"
                         aria-expanded="false"
                         aria-haspopup="listbox"
-                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors" 
+                        class="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors" 
                         placeholder="Search medications, categories, or indications..."
                     >
+                    <button
+                        type="button"
+                        id="clearSearchBtn"
+                        aria-label="Clear search"
+                        class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                    >
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
                     <div
                         id="searchSuggestions"
                         role="listbox"
@@ -12739,6 +12752,10 @@
         const emptyState = document.getElementById('emptyState');
         const resultsCount = document.getElementById('resultsCount');
         const expandAllBtn = document.getElementById('expandAllBtn');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const storageKeys = {
+            search: 'paDelegationRef.meds.search'
+        };
         const detailSectionOrder = [
             "Mechanism & Expected Effect",
             "Adverse Effects",
@@ -12875,14 +12892,20 @@
 
                 if (expanded) {
                     content.classList.add('expanded');
+                    content.setAttribute('aria-hidden', 'false');
+                    content.removeAttribute('inert');
                     content.style.paddingTop = '1rem';
                     content.style.paddingBottom = '1rem';
                     if (icon) icon.style.transform = 'rotate(180deg)';
+                    if (button) button.setAttribute('aria-expanded', 'true');
                 } else {
                     content.classList.remove('expanded');
+                    content.setAttribute('aria-hidden', 'true');
+                    content.setAttribute('inert', '');
                     content.style.paddingTop = '0';
                     content.style.paddingBottom = '0';
                     if (icon) icon.style.transform = 'rotate(0deg)';
+                    if (button) button.setAttribute('aria-expanded', 'false');
                 }
             });
 
@@ -13041,6 +13064,12 @@
             visibleSuggestions = getSearchSuggestions(currentSearchTokens);
             activeSuggestionIndex = -1;
 
+            try {
+                window.localStorage.setItem(storageKeys.search, rawValue);
+            } catch {}
+
+            clearSearchBtn.classList.toggle('hidden', !rawValue.trim());
+
             if (!currentSearchTokens.length) {
                 renderMedications(normalizedMedData);
                 setAllExpanded(false);
@@ -13090,7 +13119,7 @@
                 emptyState.classList.add('hidden');
             }
 
-            data.forEach(category => {
+            data.forEach((category, categoryIndex) => {
                 if (category.medications.length === 0) return;
 
                 const catDiv = document.createElement('div');
@@ -13110,13 +13139,22 @@
                 const medList = document.createElement('div');
                 medList.className = 'divide-y divide-gray-100';
 
-                category.medications.forEach(med => {
+                category.medications.forEach((med, medIndex) => {
                     totalMeds++;
+                    const accordionId = `accordion-${categoryIndex}-${medIndex}`;
+                    const accordionButtonId = `accordion-btn-${categoryIndex}-${medIndex}`;
                     const medItem = document.createElement('div');
                     medItem.className = 'med-card group';
                     
                     medItem.innerHTML = `
-                        <button class="w-full text-left px-6 py-4 focus:outline-none hover:bg-gray-50 flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <button
+                            type="button"
+                            id="${accordionButtonId}"
+                            data-accordion-trigger="true"
+                            aria-expanded="false"
+                            aria-controls="${accordionId}"
+                            class="w-full text-left px-6 py-4 focus:outline-none hover:bg-gray-50 flex justify-between items-center"
+                        >
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${med.name}</h3>
                                 <p class="text-sm text-gray-500 mt-1 line-clamp-1">${med.ind}</p>
@@ -13124,7 +13162,13 @@
                             <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-gray-400 transform transition-transform duration-300"></i>
                         </button>
                         
-                        <div class="accordion-content bg-white px-6 border-t border-gray-50">
+                        <div
+                            id="${accordionId}"
+                            class="accordion-content bg-white px-6 border-t border-gray-50"
+                            aria-hidden="true"
+                            aria-labelledby="${accordionButtonId}"
+                            inert
+                        >
                             <div class="py-4 space-y-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
@@ -13205,7 +13249,7 @@
         }
 
         // Accordion Logic
-        window.toggleAccordion = function(button) {
+        function toggleAccordion(button) {
             const content = button.nextElementSibling;
             const icon =
                 button.querySelector('.chevron-icon') ||
@@ -13217,13 +13261,25 @@
                 if (icon) icon.style.transform = 'rotate(0deg)';
                 content.style.paddingTop = '0';
                 content.style.paddingBottom = '0';
+                button.setAttribute('aria-expanded', 'false');
+                content.setAttribute('aria-hidden', 'true');
+                content.setAttribute('inert', '');
             } else {
                 content.classList.add('expanded');
                 if (icon) icon.style.transform = 'rotate(180deg)';
                 content.style.paddingTop = '1rem';
                 content.style.paddingBottom = '1rem';
+                button.setAttribute('aria-expanded', 'true');
+                content.setAttribute('aria-hidden', 'false');
+                content.removeAttribute('inert');
             }
-        };
+        }
+
+        container.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-accordion-trigger="true"]');
+            if (!trigger) return;
+            toggleAccordion(trigger);
+        });
 
         // Expand/Collapse All
         expandAllBtn.addEventListener('click', () => {
@@ -13233,6 +13289,12 @@
         // Search Filter Logic
         searchInput.addEventListener('input', (e) => {
             applySearch(e.target.value);
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            applySearch('');
+            searchInput.focus();
         });
 
         searchInput.addEventListener('focus', () => {
@@ -13264,6 +13326,10 @@
                 applySearch(selectedSuggestion.searchValue);
                 setSuggestionsVisibility(false);
             } else if (event.key === 'Escape') {
+                if (searchInput.value.trim()) {
+                    searchInput.value = '';
+                    applySearch('');
+                }
                 setSuggestionsVisibility(false);
             }
         });
@@ -13278,8 +13344,34 @@
             }
         });
 
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== '/' || event.metaKey || event.ctrlKey || event.altKey) return;
+
+            const target = event.target;
+            const tagName = target && target.tagName ? target.tagName.toUpperCase() : '';
+            const isEditable =
+                tagName === 'INPUT' ||
+                tagName === 'TEXTAREA' ||
+                (target && target.isContentEditable);
+
+            if (isEditable) return;
+
+            event.preventDefault();
+            searchInput.focus();
+        });
+
         // Initial Render
-        renderMedications(normalizedMedData);
+        try {
+            const savedSearch = window.localStorage.getItem(storageKeys.search) || '';
+            if (savedSearch.trim()) {
+                searchInput.value = savedSearch;
+                applySearch(savedSearch);
+            } else {
+                applySearch('');
+            }
+        } catch {
+            applySearch('');
+        }
     </script>
 </body>
 </html>
