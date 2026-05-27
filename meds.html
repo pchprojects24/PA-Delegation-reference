@@ -24,6 +24,19 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        .search-highlight {
+            background-color: #fef08a;
+            color: #1f2937;
+            border-radius: 0.25rem;
+            padding: 0 0.125rem;
+        }
+        .suggestion-item {
+            transition: background-color 0.2s ease-in-out;
+        }
+        .suggestion-item.active,
+        .suggestion-item:hover {
+            background-color: #eff6ff;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900">
@@ -40,16 +53,26 @@
                 </div>
                 
                 <!-- Search Bar -->
-                <div class="relative w-full md:w-96">
+                <div id="searchWrapper" class="relative w-full md:w-96">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i data-lucide="search" class="text-gray-400 w-5 h-5"></i>
                     </div>
                     <input 
                         type="text" 
                         id="searchInput" 
+                        aria-autocomplete="list"
+                        aria-controls="searchSuggestions"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors" 
                         placeholder="Search medications, categories, or indications..."
                     >
+                    <div
+                        id="searchSuggestions"
+                        role="listbox"
+                        aria-label="Search suggestions"
+                        class="hidden absolute left-0 right-0 z-20 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
+                    ></div>
                 </div>
             </div>
         </div>
@@ -12515,10 +12538,344 @@
 
         const container = document.getElementById('medicationContainer');
         const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
         const emptyState = document.getElementById('emptyState');
         const resultsCount = document.getElementById('resultsCount');
         const expandAllBtn = document.getElementById('expandAllBtn');
+        const detailSectionOrder = [
+            "Mechanism & Expected Effect",
+            "Adverse Effects",
+            "Drug Interactions",
+            "Monitoring",
+            "Patient Counselling",
+            "Administration",
+            "Clinical Pearls",
+            "Additional Notes"
+        ];
+        const defaultPlainText = "Not specified";
+        const defaultRichText = "<p>Not specified.</p>";
+        const suggestionBlurDelay = 100;
+        const highlightExcludedTags = ['SCRIPT', 'STYLE', 'MARK'];
+        const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const ensurePlainText = (value, fallback = defaultPlainText) =>
+            String(value ?? "").trim() || fallback;
+        const stripHtml = (value = "") => {
+            const parsedDocument = new DOMParser().parseFromString(String(value), "text/html");
+            return parsedDocument.body.textContent.replace(/\s+/g, " ").trim();
+        };
+        const ensureRichText = (value, fallback = defaultRichText) =>
+            stripHtml(value) ? value : fallback;
+        const sortDetailSections = (details = []) =>
+            [...details].sort((a, b) => {
+                const aIndex = detailSectionOrder.indexOf(a.title);
+                const bIndex = detailSectionOrder.indexOf(b.title);
+                const safeAIndex = aIndex === -1 ? detailSectionOrder.length : aIndex;
+                const safeBIndex = bIndex === -1 ? detailSectionOrder.length : bIndex;
+                return safeAIndex - safeBIndex || a.title.localeCompare(b.title);
+            });
+        const normalizeMedicationData = (data) =>
+            data.map((category) => ({
+                ...category,
+                category: ensurePlainText(category.category, "Uncategorized"),
+                medications: (category.medications || []).map((med) => ({
+                    ...med,
+                    name: ensurePlainText(med.name, "Unnamed medication"),
+                    forms: ensurePlainText(med.forms),
+                    ind: ensurePlainText(med.ind),
+                    dose: ensureRichText(med.dose),
+                    contra: ensureRichText(med.contra),
+                    protip: ensureRichText(med.protip),
+                    details: sortDetailSections(
+                        (med.details || []).map((detail) => ({
+                            ...detail,
+                            title: ensurePlainText(detail.title, "Additional Notes"),
+                            icon: String(detail.icon ?? "").trim(),
+                            content: ensureRichText(detail.content)
+                        }))
+                    )
+                }))
+            }));
+        const normalizedMedData = normalizeMedicationData(medData);
+        const totalMedicationCount = normalizedMedData.reduce(
+            (count, category) => count + category.medications.length,
+            0
+        );
+        let activeSuggestionIndex = -1;
+        let visibleSuggestions = [];
+        let currentSearchTerm = "";
+        let currentSearchTokens = [];
+        const getSearchTokens = (value) =>
+            value
+                .toLowerCase()
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+        const matchesTokens = (text, tokens) =>
+            tokens.every((token) => String(text).toLowerCase().includes(token));
+        const getMedicationSearchText = (categoryName, med) =>
+            [
+                categoryName,
+                med.name,
+                med.forms,
+                med.ind,
+                stripHtml(med.dose),
+                stripHtml(med.contra),
+                stripHtml(med.protip),
+                ...(med.details || []).flatMap((detail) => [
+                    detail.title,
+                    stripHtml(detail.content)
+                ])
+            ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+        const searchIndex = normalizedMedData.flatMap((category) => {
+            const meds = category.medications.map((med) => ({
+                type: "medication",
+                label: med.name,
+                searchValue: med.name,
+                meta: `${category.category} • ${stripHtml(med.ind)}`,
+                searchText: getMedicationSearchText(category.category, med)
+            }));
+
+            return [
+                {
+                    type: "category",
+                    label: category.category,
+                    searchValue: category.category,
+                    meta: `${category.medications.length} medications`,
+                    searchText: `${category.category} ${meds.map((item) => item.label).join(" ")}`.toLowerCase()
+                },
+                ...meds
+            ];
+        });
+        const scoreSuggestion = (item, tokens) => {
+            const label = item.label.toLowerCase();
+            return tokens.reduce((score, token) => {
+                if (label === token) return score + 10;
+                if (label.startsWith(token)) return score + 7;
+                if (label.includes(token)) return score + 4;
+                if (item.searchText.includes(token)) return score + 1;
+                return score;
+            }, item.type === "medication" ? 2 : 0);
+        };
         let allExpanded = false;
+
+        function setAllExpanded(expanded) {
+            const contents = document.querySelectorAll('.accordion-content');
+
+            allExpanded = expanded;
+
+            contents.forEach((content) => {
+                const button = content.previousElementSibling;
+                const icon =
+                    (button && button.querySelector('.chevron-icon')) ||
+                    (button && button.querySelector('[data-lucide="chevron-down"]')) ||
+                    (button && button.querySelector('svg'));
+
+                if (expanded) {
+                    content.classList.add('expanded');
+                    content.style.paddingTop = '1rem';
+                    content.style.paddingBottom = '1rem';
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.remove('expanded');
+                    content.style.paddingTop = '0';
+                    content.style.paddingBottom = '0';
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            expandAllBtn.textContent = expanded ? "Collapse All Categories" : "Expand All Categories";
+        }
+
+        function setSuggestionsVisibility(visible) {
+            searchSuggestions.classList.toggle('hidden', !visible);
+            searchInput.setAttribute('aria-expanded', visible ? 'true' : 'false');
+        }
+
+        function updateResultsCount(totalMeds) {
+            if (!currentSearchTokens.length) {
+                resultsCount.textContent = `Showing all ${totalMedicationCount} medications`;
+                return;
+            }
+
+            resultsCount.textContent = `Showing ${totalMeds} matching medications`;
+        }
+
+        function highlightMatches(root, tokens) {
+            if (!tokens.length) return;
+
+            const uniqueTokens = [...new Set(tokens)].sort((a, b) => b.length - a.length);
+            const escapedTokens = uniqueTokens.map((token) => escapeRegex(token));
+            const testPattern = new RegExp(`(${escapedTokens.join("|")})`, "i");
+            const replacePattern = new RegExp(`(${escapedTokens.join("|")})`, "gi");
+            const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+
+                    const parent = node.parentElement;
+                    if (!parent) return NodeFilter.FILTER_REJECT;
+                    if (highlightExcludedTags.includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    if (parent.closest('#searchSuggestions')) return NodeFilter.FILTER_REJECT;
+
+                    return testPattern.test(node.nodeValue)
+                        ? NodeFilter.FILTER_ACCEPT
+                        : NodeFilter.FILTER_REJECT;
+                }
+            });
+            const nodesToReplace = [];
+
+            while (walker.nextNode()) {
+                nodesToReplace.push(walker.currentNode);
+            }
+
+            nodesToReplace.forEach((node) => {
+                const fragment = document.createDocumentFragment();
+                const text = node.nodeValue;
+                let lastIndex = 0;
+                let match;
+
+                replacePattern.lastIndex = 0;
+
+                while ((match = replacePattern.exec(text)) !== null) {
+                    const [matchedText] = match;
+
+                    if (match.index > lastIndex) {
+                        fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+                    }
+
+                    const mark = document.createElement('mark');
+                    mark.className = 'search-highlight';
+                    mark.textContent = matchedText;
+                    fragment.appendChild(mark);
+                    lastIndex = match.index + matchedText.length;
+                }
+
+                if (lastIndex < text.length) {
+                    fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+                }
+
+                node.parentNode.replaceChild(fragment, node);
+            });
+        }
+
+        function getSearchSuggestions(tokens) {
+            if (!tokens.length) return [];
+
+            const seen = new Set();
+
+            return searchIndex
+                .filter((item) => matchesTokens(item.searchText, tokens))
+                .sort((a, b) => scoreSuggestion(b, tokens) - scoreSuggestion(a, tokens) || a.label.localeCompare(b.label))
+                .filter((item) => {
+                    const key = `${item.type}:${item.searchValue}`;
+
+                    if (seen.has(key)) {
+                        return false;
+                    }
+
+                    seen.add(key);
+                    return true;
+                })
+                .slice(0, 8);
+        }
+
+        function renderSuggestions() {
+            if (!visibleSuggestions.length || !currentSearchTokens.length) {
+                searchSuggestions.innerHTML = '';
+                setSuggestionsVisibility(false);
+                return;
+            }
+
+            searchSuggestions.innerHTML = '';
+            const list = document.createElement('div');
+            list.className = 'max-h-80 overflow-y-auto py-1';
+
+            visibleSuggestions.forEach((item, index) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'suggestion-item flex w-full items-start justify-between gap-3 px-4 py-3 text-left';
+                button.setAttribute('role', 'option');
+                button.setAttribute('aria-selected', index === activeSuggestionIndex ? 'true' : 'false');
+
+                if (index === activeSuggestionIndex) {
+                    button.classList.add('active');
+                }
+
+                button.innerHTML = `
+                    <div>
+                        <div class="suggestion-label text-sm font-medium text-gray-900"></div>
+                        <div class="suggestion-meta mt-0.5 text-xs text-gray-500"></div>
+                    </div>
+                    <span class="suggestion-type rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-gray-500"></span>
+                `;
+                button.querySelector('.suggestion-label').textContent = item.label;
+                button.querySelector('.suggestion-meta').textContent = item.meta;
+                button.querySelector('.suggestion-type').textContent = item.type;
+                button.addEventListener('mousedown', (event) => event.preventDefault());
+                button.addEventListener('click', () => {
+                    searchInput.value = item.searchValue;
+                    applySearch(item.searchValue);
+                    setSuggestionsVisibility(false);
+                    searchInput.focus();
+                });
+                list.appendChild(button);
+            });
+
+            searchSuggestions.appendChild(list);
+            setSuggestionsVisibility(true);
+        }
+
+        function scrollActiveSuggestionIntoView() {
+            const activeSuggestion = searchSuggestions.querySelector('button[aria-selected="true"]');
+
+            if (activeSuggestion) {
+                activeSuggestion.scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        function applySearch(rawValue) {
+            currentSearchTerm = rawValue.trim();
+            currentSearchTokens = getSearchTokens(currentSearchTerm);
+            visibleSuggestions = getSearchSuggestions(currentSearchTokens);
+            activeSuggestionIndex = -1;
+
+            if (!currentSearchTokens.length) {
+                renderMedications(normalizedMedData);
+                setAllExpanded(false);
+                renderSuggestions();
+                return;
+            }
+
+            const filteredData = normalizedMedData
+                .map((category) => {
+                    const categoryMatch = matchesTokens(category.category.toLowerCase(), currentSearchTokens);
+                    const matchedMeds = category.medications.filter((med) => {
+                        if (categoryMatch) return true;
+
+                        return matchesTokens(
+                            getMedicationSearchText(category.category, med),
+                            currentSearchTokens
+                        );
+                    });
+
+                    return {
+                        ...category,
+                        medications: matchedMeds
+                    };
+                })
+                .filter((category) => category.medications.length > 0);
+
+            renderMedications(filteredData);
+            renderSuggestions();
+
+            if (filteredData.length > 0) {
+                requestAnimationFrame(() => setAllExpanded(true));
+            } else {
+                setAllExpanded(false);
+            }
+        }
 
         // Render function
         function renderMedications(data) {
@@ -12639,10 +12996,12 @@
                 container.appendChild(catDiv);
             });
 
-            resultsCount.textContent = `Showing ${totalMeds} medications`;
+            updateResultsCount(totalMeds);
             if (window.lucide && typeof window.lucide.createIcons === "function") {
                 window.lucide.createIcons();
             }
+
+            highlightMatches(container, currentSearchTokens);
         }
 
         // Accordion Logic
@@ -12668,99 +13027,59 @@
 
         // Expand/Collapse All
         expandAllBtn.addEventListener('click', () => {
-            const contents = document.querySelectorAll('.accordion-content');
-            
-            allExpanded = !allExpanded;
-            
-            contents.forEach((content) => {
-                const button = content.previousElementSibling;
-                const icon =
-                    (button && button.querySelector('.chevron-icon')) ||
-                    (button && button.querySelector('[data-lucide="chevron-down"]')) ||
-                    (button && button.querySelector('svg'));
-                if (allExpanded) {
-                    content.classList.add('expanded');
-                    content.style.paddingTop = '1rem';
-                    content.style.paddingBottom = '1rem';
-                    if (icon) icon.style.transform = 'rotate(180deg)';
-                } else {
-                    content.classList.remove('expanded');
-                    content.style.paddingTop = '0';
-                    content.style.paddingBottom = '0';
-                    if (icon) icon.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            expandAllBtn.textContent = allExpanded ? "Collapse All Categories" : "Expand All Categories";
+            setAllExpanded(!allExpanded);
         });
 
         // Search Filter Logic
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            if (!searchTerm) {
-                renderMedications(medData);
+            applySearch(e.target.value);
+        });
+
+        searchInput.addEventListener('focus', () => {
+            if (currentSearchTokens.length && visibleSuggestions.length) {
+                renderSuggestions();
+            }
+        });
+
+        searchInput.addEventListener('keydown', (event) => {
+            if (!visibleSuggestions.length || searchSuggestions.classList.contains('hidden')) {
                 return;
             }
 
-            const filteredData = medData.map(category => {
-                // Check if category name matches
-                const catMatch = category.category.toLowerCase().includes(searchTerm);
-                
-                // Filter medications
-                const matchedMeds = category.medications.filter((med) => {
-                    if (catMatch) return true;
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                activeSuggestionIndex = (activeSuggestionIndex + 1) % visibleSuggestions.length;
+                renderSuggestions();
+                scrollActiveSuggestionIntoView();
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                activeSuggestionIndex =
+                    (activeSuggestionIndex - 1 + visibleSuggestions.length) % visibleSuggestions.length;
+                renderSuggestions();
+                scrollActiveSuggestionIntoView();
+            } else if (event.key === 'Enter' && activeSuggestionIndex >= 0) {
+                event.preventDefault();
+                const selectedSuggestion = visibleSuggestions[activeSuggestionIndex];
+                searchInput.value = selectedSuggestion.searchValue;
+                applySearch(selectedSuggestion.searchValue);
+                setSuggestionsVisibility(false);
+            } else if (event.key === 'Escape') {
+                setSuggestionsVisibility(false);
+            }
+        });
 
-                    const detailsText = (med.details || [])
-                        .map((detail) => `${detail.title} ${detail.content}`)
-                        .join(" ");
-                    const haystack = [
-                        med.name,
-                        med.forms,
-                        med.ind,
-                        med.dose,
-                        med.contra,
-                        med.protip,
-                        detailsText
-                    ]
-                        .filter(Boolean)
-                        .join(" ")
-                        .toLowerCase();
+        searchInput.addEventListener('blur', () => {
+            setTimeout(() => setSuggestionsVisibility(false), suggestionBlurDelay);
+        });
 
-                    return haystack.includes(searchTerm);
-                });
-
-                return {
-                    ...category,
-                    medications: matchedMeds
-                };
-            }).filter(category => category.medications.length > 0);
-
-            renderMedications(filteredData);
-            
-            // Automatically expand results during search for better UX
-            if (searchTerm.length > 1 && filteredData.length > 0) {
-                 setTimeout(() => {
-                    const contents = document.querySelectorAll('.accordion-content');
-                    contents.forEach((content) => {
-                        const button = content.previousElementSibling;
-                        const icon =
-                            (button && button.querySelector('.chevron-icon')) ||
-                            (button && button.querySelector('[data-lucide="chevron-down"]')) ||
-                            (button && button.querySelector('svg'));
-                        content.classList.add('expanded');
-                        content.style.paddingTop = '1rem';
-                        content.style.paddingBottom = '1rem';
-                        if (icon) icon.style.transform = 'rotate(180deg)';
-                    });
-                    allExpanded = true;
-                    expandAllBtn.textContent = "Collapse All Categories";
-                 }, 50);
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('#searchWrapper')) {
+                setSuggestionsVisibility(false);
             }
         });
 
         // Initial Render
-        renderMedications(medData);
+        renderMedications(normalizedMedData);
     </script>
 </body>
 </html>
