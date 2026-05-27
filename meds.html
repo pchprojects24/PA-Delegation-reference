@@ -60,11 +60,17 @@
                     <input 
                         type="text" 
                         id="searchInput" 
+                        aria-autocomplete="list"
+                        aria-controls="searchSuggestions"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors" 
                         placeholder="Search medications, categories, or indications..."
                     >
                     <div
                         id="searchSuggestions"
+                        role="listbox"
+                        aria-label="Search suggestions"
                         class="hidden absolute left-0 right-0 z-20 mt-2 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
                     ></div>
                 </div>
@@ -12683,6 +12689,11 @@
             expandAllBtn.textContent = expanded ? "Collapse All Categories" : "Expand All Categories";
         }
 
+        function setSuggestionsVisibility(visible) {
+            searchSuggestions.classList.toggle('hidden', !visible);
+            searchInput.setAttribute('aria-expanded', visible ? 'true' : 'false');
+        }
+
         function updateResultsCount(totalMeds) {
             if (!currentSearchTokens.length) {
                 resultsCount.textContent = `Showing all ${totalMedicationCount} medications`;
@@ -12772,8 +12783,8 @@
 
         function renderSuggestions() {
             if (!visibleSuggestions.length || !currentSearchTokens.length) {
-                searchSuggestions.classList.add('hidden');
                 searchSuggestions.innerHTML = '';
+                setSuggestionsVisibility(false);
                 return;
             }
 
@@ -12785,6 +12796,8 @@
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'suggestion-item flex w-full items-start justify-between gap-3 px-4 py-3 text-left';
+                button.setAttribute('role', 'option');
+                button.setAttribute('aria-selected', index === activeSuggestionIndex ? 'true' : 'false');
 
                 if (index === activeSuggestionIndex) {
                     button.classList.add('active');
@@ -12804,14 +12817,22 @@
                 button.addEventListener('click', () => {
                     searchInput.value = item.searchValue;
                     applySearch(item.searchValue);
-                    searchSuggestions.classList.add('hidden');
+                    setSuggestionsVisibility(false);
                     searchInput.focus();
                 });
                 list.appendChild(button);
             });
 
             searchSuggestions.appendChild(list);
-            searchSuggestions.classList.remove('hidden');
+            setSuggestionsVisibility(true);
+        }
+
+        function scrollActiveSuggestionIntoView() {
+            const activeSuggestion = searchSuggestions.querySelector('button[aria-selected="true"]');
+
+            if (activeSuggestion) {
+                activeSuggestion.scrollIntoView({ block: 'nearest' });
+            }
         }
 
         function applySearch(rawValue) {
@@ -13029,29 +13050,31 @@
                 event.preventDefault();
                 activeSuggestionIndex = (activeSuggestionIndex + 1) % visibleSuggestions.length;
                 renderSuggestions();
+                scrollActiveSuggestionIntoView();
             } else if (event.key === 'ArrowUp') {
                 event.preventDefault();
                 activeSuggestionIndex =
                     (activeSuggestionIndex - 1 + visibleSuggestions.length) % visibleSuggestions.length;
                 renderSuggestions();
+                scrollActiveSuggestionIntoView();
             } else if (event.key === 'Enter' && activeSuggestionIndex >= 0) {
                 event.preventDefault();
                 const selectedSuggestion = visibleSuggestions[activeSuggestionIndex];
                 searchInput.value = selectedSuggestion.searchValue;
                 applySearch(selectedSuggestion.searchValue);
-                searchSuggestions.classList.add('hidden');
+                setSuggestionsVisibility(false);
             } else if (event.key === 'Escape') {
-                searchSuggestions.classList.add('hidden');
+                setSuggestionsVisibility(false);
             }
         });
 
         searchInput.addEventListener('blur', () => {
-            setTimeout(() => searchSuggestions.classList.add('hidden'), suggestionBlurDelay);
+            setTimeout(() => setSuggestionsVisibility(false), suggestionBlurDelay);
         });
 
         document.addEventListener('click', (event) => {
             if (!event.target.closest('#searchWrapper')) {
-                searchSuggestions.classList.add('hidden');
+                setSuggestionsVisibility(false);
             }
         });
 
