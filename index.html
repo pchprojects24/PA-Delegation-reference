@@ -86,7 +86,13 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+        // Lucide is loaded with `defer`, so it isn't available while this
+        // inline script parses; wait for DOMContentLoaded to create icons.
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>
