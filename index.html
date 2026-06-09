@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PA Delegation Reference</title>
+    <title>PA Delegation Reference — Clinical Reference Tools</title>
+    <meta name="description" content="Quick-access clinical reference tools for Physician Assistant delegation. 144 medications across 16 categories with dosing, contraindications, and escalation guidance.">
     <script defer src="https://cdn.tailwindcss.com"></script>
     <script
         defer
@@ -11,78 +12,267 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+        .shadow-glow { box-shadow: 0 0 60px -12px rgba(99, 102, 241, 0.45); }
+        .shadow-card { box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px -8px rgba(15, 23, 42, 0.10); }
+        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+        .card-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 40px -12px rgba(79, 70, 229, 0.25);
+        }
+        .hero-grid {
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
+        }
+        .hero-glow {
+            background: radial-gradient(ellipse 50% 60% at 50% -10%, rgba(82, 102, 244, 0.35), transparent 70%);
+        }
+        @keyframes float-up {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-rise { animation: float-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .delay-1 { animation-delay: 0.08s; }
+        .delay-2 { animation-delay: 0.16s; }
+        .delay-3 { animation-delay: 0.24s; }
+        .delay-4 { animation-delay: 0.32s; }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-rise { animation: none; }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-indigo-200 selection:text-indigo-900">
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex items-center gap-4">
-                <div class="bg-blue-600 p-3 rounded-xl text-white">
-                    <i data-lucide="stethoscope" class="w-7 h-7"></i>
-                </div>
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Physician Assistant Delegation Reference</h1>
-                    <p class="text-sm text-gray-500 mt-0.5">Quick-access clinical reference tools</p>
+    <!-- ===== Hero (dark) ===== -->
+    <div class="relative bg-slate-950 text-white overflow-hidden">
+        <div class="absolute inset-0 hero-grid pointer-events-none"></div>
+        <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+
+        <!-- Nav -->
+        <header class="relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 border-b border-white/10">
+                    <a href="index.html" class="flex items-center gap-2.5 group">
+                        <span class="bg-gradient-to-br from-indigo-400 to-indigo-600 p-2 rounded-xl shadow-glow">
+                            <i data-lucide="stethoscope" class="w-5 h-5 text-white"></i>
+                        </span>
+                        <span class="font-bold tracking-tight text-[15px]">PA Delegation <span class="text-indigo-300">Reference</span></span>
+                    </a>
+                    <nav class="flex items-center gap-1 sm:gap-2">
+                        <a href="#modules" class="hidden sm:inline-flex px-3 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors">Modules</a>
+                        <a href="#features" class="hidden sm:inline-flex px-3 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors">Features</a>
+                        <a href="meds.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold whitespace-nowrap bg-white text-slate-900 rounded-lg hover:bg-indigo-50 transition-colors shadow-sm">
+                            <i data-lucide="pill" class="w-4 h-4 text-indigo-600"></i>
+                            Open Med Guide
+                        </a>
+                    </nav>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Navigation Tabs -->
-    <div class="bg-white border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="flex gap-1 -mb-px" aria-label="Tabs">
-                <a
-                    href="meds.html"
-                    class="inline-flex items-center gap-2 px-5 py-3 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-blue-600 hover:border-blue-400 transition-colors"
-                >
-                    <i data-lucide="pill" class="w-4 h-4"></i>
-                    Medications
+        <!-- Hero content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
+            <div class="animate-rise inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur text-xs font-medium text-slate-300 mb-6">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                </span>
+                Point-of-care clinical reference &middot; No install required
+            </div>
+
+            <h1 class="animate-rise delay-1 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
+                Delegation answers,<br class="hidden sm:block">
+                <span class="bg-gradient-to-r from-indigo-300 via-indigo-400 to-violet-400 bg-clip-text text-transparent">in seconds — not pages.</span>
+            </h1>
+
+            <p class="animate-rise delay-2 mt-6 max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed">
+                A fast, searchable reference built for Physician Assistants: dosing, indications,
+                contraindications, monitoring, and escalation guidance for every delegated medication.
+            </p>
+
+            <div class="animate-rise delay-3 mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="meds.html" class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold shadow-glow hover:from-indigo-400 hover:to-indigo-500 transition-all">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    Search Medications
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <!-- Future tabs go here -->
-            </nav>
+                <a href="#modules" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/15 bg-white/5 backdrop-blur text-slate-200 font-semibold hover:bg-white/10 transition-colors">
+                    Browse Modules
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <dl class="animate-rise delay-4 mt-14 grid grid-cols-2 lg:grid-cols-4 gap-px max-w-3xl mx-auto rounded-2xl overflow-hidden border border-white/10 bg-white/10">
+                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
+                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Medications</dt>
+                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">144</dd>
+                </div>
+                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
+                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Categories</dt>
+                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">16</dd>
+                </div>
+                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
+                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Detail sections</dt>
+                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">7+</dd>
+                </div>
+                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
+                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Setup needed</dt>
+                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">Zero</dd>
+                </div>
+            </dl>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- ===== Modules ===== -->
+    <main id="modules" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="max-w-2xl">
+            <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Reference modules</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Everything you need at the point of care</h2>
+            <p class="mt-3 text-slate-500 leading-relaxed">Each module is a self-contained, searchable reference. More are on the way.</p>
+        </div>
 
-            <!-- Medications Card -->
-            <a
-                href="meds.html"
-                class="group bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col gap-4 hover:shadow-md hover:-translate-y-1 transition-all duration-200"
-            >
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Medications (featured) -->
+            <a href="meds.html" class="group relative bg-white rounded-2xl shadow-card card-lift border border-slate-200/80 p-6 flex flex-col gap-5 hover:border-indigo-200 sm:col-span-2 lg:col-span-1 overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-400 to-violet-400"></div>
                 <div class="flex items-center justify-between">
-                    <div class="bg-blue-100 p-3 rounded-lg">
-                        <i data-lucide="pill" class="w-6 h-6 text-blue-600"></i>
+                    <div class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-3 rounded-xl shadow-md shadow-indigo-500/25">
+                        <i data-lucide="pill" class="w-6 h-6 text-white"></i>
                     </div>
-                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-200"></i>
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full uppercase tracking-wide">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        Live
+                    </span>
                 </div>
                 <div>
-                    <h2 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Medications</h2>
-                    <p class="text-sm text-gray-500 mt-1">
-                        Interactive reference guide covering dosing, indications, contraindications, and clinical tips across all major drug categories.
+                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Medication Reference</h3>
+                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
+                        144 medications across 16 categories — dosing, indications, contraindications,
+                        interactions, monitoring, and escalation guidance with instant search.
                     </p>
                 </div>
-                <span class="mt-auto inline-flex items-center text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full w-fit">
-                    Open Reference
+                <div class="flex flex-wrap gap-1.5">
+                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Cardiovascular</span>
+                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Infectious Disease</span>
+                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Neurological</span>
+                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">+13 more</span>
+                </div>
+                <span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600">
+                    Open reference
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </span>
             </a>
 
-            <!-- Placeholder card — shows where future modules will appear -->
-            <div class="bg-white rounded-xl border-2 border-dashed border-gray-200 p-6 flex flex-col items-center justify-center gap-3 text-center opacity-50">
-                <i data-lucide="plus-circle" class="w-8 h-8 text-gray-400"></i>
-                <p class="text-sm font-medium text-gray-400">More references coming soon</p>
+            <!-- Coming soon: Procedures -->
+            <div class="relative bg-white/60 rounded-2xl border border-dashed border-slate-300 p-6 flex flex-col gap-5">
+                <div class="flex items-center justify-between">
+                    <div class="bg-slate-100 p-3 rounded-xl">
+                        <i data-lucide="clipboard-list" class="w-6 h-6 text-slate-400"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full uppercase tracking-wide">Planned</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-500">Procedures</h3>
+                    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
+                        Step-by-step delegated procedure references with indications, equipment, and aftercare.
+                    </p>
+                </div>
             </div>
 
+            <!-- Coming soon: Protocols -->
+            <div class="relative bg-white/60 rounded-2xl border border-dashed border-slate-300 p-6 flex flex-col gap-5">
+                <div class="flex items-center justify-between">
+                    <div class="bg-slate-100 p-3 rounded-xl">
+                        <i data-lucide="git-branch" class="w-6 h-6 text-slate-400"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full uppercase tracking-wide">Planned</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-slate-500">Escalation Protocols</h3>
+                    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
+                        When to call, what to document, and physician-approval pathways at a glance.
+                    </p>
+                </div>
+            </div>
         </div>
+
+        <!-- ===== Features ===== -->
+        <section id="features" class="mt-20 sm:mt-24">
+            <div class="max-w-2xl">
+                <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Built for the shift floor</p>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Fast, keyboard-first, print-ready</h2>
+            </div>
+
+            <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-5 h-5 text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900">Instant search</h3>
+                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Ranked autocomplete across names, categories, indications, and every detail section — with match highlighting.</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
+                    <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mb-4">
+                        <i data-lucide="keyboard" class="w-5 h-5 text-violet-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900">Keyboard first</h3>
+                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Press <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-slate-100 border border-slate-200 rounded">/</kbd> anywhere to search, arrows to navigate, <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-slate-100 border border-slate-200 rounded">Esc</kbd> to clear.</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center mb-4">
+                        <i data-lucide="printer" class="w-5 h-5 text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900">Print friendly</h3>
+                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Printing expands every entry and strips the chrome — perfect for binders and clipboards.</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
+                    <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center mb-4">
+                        <i data-lucide="accessibility" class="w-5 h-5 text-amber-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900">Accessible</h3>
+                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">ARIA-annotated search and accordions with full screen-reader and focus support.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA band ===== -->
+        <section class="mt-20 sm:mt-24 relative overflow-hidden rounded-3xl bg-slate-950 text-white px-6 py-12 sm:px-12 sm:py-16 text-center">
+            <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+            <div class="relative z-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Ready when you are.</h2>
+                <p class="mt-3 text-slate-400 max-w-xl mx-auto">Jump into the medication guide — your last search is remembered, so you pick up right where you left off.</p>
+                <a href="meds.html" class="group mt-7 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 font-semibold shadow-glow hover:from-indigo-400 hover:to-indigo-500 transition-all">
+                    <i data-lucide="pill" class="w-5 h-5"></i>
+                    Open Medication Guide
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-xs text-gray-400 border-t border-gray-200 bg-white">
-        PA Delegation Reference &mdash; for clinical use only
+    <!-- ===== Footer ===== -->
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                <span class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-1.5 rounded-lg">
+                    <i data-lucide="stethoscope" class="w-3.5 h-3.5 text-white"></i>
+                </span>
+                PA Delegation Reference
+            </div>
+            <p class="text-xs text-slate-400 text-center sm:text-right max-w-md">
+                For clinical reference only. Verify dosing and protocols against current guidelines and your supervising physician's delegation agreement.
+            </p>
+        </div>
     </footer>
 
     <script>
