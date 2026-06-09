@@ -42,6 +42,26 @@
         .suggestion-item:hover {
             background-color: #eff6ff;
         }
+        @media print {
+            header {
+                position: static !important;
+                box-shadow: none !important;
+            }
+            #searchWrapper,
+            #expandAllBtn {
+                display: none !important;
+            }
+            .accordion-content {
+                max-height: none !important;
+                opacity: 1 !important;
+                overflow: visible !important;
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            .med-card {
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900">
@@ -51,6 +71,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div class="flex items-center gap-3">
+                    <a
+                        href="index.html"
+                        aria-label="Back to all references"
+                        title="Back to all references"
+                        class="text-gray-400 hover:text-blue-600 transition-colors"
+                    >
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </a>
                     <div class="bg-blue-600 p-2 rounded-lg text-white">
                         <i data-lucide="cross"></i>
                     </div>
@@ -112,6 +140,11 @@
             <p class="mt-1 text-gray-500">Try adjusting your search terms.</p>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-400 border-t border-gray-200 bg-white">
+        PA Delegation Reference &mdash; for clinical use only. Verify dosing against current guidelines.
+    </footer>
 
     <script>
         const ul = (items) =>
@@ -13304,6 +13337,15 @@
         });
 
         searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                if (searchInput.value.trim()) {
+                    searchInput.value = '';
+                    applySearch('');
+                }
+                setSuggestionsVisibility(false);
+                return;
+            }
+
             if (!visibleSuggestions.length || searchSuggestions.classList.contains('hidden')) {
                 return;
             }
@@ -13324,12 +13366,6 @@
                 const selectedSuggestion = visibleSuggestions[activeSuggestionIndex];
                 searchInput.value = selectedSuggestion.searchValue;
                 applySearch(selectedSuggestion.searchValue);
-                setSuggestionsVisibility(false);
-            } else if (event.key === 'Escape') {
-                if (searchInput.value.trim()) {
-                    searchInput.value = '';
-                    applySearch('');
-                }
                 setSuggestionsVisibility(false);
             }
         });
@@ -13372,6 +13408,15 @@
         } catch {
             applySearch('');
         }
+
+        // Lucide is loaded with `defer`, so it isn't available while this
+        // inline script runs; convert the initially rendered icons once the
+        // deferred scripts have executed.
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>
