@@ -1,15 +1,15 @@
 # PA Delegation Reference
 
-A static, dependency-free web app providing quick-access clinical reference
-tools for Physician Assistant delegation. No build step, server, or install
-required — open the pages directly in a browser or host them on any static
-host (e.g. GitHub Pages).
+A personal, static, dependency-free reference for the medications I'm
+delegated to use as a Physician Assistant with the Royal Canadian Navy at
+sea. No build step, server, or install required — open the pages directly
+in a browser or host them on any static host (e.g. GitHub Pages).
 
 ## Pages
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Landing page linking to the available reference modules. |
+| `index.html` | Personal landing page with at-sea reminders and a link to the med guide. |
 | `meds.html` | Interactive medication reference: 16 categories, 144 medications with dosing, indications, contraindications, monitoring, escalation guidance, and clinical pearls. |
 | `meds.html.backup` | Earlier snapshot of the medication page, kept for reference. |
 
