@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PA Delegation Reference — Clinical Reference Tools</title>
-    <meta name="description" content="Quick-access clinical reference tools for Physician Assistant delegation. 144 medications across 16 categories with dosing, contraindications, and escalation guidance.">
+    <title>My Delegated Meds — At-Sea Reference</title>
+    <meta name="description" content="Personal quick reference for my delegated medications as a Physician Assistant with the Royal Canadian Navy — dosing, contraindications, monitoring, and escalation notes.">
     <script defer src="https://cdn.tailwindcss.com"></script>
     <script
         defer
@@ -12,265 +12,172 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
-        .shadow-glow { box-shadow: 0 0 60px -12px rgba(99, 102, 241, 0.45); }
-        .shadow-card { box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px -8px rgba(15, 23, 42, 0.10); }
-        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-        .card-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 40px -12px rgba(79, 70, 229, 0.25);
-        }
-        .hero-grid {
-            background-image:
-                linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 100%);
-        }
-        .hero-glow {
-            background: radial-gradient(ellipse 50% 60% at 50% -10%, rgba(82, 102, 244, 0.35), transparent 70%);
-        }
-        @keyframes float-up {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .animate-rise { animation: float-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        .delay-1 { animation-delay: 0.08s; }
-        .delay-2 { animation-delay: 0.16s; }
-        .delay-3 { animation-delay: 0.24s; }
-        .delay-4 { animation-delay: 0.32s; }
-        @media (prefers-reduced-motion: reduce) {
-            .animate-rise { animation: none; }
-        }
+        body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-indigo-200 selection:text-indigo-900">
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- ===== Hero (dark) ===== -->
-    <div class="relative bg-slate-950 text-white overflow-hidden">
-        <div class="absolute inset-0 hero-grid pointer-events-none"></div>
-        <div class="absolute inset-0 hero-glow pointer-events-none"></div>
-
-        <!-- Nav -->
-        <header class="relative z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16 border-b border-white/10">
-                    <a href="index.html" class="flex items-center gap-2.5 group">
-                        <span class="bg-gradient-to-br from-indigo-400 to-indigo-600 p-2 rounded-xl shadow-glow">
-                            <i data-lucide="stethoscope" class="w-5 h-5 text-white"></i>
-                        </span>
-                        <span class="font-bold tracking-tight text-[15px]">PA Delegation <span class="text-indigo-300">Reference</span></span>
-                    </a>
-                    <nav class="flex items-center gap-1 sm:gap-2">
-                        <a href="#modules" class="hidden sm:inline-flex px-3 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors">Modules</a>
-                        <a href="#features" class="hidden sm:inline-flex px-3 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors">Features</a>
-                        <a href="meds.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold whitespace-nowrap bg-white text-slate-900 rounded-lg hover:bg-indigo-50 transition-colors shadow-sm">
-                            <i data-lucide="pill" class="w-4 h-4 text-indigo-600"></i>
-                            Open Med Guide
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <!-- Hero content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
-            <div class="animate-rise inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur text-xs font-medium text-slate-300 mb-6">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+    <!-- ===== Header ===== -->
+    <header class="bg-slate-900 text-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+            <div class="flex items-center gap-3 mb-5">
+                <span class="bg-sky-700 p-2 rounded-lg">
+                    <i data-lucide="anchor" class="w-5 h-5 text-white"></i>
                 </span>
-                Point-of-care clinical reference &middot; No install required
+                <span class="text-xs font-semibold uppercase tracking-widest text-sky-300">Personal reference &middot; RCN &middot; At sea</span>
             </div>
-
-            <h1 class="animate-rise delay-1 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
-                Delegation answers,<br class="hidden sm:block">
-                <span class="bg-gradient-to-r from-indigo-300 via-indigo-400 to-violet-400 bg-clip-text text-transparent">in seconds — not pages.</span>
-            </h1>
-
-            <p class="animate-rise delay-2 mt-6 max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed">
-                A fast, searchable reference built for Physician Assistants: dosing, indications,
-                contraindications, monitoring, and escalation guidance for every delegated medication.
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">My Delegated Medications</h1>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+                My own quick reference for the medications I'm delegated to use as a Physician Assistant
+                sailing with the Royal Canadian Navy. Dosing, contraindications, monitoring, and when to
+                get the supervising physician on the line — all in one searchable page.
             </p>
-
-            <div class="animate-rise delay-3 mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="meds.html" class="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold shadow-glow hover:from-indigo-400 hover:to-indigo-500 transition-all">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                    Search Medications
-                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                <a href="meds.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors">
+                    <i data-lucide="pill" class="w-5 h-5"></i>
+                    Open the Med Guide
                 </a>
-                <a href="#modules" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/15 bg-white/5 backdrop-blur text-slate-200 font-semibold hover:bg-white/10 transition-colors">
-                    Browse Modules
+                <a href="#sea-tips" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-slate-600 text-slate-200 font-medium hover:bg-slate-800 transition-colors">
+                    <i data-lucide="waves" class="w-5 h-5"></i>
+                    At-Sea Reminders
                 </a>
             </div>
-
-            <!-- Stats -->
-            <dl class="animate-rise delay-4 mt-14 grid grid-cols-2 lg:grid-cols-4 gap-px max-w-3xl mx-auto rounded-2xl overflow-hidden border border-white/10 bg-white/10">
-                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
-                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Medications</dt>
-                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">144</dd>
-                </div>
-                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
-                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Categories</dt>
-                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">16</dd>
-                </div>
-                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
-                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Detail sections</dt>
-                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">7+</dd>
-                </div>
-                <div class="bg-slate-950/80 backdrop-blur px-4 py-5">
-                    <dt class="text-xs font-medium text-slate-400 uppercase tracking-wider">Setup needed</dt>
-                    <dd class="mt-1 text-2xl sm:text-3xl font-extrabold text-white">Zero</dd>
-                </div>
-            </dl>
+            <p class="mt-6 text-sm text-slate-400">
+                144 medications &middot; 16 categories &middot; press <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-slate-800 border border-slate-600 rounded">/</kbd> on the med page to search
+            </p>
         </div>
-    </div>
+    </header>
 
-    <!-- ===== Modules ===== -->
-    <main id="modules" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <div class="max-w-2xl">
-            <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Reference modules</p>
-            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Everything you need at the point of care</h2>
-            <p class="mt-3 text-slate-500 leading-relaxed">Each module is a self-contained, searchable reference. More are on the way.</p>
-        </div>
+    <!-- ===== Main ===== -->
+    <main class="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-12">
 
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Medications (featured) -->
-            <a href="meds.html" class="group relative bg-white rounded-2xl shadow-card card-lift border border-slate-200/80 p-6 flex flex-col gap-5 hover:border-indigo-200 sm:col-span-2 lg:col-span-1 overflow-hidden">
-                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-400 to-violet-400"></div>
-                <div class="flex items-center justify-between">
-                    <div class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-3 rounded-xl shadow-md shadow-indigo-500/25">
-                        <i data-lucide="pill" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full uppercase tracking-wide">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        Live
-                    </span>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Medication Reference</h3>
-                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">
-                        144 medications across 16 categories — dosing, indications, contraindications,
-                        interactions, monitoring, and escalation guidance with instant search.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-1.5">
-                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Cardiovascular</span>
-                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Infectious Disease</span>
-                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Neurological</span>
-                    <span class="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">+13 more</span>
-                </div>
-                <span class="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600">
-                    Open reference
-                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </span>
-            </a>
-
-            <!-- Coming soon: Procedures -->
-            <div class="relative bg-white/60 rounded-2xl border border-dashed border-slate-300 p-6 flex flex-col gap-5">
-                <div class="flex items-center justify-between">
-                    <div class="bg-slate-100 p-3 rounded-xl">
-                        <i data-lucide="clipboard-list" class="w-6 h-6 text-slate-400"></i>
-                    </div>
-                    <span class="text-[11px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full uppercase tracking-wide">Planned</span>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-slate-500">Procedures</h3>
-                    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-                        Step-by-step delegated procedure references with indications, equipment, and aftercare.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Coming soon: Protocols -->
-            <div class="relative bg-white/60 rounded-2xl border border-dashed border-slate-300 p-6 flex flex-col gap-5">
-                <div class="flex items-center justify-between">
-                    <div class="bg-slate-100 p-3 rounded-xl">
-                        <i data-lucide="git-branch" class="w-6 h-6 text-slate-400"></i>
-                    </div>
-                    <span class="text-[11px] font-bold text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full uppercase tracking-wide">Planned</span>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-slate-500">Escalation Protocols</h3>
-                    <p class="text-sm text-slate-400 mt-1.5 leading-relaxed">
-                        When to call, what to document, and physician-approval pathways at a glance.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== Features ===== -->
-        <section id="features" class="mt-20 sm:mt-24">
-            <div class="max-w-2xl">
-                <p class="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Built for the shift floor</p>
-                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Fast, keyboard-first, print-ready</h2>
-            </div>
-
-            <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center mb-4">
-                        <i data-lucide="zap" class="w-5 h-5 text-indigo-600"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900">Instant search</h3>
-                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Ranked autocomplete across names, categories, indications, and every detail section — with match highlighting.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
-                    <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mb-4">
-                        <i data-lucide="keyboard" class="w-5 h-5 text-violet-600"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900">Keyboard first</h3>
-                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Press <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-slate-100 border border-slate-200 rounded">/</kbd> anywhere to search, arrows to navigate, <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-slate-100 border border-slate-200 rounded">Esc</kbd> to clear.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center mb-4">
-                        <i data-lucide="printer" class="w-5 h-5 text-emerald-600"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900">Print friendly</h3>
-                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">Printing expands every entry and strips the chrome — perfect for binders and clipboards.</p>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-card p-5">
-                    <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center mb-4">
-                        <i data-lucide="accessibility" class="w-5 h-5 text-amber-600"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900">Accessible</h3>
-                    <p class="text-sm text-slate-500 mt-1.5 leading-relaxed">ARIA-annotated search and accordions with full screen-reader and focus support.</p>
-                </div>
+        <!-- What's in the guide -->
+        <section>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-5 h-5 text-sky-700"></i>
+                What's in the guide
+            </h2>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+                Every entry covers the same seven things so nothing gets missed under pressure:
+                dosing (adult, pediatric, and adjustments), indications, contraindications,
+                mechanism and expected effect, adverse effects and interactions, monitoring,
+                and emergency &amp; escalation steps — including what needs physician approval first.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Cardiovascular</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Infectious Disease</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Controlled Substances</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">IV Fluids &amp; Electrolytes</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Respiratory</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">GI</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Derm</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">ENT / Eye</span>
+                <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">+ 8 more</span>
             </div>
         </section>
 
-        <!-- ===== CTA band ===== -->
-        <section class="mt-20 sm:mt-24 relative overflow-hidden rounded-3xl bg-slate-950 text-white px-6 py-12 sm:px-12 sm:py-16 text-center">
-            <div class="absolute inset-0 hero-glow pointer-events-none"></div>
-            <div class="relative z-10">
-                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Ready when you are.</h2>
-                <p class="mt-3 text-slate-400 max-w-xl mx-auto">Jump into the medication guide — your last search is remembered, so you pick up right where you left off.</p>
-                <a href="meds.html" class="group mt-7 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 font-semibold shadow-glow hover:from-indigo-400 hover:to-indigo-500 transition-all">
-                    <i data-lucide="pill" class="w-5 h-5"></i>
-                    Open Medication Guide
-                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </a>
+        <!-- At-sea reminders -->
+        <section id="sea-tips" class="mt-12">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="waves" class="w-5 h-5 text-sky-700"></i>
+                At-sea points to remember
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">The stuff that's different when the sickbay is moving and the nearest hospital is days away.</p>
+
+            <div class="mt-6 space-y-4">
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="thermometer" class="w-4 h-4 text-sky-700"></i>
+                        Storage, heat &amp; cold chain
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Sickbay and flats run hot and humid — check that temperature-sensitive stock (insulin, glucagon, Td/Tdap, tetracaine, suppositories) stays in the fridge and log fridge temps daily.</li>
+                        <li>Walk the shelves before sailing: pull anything expiring during the deployment window and reorder before you're past resupply range.</li>
+                        <li>Heat degrades epinephrine and nitroglycerin faster than the label suggests — inspect ampules for discolouration and rotate crash-bag stock often.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="lock" class="w-4 h-4 text-sky-700"></i>
+                        Narcotics &amp; benzos custody
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Counts, witnessed signatures, and the register — every dose, every wastage, every time, per CAF/RCN controlled-drug policy. No shortcuts on a small ship where everyone knows the sickbay.</li>
+                        <li>Reconcile the safe after every use and at every handover; a discrepancy found in port is a lot easier to explain than one found mid-Atlantic.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="ship" class="w-4 h-4 text-sky-700"></i>
+                        Seasickness &amp; sedation stack-up
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Dimenhydrinate, scopolamine, hydroxyzine, benzos, and opioids all sedate — think hard before combining them in someone who still has to climb ladders and stand watch.</li>
+                        <li>Prolonged vomiting at sea means dehydration and electrolyte loss — reassess before adding QT-prolonging antiemetics like ondansetron on top of an unknown potassium.</li>
+                        <li>Flag sedating meds to the chain of command for watchkeepers, lookouts, and anyone on flight deck or small-boat duty.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="radio" class="w-4 h-4 text-sky-700"></i>
+                        Escalation when you're the only provider
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Know tonight's comms plan for reaching shore-based physician support before you need it — satellite windows and EMCON can close fast.</li>
+                        <li>Call early on anything trending toward MEDEVAC: weather, distance, and helo availability shrink the window, and the decision chain (you → command → shore medical) takes time.</li>
+                        <li>Anything the guide flags as "physician approval" gets the call made first when time allows — and thorough documentation when it doesn't.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="package-check" class="w-4 h-4 text-sky-700"></i>
+                        Finite stock, no pharmacy down the street
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Track running counts on high-burn items (analgesics, Gravol, antibiotics) and reorder ahead of the next RAS or port visit — not when the shelf is empty.</li>
+                        <li>Know your alternatives column: if first-line runs out, the guide lists what else on board can do the job.</li>
+                        <li>Restock and re-check the crash bag after every use — and drill grabbing it in a seaway, not just alongside.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg border border-slate-200 p-5">
+                    <h3 class="font-semibold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="sun" class="w-4 h-4 text-sky-700"></i>
+                        Heat stress &amp; the engine room
+                    </h3>
+                    <ul class="mt-2 text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-1">
+                        <li>Dehydrated stokers and boarding-party members have less renal reserve — be careful with NSAIDs, and push oral rehydration before reaching for ketorolac.</li>
+                        <li>Anticholinergics (scopolamine, dimenhydrinate, benztropine) impair sweating — a bad mix with hot machinery spaces and firefighting kit.</li>
+                    </ul>
+                </div>
+
             </div>
+        </section>
+
+        <!-- Quick link back to guide -->
+        <section class="mt-12 bg-slate-900 text-white rounded-lg px-6 py-8 text-center">
+            <p class="text-slate-300">Back to the meds:</p>
+            <a href="meds.html" class="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 font-semibold transition-colors">
+                <i data-lucide="pill" class="w-5 h-5"></i>
+                Open the Med Guide
+            </a>
         </section>
     </main>
 
     <!-- ===== Footer ===== -->
     <footer class="border-t border-slate-200 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                <span class="bg-gradient-to-br from-indigo-500 to-indigo-700 p-1.5 rounded-lg">
-                    <i data-lucide="stethoscope" class="w-3.5 h-3.5 text-white"></i>
-                </span>
-                PA Delegation Reference
-            </div>
-            <p class="text-xs text-slate-400 text-center sm:text-right max-w-md">
-                For clinical reference only. Verify dosing and protocols against current guidelines and your supervising physician's delegation agreement.
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6">
+            <p class="text-xs text-slate-400 leading-relaxed">
+                Personal reference only — not an official CAF/RCN publication. Verify all dosing and
+                protocols against current guidelines, formulary, and my delegation agreement with the
+                supervising physician before acting.
             </p>
         </div>
     </footer>
