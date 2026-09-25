@@ -10,9 +10,22 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 | File | Purpose |
 | --- | --- |
 | `index.html` | Personal landing page with at-sea reminders and a link to the med guide. |
+| `scenarios.html` | Scenario summaries: 13 common situations (anaphylaxis, arrest, seizure, hyperkalemia, smoke/cyanide, alcohol withdrawal, …) showing how the guide's meds fit together, each linking to its full entry. |
 | `meds.html` | Interactive medication reference: 16 categories, 144 medications with dosing, indications, contraindications, monitoring, escalation guidance, and clinical pearls. |
 
 ## Features
+
+- **Weight-based doses** — enter a weight (kg) on the med page and every
+  mg/kg, mcg/kg, mL/kg, units/kg or mmol/kg figure shows the worked-out amount
+  next to it (per dose, per day, per minute or per hour). A max stated in the
+  same clause caps the result, and a draw-up volume is shown for injectable
+  doses when the entry lists exactly one concentration. The weight is kept for
+  the browser tab only.
+- **Favourites & recently viewed** — star any entry; favourites and the last 8
+  entries opened appear as quick links above the list (stored on the device).
+- **Links to entries** — each medication has its own address
+  (`meds.html#med-ketamine`); opening an entry updates the URL, and *Copy link*
+  copies it.
 
 - **At Sea notes** — 63 medications have an *At Sea* section with shipboard
   guidance (seasickness, heat, cold chain, port-visit STIs/PEP, alcohol
@@ -20,6 +33,12 @@ in a browser or host them on any static host (e.g. GitHub Pages).
   divers/aircrew, eye injuries). Meds that sedate or blur vision carry a
   **Duty impact** badge — search `duty impact` to list them. Notes live in the
   `atSeaNotes` map in `meds.html`, keyed by medication name.
+- **Antibiotic guidance** — indications consistently mark *first-line* /
+  *alternative* use; anti-infectives suggested in *Alternatives* that aren't on
+  this delegated list are tagged **not in guide** (list: `notInGuideDrugs` in
+  `meds.html`); the Infectious Disease category links to
+  [Bugs & Drugs](https://www.bugsanddrugs.org/) for cross-checking empiric
+  choices.
 - **Canadian units and labelling** — mg/mL (not ratio) epinephrine, mcg,
   mmol, µmol/L, °C, metric measures, "subcut" (not SQ/SC), and no retired FDA
   pregnancy letter categories. Dosing aligned with Canadian sources where they
