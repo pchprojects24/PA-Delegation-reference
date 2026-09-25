@@ -20,6 +20,12 @@ in a browser or host them on any static host (e.g. GitHub Pages).
   divers/aircrew, eye injuries). Meds that sedate or blur vision carry a
   **Duty impact** badge — search `duty impact` to list them. Notes live in the
   `atSeaNotes` map in `meds.html`, keyed by medication name.
+- **Antibiotic guidance** — indications consistently mark *first-line* /
+  *alternative* use; anti-infectives suggested in *Alternatives* that aren't on
+  this delegated list are tagged **not in guide** (list: `notInGuideDrugs` in
+  `meds.html`); the Infectious Disease category links to
+  [Bugs & Drugs](https://www.bugsanddrugs.org/) for cross-checking empiric
+  choices.
 - **Canadian units and labelling** — mg/mL (not ratio) epinephrine, mcg,
   mmol, µmol/L, °C, metric measures, "subcut" (not SQ/SC), and no retired FDA
   pregnancy letter categories. Dosing aligned with Canadian sources where they
