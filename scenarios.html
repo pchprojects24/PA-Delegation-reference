@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Summaries — PA Delegation Reference</title>
+    <meta name="description" content="Study summaries showing how the medications in the guide fit together in common scenarios.">
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script
+        defer
+        src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+        .scenario-card { scroll-margin-top: 1rem; }
+        @media print {
+            @page { margin: 12mm; }
+            html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .scenario-card { break-inside: avoid; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <header class="bg-slate-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+            <a href="index.html" class="no-print inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-white">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Home
+            </a>
+            <h1 class="mt-3 text-2xl sm:text-3xl font-bold tracking-tight">Scenario Summaries</h1>
+            <p class="mt-3 text-slate-300 leading-relaxed">
+                Study summaries of how the medications in the guide fit together in common scenarios.
+                Doses are taken from the medication entries. Tap a medication to open its full entry with
+                contraindications, monitoring and at-sea notes.
+            </p>
+            <div class="no-print mt-5 flex flex-wrap gap-3">
+                <a href="meds.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold transition-colors">
+                    <i data-lucide="pill" class="w-4 h-4"></i> Med Guide
+                </a>
+                <button type="button" onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-600 text-slate-200 text-sm font-medium hover:bg-slate-800 transition-colors">
+                    <i data-lucide="file-down" class="w-4 h-4"></i> Save as PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-8">
+        <nav aria-label="Scenarios" class="no-print mb-6 flex gap-2 overflow-x-auto sm:flex-wrap pb-1">
+            <a href="#scenario-anaphylaxis" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Anaphylaxis</a>
+            <a href="#scenario-cardiac-arrest-vf-pulseless-vt" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Cardiac arrest — VF / pulseless VT</a>
+            <a href="#scenario-symptomatic-bradycardia" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Symptomatic bradycardia</a>
+            <a href="#scenario-narrow-complex-tachycardia-svt" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Narrow-complex tachycardia (SVT)</a>
+            <a href="#scenario-seizure-status-epilepticus" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Seizure / status epilepticus</a>
+            <a href="#scenario-opioid-toxicity" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Opioid toxicity</a>
+            <a href="#scenario-hypoglycemia" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Hypoglycemia</a>
+            <a href="#scenario-hyperkalemia" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Hyperkalemia</a>
+            <a href="#scenario-acute-coronary-syndrome-stemi" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Acute coronary syndrome / STEMI</a>
+            <a href="#scenario-severe-asthma-exacerbation" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Severe asthma exacerbation</a>
+            <a href="#scenario-major-hemorrhage-trauma" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Major hemorrhage / trauma</a>
+            <a href="#scenario-smoke-inhalation-cyanide" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Smoke inhalation &amp; cyanide</a>
+            <a href="#scenario-alcohol-withdrawal-after-sailing" class="shrink-0 text-xs font-semibold text-slate-600 bg-white hover:bg-indigo-50 hover:text-indigo-700 border border-slate-200 rounded-full px-3 py-1.5 transition-colors">Alcohol withdrawal after sailing</a>
+        </nav>
+
+        <div class="space-y-6">
+            <article id="scenario-anaphylaxis" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-rose-50 shrink-0">
+                        <i data-lucide="shield-alert" class="w-5 h-5 text-rose-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Anaphylaxis</h2>
+                        <p class="text-sm text-slate-500">Airway, breathing or circulation involvement after an exposure (food, drug, sting).</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-epinephrine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Epinephrine</a>
+                            <span>0.3–0.5 mg IM (1 mg/mL) q5–15 min PRN. Pediatrics: 0.01 mg/kg IM (1 mg/mL), max 0.5 mg. Give first, and don’t delay.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-nacl-0-9-normal-saline" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">NaCl 0.9% (Normal Saline)</a>
+                            <span>Hypotension: bolus 500–1,000 mL IV, reassess. Pediatrics: 20 mL/kg bolus.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-salbutamol-albuterol-ventolin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Salbutamol (Albuterol/Ventolin)</a>
+                            <span>Bronchospasm despite epinephrine: nebulized 2.5–5 mg q20 min PRN x3. Don’t rely on salbutamol alone.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-diphenhydramine-benadryl" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Diphenhydramine (Benadryl)</a>
+                            <span>Adjunct for itch/urticaria: 25–50 mg PO/IV/IM q4–6h PRN. Not a substitute for epinephrine.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-epinephrine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Epinephrine</a>
+                            <span>Refractory shock: infusion 2–10 mcg/min IV, titrate to perfusion/BP (physician).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Observe for recurrence (biphasic reaction) per protocol. Refractory reaction → physician and medevac planning.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-cardiac-arrest-vf-pulseless-vt" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-red-50 shrink-0">
+                        <i data-lucide="heart-pulse" class="w-5 h-5 text-red-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Cardiac arrest — VF / pulseless VT</h2>
+                        <p class="text-sm text-slate-500">Shockable rhythm. High-quality CPR and defibrillation come first; drugs are adjuncts.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-epinephrine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Epinephrine</a>
+                            <span>1 mg IV/IO (0.1 mg/mL syringe) q3–5 min.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-amiodarone" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Amiodarone</a>
+                            <span>300 mg IV/IO push; may repeat 150 mg once.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-lidocaine-iv-antiarrhythmic" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Lidocaine (IV Antiarrhythmic)</a>
+                            <span>Alternative: 1–1.5 mg/kg IV/IO push; may repeat 0.5–0.75 mg/kg q5–10 min (max cumulative 3 mg/kg).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-magnesium-sulphate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Magnesium Sulphate</a>
+                            <span>Torsades: 2 g IV over 10–15 min.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-calcium-gluconate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Calcium gluconate</a>
+                            <span>Suspected hyperkalemia: 1–2 g IV (see Hyperkalemia).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-sodium-bicarbonate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Sodium Bicarbonate</a>
+                            <span>TCA overdose with wide QRS: 1–2 mmol/kg IV bolus.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Look for reversible causes: hypoxia, hypovolemia, hyper-/hypokalemia, hypothermia, toxins, tamponade, tension pneumothorax, thrombosis.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-symptomatic-bradycardia" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 shrink-0">
+                        <i data-lucide="activity" class="w-5 h-5 text-orange-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Symptomatic bradycardia</h2>
+                        <p class="text-sm text-slate-500">Slow rate with hypotension, altered mental status, chest pain or heart failure.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-atropine-sulfate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Atropine Sulfate</a>
+                            <span>1 mg IV push q3–5 min PRN (max 3 mg).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-epinephrine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Epinephrine</a>
+                            <span>Atropine ineffective: infusion 2–10 mcg/min IV, titrate to perfusion/BP (physician).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-dopamine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Dopamine</a>
+                            <span>Alternative: start 5 mcg/kg/min IV; titrate by 2.5–5 mcg/kg/min q5–10 min (typical range 2–20 mcg/kg/min).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Transcutaneous pacing if available and trained. Look for causes: ischemia, drugs (beta-blockers), hyperkalemia, hypothermia.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-narrow-complex-tachycardia-svt" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-50 shrink-0">
+                        <i data-lucide="zap" class="w-5 h-5 text-amber-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Narrow-complex tachycardia (SVT)</h2>
+                        <p class="text-sm text-slate-500">Regular narrow-complex tachycardia in a stable patient.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex items-start gap-2 text-slate-600 italic">Vagal manoeuvres first.</li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-adenosine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Adenosine</a>
+                            <span>6 mg rapid IV push + immediate 20 mL flush; if no conversion, 12 mg; may repeat 12 mg once. Pediatrics: 0.1 mg/kg (max 6 mg), then 0.2 mg/kg (max 12 mg).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-metoprolol" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Metoprolol</a>
+                            <span>Rate control (e.g., AF/flutter) with physician: 2.5–5 mg slow IV over 2 min; repeat q5 min to max 15 mg if BP/HR tolerate.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Unstable (hypotension, altered mental status, chest pain) → synchronized cardioversion per protocol/physician.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-seizure-status-epilepticus" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-violet-50 shrink-0">
+                        <i data-lucide="brain" class="w-5 h-5 text-violet-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Seizure / status epilepticus</h2>
+                        <p class="text-sm text-slate-500">Seizure lasting more than 5 minutes, or repeated seizures without recovery.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-dextrose-d50w" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Dextrose (D50W)</a>
+                            <span>Check glucose. If low: 25 g IV.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-midazolam-versed" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Midazolam (Versed)</a>
+                            <span>No IV access: 5–10 mg IM or IN (protocol dependent).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-lorazepam-ativan" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Lorazepam (Ativan)</a>
+                            <span>IV access: 0.1 mg/kg IV (max 4 mg per dose); may repeat once after 5–10 min.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-diazepam-valium" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Diazepam (Valium)</a>
+                            <span>Alternative IV: 5–10 mg IV slow push; may repeat q5–10 min PRN.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-phenytoin-dilantin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Phenytoin (Dilantin)</a>
+                            <span>Still seizing after benzodiazepines: 15–20 mg/kg IV at ≤50 mg/min with ECG/BP monitoring (normal saline only).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-thiamine-b1" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Thiamine (B1)</a>
+                            <span>Alcohol use or malnutrition: 100 mg IV/IM.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-magnesium-sulphate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Magnesium Sulphate</a>
+                            <span>Eclampsia: 4–6 g IV load, then 1–2 g/h (physician/OB protocol).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Protect the airway and keep the patient from injury on a moving deck. Call the physician for any repeat dosing.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-opioid-toxicity" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 shrink-0">
+                        <i data-lucide="syringe" class="w-5 h-5 text-sky-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Opioid toxicity</h2>
+                        <p class="text-sm text-slate-500">Reduced level of consciousness with slow or shallow breathing and small pupils.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex items-start gap-2 text-slate-600 italic">Ventilate first (bag-valve-mask with oxygen).</li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-naloxone-narcan" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Naloxone (Narcan)</a>
+                            <span>Titrate: 0.04 mg IV if opioid-dependent, escalating 0.04 → 0.4 → 2 mg IV/IM q2–3 min until breathing improves. Intranasal: 4 mg; repeat q2–3 min PRN. Pediatrics: 0.1 mg/kg (max 2 mg per dose).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Naloxone wears off before many opioids. Monitor for re-sedation; long-acting opioids may need repeat doses or an infusion (physician).
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-hypoglycemia" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-50 shrink-0">
+                        <i data-lucide="candy" class="w-5 h-5 text-emerald-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Hypoglycemia</h2>
+                        <p class="text-sm text-slate-500">Low glucose with symptoms, especially confusion or reduced level of consciousness.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex items-start gap-2 text-slate-600 italic">Awake and able to swallow: oral glucose/carbohydrates.</li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-dextrose-d50w" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Dextrose (D50W)</a>
+                            <span>25 g IV (one amp D50W); recheck glucose in 10–15 min; repeat PRN. Pediatrics: D10W 5 mL/kg.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-glucagon" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Glucagon</a>
+                            <span>No IV access: 1 mg IM/subcut (≥25 kg); 0.5 mg IM/subcut (&lt;25 kg).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-thiamine-b1" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Thiamine (B1)</a>
+                            <span>Malnutrition/alcohol: give alongside glucose, but don’t delay dextrose.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> After recovery: oral carbohydrates, find the cause (insulin, sulfonylurea, alcohol), and plan monitoring.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-hyperkalemia" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-teal-50 shrink-0">
+                        <i data-lucide="battery-warning" class="w-5 h-5 text-teal-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Hyperkalemia</h2>
+                        <p class="text-sm text-slate-500">High potassium, especially with ECG changes.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-calcium-gluconate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Calcium gluconate</a>
+                            <span>ECG changes: 1–2 g IV over 5–10 min; may repeat if ECG changes persist.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-insulin-human-regular" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Insulin Human Regular</a>
+                            <span>Shift: 10 units regular insulin IV plus dextrose; recheck glucose (delayed hypoglycemia).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-dextrose-d50w" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Dextrose (D50W)</a>
+                            <span>With insulin: 25 g IV unless glucose is markedly elevated.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-salbutamol-albuterol-ventolin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Salbutamol (Albuterol/Ventolin)</a>
+                            <span>Adjunct: high-dose nebulized 10–20 mg per protocol.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-sodium-bicarbonate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Sodium Bicarbonate</a>
+                            <span>Adjunct only in severe acidemia. Not definitive therapy.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> These only protect the heart and move potassium into cells. Removal isn’t available at sea, so plan medevac early.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-acute-coronary-syndrome-stemi" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-rose-50 shrink-0">
+                        <i data-lucide="heart" class="w-5 h-5 text-rose-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Acute coronary syndrome / STEMI</h2>
+                        <p class="text-sm text-slate-500">Ischemic chest pain; STEMI on ECG. PCI is not available at sea.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-asa-aspirin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">ASA (Aspirin)</a>
+                            <span>160–325 mg PO, chewed ASAP.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-nitroglycerin-spray" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Nitroglycerin spray</a>
+                            <span>0.4 mg SL q5 min up to 3 doses if SBP ≥90–100 mmHg. Ask about PDE5 inhibitors first.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-clopidogrel" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Clopidogrel</a>
+                            <span>Load 300 mg (up to 600 mg per pathway), then 75 mg PO daily.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-tenecteplase" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Tenecteplase</a>
+                            <span>STEMI without timely PCI: weight-based single IV bolus (physician-only, with checklist). &lt;60 kg: 30 mg; 60–69 kg: 35 mg; 70–79 kg: 40 mg; 80–89 kg: 45 mg; ≥90 kg: 50 mg.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-enoxaparin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Enoxaparin</a>
+                            <span>With lysis, &lt;75 years: 30 mg IV then 1 mg/kg subcut q12h (max 100 mg first 2 doses). ≥75 years: 0.75 mg/kg q12h (max 75 mg first 2 doses), no IV bolus.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-fentanyl" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Fentanyl</a>
+                            <span>Ongoing pain: 25–50 mcg IV slow push; repeat q5–10 min PRN.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Get the 12-lead and the shore physician involved early, and plan medevac at the same time as treatment.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-severe-asthma-exacerbation" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 shrink-0">
+                        <i data-lucide="wind" class="w-5 h-5 text-blue-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Severe asthma exacerbation</h2>
+                        <p class="text-sm text-slate-500">Increased work of breathing, inability to speak in sentences, falling SpO₂.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-salbutamol-albuterol-ventolin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Salbutamol (Albuterol/Ventolin)</a>
+                            <span>Nebulized 2.5–5 mg q20 min PRN x3, or MDI 4–8 puffs via spacer q20 min x3; then reassess.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-prednisone" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Prednisone</a>
+                            <span>40–50 mg PO daily for 5 days.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-dexamethasone" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Dexamethasone</a>
+                            <span>Alternative: 6–10 mg PO/IV once daily for 1–2 days (local protocols vary).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-magnesium-sulphate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Magnesium Sulphate</a>
+                            <span>Not responding to bronchodilators/steroids: 2 g IV over 15–30 min.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-epinephrine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Epinephrine</a>
+                            <span>If anaphylaxis is the cause: IM epinephrine (see Anaphylaxis).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Silent chest, exhaustion, confusion or falling SpO₂ → physician and medevac.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-major-hemorrhage-trauma" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-red-50 shrink-0">
+                        <i data-lucide="droplet" class="w-5 h-5 text-red-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Major hemorrhage / trauma</h2>
+                        <p class="text-sm text-slate-500">Significant bleeding or major trauma (machinery, falls, crush injury).</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex items-start gap-2 text-slate-600 italic">Control bleeding first: direct pressure, packing, tourniquet.</li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-tranexamic-acid" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Tranexamic Acid</a>
+                            <span>1 g IV over 10 min, then 1 g IV over 8 h. Start within 3 h of injury. Pediatrics: 15 mg/kg IV (max 1 g).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-lactated-ringer-s" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Lactated Ringer’s</a>
+                            <span>Bolus 500–1,000 mL IV, then reassess; avoid fluid overload.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-fentanyl" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Fentanyl</a>
+                            <span>Analgesia: 25–50 mcg IV slow push; repeat q5–10 min PRN (or 0.5–1 mcg/kg).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-ketamine" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Ketamine</a>
+                            <span>Analgesia alternative: 0.1–0.3 mg/kg IV slow over ~10–15 min.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Keep the casualty warm, reassess often, and request medevac early.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-smoke-inhalation-cyanide" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 shrink-0">
+                        <i data-lucide="flame" class="w-5 h-5 text-orange-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Smoke inhalation &amp; cyanide</h2>
+                        <p class="text-sm text-slate-500">Casualty from an enclosed-space fire. Think carbon monoxide and cyanide.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex items-start gap-2 text-slate-600 italic">High-flow 100% oxygen.</li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-cyanokit-hydroxocobalamin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Cyanokit (Hydroxocobalamin)</a>
+                            <span>Altered consciousness, hypotension, seizures or high lactate: 5 g IV over ~15 min; may repeat 5 g once. Pediatrics: 70 mg/kg (max 5 g).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-sodium-thiosulfate" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Sodium Thiosulfate</a>
+                            <span>Adjunct: 12.5 g IV over ~10 min (physician/toxicology).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-salbutamol-albuterol-ventolin" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Salbutamol (Albuterol/Ventolin)</a>
+                            <span>Bronchospasm: nebulized 2.5–5 mg.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-silver-sulfadiazine-1-cream" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Silver Sulfadiazine 1% Cream</a>
+                            <span>Burns: after cooling and assessment. See the entry for use.</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Airway burns (soot, hoarse voice, stridor) can worsen quickly. Involve the physician early and plan medevac.
+                    </p>
+                </div>
+            </article>
+            <article id="scenario-alcohol-withdrawal-after-sailing" class="scenario-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <header class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+                    <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-100 shrink-0">
+                        <i data-lucide="beer-off" class="w-5 h-5 text-slate-600"></i>
+                    </span>
+                    <div class="min-w-0">
+                        <h2 class="text-lg font-bold text-slate-900">Alcohol withdrawal after sailing</h2>
+                        <p class="text-sm text-slate-500">Tremor, sweating, anxiety or agitation 1–3 days after leaving port; can progress to seizures.</p>
+                    </div>
+                </header>
+                <div class="px-5 py-4">
+                    <ol class="space-y-3 text-sm text-slate-800 leading-relaxed list-none">
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-thiamine-b1" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Thiamine (B1)</a>
+                            <span>100 mg IV/IM daily. High-dose IV for suspected Wernicke’s (physician).</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-diazepam-valium" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Diazepam (Valium)</a>
+                            <span>Symptom-triggered dosing per protocol; avoid over-sedation.</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-3">
+                            <a href="meds.html#med-lorazepam-ativan" class="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-2.5 py-0.5">Lorazepam (Ativan)</a>
+                            <span>Consider when hepatic impairment is suspected (physician-directed).</span>
+                        </li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-600 bg-sky-50 border border-sky-100 rounded-lg px-3 py-2">
+                        <span class="font-semibold text-sky-800">Escalation &amp; notes:</span> Check glucose and hydration. Seizures → see Seizure. Ask about intake before sailing and after port visits.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 text-xs text-slate-500">
+            Personal reference only — not an official CAF/RCN publication. Verify against current guidelines,
+            formulary, and my delegation agreement with the supervising physician.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
