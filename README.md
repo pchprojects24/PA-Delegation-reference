@@ -14,6 +14,18 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 
 ## Features
 
+- **At Sea notes** — 63 medications have an *At Sea* section with shipboard
+  guidance (seasickness, heat, cold chain, port-visit STIs/PEP, alcohol
+  withdrawal after sailing, fires/cyanide, outbreaks in close quarters,
+  divers/aircrew, eye injuries). Meds that sedate or blur vision carry a
+  **Duty impact** badge — search `duty impact` to list them. Notes live in the
+  `atSeaNotes` map in `meds.html`, keyed by medication name.
+- **Canadian units and labelling** — mg/mL (not ratio) epinephrine, mcg,
+  mmol, µmol/L, °C, metric measures, "subcut" (not SQ/SC), and no retired FDA
+  pregnancy letter categories. Dosing aligned with Canadian sources where they
+  differ from US practice (PHAC gonorrhea guide, NACI Tdap in pregnancy,
+  Canadian ketorolac and croup dexamethasone labelling).
+
 - **Search** across medication names, categories, indications, and all detail
   sections, with ranked autocomplete suggestions and match highlighting. Small
   result sets (5 or fewer) open automatically; larger ones stay collapsed so the
