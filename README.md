@@ -11,17 +11,20 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 | --- | --- |
 | `index.html` | Personal landing page with at-sea reminders and a link to the med guide. |
 | `meds.html` | Interactive medication reference: 16 categories, 144 medications with dosing, indications, contraindications, monitoring, escalation guidance, and clinical pearls. |
-| `meds.html.backup` | Earlier snapshot of the medication page, kept for reference. |
 
 ## Features
 
 - **Search** across medication names, categories, indications, and all detail
-  sections, with ranked autocomplete suggestions, match highlighting, and the
-  last search persisted in `localStorage`.
+  sections, with ranked autocomplete suggestions and match highlighting. Small
+  result sets (5 or fewer) open automatically; larger ones stay collapsed so the
+  list is easy to scan.
+- **Category quick-jump** bar to go straight to any category, plus a floating
+  back-to-top button.
 - **Keyboard support** — press `/` anywhere to focus search, arrow keys to
   navigate suggestions, `Enter` to select, `Escape` to clear.
-- **Accordion layout** with per-medication expand/collapse and an
-  expand/collapse-all control; matching results auto-expand during search.
+- **Accordion layout** with per-medication expand/collapse, an
+  expand/collapse-all control, and a "Close" button at the bottom of each
+  entry that returns you to its header.
 - **Print friendly** — printing expands all content and hides the controls.
 - **Accessible** — ARIA-annotated combobox and accordions, `inert` collapsed
   panels.
