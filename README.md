@@ -25,7 +25,16 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 - **Accordion layout** with per-medication expand/collapse, an
   expand/collapse-all control, and a "Close" button at the bottom of each
   entry that returns you to its header.
-- **Print friendly** — printing expands all content and hides the controls.
+- **Save as PDF** — export exactly what you need through the browser's print
+  dialog ("Save as PDF"):
+  - **Current view** — the *Save as PDF* button next to *Expand all* saves
+    everything currently shown (e.g. your search results).
+  - **One category** — the *PDF* button in each category header.
+  - **One medication** — the *Save as PDF* button at the bottom of an open entry.
+
+  Exports are fully expanded, include a title, date/time, the active search,
+  and a disclaimer, and suggest a matching file name. Printing normally
+  (Ctrl/Cmd+P) still works and prints the current view.
 - **Accessible** — ARIA-annotated combobox and accordions, `inert` collapsed
   panels.
 

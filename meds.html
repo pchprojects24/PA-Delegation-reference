@@ -60,12 +60,32 @@
                 position: static !important;
                 box-shadow: none !important;
             }
+            @page { margin: 12mm; }
+            html, body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
             #searchWrapper,
             #expandAllBtn,
             #categoryNav,
             #backToTopBtn,
-            .collapse-entry-btn {
+            #resultsCount,
+            .collapse-entry-btn,
+            .pdf-export-btn,
+            .chevron-icon {
                 display: none !important;
+            }
+            #printHeader {
+                display: block !important;
+            }
+            /* Scoped exports: only the chosen category / medication is printed. */
+            body[data-print-scope="category"] .category-section:not(.print-target),
+            body[data-print-scope="medication"] .category-section:not(.print-target),
+            body[data-print-scope="medication"] .med-card:not(.print-target) {
+                display: none !important;
+            }
+            .category-section {
+                box-shadow: none !important;
             }
             .accordion-content {
                 max-height: none !important;
@@ -143,12 +163,30 @@
 
     <!-- Main Content -->
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Shown only in printed / PDF output -->
+        <div id="printHeader" class="hidden mb-4 pb-3 border-b border-slate-300">
+            <p id="printTitle" class="text-lg font-bold text-slate-900"></p>
+            <p id="printMeta" class="text-xs text-slate-500 mt-0.5"></p>
+            <p class="text-xs text-slate-500 mt-0.5">Personal reference only. Verify dosing against current guidelines and your delegation agreement.</p>
+        </div>
+
         <!-- Controls -->
         <div class="flex flex-wrap justify-between items-center gap-3 mb-4">
             <p class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 bg-white border border-slate-200 rounded-full px-4 py-1.5 shadow-sm" id="resultsCount">Showing all medications</p>
-            <button id="expandAllBtn" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-4 py-1.5 transition-colors">
-                Expand all
-            </button>
+            <div class="flex items-center gap-2">
+                <button
+                    type="button"
+                    id="exportViewBtn"
+                    title="Save everything currently shown as a PDF"
+                    class="pdf-export-btn inline-flex items-center gap-2 text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-full px-4 py-1.5 shadow-sm transition-colors"
+                >
+                    <i data-lucide="file-down" class="w-4 h-4"></i>
+                    Save as PDF
+                </button>
+                <button id="expandAllBtn" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-full px-4 py-1.5 transition-colors">
+                    Expand all
+                </button>
+            </div>
         </div>
 
         <!-- Category quick-jump -->
@@ -12840,6 +12878,10 @@
         const categoryNav = document.getElementById('categoryNav');
         const emptyClearBtn = document.getElementById('emptyClearBtn');
         const backToTopBtn = document.getElementById('backToTopBtn');
+        const exportViewBtn = document.getElementById('exportViewBtn');
+        const printTitle = document.getElementById('printTitle');
+        const printMeta = document.getElementById('printMeta');
+        const originalDocumentTitle = document.title;
         // Searches matching this many medications or fewer open automatically;
         // larger result sets stay collapsed so the list remains scannable.
         const autoExpandLimit = 5;
@@ -13264,6 +13306,7 @@
                 const categoryStyle = getCategoryStyle(category.category);
                 const catDiv = document.createElement('div');
                 catDiv.id = getCategoryId(category.category);
+                catDiv.dataset.categoryName = category.category;
                 catDiv.className = 'category-section relative bg-white rounded-2xl shadow-card border border-slate-200/80 overflow-hidden mb-6';
 
                 const catHeader = document.createElement('div');
@@ -13276,7 +13319,19 @@
                         </span>
                         <span class="truncate">${category.category}</span>
                     </h2>
-                    <span class="bg-white border border-slate-200 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm shrink-0">${category.medications.length} meds</span>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <span class="bg-white border border-slate-200 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">${category.medications.length} meds</span>
+                        <button
+                            type="button"
+                            data-export-category="true"
+                            aria-label="Save ${category.category} as PDF"
+                            title="Save this category as PDF"
+                            class="pdf-export-btn inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-indigo-600 bg-white hover:bg-indigo-50 border border-slate-200 px-2.5 py-1 rounded-full shadow-sm transition-colors"
+                        >
+                            <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+                            PDF
+                        </button>
+                    </div>
                 `;
                 catDiv.appendChild(catHeader);
 
@@ -13289,6 +13344,7 @@
                     const accordionButtonId = `accordion-btn-${categoryIndex}-${medIndex}`;
                     const medItem = document.createElement('div');
                     medItem.className = 'med-card group';
+                    medItem.dataset.medName = med.name;
                     
                     medItem.innerHTML = `
                         <button
@@ -13383,7 +13439,15 @@
                                         : ""
                                 }
 
-                                <div class="flex justify-end">
+                                <div class="flex flex-wrap justify-end gap-2">
+                                    <button
+                                        type="button"
+                                        data-export-medication="true"
+                                        class="pdf-export-btn inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-indigo-600 bg-white border border-slate-200 px-3 py-1.5 rounded-full shadow-sm transition-colors"
+                                    >
+                                        <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+                                        Save as PDF
+                                    </button>
                                     <button
                                         type="button"
                                         data-collapse-entry="true"
@@ -13445,6 +13509,18 @@
                 return;
             }
 
+            const exportCategoryButton = event.target.closest('[data-export-category="true"]');
+            if (exportCategoryButton) {
+                exportToPdf('category', exportCategoryButton.closest('.category-section'));
+                return;
+            }
+
+            const exportMedicationButton = event.target.closest('[data-export-medication="true"]');
+            if (exportMedicationButton) {
+                exportToPdf('medication', exportMedicationButton.closest('.med-card'));
+                return;
+            }
+
             // "Close" button at the bottom of a long entry: collapse it and
             // bring its header back into view so the list position isn't lost.
             const collapseButton = event.target.closest('[data-collapse-entry="true"]');
@@ -13457,6 +13533,60 @@
                 cardTrigger.focus({ preventScroll: true });
             }
         });
+
+        // PDF export uses the browser's print dialog ("Save as PDF").
+        // scope: "view" (everything currently shown), "category", or "medication".
+        // The document title doubles as the suggested PDF file name.
+        let printScopeActive = false;
+
+        function clearPrintScope() {
+            document.body.removeAttribute('data-print-scope');
+            document.querySelectorAll('.print-target').forEach((el) => el.classList.remove('print-target'));
+            document.title = originalDocumentTitle;
+            printScopeActive = false;
+        }
+
+        function setPrintHeader(title) {
+            printTitle.textContent = title;
+            const parts = [`Saved ${new Date().toLocaleString('en-CA', { dateStyle: 'medium', timeStyle: 'short' })}`];
+            if (currentSearchTerm) parts.push(`Search: "${currentSearchTerm}"`);
+            printMeta.textContent = parts.join(' · ');
+        }
+
+        function exportToPdf(scope, target) {
+            clearPrintScope();
+            let title = 'Medication Reference';
+
+            if (scope === 'category' && target) {
+                target.classList.add('print-target');
+                title = `${target.dataset.categoryName} — Medication Reference`;
+            } else if (scope === 'medication' && target) {
+                const category = target.closest('.category-section');
+                target.classList.add('print-target');
+                if (category) category.classList.add('print-target');
+                title = `${target.dataset.medName} — Medication Reference`;
+            } else if (currentSearchTerm) {
+                title = `Medication Reference — ${currentSearchTerm}`;
+            }
+
+            if (scope !== 'view') document.body.setAttribute('data-print-scope', scope);
+            setPrintHeader(title);
+            document.title = title;
+            printScopeActive = true;
+            window.print();
+        }
+
+        // Ctrl/Cmd+P without a button still gets a header for the current view.
+        window.addEventListener('beforeprint', () => {
+            if (!printScopeActive) {
+                setPrintHeader(
+                    currentSearchTerm ? `Medication Reference — ${currentSearchTerm}` : 'Medication Reference'
+                );
+            }
+        });
+        window.addEventListener('afterprint', clearPrintScope);
+
+        exportViewBtn.addEventListener('click', () => exportToPdf('view'));
 
         emptyClearBtn.addEventListener('click', () => {
             searchInput.value = '';
