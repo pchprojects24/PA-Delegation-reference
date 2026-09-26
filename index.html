@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Delegated Meds — At-Sea Reference</title>
     <meta name="description" content="Personal quick reference for my delegated medications as a Physician Assistant with the Royal Canadian Navy — dosing, contraindications, monitoring, and escalation notes.">
+    <!-- Home-screen app -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PA Meds">
     <script defer src="https://cdn.tailwindcss.com"></script>
     <script
         defer
@@ -43,6 +52,10 @@
                     <i data-lucide="list-checks" class="w-5 h-5"></i>
                     Scenario Summaries
                 </a>
+                <a href="infusion.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-slate-600 text-slate-200 font-medium hover:bg-slate-800 transition-colors">
+                    <i data-lucide="calculator" class="w-5 h-5"></i>
+                    Infusion Calculator
+                </a>
                 <a href="#sea-tips" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-slate-600 text-slate-200 font-medium hover:bg-slate-800 transition-colors">
                     <i data-lucide="waves" class="w-5 h-5"></i>
                     At-Sea Reminders
@@ -67,7 +80,7 @@
                 Every entry covers the same core sections so nothing gets missed under pressure:
                 dosing (adult, pediatric, and adjustments), indications, contraindications,
                 mechanism and expected effect, adverse effects and interactions, monitoring,
-                and emergency &amp; escalation steps — including what needs physician approval first. Where it matters at sea, there’s also an <strong>At Sea</strong> section, and meds that sedate or blur vision are flagged <strong>Duty impact</strong>. Doses use Canadian units and labelling (mg/mL, mcg, mmol, µmol/L, °C, “subcut”). Enter a patient weight on the med page to see every mg/kg dose worked out, star favourites, and copy a link straight to any entry. <a href="scenarios.html" class="font-semibold text-sky-700 underline underline-offset-2">Scenario summaries</a> show how the meds fit together in 13 common situations.
+                and emergency &amp; escalation steps — including what needs physician approval first. Where it matters at sea, there’s also an <strong>At Sea</strong> section, and meds that sedate or blur vision are flagged <strong>Duty impact</strong>. Doses use Canadian units and labelling (mg/mL, mcg, mmol, µmol/L, °C, “subcut”). Enter a patient weight on the med page to see every mg/kg dose worked out, star favourites, and copy a link straight to any entry. <a href="scenarios.html" class="font-semibold text-sky-700 underline underline-offset-2">Scenario summaries</a> show how the meds fit together in 13 common situations, the <a href="infusion.html" class="font-semibold text-sky-700 underline underline-offset-2">infusion calculator</a> converts doses to pump rates, and <strong>Pocket card</strong> saves a compact dosing-only PDF of whatever is on screen (or your favourites). Search also understands Canadian brand names, abbreviations and plain-language uses (e.g. <em>Zofran</em>, <em>TXA</em>, <em>pink eye</em>). On a phone, use <em>Add to Home Screen</em> to open it like an app.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
                 <span class="text-xs font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-md">Cardiovascular</span>

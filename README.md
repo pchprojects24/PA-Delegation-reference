@@ -12,8 +12,19 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 | `index.html` | Personal landing page with at-sea reminders and a link to the med guide. |
 | `scenarios.html` | Scenario summaries: 13 common situations (anaphylaxis, arrest, seizure, hyperkalemia, smoke/cyanide, alcohol withdrawal, …) showing how the guide's meds fit together, each linking to its full entry. |
 | `meds.html` | Interactive medication reference: 16 categories, 144 medications with dosing, indications, contraindications, monitoring, escalation guidance, and clinical pearls. |
+| `infusion.html` | Infusion calculator: dose (mcg/kg/min, mcg/min, mg/min, mg/h, units/h …) ↔ pump rate (mL/h), with example concentrations for the guide's infusion drugs and a printable rate table. |
 
 ## Features
+
+- **Smarter search** — also finds Canadian brand names, abbreviations and
+  plain-language uses (`Zofran`, `TXA`, `D50`, `pink eye`, `birth control`…),
+  ranking the main drugs for a use first. Short terms (≤3 characters, e.g.
+  `NS`, `UTI`) match at the start of a word. Terms live in
+  `data/search-aliases.js`.
+- **Pocket card** — compact, dosing-only, two-column PDF of whatever is on
+  screen (or of your favourites) for printing or laminating.
+- **Home-screen app** — *Add to Home Screen* installs it with its own icon and
+  opens it full-screen (`manifest.webmanifest`, `icons/`).
 
 - **Weight-based doses** — enter a weight (kg) on the med page and every
   mg/kg, mcg/kg, mL/kg, units/kg or mmol/kg figure shows the worked-out amount
@@ -71,12 +82,21 @@ in a browser or host them on any static host (e.g. GitHub Pages).
 
 ## Tech notes
 
-Both pages are self-contained HTML files. Styling uses the
+Plain HTML/JS with no build step. Styling uses the
 [Tailwind CSS CDN](https://tailwindcss.com) and icons use
 [Lucide](https://lucide.dev) (pinned to `0.475.0`), both loaded with `defer`;
-icon creation runs on `DOMContentLoaded`. The medication database lives in the
-`medData` array inside `meds.html` — to add or edit a medication, edit that
-array; the page normalizes, indexes, and renders it at load time.
+icon creation runs on `DOMContentLoaded`.
+
+| Path | Contents |
+| --- | --- |
+| `data/meds-data.js` | The medication database (`medData`) — edit this to add or change a medication. |
+| `data/at-sea-notes.js` | *At Sea* notes and *Duty impact* flags, keyed by medication name. |
+| `data/search-aliases.js` | Extra search terms (brand names, abbreviations, uses), keyed by medication name. |
+| `js/meds.js` | Med page logic: normalizing/indexing the data, search, rendering, weight-based doses, favourites, PDF and pocket-card export. |
+
+The data files are classic scripts (not JSON), so the pages also work when
+opened directly from disk. They load before `js/meds.js`, which normalizes,
+indexes and renders them at load time.
 
 > **Disclaimer:** For clinical reference only. Verify dosing and protocols
 > against current guidelines and your supervising physician's delegation
